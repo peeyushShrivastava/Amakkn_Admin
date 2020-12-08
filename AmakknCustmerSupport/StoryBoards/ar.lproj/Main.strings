@@ -1,0 +1,33 @@
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "3Y0-Ks-1am"; */
+"3Y0-Ks-1am.title" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "4Qm-Y1-1Rx"; */
+"4Qm-Y1-1Rx.normalTitle" = "Next";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "BhQ-eG-mh5"; */
+"BhQ-eG-mh5.placeholder" = "Password";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "YC4-LQ-bKd"; */
+"YC4-LQ-bKd.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "YFT-WA-jDg"; */
+"YFT-WA-jDg.normalTitle" = "Cancel";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "cFe-wP-0Tm"; */
+"cFe-wP-0Tm.title" = "Item";
+
+/* Class = "UITextField"; placeholder = "Mobile number"; ObjectID = "eBN-qS-UZr"; */
+"eBN-qS-UZr.placeholder" = "Mobile number";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "f6a-Ac-YU1"; */
+"f6a-Ac-YU1.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "rRW-jh-c3J"; */
+"rRW-jh-c3J.normalTitle" = "Login";
+
+/* Class = "UITextField"; text = "UAE +966"; ObjectID = "tO0-A2-PLy"; */
+"tO0-A2-PLy.text" = "UAE +966";
+
+/* Class = "UINavigationItem"; title = "Login"; ObjectID = "vki-UF-J4c"; */
+"vki-UF-J4c.title" = "Login";

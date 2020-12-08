@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userCellID" id="gTV-IL-0wX" customClass="UserCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RHV-b8-lfQ">
+                        <rect key="frame" x="75" y="20" width="100" height="100"/>
+                        <color key="backgroundColor" name="darkViewBGColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="3YA-yc-cfo"/>
+                            <constraint firstAttribute="height" constant="100" id="lMG-gt-Fi4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dhsgscshdchsbd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1O-sF-ych">
+                        <rect key="frame" x="20" y="140" width="210" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ks3-fe-D2v">
+                        <rect key="frame" x="70.5" y="181" width="109" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="+91 9008118664" image="PhoneIcon">
+                            <color key="titleColor" name="selectedTitleTextColor"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yc5-w5-0mA">
+                        <rect key="frame" x="70" y="206" width="110" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="abcd@gmail.com" image="CompanyDetailMsgIcon">
+                            <color key="titleColor" name="selectedTitleTextColor"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="lightViewBGColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="C1O-sF-ych" secondAttribute="trailing" constant="20" id="6l2-SO-NHd"/>
+                <constraint firstItem="C1O-sF-ych" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="EqE-zr-3s0"/>
+                <constraint firstItem="RHV-b8-lfQ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Iav-VT-Ydt"/>
+                <constraint firstItem="RHV-b8-lfQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="NuE-tc-ECm"/>
+                <constraint firstItem="Ks3-fe-D2v" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="QnN-nb-iNH"/>
+                <constraint firstItem="Yc5-w5-0mA" firstAttribute="top" secondItem="Ks3-fe-D2v" secondAttribute="bottom" constant="10" id="dmY-Rw-8IZ"/>
+                <constraint firstItem="C1O-sF-ych" firstAttribute="top" secondItem="RHV-b8-lfQ" secondAttribute="bottom" constant="20" id="n8q-B8-LqJ"/>
+                <constraint firstItem="C1O-sF-ych" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="rDL-aJ-b2O"/>
+                <constraint firstItem="Ks3-fe-D2v" firstAttribute="top" secondItem="C1O-sF-ych" secondAttribute="bottom" constant="20" id="xq6-c6-Rr5"/>
+                <constraint firstItem="Yc5-w5-0mA" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="z37-ct-8sU"/>
+            </constraints>
+            <size key="customSize" width="250" height="250"/>
+            <connections>
+                <outlet property="ibEmailText" destination="Yc5-w5-0mA" id="boi-8p-hp6"/>
+                <outlet property="ibNameLabel" destination="C1O-sF-ych" id="efM-Gb-97G"/>
+                <outlet property="ibPhoneText" destination="Ks3-fe-D2v" id="Ml2-8D-cuP"/>
+                <outlet property="ibPropertyImageView" destination="RHV-b8-lfQ" id="lbz-Jd-QKF"/>
+            </connections>
+            <point key="canvasLocation" x="282.60869565217394" y="91.741071428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="CompanyDetailMsgIcon" width="12" height="10"/>
+        <image name="PhoneIcon" width="12" height="12"/>
+        <namedColor name="darkViewBGColor">
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightViewBGColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
