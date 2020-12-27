@@ -16,6 +16,7 @@ class ChatSubjectsViewController: UIViewController {
     @IBOutlet weak var ibTableView: UITableView!
     
     var subjects: [ChatSubjectModel]?
+    var selectedSubject: String?
     var delegate: SubjectsDelegate?
 
     override func viewDidLoad() {
@@ -44,13 +45,15 @@ extension ChatSubjectsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "subjectCellID", for: indexPath) as? SubjectCell else { return UITableViewCell() }
 
-        cell.subject = subjects?[indexPath.row].subject
+        let model = subjects?[indexPath.row]
+        cell.subject = model?.subject
+        cell.ibSubjectLabel.textColor = model?.subjectID == selectedSubject ? .systemGreen : AppColors.selectedTitleTextColor
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        delegate?.didSelectCell(with: subjects?[indexPath.row].subjectID)
+        delegate?.didSelectCell(with: subjects?[indexPath.row].subjectID)
         dismiss(animated: true, completion: nil)
     }
 }

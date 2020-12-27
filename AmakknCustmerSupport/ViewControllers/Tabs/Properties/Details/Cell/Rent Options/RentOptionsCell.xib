@@ -1,21 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RentOptionsCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RentOptionsCell" id="JK0-ic-pj5" customClass="RentOptionsCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="162"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="442" height="162"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rent Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDC-sX-J5g">
+                        <rect key="frame" x="20" y="20" width="86" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uFZ-a9-AHx">
+                        <rect key="frame" x="0.0" y="52" width="442" height="110"/>
+                        <color key="backgroundColor" name="lightViewBGColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="JK0-ic-pj5" id="qQE-zg-fYR"/>
+                            <outlet property="delegate" destination="JK0-ic-pj5" id="qyf-f3-6oG"/>
+                        </connections>
+                    </tableView>
+                </subviews>
             </view>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <viewLayoutGuide key="safeArea" id="UCt-ES-bHJ"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uFZ-a9-AHx" secondAttribute="trailing" id="7FH-2n-YGr"/>
+                <constraint firstAttribute="bottom" secondItem="uFZ-a9-AHx" secondAttribute="bottom" id="JCR-Mx-WJp"/>
+                <constraint firstItem="uFZ-a9-AHx" firstAttribute="leading" secondItem="JK0-ic-pj5" secondAttribute="leading" id="Jzp-6q-mVZ"/>
+                <constraint firstItem="bDC-sX-J5g" firstAttribute="leading" secondItem="JK0-ic-pj5" secondAttribute="leading" constant="20" id="LXK-NT-KHc"/>
+                <constraint firstItem="uFZ-a9-AHx" firstAttribute="top" secondItem="bDC-sX-J5g" secondAttribute="bottom" constant="15" id="NBJ-i3-BsC"/>
+                <constraint firstItem="bDC-sX-J5g" firstAttribute="top" secondItem="JK0-ic-pj5" secondAttribute="top" constant="20" id="kZm-aa-bbV"/>
+            </constraints>
+            <size key="customSize" width="442" height="163"/>
+            <connections>
+                <outlet property="ibTableView" destination="uFZ-a9-AHx" id="u3a-Te-kqI"/>
+                <outlet property="ibTitleLabel" destination="bDC-sX-J5g" id="4bo-sx-KMJ"/>
+            </connections>
+            <point key="canvasLocation" x="282.60869565217394" y="190.84821428571428"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="lightViewBGColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

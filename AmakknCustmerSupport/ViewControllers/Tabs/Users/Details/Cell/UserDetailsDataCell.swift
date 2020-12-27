@@ -8,16 +8,32 @@
 import UIKit
 
 class UserDetailsDataCell: UITableViewCell {
+    @IBOutlet weak var ibTitleLabel: UILabel!
+    @IBOutlet weak var ibValueLabel: UILabel!
 
+    var model: UserDataTypeModel? {
+        didSet {
+            updateData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func updateUI(for isLastCell: Bool) {
+        let corners: CACornerMask = isLastCell ? [.layerMaxXMaxYCorner, .layerMinXMaxYCorner] : []
+        let radii: CGFloat = isLastCell ? 8.0 : 0.0
 
-        // Configure the view for the selected state
+        self.corner(radii, for: corners)
     }
-    
+
+    private func updateData() {
+        ibTitleLabel.text = model?.key
+
+        if let value = model?.value {
+            ibValueLabel.text = value.isEmpty ? "--" : value
+        }
+    }
 }

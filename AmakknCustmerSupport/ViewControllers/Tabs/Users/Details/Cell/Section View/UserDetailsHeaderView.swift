@@ -7,14 +7,32 @@
 
 import UIKit
 
+// MARK: - UserFilterHeader Delegate
+protocol UserDetailsHeaderDelegate {
+    func expandCell(at section: Int)
+}
+
 class UserDetailsHeaderView: UIView {
+    @IBOutlet weak var ibTitleLabel: UILabel!
+    @IBOutlet weak var ibIndicatorIcon: UIImageView!
+    @IBOutlet weak var ibExpandButton: UIButton!
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var delegate: UserDetailsHeaderDelegate?
+
+    func update(_ title: String?, at section: Int) {
+        ibTitleLabel.text = title
+
+        ibExpandButton.tag = section
     }
-    */
 
+    func updateUI(for isExpanded: Bool) {
+        let corners: CACornerMask = isExpanded ? [.layerMaxXMinYCorner, .layerMinXMinYCorner] : [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        let radii: CGFloat = 8.0
+
+        self.corner(radii, for: corners)
+    }
+
+    @IBAction func expandButtonTapped(_ sender: UIButton) {
+        delegate?.expandCell(at: sender.tag)
+    }
 }

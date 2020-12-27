@@ -10,6 +10,9 @@ import UIKit
 class PropertiesViewController: BaseViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ibEmptyBGView: EmptyBGView!
+    @IBOutlet weak var ibFilterButton: UIBarButtonItem!
+
+    var refreshControl = UIRefreshControl()
 
     let viewModel = PropertiesViewModel()
 
@@ -17,13 +20,19 @@ class PropertiesViewController: BaseViewController {
         super.viewDidLoad()
 
         ibEmptyBGView.delegate = self
-        ibEmptyBGView.updateUI()
 
         registerCell()
+        updateRefresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        self.tabBarController?.tabBar.isHidden = false
+
+        ibEmptyBGView.updateUI()
+        ibFilterButton.isEnabled = AppSession.manager.validSession
+        AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
 
         getProperties()
     }
@@ -39,21 +48,59 @@ class PropertiesViewController: BaseViewController {
 
         ibCollectionView.collectionViewLayout = layout
     }
+
+    private func updateRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        ibCollectionView.addSubview(refreshControl)
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+        refreshControl.attributedTitle = NSAttributedString(string: "Reloading data...")
+
+        viewModel.resetPage()
+        getProperties()
+    }
+}
+
+// MARK: - Navigation
+extension PropertiesViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "propertyFilterSegueID",
+            let destinationVC = segue.destination as? PropertiesFilterViewController {
+
+            destinationVC.delegate = self
+        }
+    }
+}
+
+// MARK: - Button Action
+extension PropertiesViewController {
+    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "propertyFilterSegueID", sender: nil)
+    }
 }
 
 // MARK: - API Calls
 extension PropertiesViewController {
     private func getProperties() {
+        guard AppSession.manager.validSession else { ibCollectionView.isHidden = true; ibEmptyBGView.isHidden = false; return }
+
         viewModel.getProperties { [weak self] isListEmpty in
+            guard self?.viewModel.isFirstPage ?? true else { self?.ibCollectionView.reloadData(); return }
+
             self?.ibCollectionView.isHidden = isListEmpty
             self?.ibEmptyBGView.isHidden = !isListEmpty
 
             self?.ibCollectionView.reloadData()
+            self?.refreshControl.endRefreshing()
         } failureCallBack: { [weak self] errorStr in
             self?.ibCollectionView.isHidden = true
             self?.ibEmptyBGView.isHidden = false
+            self?.ibEmptyBGView.updateErrorText()
 
             self?.showAlert(with: errorStr)
+            self?.refreshControl.endRefreshing()
         }
     }
 }
@@ -61,7 +108,7 @@ extension PropertiesViewController {
 // MARK: - Alert View
 extension PropertiesViewController {
     private func showAlert(with errorStr: String?) {
-        let alertController = UIAlertController(title: "Amakkn_Alert_Text".localized(), message: errorStr, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: errorStr, preferredStyle: .alert)
 
         alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: nil))
 
@@ -89,6 +136,11 @@ extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let propertyDetailsVC = PropertyDetailsViewController.instantiateSelf() else { return }
+
+        propertyDetailsVC.viewModel.update(with: viewModel[indexPath.item]?.propertyID)
+
+        navigationController?.pushViewController(propertyDetailsVC, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -103,5 +155,27 @@ extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDa
         guard viewModel.isMoreDataAvailable  else { return CGSize.zero }
 
         return .init(width: viewModel.cellWidth, height: 40.0)
+    }
+}
+
+// MARK: - EmptyBGView Delegate
+extension PropertiesViewController {
+    override func didSelectRefresh() {
+        viewModel.resetPage()
+
+        getProperties()
+    }
+}
+
+// MARK: - UsersFilter Delegate
+extension PropertiesViewController: UserFilterDelegate {
+    func didUpdateFilter(with dataSource: [String : String]) {
+        viewModel.updateFilter(dataSource)
+
+        ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
+        ibEmptyBGView.isHidden = false
+        ibCollectionView.isHidden = true
+
+        getProperties()
     }
 }

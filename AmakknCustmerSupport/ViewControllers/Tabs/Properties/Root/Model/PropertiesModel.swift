@@ -29,6 +29,7 @@ struct PropertyCardsModel: Codable {
     let photosNew: String?
     let address: String?
     let category: String?
+    let complaintCount: String?
 
     let propertyType: String?
     let propertyTypeName: String?
@@ -46,7 +47,7 @@ struct PropertyCardsModel: Codable {
         case formatedPrice = "defaultPriceFomratted"
         case crmPeopleCount = "uniqueCount"
         case isInFavourites, isFeatured, isInCompareList, listedFor
-        case defaultPrice, photos, photosNew, address
+        case defaultPrice, photos, photosNew, address, complaintCount
         case propertyType, propertyTypeName, category
         case rooms, hostInfo, features, amenities
     }

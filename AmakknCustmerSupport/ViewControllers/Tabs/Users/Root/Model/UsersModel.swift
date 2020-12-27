@@ -26,6 +26,8 @@ struct UserStatsModel: Codable {
     let accountType: String?
     let pushToken: String?
     let chatToken: String?
+    let status: String?
+    let isUserVerified: String?
 
     let createdAt: String?
     let updatedAt: String?
@@ -43,8 +45,9 @@ struct UserStatsModel: Codable {
     let soldOutPropertyCount: Int?
     let lastAddedProperty: String?
 
-    let decices: String?
+    let devices: String?
     let appVersions: String?
+    let osVersions: String?
     let platforms: String?
     let lastOpened: String?
 
@@ -73,10 +76,37 @@ struct UserStatsModel: Codable {
         case companyAddress = "address"
         case companyLatitude = "latitude"
         case companyLongitude = "longitude"
-        case countryCode, badgeCount, language, userType, accountType, pushToken, chatToken
+        case countryCode, badgeCount, language, userType, accountType, pushToken, chatToken, status
         case createdAt, updatedAt, isPushEnabledForLastSearch, isPushEnabledForInbox, lastSearchedLatitude, lastSearchedLongitude
         case publishedPropertyIds, incompOrUnpubPropertyIds, soldOutPropertyIds, publishedPropertyCount, incompOrUnpubPropertyCount, soldOutPropertyCount, lastAddedProperty
-        case decices, appVersions, platforms, lastOpened
+        case devices, appVersions, platforms, lastOpened, isUserVerified, osVersions
         case companyName, companyType, commercialRecordNumber, companyWebsiteURL, isCompanyVerified, isFeatured, companyAvatar, agentCount
+    }
+}
+
+struct SearchedUsersReponseModel: Codable {
+    let users: [SearchedUserModel]?
+    let totalCount: String?
+}
+
+struct SearchedUserModel: Codable {
+    let userID: String?
+    let userName: String?
+    let userAvatar: String?
+    let userPhone: String?
+    let countryCode: String?
+
+    let userType: String?
+    let accountType: String?
+    let createdAt: String?
+    let isVerified: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case userID = "id"
+        case userName = "name"
+        case userAvatar = "avatar"
+        case userPhone = "phone"
+        case countryCode, createdAt, isVerified
+        case userType, accountType
     }
 }

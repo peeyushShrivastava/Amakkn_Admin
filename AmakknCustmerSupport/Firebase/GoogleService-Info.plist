@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>438426910927-benr7clh0dq8plv2s7baapld0g198802.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.438426910927-benr7clh0dq8plv2s7baapld0g198802</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>438426910927-863iv9fe90fhpgr71575s61t0826attb.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDVrTZ2iRo8Uh1qeEhF7qyFQ3M8iho_HHQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>438426910927</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.amakkn.CSAdmin</string>
+	<key>PROJECT_ID</key>
+	<string>amakkn-59b4c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>amakkn-59b4c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:438426910927:ios:d04227270679a7825fb7ba</string>
+	<key>DATABASE_URL</key>
+	<string>https://amakkn-59b4c.firebaseio.com</string>
+</dict>
+</plist>

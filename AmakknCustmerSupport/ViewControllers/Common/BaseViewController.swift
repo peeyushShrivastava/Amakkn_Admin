@@ -11,19 +11,28 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - Push VCs
+extension BaseViewController {
+    private func presentLoginVC() {
+        guard let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
+
+        let navigationVC = UINavigationController(rootViewController: loginVC)
+        navigationVC.modalPresentationStyle = .fullScreen
+
+        present(navigationVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - EmptyBGView Delegate
+extension BaseViewController: EmptyBGViewDelegate {
+    @objc func didSelectRefresh() {
+        // Override in Child VC
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func didSelectLogin() {
+        presentLoginVC()
     }
-    */
-
 }

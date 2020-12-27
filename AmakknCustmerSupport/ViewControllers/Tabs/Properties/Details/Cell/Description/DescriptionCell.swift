@@ -7,11 +7,14 @@
 
 import UIKit
 
-class DescriptionCell: UICollectionViewCell {
+class DescriptionCell: UICollectionViewCell, ConfigurableCell {
+    @IBOutlet weak var ibDescriptionLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func configure(data desc: String?) {
+        ibDescriptionLabel.text = desc
+    }
 }

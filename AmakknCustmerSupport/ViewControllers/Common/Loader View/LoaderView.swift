@@ -13,5 +13,4 @@ class LoaderView: UICollectionReusableView {
         super.awakeFromNib()
         // Initialization code
     }
-    
 }

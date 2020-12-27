@@ -8,10 +8,14 @@
 import UIKit
 
 class TitleFloorPlanCell: UICollectionViewCell {
+    @IBOutlet weak var ibPlanLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
 
+        layer.masksToBounds = true
+        layer.cornerRadius = 5.0
+        layer.borderWidth = 1.0
+        layer.borderColor = AppColors.borderColor?.cgColor
+    }
 }

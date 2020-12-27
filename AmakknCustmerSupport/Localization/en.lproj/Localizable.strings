@@ -5,3 +5,89 @@
   Created by Peeyush Shrivastava on 14/10/20.
   
 */
+"Amakkn_Alert_Text" = "Amakkn";
+"alert_OK" = "Ok";
+"alert_Yes" = "Yes";
+"Alert_Cancel" = "Cancel";
+
+"Chat_Today" = "Today";
+"Chat_yesterday" = "Yesterday";
+
+"Feedback" = "Feedback";
+"Report_Abuse" = "Report Abuse";
+"Logout" = "Logout";
+"Login" = "Login";
+"More_Are_you_sure_Logout"="Are you sure you want to logout?";
+
+"User_Suspend" = "Suspend User";
+"Send_Notif" = "Send Notification";
+"User_Active" = "Activate User";
+"User_Verify" = "Verify User";
+"User_Featured" = "Featured User";
+"User_Delete" = "Delete User";
+
+"Badge_Count" = "Badge Count";
+"Language" = "Langauge";
+"User_Type" = "User Type";
+"Account_Type" = "Account Type";
+"Status" = "Status";
+"Verified" = "Verified";
+"Push_Token" = "Push Token";
+"Chat_Token" = "Chat Token";
+"Created_At" = "Created Date";
+"Updated_At" = "Updated Data";
+
+"Is_PushEnabled_LastSearch" = "IsPushEnabledForLastSearch";
+"Is_PushEnabled_Inbox" = "IsPushEnabledForInbox";
+"LastSearched_Latitude" = "LastSearched Latitude";
+"LastSearched_Longitude" = "LastSearched Longitude";
+"PublishedProperty_Ids" = "PublishedProperty IDs";
+"IncompOrUnpubProperty_Ids" = "IncompOrUnpubProperty IDs";
+"SoldOutProperty_Ids" = "SoldOut Property IDs";
+"PublishedProperty_Count" = "Published Properties";
+"IncompOrUnpubProperty_Count" = "Incomplete/Unpublished Properties";
+"SoldOutProperty_Count" = "Sold-out Properties";
+"LastAdded_Property" = "Last Added Property";
+
+"Decices" = "Devices";
+"App_Versions" = "App Versions";
+"OS_Versions" = "OS Versions";
+"Platforms" = "Platforms";
+"Last_Opened" = "Last Opened";
+
+"Company_Name" = "Company Name";
+"Company_Type" = "Company Type";
+"Company_ID" = "Company ID";
+"CR_No" = "Commercial Record No.";
+"CompWebsite_URL" = "Company Website URL";
+"Comp_Desc" = "Company Description";
+"Comp_Address" = "Company Address";
+"Comp_Latitude" = "Company Latitude";
+"Comp_Longitude" = "Company Longitude";
+"IsComp_Verified" = "IsCompany Verified";
+"Is_Featured" = "Is Featured";
+"Agent_Count" = "Agent Count";
+
+"VisitingHrs" = "Visiting Hours";
+"Timing" = "Timing:";
+"Days" = "Days:";
+"PhoneNo" = "Phone number:";
+
+"Property_Detail_OVerView" = "Overview";
+"Property_Detail_Rent_Options" = "Rent Options";
+
+"Agent_Phone" = "Phone";
+"UserType_Owner" = "Owner";
+"UserType_Broker" = "Broker";
+"UserType_Normal" = "Normal";
+"UserType_Corporate" = "Corporate";
+"UserType_Agent" = "Agent";
+
+"Chat_Typing" = "is typing...";
+"Chat_Delivered" = " Delivered ";
+"Chat_Online" = "Online";
+"Chat_last_Seen" = "last seen";
+"Chat_Reply" = "Reply";
+"Chat_Sent" = " Sent ";
+"Chat_Seen" = " Seen ";
+"Chat_Read" = " Read ";

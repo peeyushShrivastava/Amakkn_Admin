@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChatAPIModel" representedClassName=".ChatAPIModel" syncable="YES">
+        <attribute name="channelID" optional="YES" attributeType="String"/>
+        <attribute name="chatID" optional="YES" attributeType="String"/>
+        <attribute name="mId" optional="YES" attributeType="String"/>
+        <attribute name="receiver" optional="YES" attributeType="String"/>
+        <attribute name="receiverUID" optional="YES" attributeType="String"/>
+        <attribute name="seen" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="updatedDate" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="ChatAPIModel" positionX="-63" positionY="-18" width="128" height="178"/>
+    </elements>
+</model>

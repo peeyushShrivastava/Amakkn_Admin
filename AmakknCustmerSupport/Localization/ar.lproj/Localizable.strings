@@ -5,3 +5,91 @@
   Created by Peeyush Shrivastava on 14/10/20.
   
 */
+"Amakkn_Alert_Text" = "أماكن";
+"alert_OK" = "موافق";
+"alert_Yes" = "Yes";
+"Alert_Cancel" = "Cancel";
+
+"Chat_Today" = "اليوم";
+"Chat_yesterday" = "في الامس";
+
+"Feedback" = "الاقتراحات";
+"Report_Abuse" = "إبلاغ";
+"Logout" = "تسجيل الخروج";
+"Login" = "Login";
+"More_Are_you_sure_Logout"="هل تود تسجيل الخروج من التطبيق؟";
+
+"User_Suspend" = "Suspend User";
+"Send_Notif" = "Send Notification";
+"User_Active" = "Activate User";
+"User_Verify" = "Verify User";
+"User_Featured" = "Featured User";
+"User_Delete" = "Delete User";
+
+"Badge_Count" = "Badge Count";
+"Language" = "Langauge";
+"User_Type" = "User Type";
+"Account_Type" = "Account Type";
+"Status" = "Status";
+"Verified" = "Verified";
+
+"Push_Token" = "Push Token";
+"Chat_Token" = "Chat Token";
+"Created_At" = "Created Date";
+"Updated_At" = "Updated Data";
+
+"Is_PushEnabled_LastSearch" = "IsPushEnabledForLastSearch";
+"Is_PushEnabled_Inbox" = "IsPushEnabledForInbox";
+"LastSearched_Latitude" = "LastSearched Latitude";
+"LastSearched_Longitude" = "LastSearched Longitude";
+"PublishedProperty_Ids" = "PublishedProperty IDs";
+"IncompOrUnpubProperty_Ids" = "IncompOrUnpubProperty IDs";
+"SoldOutProperty_Ids" = "SoldOut Property IDs";
+"PublishedProperty_Count" = "Published Property Count";
+"IncompOrUnpubProperty_Count" = "Incomplete Or UnpubProperty Count";
+"SoldOutProperty_Count" = "SoldOut Property Count";
+"LastAdded_Property" = "Last Added Property";
+
+"Decices" = "Decices";
+"App_Versions" = "App Versions";
+"OS_Versions" = "OS Versions";
+"Platforms" = "Platforms";
+"Last_Opened" = "Last Opened";
+
+"Company_Name" = "Company Name";
+"Company_Type" = "Company Type";
+"Company_ID" = "Company ID";
+"CR_No" = "Commercial Record No.";
+"CompWebsite_URL" = "Company Website URL";
+"Comp_Desc" = "Company Description";
+"Comp_Address" = "Company Address";
+"Comp_Latitude" = "Company Latitude";
+"Comp_Longitude" = "Company Longitude";
+"IsComp_Verified" = "IsCompany Verified";
+"Is_Featured" = "Is Featured";
+"Agent_Count" = "Agent Count";
+
+"VisitingHrs" = "أوقات الزيارة";
+"Timing" = " الوقت:";
+"Days" = "الأيام:";
+"PhoneNo" = "رقم الهاتف:";
+
+"Property_Detail_OVerView" = "تفاصيل العقار";
+"Property_Detail_Rent_Options" = "خيارات الإيجار";
+
+"Agent_Phone" = "رقم الهاتف";
+"UserType_Owner" = "مالك";
+"UserType_Broker" = "وسيط";
+"UserType_Normal" = "متصفح";
+"UserType_Individual" = "حساب الأفراد";
+"UserType_Corporate" = "الشركات";
+"UserType_Agent" = "حساب فرعي";
+
+"Chat_Online"="متصل";
+"Chat_Reply"="الرد";
+"Chat_last_Seen"="شوهد آخر مرة في";
+"Chat_Sent"="أرسلت ";
+"Chat_Seen"="شوهدت ";
+"Chat_Read"="مقروءة";
+"Chat_Typing"="يكتب...";
+"Chat_Delivered"="تم الاستلام ";
