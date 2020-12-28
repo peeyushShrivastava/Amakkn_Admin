@@ -138,6 +138,32 @@ extension Utility {
         }
     }
 
+    func convertDates(with timeStamp: String?) -> String? {
+        guard let timeStamp = timeStamp else { return nil }
+
+        let dateFormatter = DateFormatter()
+
+        let date = Utility.shared.milliSecsToDate(from: timeStamp)
+
+        dateFormatter.dateFormat = Utility.shared.isFormat24Hrs() ? "HH:mm" : "h:mm a"
+        let timeStr = dateFormatter.string(from: date)
+
+        if Calendar.current.isDateInToday(date) {
+            return "\("Chat_Today".localized()) \(timeStr)"
+        } else if Calendar.current.isDateInYesterday(date) {
+            return "\("Chat_yesterday".localized()) \(timeStr)"
+        } else if dateFallsInCurrentWeek(date: date) {
+            dateFormatter.dateFormat = "EEEE"
+            return "\(dateFormatter.string(from: date)) \(timeStr)"
+        } else if dateFallsInCurrentYear(date: date) {
+            dateFormatter.dateFormat = "EEE, dd MMM"
+            return "\(dateFormatter.string(from: date)) \(timeStr)"
+        } else {
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            return "\(dateFormatter.string(from: date)) \(timeStr)"
+        }
+    }
+
     private func dateFallsInCurrentWeek(date: Date) -> Bool {
         let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
         let datesWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: date)

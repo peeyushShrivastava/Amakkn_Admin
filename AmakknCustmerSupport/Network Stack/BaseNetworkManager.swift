@@ -44,6 +44,7 @@ protocol ConfigRequestDelegate {
     var urlString: String { get }
     var params: [String: Any]? { get }
     var selectedLanguage: String { get }
+    var header: String { get }
     var hashedUserID: String { get }
     var method: HTTPMethod { get }
     func getRequest(with endPoint: APIEndPoint) -> URLRequest?
@@ -78,7 +79,7 @@ class ConfigRequest: RequestConfigurable {
 
         var request = URLRequest(url: apiURL)
         request.httpMethod = method?.rawValue
-        request.addValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.addValue(header, forHTTPHeaderField: "Content-Type")
 
         request.httpBody = createRequestBody()
 
@@ -122,6 +123,13 @@ extension ConfigRequest {
 extension ConfigRequest {
     internal var method: HTTPMethod? {
         return delegate?.method
+    }
+}
+
+// MARK: - Header Method
+extension ConfigRequest {
+    internal var header: String {
+        return delegate?.header ?? "text/plain"
     }
 }
 

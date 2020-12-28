@@ -94,6 +94,7 @@
 		DD58A3F4259481BB006DB84D /* AbusesNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58A3F3259481BB006DB84D /* AbusesNetworkManager.swift */; };
 		DD58A3FA25948466006DB84D /* ResolveComplaintsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58A3F825948466006DB84D /* ResolveComplaintsCell.swift */; };
 		DD58A3FB25948466006DB84D /* ResolveComplaintsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD58A3F925948466006DB84D /* ResolveComplaintsCell.xib */; };
+		DD5907392599CC12003C5D72 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5907382599CC12003C5D72 /* NotificationHandler.swift */; };
 		DD59BC1D2588C1C4003A2B40 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD59BC1B2588C1C4003A2B40 /* ChatCell.swift */; };
 		DD59BC1E2588C1C4003A2B40 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD59BC1C2588C1C4003A2B40 /* ChatCell.xib */; };
 		DD59BC262588C3CF003A2B40 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD59BC252588C3CF003A2B40 /* ChatModel.swift */; };
@@ -284,6 +285,7 @@
 		DD58A3F3259481BB006DB84D /* AbusesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbusesNetworkManager.swift; sourceTree = "<group>"; };
 		DD58A3F825948466006DB84D /* ResolveComplaintsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveComplaintsCell.swift; sourceTree = "<group>"; };
 		DD58A3F925948466006DB84D /* ResolveComplaintsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResolveComplaintsCell.xib; sourceTree = "<group>"; };
+		DD5907382599CC12003C5D72 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		DD59BC1B2588C1C4003A2B40 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		DD59BC1C2588C1C4003A2B40 /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		DD59BC252588C3CF003A2B40 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				DD4306D5259866D000CF3481 /* AmakknCustmerSupport.entitlements */,
+				DD5907372599CBCF003C5D72 /* Notification Handler */,
 				DD67E064258FB0AF00443935 /* General */,
 				DD51824F258B94C200D43136 /* Firebase */,
 				DDD8DD94258A22570004C130 /* UserDefaults */,
@@ -946,6 +949,14 @@
 				DD5668F32588FDCF0072D03B /* Audio.swift */,
 			);
 			path = PlayAudio;
+			sourceTree = "<group>";
+		};
+		DD5907372599CBCF003C5D72 /* Notification Handler */ = {
+			isa = PBXGroup;
+			children = (
+				DD5907382599CC12003C5D72 /* NotificationHandler.swift */,
+			);
+			path = "Notification Handler";
 			sourceTree = "<group>";
 		};
 		DD59BC162588BF7D003A2B40 /* Root */ = {
@@ -1782,6 +1793,7 @@
 				DD77A9DC2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift in Sources */,
 				DD5060852547119B003E4F4B /* UserInfoCell.swift in Sources */,
 				DD77A9D52547EC4D004D8985 /* PropertyDetailsHeaderView.swift in Sources */,
+				DD5907392599CC12003C5D72 /* NotificationHandler.swift in Sources */,
 				DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */,
 				DD5668A72588CFF60072D03B /* SocketIOManager.swift in Sources */,
 				DD58A3EF25947C2A006DB84D /* UsersNetworkManager.swift in Sources */,
@@ -1981,6 +1993,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2005,6 +2018,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

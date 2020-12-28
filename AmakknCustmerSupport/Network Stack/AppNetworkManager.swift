@@ -91,6 +91,13 @@ extension AppNetworkManager {
     }
 }
 
+// MARK: - API Header
+extension AppNetworkManager {
+    internal var header: String {
+        return "text/plain"
+    }
+}
+
 class AppNetworkManager: ConfigRequestDelegate {
     static let shared = AppNetworkManager()
 

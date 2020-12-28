@@ -36,6 +36,7 @@ class InboxViewController: BaseViewController {
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Chats...") : ibEmptyBGView.updateErrorText()
 
         viewModel.resetPage()
+        ibChatTableView.reloadData()
         getChats()
     }
 

@@ -74,6 +74,7 @@ class UsersViewModel {
 
     func resetPage() {
         page = 0
+        apiCallIndex = 14
         users = nil
     }
 

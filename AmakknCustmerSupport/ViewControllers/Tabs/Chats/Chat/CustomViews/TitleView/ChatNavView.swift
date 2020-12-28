@@ -117,9 +117,9 @@ extension ChatNavView {
     }
 
     private func updateStatusText() {
-        guard let statusModel = userStatus, let state = statusModel.state else { ibTypingLabel.text = "offline"; return }
+        guard let statusModel = userStatus, let state = statusModel.state else { ibTypingLabel.text = "account not active"; return }
 
-        ibTypingLabel?.text = state == "1" ? "Chat_Online".localized() : "\("Chat_last_Seen".localized()) \(Utility.shared.convertDates(for: statusModel.lastSeen) ?? "")"
+        ibTypingLabel?.text = state == "1" ? "Chat_Online".localized() : "\("Chat_last_Seen".localized()) \(Utility.shared.convertDates(with: statusModel.lastSeen) ?? "")"
     }
 }
 

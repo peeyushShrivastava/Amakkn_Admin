@@ -77,6 +77,7 @@ class UserCell: UICollectionViewCell {
             return
         }
 
+        ibInitiallabel.text = nil
         ibInitiallabel.isHidden = true
         ibAvatar.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage())
     }

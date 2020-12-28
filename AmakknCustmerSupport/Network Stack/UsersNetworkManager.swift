@@ -58,6 +58,13 @@ extension UsersNetworkManager {
     }
 }
 
+// MARK: - API Header
+extension UsersNetworkManager {
+    internal var header: String {
+        return "text/plain"
+    }
+}
+
 class UsersNetworkManager: ConfigRequestDelegate {
     static let shared = UsersNetworkManager()
 

@@ -50,6 +50,13 @@ extension AbusesNetworkManager {
     }
 }
 
+// MARK: - API Header
+extension AbusesNetworkManager {
+    internal var header: String {
+        return "text/plain"
+    }
+}
+
 class AbusesNetworkManager: ConfigRequestDelegate {
     static let shared = AbusesNetworkManager()
 
