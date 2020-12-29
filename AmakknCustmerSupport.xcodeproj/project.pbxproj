@@ -38,6 +38,7 @@
 		DD4151072537201A00545E41 /* ChatSubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4151062537201A00545E41 /* ChatSubjectsViewController.swift */; };
 		DD4151112537325000545E41 /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41510F2537325000545E41 /* SubjectCell.swift */; };
 		DD4151122537325000545E41 /* SubjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4151102537325000545E41 /* SubjectCell.xib */; };
+		DD428986259B2A16008B38FA /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD428984259B2A16008B38FA /* PageContentViewController.swift */; };
 		DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724725383EB90068694C /* PropertyCardCell.swift */; };
 		DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD49724825383EB90068694C /* PropertyCardCell.xib */; };
 		DD497251253867790068694C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724F253867790068694C /* UserCell.swift */; };
@@ -139,6 +140,8 @@
 		DD7B909C25935D8F00926624 /* UserDetailsDataViewerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7B909A25935D8F00926624 /* UserDetailsDataViewerCell.xib */; };
 		DD7B90A22593636A00926624 /* UserPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B90A12593636A00926624 /* UserPropertiesViewController.swift */; };
 		DD7B90AB259363DF00926624 /* UserPropertiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B90AA259363DF00926624 /* UserPropertiesViewModel.swift */; };
+		DD7CCB77259B17820048B478 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CCB76259B17820048B478 /* PhotosViewController.swift */; };
+		DD7CCB7F259B17A60048B478 /* PhotosPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CCB7E259B17A60048B478 /* PhotosPageViewController.swift */; };
 		DD7D0B212591DF1C00A95530 /* ComplaintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0B1F2591DF1C00A95530 /* ComplaintCell.swift */; };
 		DD7D0B222591DF1C00A95530 /* ComplaintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7D0B202591DF1C00A95530 /* ComplaintCell.xib */; };
 		DD8001642590D8590001E737 /* ComplaintsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001622590D8590001E737 /* ComplaintsCell.swift */; };
@@ -228,6 +231,7 @@
 		DD4151062537201A00545E41 /* ChatSubjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSubjectsViewController.swift; sourceTree = "<group>"; };
 		DD41510F2537325000545E41 /* SubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCell.swift; sourceTree = "<group>"; };
 		DD4151102537325000545E41 /* SubjectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectCell.xib; sourceTree = "<group>"; };
+		DD428984259B2A16008B38FA /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		DD4306D5259866D000CF3481 /* AmakknCustmerSupport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmakknCustmerSupport.entitlements; sourceTree = "<group>"; };
 		DD49724725383EB90068694C /* PropertyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardCell.swift; sourceTree = "<group>"; };
 		DD49724825383EB90068694C /* PropertyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyCardCell.xib; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 		DD7B909A25935D8F00926624 /* UserDetailsDataViewerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsDataViewerCell.xib; sourceTree = "<group>"; };
 		DD7B90A12593636A00926624 /* UserPropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesViewController.swift; sourceTree = "<group>"; };
 		DD7B90AA259363DF00926624 /* UserPropertiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesViewModel.swift; sourceTree = "<group>"; };
+		DD7CCB76259B17820048B478 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		DD7CCB7E259B17A60048B478 /* PhotosPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPageViewController.swift; sourceTree = "<group>"; };
 		DD7D0B1F2591DF1C00A95530 /* ComplaintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintCell.swift; sourceTree = "<group>"; };
 		DD7D0B202591DF1C00A95530 /* ComplaintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplaintCell.xib; sourceTree = "<group>"; };
 		DD8001622590D8590001E737 /* ComplaintsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintsCell.swift; sourceTree = "<group>"; };
@@ -659,6 +665,14 @@
 				DD4151102537325000545E41 /* SubjectCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DD428983259B29AC008B38FA /* Content View */ = {
+			isa = PBXGroup;
+			children = (
+				DD428984259B2A16008B38FA /* PageContentViewController.swift */,
+			);
+			path = "Content View";
 			sourceTree = "<group>";
 		};
 		DD497246253839280068694C /* Cell */ = {
@@ -1178,6 +1192,7 @@
 		DD735F85253D8E8A0079A56F /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				DD7CCB75259B175A0048B478 /* PageControl */,
 				DD77A9D22547EC24004D8985 /* Header */,
 				DD50604C25470C10003E4F4B /* Cell */,
 				DDD97BC92545BF78000B0B8F /* Model */,
@@ -1297,6 +1312,16 @@
 				DD7B90AA259363DF00926624 /* UserPropertiesViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DD7CCB75259B175A0048B478 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				DD428983259B29AC008B38FA /* Content View */,
+				DD7CCB76259B17820048B478 /* PhotosViewController.swift */,
+				DD7CCB7E259B17A60048B478 /* PhotosPageViewController.swift */,
+			);
+			path = PageControl;
 			sourceTree = "<group>";
 		};
 		DD7D0B1B2591DE6300A95530 /* Cell */ = {
@@ -1699,6 +1724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD735F6D253D722D0079A56F /* MoreCell.swift in Sources */,
+				DD7CCB77259B17820048B478 /* PhotosViewController.swift in Sources */,
 				DD77A9EB25481E89004D8985 /* PropertiesFilterViewController.swift in Sources */,
 				DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */,
 				DD4D12B225359CE700999B28 /* LoginViewController.swift in Sources */,
@@ -1714,6 +1740,7 @@
 				DD497251253867790068694C /* UserCell.swift in Sources */,
 				DD59BC1D2588C1C4003A2B40 /* ChatCell.swift in Sources */,
 				DD4D1299253591E100999B28 /* EmptyBGView.swift in Sources */,
+				DD7CCB7F259B17A60048B478 /* PhotosPageViewController.swift in Sources */,
 				DD5668F42588FDCF0072D03B /* Audio.swift in Sources */,
 				DD59BC2B2588C5E9003A2B40 /* ChatViewModel.swift in Sources */,
 				DD4150FE253716DA00545E41 /* AppColors.swift in Sources */,
@@ -1801,6 +1828,7 @@
 				DD3F37BC2534A7BC00B03FEF /* PropertiesViewModel.swift in Sources */,
 				DD56689C2588CD390072D03B /* ChatReplyView.swift in Sources */,
 				DD4150E3253707B500545E41 /* AppExtensions.swift in Sources */,
+				DD428986259B2A16008B38FA /* PageContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1993,7 +2021,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2018,7 +2046,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

@@ -62,6 +62,18 @@ class PropertyDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - Navigation
+extension PropertyDetailsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "photoViewerSegueID",
+            let destinationVC = segue.destination as? PhotosViewController {
+            guard let images = sender as? [String] else { return }
+
+            destinationVC.photos = images
+        }
+    }
+}
+
 // MARK: - Alert View
 extension PropertyDetailsViewController {
     private func showAlert(with errorStr: String?) {
@@ -95,15 +107,7 @@ extension PropertyDetailsViewController {
 // MARK: - Push VCs
 extension PropertyDetailsViewController {
     private func pushPhotoGalleryVC(with images: [String]?) {
-//        guard let photoVC = UIStoryboard(name: "AddProperty", bundle: nil).instantiateViewController(withIdentifier: "addPropertyPhotoViewID") as? AddPropertyPhotoViewController else { return }
-//
-//        let data = viewModel.getPhotos(with: images)
-//        photoVC.selectedIndex = 0
-//        photoVC.addedPhotoList = data.photos
-//        photoVC.addedTitleList = data.titles
-//        photoVC.isFromFloorPlan = true
-//
-//        self.navigationController?.pushViewController(photoVC, animated: true)
+        performSegue(withIdentifier: "photoViewerSegueID", sender: images)
     }
 
     private func pushQRCodeVC(with model: DetailsHeaderModel?) {

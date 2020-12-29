@@ -18,7 +18,7 @@ enum UsersFilterType: String {
 
 class UsersViewModel {
     private var page = 0
-    private var pageSize = "15"
+    private var pageSize = "50"
     private var totalSize: String?
     private var users: [SearchedUserModel]?
 
@@ -30,7 +30,7 @@ class UsersViewModel {
     private var lastSearchedStr: String?
     private var latestSearchedStr: String?
 
-    var apiCallIndex = 14
+    var apiCallIndex = 49
 
     var cellCount: Int {
         return users?.count ?? 0
@@ -74,7 +74,7 @@ class UsersViewModel {
 
     func resetPage() {
         page = 0
-        apiCallIndex = 14
+        apiCallIndex = 49
         users = nil
     }
 

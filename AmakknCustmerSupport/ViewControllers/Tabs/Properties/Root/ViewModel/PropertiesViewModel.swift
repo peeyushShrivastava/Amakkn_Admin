@@ -25,11 +25,11 @@ class PropertiesViewModel {
     private var filters = ""
 
     private var page = 0
-    private var pageSize = "15"
+    private var pageSize = "50"
     private var totalSize: String?
     private var propertyList: [PropertyCardsModel]?
 
-    var apiCallIndex = 14
+    var apiCallIndex = 49
 
     var cellHeight: CGFloat {
         return UIDevice.current.userInterfaceIdiom == .pad ? 250.0 : 200.0
@@ -74,6 +74,7 @@ class PropertiesViewModel {
 
     func resetPage() {
         page = 0
+        apiCallIndex = 49
     }
 }
 

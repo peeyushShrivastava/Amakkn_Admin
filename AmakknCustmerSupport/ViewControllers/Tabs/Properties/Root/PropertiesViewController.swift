@@ -128,7 +128,7 @@ extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.dataSource = viewModel[indexPath.item]
 
         if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable {
-            viewModel.apiCallIndex += 10
+            viewModel.apiCallIndex += 50
             getProperties()
         }
 

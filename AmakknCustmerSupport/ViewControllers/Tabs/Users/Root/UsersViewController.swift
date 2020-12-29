@@ -129,7 +129,7 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.delegate = self
 
         if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable {
-            viewModel.apiCallIndex += 10
+            viewModel.apiCallIndex += 50
             getUsers()
         }
 
