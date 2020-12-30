@@ -53,6 +53,7 @@ class PropertyDetailsViewController: UIViewController {
         ibCollectionView.register(UINib(nibName: "OverviewCell", bundle: nil), forCellWithReuseIdentifier: "OverviewCell")
         ibCollectionView.register(UINib(nibName: "AmenitiesCell", bundle: nil), forCellWithReuseIdentifier: "AmenitiesCell")
         ibCollectionView.register(UINib(nibName: "RentOptionsCell", bundle: nil), forCellWithReuseIdentifier: "RentOptionsCell")
+        ibCollectionView.register(UINib(nibName: "LocationCell", bundle: nil), forCellWithReuseIdentifier: "LocationCell")
         ibCollectionView.register(UINib(nibName: "VisitingHoursCell", bundle: nil), forCellWithReuseIdentifier: "VisitingHoursCell")
         ibCollectionView.register(UINib(nibName: "FloorPlansCell", bundle: nil), forCellWithReuseIdentifier: "FloorPlansCell")
         ibCollectionView.register(UINib(nibName: "UserInfoCell", bundle: nil), forCellWithReuseIdentifier: "UserInfoCell")
@@ -132,6 +133,10 @@ extension PropertyDetailsViewController: UICollectionViewDelegate, UICollectionV
     
         dataSource.configure(detailCell)
 
+        if let locationCell = detailCell as? LocationCell {
+            locationCell.delegate = self
+        }
+
         if let visitingHrsCell = detailCell as? VisitingHoursCell {
             visitingHrsCell.delegate = self
         }
@@ -182,6 +187,17 @@ extension PropertyDetailsViewController: PropertyDetailsHeaderDelegate {
 
     func showGallery(with images: [String]?) {
         pushPhotoGalleryVC(with: images)
+    }
+}
+
+// MARK: - Location Delegate
+extension PropertyDetailsViewController: DetailsLocationDelegate {
+    func neighbourhoodDidTap(at location: DetailsLocationModel?) {
+        guard let viewLocationVC = ViewLocationViewController.instantiateSelf() else { return }
+
+        viewLocationVC.location = location
+
+        navigationController?.pushViewController(viewLocationVC, animated: true)
     }
 }
 

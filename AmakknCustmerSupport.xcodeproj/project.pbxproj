@@ -39,6 +39,7 @@
 		DD4151112537325000545E41 /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41510F2537325000545E41 /* SubjectCell.swift */; };
 		DD4151122537325000545E41 /* SubjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4151102537325000545E41 /* SubjectCell.xib */; };
 		DD428986259B2A16008B38FA /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD428984259B2A16008B38FA /* PageContentViewController.swift */; };
+		DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD441C40259CC97B00AE6E6C /* ViewLocationViewController.swift */; };
 		DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724725383EB90068694C /* PropertyCardCell.swift */; };
 		DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD49724825383EB90068694C /* PropertyCardCell.xib */; };
 		DD497251253867790068694C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724F253867790068694C /* UserCell.swift */; };
@@ -130,6 +131,8 @@
 		DD77A9E52547EE07004D8985 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77A9E42547EE07004D8985 /* QRCodeGenerator.swift */; };
 		DD77A9EB25481E89004D8985 /* PropertiesFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77A9EA25481E89004D8985 /* PropertiesFilterViewController.swift */; };
 		DD77A9F725481ED2004D8985 /* PropertiesFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77A9F625481ED2004D8985 /* PropertiesFilterViewModel.swift */; };
+		DD7833CB259C774F00D48DE3 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7833C9259C774F00D48DE3 /* LocationCell.swift */; };
+		DD7833CC259C774F00D48DE3 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7833CA259C774F00D48DE3 /* LocationCell.xib */; };
 		DD78B98525415DB100380231 /* UserDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78B98425415DB100380231 /* UserDetailsHeaderView.swift */; };
 		DD78B98A25415DC700380231 /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD78B98925415DC700380231 /* UserDetailsHeaderView.xib */; };
 		DD78B990254160A000380231 /* UserDetailsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78B98E254160A000380231 /* UserDetailsProfileCell.swift */; };
@@ -233,6 +236,7 @@
 		DD4151102537325000545E41 /* SubjectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectCell.xib; sourceTree = "<group>"; };
 		DD428984259B2A16008B38FA /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		DD4306D5259866D000CF3481 /* AmakknCustmerSupport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmakknCustmerSupport.entitlements; sourceTree = "<group>"; };
+		DD441C40259CC97B00AE6E6C /* ViewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationViewController.swift; sourceTree = "<group>"; };
 		DD49724725383EB90068694C /* PropertyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardCell.swift; sourceTree = "<group>"; };
 		DD49724825383EB90068694C /* PropertyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyCardCell.xib; sourceTree = "<group>"; };
 		DD49724F253867790068694C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 		DD77A9E42547EE07004D8985 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 		DD77A9EA25481E89004D8985 /* PropertiesFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesFilterViewController.swift; sourceTree = "<group>"; };
 		DD77A9F625481ED2004D8985 /* PropertiesFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesFilterViewModel.swift; sourceTree = "<group>"; };
+		DD7833C9259C774F00D48DE3 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		DD7833CA259C774F00D48DE3 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 		DD78B98425415DB100380231 /* UserDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsHeaderView.swift; sourceTree = "<group>"; };
 		DD78B98925415DC700380231 /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
 		DD78B98E254160A000380231 /* UserDetailsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsProfileCell.swift; sourceTree = "<group>"; };
@@ -675,6 +681,14 @@
 			path = "Content View";
 			sourceTree = "<group>";
 		};
+		DD441C3F259CC95A00AE6E6C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				DD441C40259CC97B00AE6E6C /* ViewLocationViewController.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		DD497246253839280068694C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +819,8 @@
 		DD50605025470C6D003E4F4B /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				DD7833C9259C774F00D48DE3 /* LocationCell.swift */,
+				DD7833CA259C774F00D48DE3 /* LocationCell.xib */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -1192,6 +1208,7 @@
 		DD735F85253D8E8A0079A56F /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				DD441C3F259CC95A00AE6E6C /* Location */,
 				DD7CCB75259B175A0048B478 /* PageControl */,
 				DD77A9D22547EC24004D8985 /* Header */,
 				DD50604C25470C10003E4F4B /* Cell */,
@@ -1608,6 +1625,7 @@
 				DD50605825470CF7003E4F4B /* DescriptionCell.xib in Resources */,
 				DD5060862547119B003E4F4B /* UserInfoCell.xib in Resources */,
 				DDC4F1E8253ED3CD00766311 /* UserFilterCell.xib in Resources */,
+				DD7833CC259C774F00D48DE3 /* LocationCell.xib in Resources */,
 				DD518292258BB45400D43136 /* GoogleService-Info.plist in Resources */,
 				DD50609F254712FC003E4F4B /* RentOptionsCell.xib in Resources */,
 				DD77A9D62547EC4D004D8985 /* PropertyDetailsHeaderView.xib in Resources */,
@@ -1763,6 +1781,7 @@
 				DD50608D2547122B003E4F4B /* FloorPlansCell.swift in Sources */,
 				DD3F37942534A6B600B03FEF /* InboxViewModel.swift in Sources */,
 				DD7B90AB259363DF00926624 /* UserPropertiesViewModel.swift in Sources */,
+				DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */,
 				DD59BC262588C3CF003A2B40 /* ChatModel.swift in Sources */,
 				DD5AF9A62590B20500CE62B5 /* AbusesViewModel.swift in Sources */,
 				DD77A9E52547EE07004D8985 /* QRCodeGenerator.swift in Sources */,
@@ -1785,6 +1804,7 @@
 				DD4151072537201A00545E41 /* ChatSubjectsViewController.swift in Sources */,
 				DD58A3F4259481BB006DB84D /* AbusesNetworkManager.swift in Sources */,
 				DD735F7D253D7AB80079A56F /* UserFilterViewController.swift in Sources */,
+				DD7833CB259C774F00D48DE3 /* LocationCell.swift in Sources */,
 				DDD8DDAE258A80C40004C130 /* AbuseViewController.swift in Sources */,
 				DD53BC4B2594E16200729C95 /* SendUserViewController.swift in Sources */,
 				DD5668D72588D24D0072D03B /* ChatDataProvider.swift in Sources */,
@@ -2021,7 +2041,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2046,7 +2066,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

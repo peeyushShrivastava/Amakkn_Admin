@@ -13,7 +13,7 @@ typealias descriptionCell = CollectionCellConfigurator<DescriptionCell, String?>
 typealias overviewCell = CollectionCellConfigurator<OverviewCell, DetailsOverViewModel?>
 typealias amenityCell = CollectionCellConfigurator<AmenitiesCell, DetailsAmenityModel?>
 typealias rentOptionsCell = CollectionCellConfigurator<RentOptionsCell, DetailsRentOptionsModel?>
-//typealias locationCell = CollectionCellConfigurator<LocationCell, DetailsLocationModel?>
+typealias locationCell = CollectionCellConfigurator<LocationCell, DetailsLocationModel?>
 typealias visitingHrsCell = CollectionCellConfigurator<VisitingHoursCell, DetailsVisitingHrsModel?>
 typealias floorPlansCell = CollectionCellConfigurator<FloorPlansCell, DetailsFloorPlansModel?>
 typealias hostInfoCell = CollectionCellConfigurator<UserInfoCell, DetailsHostModel?>
@@ -25,6 +25,7 @@ enum DetailsCellsHeight: CGFloat {
     case overview = 45.01
     case amenity = 44.0
     case rentOptions = 45.02
+    case location = 350.0
     case visitingHrs = 160.0
     case floorPlan = 126.0
     case hostInfo = 185.0
@@ -105,11 +106,11 @@ class PropertyDetailsViewModel {
             cellsHeight.append(height)
         }
 
-//        if let location = detailsDataSource?.locationDataSource {
-//            cellsDataSource.append(locationCell(item: location))
-//
-//            cellsHeight.append(DetailsCellsHeight.location.rawValue)
-//        }
+        if let location = detailsDataSource?.locationDataSource {
+            cellsDataSource.append(locationCell(item: location))
+
+            cellsHeight.append(DetailsCellsHeight.location.rawValue)
+        }
 
         if let visitingHrs = detailsDataSource?.visitingHrsDataSource, !(propertyDetails?.visitingHours?.isEmpty ?? true) {
             cellsDataSource.append(visitingHrsCell(item: visitingHrs))

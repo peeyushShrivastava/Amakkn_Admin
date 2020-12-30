@@ -194,7 +194,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDI-rj-xFo">
                                 <rect key="frame" x="0.0" y="88" width="414" height="655"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <color key="backgroundColor" name="viewBGColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-Sm-THc">
                                 <rect key="frame" x="207" y="763" width="0.0" height="0.0"/>
@@ -204,7 +204,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JS9-i3-EW4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="viewBGColor"/>
                         <constraints>
                             <constraint firstItem="TDI-rj-xFo" firstAttribute="trailing" secondItem="JS9-i3-EW4" secondAttribute="trailing" id="4Dx-qh-rP0"/>
                             <constraint firstItem="gk5-Sm-THc" firstAttribute="centerX" secondItem="ddj-9X-H0Z" secondAttribute="centerX" id="B8U-qZ-bmP"/>
@@ -268,6 +268,35 @@
             </objects>
             <point key="canvasLocation" x="4376.811594202899" y="-291.29464285714283"/>
         </scene>
+        <!--View Location View Controller-->
+        <scene sceneID="Lmm-eW-MbI">
+            <objects>
+                <viewController storyboardIdentifier="ViewLocationViewController" id="lL4-wJ-2dS" customClass="ViewLocationViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g5y-VB-qJV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Il-MPY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vuy-Jj-jvj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zQa-Il-MPY" firstAttribute="leading" secondItem="Vuy-Jj-jvj" secondAttribute="leading" id="1Id-IO-gSA"/>
+                            <constraint firstItem="zQa-Il-MPY" firstAttribute="trailing" secondItem="Vuy-Jj-jvj" secondAttribute="trailing" id="4fI-B3-XuH"/>
+                            <constraint firstItem="zQa-Il-MPY" firstAttribute="bottom" secondItem="Vuy-Jj-jvj" secondAttribute="bottom" id="CEA-1l-DuM"/>
+                            <constraint firstItem="zQa-Il-MPY" firstAttribute="top" secondItem="Vuy-Jj-jvj" secondAttribute="top" id="jex-EP-Skg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ibMapView" destination="zQa-Il-MPY" id="9TL-Ml-V9z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFI-dv-YW4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5198.5507246376819" y="-291.29464285714283"/>
+        </scene>
         <!--Properties-->
         <scene sceneID="j74-Ax-gbT">
             <objects>
@@ -306,9 +335,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
