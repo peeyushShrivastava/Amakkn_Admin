@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="feedbackCellID" id="gTV-IL-0wX" customClass="FeedbackCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="101"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="318" height="101"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-eD-Skq">
+                        <rect key="frame" x="20" y="10" width="45" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="X2s-ol-W9i"/>
+                            <constraint firstAttribute="height" constant="16" id="qGm-bg-CJV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5z-0m-yDB">
+                        <rect key="frame" x="20" y="69" width="61" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="PGD-mT-IKp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UD-cP-Wjd">
+                        <rect key="frame" x="20" y="36" width="39" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="L92-pp-xri"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESJ-XN-uEx">
+                        <rect key="frame" x="115" y="7.5" width="183" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="76M-7F-rlK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGw-EP-hPP">
+                        <rect key="frame" x="115" y="33.5" width="183" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ue4-8O-aOF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPf-J3-QyE">
+                        <rect key="frame" x="115" y="63" width="183" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="lightViewBGColor"/>
+            <constraints>
+                <constraint firstItem="TPf-J3-QyE" firstAttribute="leading" secondItem="ESJ-XN-uEx" secondAttribute="leading" id="1Fm-pi-OPE"/>
+                <constraint firstItem="ESJ-XN-uEx" firstAttribute="centerY" secondItem="GO6-eD-Skq" secondAttribute="centerY" id="2pV-l6-vMo"/>
+                <constraint firstItem="ESJ-XN-uEx" firstAttribute="leading" secondItem="GO6-eD-Skq" secondAttribute="trailing" constant="50" id="5Om-jS-xAI"/>
+                <constraint firstItem="cGw-EP-hPP" firstAttribute="leading" secondItem="ESJ-XN-uEx" secondAttribute="leading" id="5X7-Uj-skX"/>
+                <constraint firstItem="TPf-J3-QyE" firstAttribute="top" secondItem="cGw-EP-hPP" secondAttribute="bottom" constant="8.5" id="G2i-jQ-0GD"/>
+                <constraint firstItem="cGw-EP-hPP" firstAttribute="centerY" secondItem="5UD-cP-Wjd" secondAttribute="centerY" id="Int-9w-3V6"/>
+                <constraint firstItem="TPf-J3-QyE" firstAttribute="trailing" secondItem="ESJ-XN-uEx" secondAttribute="trailing" id="It2-hL-AIt"/>
+                <constraint firstItem="cGw-EP-hPP" firstAttribute="trailing" secondItem="ESJ-XN-uEx" secondAttribute="trailing" id="JEu-d1-1aD"/>
+                <constraint firstItem="5UD-cP-Wjd" firstAttribute="leading" secondItem="GO6-eD-Skq" secondAttribute="leading" id="KIQ-XQ-2wS"/>
+                <constraint firstItem="GO6-eD-Skq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="NX5-Mc-XXv"/>
+                <constraint firstItem="TPf-J3-QyE" firstAttribute="centerY" secondItem="Q5z-0m-yDB" secondAttribute="centerY" id="XXW-lZ-znB"/>
+                <constraint firstAttribute="trailing" secondItem="ESJ-XN-uEx" secondAttribute="trailing" constant="20" id="XrX-b0-riY"/>
+                <constraint firstItem="5UD-cP-Wjd" firstAttribute="top" secondItem="GO6-eD-Skq" secondAttribute="bottom" constant="10" id="db1-Qz-Mo2"/>
+                <constraint firstAttribute="bottom" secondItem="TPf-J3-QyE" secondAttribute="bottom" constant="10" id="lSH-Xh-uQ2"/>
+                <constraint firstItem="GO6-eD-Skq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="mKp-zw-I1t"/>
+                <constraint firstItem="Q5z-0m-yDB" firstAttribute="leading" secondItem="GO6-eD-Skq" secondAttribute="leading" id="vrq-sz-VYH"/>
+            </constraints>
+            <size key="customSize" width="318" height="101"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.CorenerRadius">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="ibEmailLabel" destination="cGw-EP-hPP" id="Gca-0e-UIy"/>
+                <outlet property="ibMessageLabel" destination="TPf-J3-QyE" id="pp9-43-L4P"/>
+                <outlet property="ibNameLabel" destination="ESJ-XN-uEx" id="adV-IM-sbX"/>
+            </connections>
+            <point key="canvasLocation" x="327.536231884058" y="93.415178571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="lightViewBGColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

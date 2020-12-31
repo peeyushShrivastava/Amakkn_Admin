@@ -152,6 +152,12 @@
 		DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD80016B2590E6B20001E737 /* StatsViewModel.swift */; };
 		DD8001742590E6C90001E737 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001732590E6C90001E737 /* StatsViewController.swift */; };
 		DD80017A2590F6A40001E737 /* StatsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001792590F6A40001E737 /* StatsDetailsViewController.swift */; };
+		DD88BA1E259DDDC90044BF53 /* FeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA1D259DDDC90044BF53 /* FeedbackModel.swift */; };
+		DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */; };
+		DD88BA28259DDDEE0044BF53 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */; };
+		DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */; };
+		DD88BA37259DED1F0044BF53 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */; };
+		DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */; };
 		DDAB993D258B6D880032FE0E /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB993B258B6D880032FE0E /* InboxCell.swift */; };
 		DDAB993E258B6D880032FE0E /* InboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDAB993C258B6D880032FE0E /* InboxCell.xib */; };
 		DDC4F1D6253ECB1C00766311 /* UserFilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */; };
@@ -349,6 +355,12 @@
 		DD80016B2590E6B20001E737 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		DD8001732590E6C90001E737 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		DD8001792590F6A40001E737 /* StatsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDetailsViewController.swift; sourceTree = "<group>"; };
+		DD88BA1D259DDDC90044BF53 /* FeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModel.swift; sourceTree = "<group>"; };
+		DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
+		DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNetworkManager.swift; sourceTree = "<group>"; };
+		DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		DDAB993B258B6D880032FE0E /* InboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
 		DDAB993C258B6D880032FE0E /* InboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxCell.xib; sourceTree = "<group>"; };
 		DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterHeaderView.swift; sourceTree = "<group>"; };
@@ -767,6 +779,7 @@
 				DD5668ED2588DA120072D03B /* ChatNetworkManager.swift */,
 				DD58A3EE25947C2A006DB84D /* UsersNetworkManager.swift */,
 				DD58A3F3259481BB006DB84D /* AbusesNetworkManager.swift */,
+				DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */,
 			);
 			path = "Network Stack";
 			sourceTree = "<group>";
@@ -1148,6 +1161,7 @@
 		DD735F60253D71DC0079A56F /* More */ = {
 			isa = PBXGroup;
 			children = (
+				DD88BA1A259DDD9B0044BF53 /* Feedback */,
 				DD8001692590E6910001E737 /* Stats */,
 				DDD8DD9D258A7FF70004C130 /* Root */,
 				DDD8DD9E258A802E0004C130 /* Abuse */,
@@ -1388,6 +1402,42 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		DD88BA1A259DDD9B0044BF53 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				DD88BA34259DED070044BF53 /* Cell */,
+				DD88BA1C259DDDB40044BF53 /* Model */,
+				DD88BA1B259DDDA80044BF53 /* ViewModel */,
+				DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		DD88BA1B259DDDA80044BF53 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DD88BA1C259DDDB40044BF53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD88BA1D259DDDC90044BF53 /* FeedbackModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD88BA34259DED070044BF53 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */,
+				DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DDC4F1D4253ECAAB00766311 /* SectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,18 +1478,18 @@
 			children = (
 				DDD8DDB2258A83B70004C130 /* Model */,
 				DDD8DDA0258A804C0004C130 /* Cell */,
-				DDD8DD9F258A80410004C130 /* ViewMode */,
+				DDD8DD9F258A80410004C130 /* ViewModel */,
 				DDD8DDAD258A80C40004C130 /* AbuseViewController.swift */,
 			);
 			path = Abuse;
 			sourceTree = "<group>";
 		};
-		DDD8DD9F258A80410004C130 /* ViewMode */ = {
+		DDD8DD9F258A80410004C130 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				DDD8DDA8258A80AB0004C130 /* AbuseViewModel.swift */,
 			);
-			path = ViewMode;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DDD8DDA0258A804C0004C130 /* Cell */ = {
@@ -1616,6 +1666,7 @@
 				DD7B909C25935D8F00926624 /* UserDetailsDataViewerCell.xib in Resources */,
 				DD4D12A1253591FB00999B28 /* EmptyBGView.xib in Resources */,
 				DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */,
+				DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */,
 				DD735F5B253D6FDE0079A56F /* More.storyboard in Resources */,
 				DD5060982547129F003E4F4B /* TitleFloorPlanCell.xib in Resources */,
 				DD50608E2547122B003E4F4B /* FloorPlansCell.xib in Resources */,
@@ -1784,8 +1835,10 @@
 				DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */,
 				DD59BC262588C3CF003A2B40 /* ChatModel.swift in Sources */,
 				DD5AF9A62590B20500CE62B5 /* AbusesViewModel.swift in Sources */,
+				DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */,
 				DD77A9E52547EE07004D8985 /* QRCodeGenerator.swift in Sources */,
 				DD5668D22588D2310072D03B /* ChatAPIRepository.swift in Sources */,
+				DD88BA1E259DDDC90044BF53 /* FeedbackModel.swift in Sources */,
 				DD6891FB25400BAA004DB93A /* UserFilterDataCell.swift in Sources */,
 				DD3F37AE2534A74C00B03FEF /* UsersModel.swift in Sources */,
 				DD51828A258BA5D600D43136 /* MainTabBarController.swift in Sources */,
@@ -1804,6 +1857,7 @@
 				DD4151072537201A00545E41 /* ChatSubjectsViewController.swift in Sources */,
 				DD58A3F4259481BB006DB84D /* AbusesNetworkManager.swift in Sources */,
 				DD735F7D253D7AB80079A56F /* UserFilterViewController.swift in Sources */,
+				DD88BA28259DDDEE0044BF53 /* FeedbackViewController.swift in Sources */,
 				DD7833CB259C774F00D48DE3 /* LocationCell.swift in Sources */,
 				DDD8DDAE258A80C40004C130 /* AbuseViewController.swift in Sources */,
 				DD53BC4B2594E16200729C95 /* SendUserViewController.swift in Sources */,
@@ -1815,6 +1869,7 @@
 				DD5668962588CCBE0072D03B /* ChatSectionHeader.swift in Sources */,
 				DD68920825406271004DB93A /* UserDetailsViewModel.swift in Sources */,
 				DD50607E254710FF003E4F4B /* AmenityDetailsCell.swift in Sources */,
+				DD88BA37259DED1F0044BF53 /* FeedbackCell.swift in Sources */,
 				DD5AF9C12590B7D700CE62B5 /* AbusesCell.swift in Sources */,
 				DD5060A525471379003E4F4B /* VisitingHoursCell.swift in Sources */,
 				DD4151112537325000545E41 /* SubjectCell.swift in Sources */,
@@ -1833,6 +1888,7 @@
 				DD4150B42536FF4D00545E41 /* LoaderView.swift in Sources */,
 				DD4D12AB2535981600999B28 /* AppSession.swift in Sources */,
 				DD78B990254160A000380231 /* UserDetailsProfileCell.swift in Sources */,
+				DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */,
 				DD7D0B212591DF1C00A95530 /* ComplaintCell.swift in Sources */,
 				DDD97BCB2545BF8E000B0B8F /* PropertyDetailsModel.swift in Sources */,
 				DD5060972547129F003E4F4B /* TitleFloorPlanCell.swift in Sources */,
@@ -2041,7 +2097,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2066,7 +2122,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

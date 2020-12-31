@@ -43,6 +43,7 @@
                         <outlet property="ibMoreTableView" destination="Wfl-Hv-0Jy" id="RkU-vE-Kvc"/>
                         <segue destination="gZt-sr-eLu" kind="show" identifier="abuseSegueID" id="olq-se-2kw"/>
                         <segue destination="YkY-vv-OF8" kind="show" identifier="statsSegueID" id="KxO-HQ-0Kp"/>
+                        <segue destination="bLb-IH-73h" kind="show" identifier="feedBackSegueID" id="mIj-DI-wLM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVh-kJ-4il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -111,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbe-AI-bu2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1872" y="-307"/>
+            <point key="canvasLocation" x="1828" y="-595"/>
         </scene>
         <!--Stats-->
         <scene sceneID="1jP-hT-Xjo">
@@ -286,7 +287,59 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1871.0144927536232" y="521.65178571428567"/>
+            <point key="canvasLocation" x="1828" y="856"/>
+        </scene>
+        <!--Feedback-->
+        <scene sceneID="eXb-cA-XZ8">
+            <objects>
+                <viewController id="bLb-IH-73h" customClass="FeedbackViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H09-7I-IIW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-68-qTs" customClass="EmptyBGView" customModule="AmakknCustmerSupport" customModuleProvider="target">
+                                <rect key="frame" x="101" y="380" width="212" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="Wcs-LO-Oeg"/>
+                                    <constraint firstAttribute="height" constant="136" id="siO-xO-CAB"/>
+                                </constraints>
+                            </view>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="II2-3a-828">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" name="viewBGColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LcX-mc-bas">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bLb-IH-73h" id="KXp-R4-Vlw"/>
+                                    <outlet property="delegate" destination="bLb-IH-73h" id="7Od-aT-uLZ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BUr-bt-Jif"/>
+                        <color key="backgroundColor" name="viewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="II2-3a-828" firstAttribute="bottom" secondItem="BUr-bt-Jif" secondAttribute="bottom" id="AsH-MC-jez"/>
+                            <constraint firstItem="II2-3a-828" firstAttribute="leading" secondItem="BUr-bt-Jif" secondAttribute="leading" id="Oj4-Sb-Z64"/>
+                            <constraint firstItem="GuA-68-qTs" firstAttribute="centerX" secondItem="H09-7I-IIW" secondAttribute="centerX" id="ZFQ-cg-aHs"/>
+                            <constraint firstItem="GuA-68-qTs" firstAttribute="centerY" secondItem="H09-7I-IIW" secondAttribute="centerY" id="cMH-er-oFs"/>
+                            <constraint firstItem="II2-3a-828" firstAttribute="top" secondItem="BUr-bt-Jif" secondAttribute="top" id="s5O-HP-Cpe"/>
+                            <constraint firstItem="II2-3a-828" firstAttribute="trailing" secondItem="BUr-bt-Jif" secondAttribute="trailing" id="zK1-VC-91d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feedback" id="Abn-M7-JEM"/>
+                    <connections>
+                        <outlet property="ibCollectionView" destination="II2-3a-828" id="7Pb-uT-XZH"/>
+                        <outlet property="ibEmptyBGView" destination="GuA-68-qTs" id="qqC-Hi-b44"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qem-Pi-qk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2334.7826086956525" y="107.8125"/>
         </scene>
         <!--Details-->
         <scene sceneID="tL3-7O-J4S">
@@ -320,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6V-Md-b6c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724.6376811594205" y="521.65178571428567"/>
+            <point key="canvasLocation" x="2799" y="856"/>
         </scene>
         <!--More-->
         <scene sceneID="5av-wt-g88">

@@ -57,7 +57,9 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
             case 1:
                 AppSession.manager.validSession ? logoutAlert() : presentLoginVC()
             default:
-                if indexPath.row == 1 {
+                if indexPath.row == 0 {
+                    performSegue(withIdentifier: "feedBackSegueID", sender: nil)
+                } else if indexPath.row == 1 {
                     performSegue(withIdentifier: "statsSegueID", sender: nil)
                 }
         }
