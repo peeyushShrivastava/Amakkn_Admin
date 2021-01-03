@@ -8,48 +8,30 @@
 import Foundation
 
 struct PropertyResponseModel: Codable {
-    let propertyArray: [PropertyCardsModel]?
-    let totalCount: Int?
+    let properties: [PropertyCardsModel]?
+    let totalCount: String?
 }
 
 struct PropertyCardsModel: Codable {
     let userID: String?
     let propertyID: String?
-    let superUserID: String?
 
-    var isInFavourites: String?
-    let isFeatured: String?
-    var isInCompareList: String?
-
+    let status: String?
     let defaultPrice: String?
-    let formatedPrice: String?
     let listedFor: String?
 
     let photos: String?
-    let photosNew: String?
     let address: String?
     let category: String?
     let complaintCount: String?
 
     let propertyType: String?
-    let propertyTypeName: String?
-    let crmPeopleCount: String?
-
-    let rooms: [Room]?
-    let hostInfo: Host?
-    let features: [Feature]?
-    let amenities: [Amenity]?
 
     private enum CodingKeys: String, CodingKey {
         case userID = "userId"
         case propertyID = "propertyId"
-        case superUserID = "superUserId"
-        case formatedPrice = "defaultPriceFomratted"
-        case crmPeopleCount = "uniqueCount"
-        case isInFavourites, isFeatured, isInCompareList, listedFor
-        case defaultPrice, photos, photosNew, address, complaintCount
-        case propertyType, propertyTypeName, category
-        case rooms, hostInfo, features, amenities
+        case listedFor, defaultPrice, address, complaintCount
+        case propertyType, category, status, photos
     }
 }
 

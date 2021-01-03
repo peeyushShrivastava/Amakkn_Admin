@@ -15,7 +15,7 @@ enum AppAPIEndPoint: APIEndPoint {
     case logout
     case getBadgeCount
     case getSupportChats(_ page: String, _ pageSize: String, _ subjectID: String)
-    case getProperties(_ page: String, _ pageSize: String)
+    case getProperties(_ page: String, _ pageSize: String, _ searchQuery: String)
     case getPropertyDetails(_ userID: String, _ propertyID: String)
     case getListOfSubjects
     case saveLastMessage(_ userID1: String, _ userID2: String, _ subjectID: String, _ lastMessage: String)
@@ -35,7 +35,7 @@ extension AppNetworkManager {
             case .logout: return "Login/logoutUser/"
             case .getBadgeCount: return "Login/getCSUnreadChatsCount/"
             case .getSupportChats(_, _, _): return "Login/getListOfChannelsForCustomerSupport/"
-            case .getProperties(_, _): return "Property/getPropertiesForAdmin/"
+            case .getProperties(_, _, _): return "Extras/getPropertiesForSearchQuery/"
             case .getPropertyDetails(_, _): return "Property/getPropertyDescription/"
             case .getListOfSubjects: return "Login/getListOfSubjects/"
             case .saveLastMessage(_, _, _, _): return "Login/saveSupportLastMessage/"
@@ -73,8 +73,8 @@ extension AppNetworkManager {
                 return ["userId": hashedUserID]
             case .getSupportChats(let page, let pageSize, let subjectID):
                 return ["page": page, "pageSize": pageSize, "userId": hashedUserID, "language": selectedLanguage, "subjectId": subjectID]
-            case .getProperties(let page, let pageSize):
-                return ["page": page, "pageSize": pageSize, "sortBy": "updatedAt", "sortOrder": "desc", "status": "published", "searchString": "", "searchOperator": "AND"]
+            case .getProperties(let page, let pageSize, let searchQuery):
+                return ["page": page, "pageSize": pageSize, "searchQuery": searchQuery, "userId": hashedUserID]
             case .getPropertyDetails(let userID, let propertyID):
                 return ["userId": userID, "propertyId": propertyID, "language": selectedLanguage]
             case .getListOfSubjects:
@@ -139,8 +139,8 @@ extension AppNetworkManager {
         })
     }
 
-    func getProperties(for page: String, with pageSize: String, successCallBack: @escaping (_ response: PropertyResponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
-        let request = getRequest(with: AppAPIEndPoint.getProperties(page, pageSize))
+    func getProperties(for page: String, _ pageSize: String, with searchQuery: String, successCallBack: @escaping (_ response: PropertyResponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: AppAPIEndPoint.getProperties(page, pageSize, searchQuery))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }

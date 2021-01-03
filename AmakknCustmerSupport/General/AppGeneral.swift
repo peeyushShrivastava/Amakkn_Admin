@@ -9,6 +9,25 @@ import UIKit
 import Foundation
 import CoreTelephony
 
+// MARK: - Property Type
+enum PropertyType: String {
+    case residentialLand = "1"
+    case residentialBuilding = "2"
+    case apartment = "3"
+    case villa = "4"
+    case commercialLand = "5"
+    case commercialBuilding = "6"
+    case warehouse = "7"
+    case showroom = "8"
+    case office = "9"
+}
+
+// MARK: - Property Type
+enum PropertyCategory: String {
+    case sale = "1"
+    case rent = "2"
+}
+
 class AppGeneral {
     static let shared = AppGeneral()
 

@@ -41,6 +41,10 @@ class PropertyDetailsViewModel {
     private var cellsHeight = [CGFloat]()
     private var publishStatus: String?
 
+    var title: String {
+        return "Details for Id - \(propertyID ?? "")"
+    }
+
     var cellCount: Int {
         return cellsDataSource.count
     }

@@ -54,22 +54,25 @@
                     </view>
                     <navigationItem key="navigationItem" title="Properties" id="lJM-ao-Y1S">
                         <barButtonItem key="backBarButtonItem" title=" " id="LzU-FX-dJJ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="QBL-W4-rQt">
-                            <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="filterButtonTapped:" destination="DcM-a6-XHl" id="HQ0-RJ-o5u"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="Zgy-IV-Ol3" id="4Un-8h-FhM"/>
                         <outlet property="ibEmptyBGView" destination="hCw-Y8-6Zq" id="dOj-ct-VlE"/>
-                        <outlet property="ibFilterButton" destination="QBL-W4-rQt" id="34C-gb-dLc"/>
+                        <outlet property="ibSearchBar" destination="Jpe-o0-YUi" id="eEk-W6-XyT"/>
                         <segue destination="JDo-kG-WFB" kind="show" identifier="detailsSegueID" id="EnS-c1-ijA"/>
                         <segue destination="K8K-zQ-x2m" kind="show" identifier="propertyFilterSegueID" id="RXL-HG-B8i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uG-Y9-F6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" placeholder="Search properties" showsCancelButton="YES" id="Jpe-o0-YUi">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
+                    <connections>
+                        <outlet property="delegate" destination="DcM-a6-XHl" id="BRZ-re-Xib"/>
+                    </connections>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="868.11594202898561" y="44.866071428571423"/>
         </scene>

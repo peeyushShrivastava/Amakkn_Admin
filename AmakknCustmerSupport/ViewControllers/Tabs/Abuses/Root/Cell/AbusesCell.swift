@@ -52,8 +52,8 @@ class AbusesCell: UITableViewCell {
         ibPriceLabel.text = dataSource?.defaultPrice?.amkFormat
         ibAddressLabel.text = dataSource?.address
 
-        let listedFor = dataSource?.listedFor == "1" ? "Rent" : "Sale"
-        ibPropertyTypeLabel.text = "\(dataSource?.propertyTypeName ?? "") for \(listedFor)"
+        let propertyTypeName = Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.category)
+        ibPropertyTypeLabel.text = "\(propertyTypeName ?? "")"
     }
 
     private func updatePhoto() {

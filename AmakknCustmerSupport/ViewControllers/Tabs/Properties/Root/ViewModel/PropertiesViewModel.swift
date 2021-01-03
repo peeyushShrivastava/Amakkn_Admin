@@ -29,6 +29,7 @@ class PropertiesViewModel {
     private var totalSize: String?
     private var propertyList: [PropertyCardsModel]?
 
+    private var searchQuery: String?
     var apiCallIndex = 49
 
     var cellHeight: CGFloat {
@@ -62,6 +63,10 @@ class PropertiesViewModel {
         return ((propertyList?.isEmpty ?? true) ? nil : propertyList?[index])
     }
 
+    func updateSearch(with data: String?) {
+        searchQuery = data
+    }
+
     func updateFilter(_ dataSource: [String: String]) {
         filterOrder = dataSource[PropertyFilterType.order.rawValue] ?? "userId"
         status = dataSource[PropertyFilterType.status.rawValue] ?? "All"
@@ -86,16 +91,20 @@ extension PropertiesViewModel {
         if page == 0 { propertyList = [PropertyCardsModel]() }
         page += 1
 
-        AppNetworkManager.shared.getProperties(for: "\(page)", with: pageSize) { [weak self] responseModel in
-            self?.totalSize = String(responseModel?.totalCount ?? 0)
+        AppNetworkManager.shared.getProperties(for: "\(page)", pageSize, with: searchQuery ?? "") { [weak self] responseModel in
+            self?.totalSize = responseModel?.totalCount
 
-            if let chatList = responseModel?.propertyArray {
+            if let chatList = responseModel?.properties {
                 self?.propertyList?.append(contentsOf: chatList)
             }
 
-            successCallBack(self?.propertyList?.isEmpty ?? true)
+            DispatchQueue.main.async {
+                successCallBack(self?.propertyList?.isEmpty ?? true)
+            }
         } failureCallBack: { errorStr in
-            failureCallBack(errorStr)
+            DispatchQueue.main.async {
+                failureCallBack(errorStr)
+            }
         }
     }
 }

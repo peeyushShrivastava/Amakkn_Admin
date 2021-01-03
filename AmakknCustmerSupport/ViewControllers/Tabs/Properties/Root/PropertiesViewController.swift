@@ -10,8 +10,8 @@ import UIKit
 class PropertiesViewController: BaseViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ibEmptyBGView: EmptyBGView!
-    @IBOutlet weak var ibFilterButton: UIBarButtonItem!
-
+    @IBOutlet var ibSearchBar: UISearchBar!
+    
     var refreshControl = UIRefreshControl()
 
     let viewModel = PropertiesViewModel()
@@ -29,9 +29,9 @@ class PropertiesViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         self.tabBarController?.tabBar.isHidden = false
+        navigationItem.titleView = ibSearchBar
 
         ibEmptyBGView.updateUI()
-        ibFilterButton.isEnabled = AppSession.manager.validSession
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
 
         getProperties()
@@ -91,6 +91,7 @@ extension PropertiesViewController {
 
             self?.ibCollectionView.isHidden = isListEmpty
             self?.ibEmptyBGView.isHidden = !isListEmpty
+            self?.ibEmptyBGView.updateText()
 
             self?.ibCollectionView.reloadData()
             self?.refreshControl.endRefreshing()
@@ -177,5 +178,65 @@ extension PropertiesViewController: UserFilterDelegate {
         ibCollectionView.isHidden = true
 
         getProperties()
+    }
+}
+
+// MARK: - Search Delegate
+extension PropertiesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        ibSearchBar.resignFirstResponder()
+
+        viewModel.resetPage()
+        ibCollectionView.reloadData()
+        getProperties()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.updateSearch(with: nil)
+
+        viewModel.resetPage()
+
+        ibCollectionView.isHidden = true
+        ibEmptyBGView.isHidden = false
+        ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
+
+        ibSearchBar.text = nil
+
+        getProperties()
+
+        DispatchQueue.main.async {
+            self.ibSearchBar.resignFirstResponder()
+            self.view.endEditing(true)
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard text != "\n" else { return true }
+
+        if let searchStr = searchBar.text, let textRange = Range(range, in: searchStr) {
+            let searchQuery = searchStr.replacingCharacters(in: textRange, with: text)
+
+            viewModel.updateSearch(with: searchQuery)
+        }
+        return true
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            ibCollectionView.isHidden = true
+            ibEmptyBGView.isHidden = false
+            ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
+
+            viewModel.updateSearch(with: nil)
+
+            viewModel.resetPage()
+            ibCollectionView.reloadData()
+            getProperties()
+
+            DispatchQueue.main.async {
+                self.ibSearchBar.resignFirstResponder()
+                self.view.endEditing(true)
+            }
+        }
     }
 }

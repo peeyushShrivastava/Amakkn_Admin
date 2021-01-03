@@ -188,3 +188,25 @@ extension Utility {
         tabBarController.tabBar.items?.first?.badgeValue = (badgeCount == "0" || badgeCount == "") ? nil : badgeCount
     }
 }
+
+// MARK: - Property Type
+extension Utility {
+    func getPropertyTypeName(for typeID: String?, with category: String?) -> String? {
+        guard let typeIDStr = typeID, let type = PropertyType(rawValue: typeIDStr) else { return nil }
+        guard let categoryStr = category, let categoryType = PropertyCategory(rawValue: categoryStr) else { return nil }
+
+        let propertyCategory = (categoryType == .sale) ? "Sale" : "Rent"
+
+        switch type {
+            case .residentialLand: return "Residential Land for \(propertyCategory)"
+            case .residentialBuilding: return "Residential Building for \(propertyCategory)"
+            case .apartment: return "Apartment for \(propertyCategory)"
+            case .villa: return "Villa for \(propertyCategory)"
+            case .commercialLand: return "Commercial Land for \(propertyCategory)"
+            case .commercialBuilding: return "Commercial Building for \(propertyCategory)"
+            case .warehouse: return "Warehouse for \(propertyCategory)"
+            case .showroom: return "Showroom for \(propertyCategory)"
+            case .office: return "Office for \(propertyCategory)"
+        }
+    }
+}

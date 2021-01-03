@@ -34,7 +34,7 @@ class PropertyCardCell: UICollectionViewCell {
 
     private func updateUI() {
         ibPriceLabel.text = dataSource?.defaultPrice?.amkFormat
-        ibPropertyTypeLabel.text = "  \(dataSource?.propertyTypeName ?? "")  "
+        ibPropertyTypeLabel.text = "  \(Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.category) ?? "")  "
         ibAddressLabel.text = dataSource?.address
     }
 
@@ -44,10 +44,11 @@ class PropertyCardCell: UICollectionViewCell {
         let imgName = "PlaceHolder_\(category)_\(type)"
         let placeHolderImage = UIImage(named: imgName)
 
+        ibPropertyImageView.image = nil
         ibPropertyImageView.image = placeHolderImage
         ibPropertyImageView.contentMode = .center
 
-        guard let imageURLStr = dataSource?.photos?.components(separatedBy: ",").first else { return }
+        guard let imageURLStr = dataSource?.photos else { return }
 
         ibPropertyImageView.sd_setImage(with: URL(string: imageURLStr), placeholderImage: placeHolderImage)
         ibPropertyImageView.contentMode = .scaleAspectFill

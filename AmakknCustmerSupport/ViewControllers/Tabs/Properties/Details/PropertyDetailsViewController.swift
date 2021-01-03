@@ -17,6 +17,8 @@ class PropertyDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = viewModel.title
+
         updateCollection()
         registerCells()
 
