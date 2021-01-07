@@ -125,6 +125,11 @@
 		DD735F87253D8F050079A56F /* StroyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F86253D8F050079A56F /* StroyboardExtension.swift */; };
 		DD735F9C253DB90D0079A56F /* UserFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F9B253DB90D0079A56F /* UserFilterModel.swift */; };
 		DD735FA4253DBC9E0079A56F /* UsersFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735FA3253DBC9E0079A56F /* UsersFilterViewModel.swift */; };
+		DD75DC1425A71D49002062B6 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75DC1225A71D49002062B6 /* EditImageCell.swift */; };
+		DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD75DC1325A71D49002062B6 /* EditImageCell.xib */; };
+		DD75DC1B25A76219002062B6 /* FeedbackDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75DC1A25A76219002062B6 /* FeedbackDetailsViewController.swift */; };
+		DD75DC2825A77BFF002062B6 /* EditPriceTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75DC2625A77BFF002062B6 /* EditPriceTextFieldCell.swift */; };
+		DD75DC2925A77BFF002062B6 /* EditPriceTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD75DC2725A77BFF002062B6 /* EditPriceTextFieldCell.xib */; };
 		DD77A9D52547EC4D004D8985 /* PropertyDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77A9D32547EC4D004D8985 /* PropertyDetailsHeaderView.swift */; };
 		DD77A9D62547EC4D004D8985 /* PropertyDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD77A9D42547EC4D004D8985 /* PropertyDetailsHeaderView.xib */; };
 		DD77A9DC2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77A9DB2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift */; };
@@ -139,6 +144,22 @@
 		DD78B991254160A000380231 /* UserDetailsProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD78B98F254160A000380231 /* UserDetailsProfileCell.xib */; };
 		DD78B997254160DF00380231 /* UserDetailsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78B995254160DF00380231 /* UserDetailsDataCell.swift */; };
 		DD78B998254160DF00380231 /* UserDetailsDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD78B996254160DF00380231 /* UserDetailsDataCell.xib */; };
+		DD7A71A725A468C00081B4F2 /* EditAmenitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71A525A468C00081B4F2 /* EditAmenitiesCell.swift */; };
+		DD7A71A825A468C00081B4F2 /* EditAmenitiesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71A625A468C00081B4F2 /* EditAmenitiesCell.xib */; };
+		DD7A71AF25A4692C0081B4F2 /* DataSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71AD25A4692C0081B4F2 /* DataSelectCell.swift */; };
+		DD7A71B025A4692C0081B4F2 /* DataSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71AE25A4692C0081B4F2 /* DataSelectCell.xib */; };
+		DD7A71B625A4726A0081B4F2 /* EditDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71B425A4726A0081B4F2 /* EditDetailsCell.swift */; };
+		DD7A71B725A4726A0081B4F2 /* EditDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71B525A4726A0081B4F2 /* EditDetailsCell.xib */; };
+		DD7A71C025A477F50081B4F2 /* EditPropertyTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71BE25A477F50081B4F2 /* EditPropertyTextFieldCell.swift */; };
+		DD7A71C125A477F50081B4F2 /* EditPropertyTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71BF25A477F50081B4F2 /* EditPropertyTextFieldCell.xib */; };
+		DD7A71C725A4780E0081B4F2 /* EditFrontIsPieceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71C525A4780E0081B4F2 /* EditFrontIsPieceCell.swift */; };
+		DD7A71C825A4780E0081B4F2 /* EditFrontIsPieceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71C625A4780E0081B4F2 /* EditFrontIsPieceCell.xib */; };
+		DD7A71CE25A48A1F0081B4F2 /* EditPlansCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71CC25A48A1F0081B4F2 /* EditPlansCell.swift */; };
+		DD7A71CF25A48A1F0081B4F2 /* EditPlansCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71CD25A48A1F0081B4F2 /* EditPlansCell.xib */; };
+		DD7A71D525A48E7C0081B4F2 /* EditDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71D325A48E7C0081B4F2 /* EditDescriptionCell.swift */; };
+		DD7A71D625A48E7C0081B4F2 /* EditDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71D425A48E7C0081B4F2 /* EditDescriptionCell.xib */; };
+		DD7A71DC25A4959D0081B4F2 /* EditPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A71DA25A4959D0081B4F2 /* EditPriceCell.swift */; };
+		DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7A71DB25A4959D0081B4F2 /* EditPriceCell.xib */; };
 		DD7B909B25935D8F00926624 /* UserDetailsDataViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B909925935D8F00926624 /* UserDetailsDataViewerCell.swift */; };
 		DD7B909C25935D8F00926624 /* UserDetailsDataViewerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7B909A25935D8F00926624 /* UserDetailsDataViewerCell.xib */; };
 		DD7B90A22593636A00926624 /* UserPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B90A12593636A00926624 /* UserPropertiesViewController.swift */; };
@@ -158,6 +179,18 @@
 		DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */; };
 		DD88BA37259DED1F0044BF53 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */; };
 		DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */; };
+		DD9646DA25A325BC00F852F4 /* PropertyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */; };
+		DD9646F825A32FE800F852F4 /* EditImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646F625A32FE800F852F4 /* EditImagesCell.swift */; };
+		DD9646F925A32FE800F852F4 /* EditImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9646F725A32FE800F852F4 /* EditImagesCell.xib */; };
+		DD96470125A3360000F852F4 /* EditImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96470025A3360000F852F4 /* EditImagesViewModel.swift */; };
+		DD96470625A3361400F852F4 /* EditImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96470525A3361400F852F4 /* EditImagesViewController.swift */; };
+		DD96470C25A34CB200F852F4 /* EditPropertyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96470B25A34CB200F852F4 /* EditPropertyDetailsViewController.swift */; };
+		DD96471225A34CE200F852F4 /* EditPropertyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96471125A34CE200F852F4 /* EditPropertyDetailsViewModel.swift */; };
+		DD96471F25A36A7300F852F4 /* EditFeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96471D25A36A7300F852F4 /* EditFeaturesCell.swift */; };
+		DD96472025A36A7300F852F4 /* EditFeaturesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD96471E25A36A7300F852F4 /* EditFeaturesCell.xib */; };
+		DD96472725A36C5000F852F4 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96472525A36C5000F852F4 /* FeatureCell.swift */; };
+		DD96472825A36C5000F852F4 /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD96472625A36C5000F852F4 /* FeatureCell.xib */; };
+		DD96472E25A3751C00F852F4 /* EditPropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */; };
 		DDAB993D258B6D880032FE0E /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB993B258B6D880032FE0E /* InboxCell.swift */; };
 		DDAB993E258B6D880032FE0E /* InboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDAB993C258B6D880032FE0E /* InboxCell.xib */; };
 		DDC4F1D6253ECB1C00766311 /* UserFilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */; };
@@ -328,6 +361,11 @@
 		DD735F86253D8F050079A56F /* StroyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyboardExtension.swift; sourceTree = "<group>"; };
 		DD735F9B253DB90D0079A56F /* UserFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterModel.swift; sourceTree = "<group>"; };
 		DD735FA3253DBC9E0079A56F /* UsersFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFilterViewModel.swift; sourceTree = "<group>"; };
+		DD75DC1225A71D49002062B6 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
+		DD75DC1325A71D49002062B6 /* EditImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImageCell.xib; sourceTree = "<group>"; };
+		DD75DC1A25A76219002062B6 /* FeedbackDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailsViewController.swift; sourceTree = "<group>"; };
+		DD75DC2625A77BFF002062B6 /* EditPriceTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPriceTextFieldCell.swift; sourceTree = "<group>"; };
+		DD75DC2725A77BFF002062B6 /* EditPriceTextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPriceTextFieldCell.xib; sourceTree = "<group>"; };
 		DD77A9D32547EC4D004D8985 /* PropertyDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsHeaderView.swift; sourceTree = "<group>"; };
 		DD77A9D42547EC4D004D8985 /* PropertyDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyDetailsHeaderView.xib; sourceTree = "<group>"; };
 		DD77A9DB2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsFlowlayout.swift; sourceTree = "<group>"; };
@@ -342,6 +380,22 @@
 		DD78B98F254160A000380231 /* UserDetailsProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsProfileCell.xib; sourceTree = "<group>"; };
 		DD78B995254160DF00380231 /* UserDetailsDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsDataCell.swift; sourceTree = "<group>"; };
 		DD78B996254160DF00380231 /* UserDetailsDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsDataCell.xib; sourceTree = "<group>"; };
+		DD7A71A525A468C00081B4F2 /* EditAmenitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAmenitiesCell.swift; sourceTree = "<group>"; };
+		DD7A71A625A468C00081B4F2 /* EditAmenitiesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditAmenitiesCell.xib; sourceTree = "<group>"; };
+		DD7A71AD25A4692C0081B4F2 /* DataSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSelectCell.swift; sourceTree = "<group>"; };
+		DD7A71AE25A4692C0081B4F2 /* DataSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataSelectCell.xib; sourceTree = "<group>"; };
+		DD7A71B425A4726A0081B4F2 /* EditDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsCell.swift; sourceTree = "<group>"; };
+		DD7A71B525A4726A0081B4F2 /* EditDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDetailsCell.xib; sourceTree = "<group>"; };
+		DD7A71BE25A477F50081B4F2 /* EditPropertyTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyTextFieldCell.swift; sourceTree = "<group>"; };
+		DD7A71BF25A477F50081B4F2 /* EditPropertyTextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPropertyTextFieldCell.xib; sourceTree = "<group>"; };
+		DD7A71C525A4780E0081B4F2 /* EditFrontIsPieceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFrontIsPieceCell.swift; sourceTree = "<group>"; };
+		DD7A71C625A4780E0081B4F2 /* EditFrontIsPieceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditFrontIsPieceCell.xib; sourceTree = "<group>"; };
+		DD7A71CC25A48A1F0081B4F2 /* EditPlansCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlansCell.swift; sourceTree = "<group>"; };
+		DD7A71CD25A48A1F0081B4F2 /* EditPlansCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPlansCell.xib; sourceTree = "<group>"; };
+		DD7A71D325A48E7C0081B4F2 /* EditDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionCell.swift; sourceTree = "<group>"; };
+		DD7A71D425A48E7C0081B4F2 /* EditDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDescriptionCell.xib; sourceTree = "<group>"; };
+		DD7A71DA25A4959D0081B4F2 /* EditPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPriceCell.swift; sourceTree = "<group>"; };
+		DD7A71DB25A4959D0081B4F2 /* EditPriceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPriceCell.xib; sourceTree = "<group>"; };
 		DD7B909925935D8F00926624 /* UserDetailsDataViewerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsDataViewerCell.swift; sourceTree = "<group>"; };
 		DD7B909A25935D8F00926624 /* UserDetailsDataViewerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsDataViewerCell.xib; sourceTree = "<group>"; };
 		DD7B90A12593636A00926624 /* UserPropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +415,18 @@
 		DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNetworkManager.swift; sourceTree = "<group>"; };
 		DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
+		DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyNetworkManager.swift; sourceTree = "<group>"; };
+		DD9646F625A32FE800F852F4 /* EditImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImagesCell.swift; sourceTree = "<group>"; };
+		DD9646F725A32FE800F852F4 /* EditImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImagesCell.xib; sourceTree = "<group>"; };
+		DD96470025A3360000F852F4 /* EditImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImagesViewModel.swift; sourceTree = "<group>"; };
+		DD96470525A3361400F852F4 /* EditImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImagesViewController.swift; sourceTree = "<group>"; };
+		DD96470B25A34CB200F852F4 /* EditPropertyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyDetailsViewController.swift; sourceTree = "<group>"; };
+		DD96471125A34CE200F852F4 /* EditPropertyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyDetailsViewModel.swift; sourceTree = "<group>"; };
+		DD96471D25A36A7300F852F4 /* EditFeaturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeaturesCell.swift; sourceTree = "<group>"; };
+		DD96471E25A36A7300F852F4 /* EditFeaturesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditFeaturesCell.xib; sourceTree = "<group>"; };
+		DD96472525A36C5000F852F4 /* FeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
+		DD96472625A36C5000F852F4 /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
+		DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyModel.swift; sourceTree = "<group>"; };
 		DDAB993B258B6D880032FE0E /* InboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
 		DDAB993C258B6D880032FE0E /* InboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxCell.xib; sourceTree = "<group>"; };
 		DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterHeaderView.swift; sourceTree = "<group>"; };
@@ -554,6 +620,7 @@
 		DD3F37892534A61000B03FEF /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				DD9646DE25A328B800F852F4 /* Edit Property */,
 				DD77A9E925481E4B004D8985 /* Filter */,
 				DD735F85253D8E8A0079A56F /* Details */,
 				DD735F84253D8E7A0079A56F /* Root */,
@@ -780,6 +847,7 @@
 				DD58A3EE25947C2A006DB84D /* UsersNetworkManager.swift */,
 				DD58A3F3259481BB006DB84D /* AbusesNetworkManager.swift */,
 				DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */,
+				DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */,
 			);
 			path = "Network Stack";
 			sourceTree = "<group>";
@@ -1261,6 +1329,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		DD75DC0125A71A03002062B6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DD75DC1225A71D49002062B6 /* EditImageCell.swift */,
+				DD75DC1325A71D49002062B6 /* EditImageCell.xib */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DD75DC1925A76201002062B6 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				DD75DC1A25A76219002062B6 /* FeedbackDetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		DD75DC2525A77BB2002062B6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD75DC2625A77BFF002062B6 /* EditPriceTextFieldCell.swift */,
+				DD75DC2725A77BFF002062B6 /* EditPriceTextFieldCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DD77A9D22547EC24004D8985 /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,6 +1420,42 @@
 				DD78B98925415DC700380231 /* UserDetailsHeaderView.xib */,
 			);
 			path = "Section View";
+			sourceTree = "<group>";
+		};
+		DD7A71AC25A468D50081B4F2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71AD25A4692C0081B4F2 /* DataSelectCell.swift */,
+				DD7A71AE25A4692C0081B4F2 /* DataSelectCell.xib */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DD7A71BB25A477AE0081B4F2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71BD25A477CE0081B4F2 /* FrontIsPiece */,
+				DD7A71BC25A477B70081B4F2 /* TextField */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DD7A71BC25A477B70081B4F2 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71BE25A477F50081B4F2 /* EditPropertyTextFieldCell.swift */,
+				DD7A71BF25A477F50081B4F2 /* EditPropertyTextFieldCell.xib */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		DD7A71BD25A477CE0081B4F2 /* FrontIsPiece */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71C525A4780E0081B4F2 /* EditFrontIsPieceCell.swift */,
+				DD7A71C625A4780E0081B4F2 /* EditFrontIsPieceCell.xib */,
+			);
+			path = FrontIsPiece;
 			sourceTree = "<group>";
 		};
 		DD7B90A02593634900926624 /* PropertyList */ = {
@@ -1405,6 +1535,7 @@
 		DD88BA1A259DDD9B0044BF53 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				DD75DC1925A76201002062B6 /* Details */,
 				DD88BA34259DED070044BF53 /* Cell */,
 				DD88BA1C259DDDB40044BF53 /* Model */,
 				DD88BA1B259DDDA80044BF53 /* ViewModel */,
@@ -1436,6 +1567,150 @@
 				DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DD9646DE25A328B800F852F4 /* Edit Property */ = {
+			isa = PBXGroup;
+			children = (
+				DD96470A25A34C8800F852F4 /* Details */,
+				DD9646F325A32F8000F852F4 /* Images */,
+			);
+			path = "Edit Property";
+			sourceTree = "<group>";
+		};
+		DD9646F325A32F8000F852F4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DD9646F525A32FBE00F852F4 /* Cell */,
+				DD9646F425A32FB300F852F4 /* ViewModel */,
+				DD96470525A3361400F852F4 /* EditImagesViewController.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DD9646F425A32FB300F852F4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DD96470025A3360000F852F4 /* EditImagesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DD9646F525A32FBE00F852F4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD9646F625A32FE800F852F4 /* EditImagesCell.swift */,
+				DD9646F725A32FE800F852F4 /* EditImagesCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DD96470A25A34C8800F852F4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				DD96471625A34D0900F852F4 /* Cells */,
+				DD96472C25A374F400F852F4 /* Model */,
+				DD96471025A34CBC00F852F4 /* ViewModel */,
+				DD96470B25A34CB200F852F4 /* EditPropertyDetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		DD96471025A34CBC00F852F4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DD96471125A34CE200F852F4 /* EditPropertyDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DD96471625A34D0900F852F4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71AC25A468D50081B4F2 /* Common */,
+				DD96471C25A36A1500F852F4 /* Price */,
+				DD96471B25A369FD00F852F4 /* Description */,
+				DD96471A25A369F700F852F4 /* Plans */,
+				DD96471925A369DC00F852F4 /* Details */,
+				DD96471825A369CE00F852F4 /* Amenities */,
+				DD96471725A369BE00F852F4 /* Features */,
+				DD75DC0125A71A03002062B6 /* Images */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DD96471725A369BE00F852F4 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				DD96472425A36C1B00F852F4 /* Cell */,
+				DD96471D25A36A7300F852F4 /* EditFeaturesCell.swift */,
+				DD96471E25A36A7300F852F4 /* EditFeaturesCell.xib */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		DD96471825A369CE00F852F4 /* Amenities */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71A525A468C00081B4F2 /* EditAmenitiesCell.swift */,
+				DD7A71A625A468C00081B4F2 /* EditAmenitiesCell.xib */,
+			);
+			path = Amenities;
+			sourceTree = "<group>";
+		};
+		DD96471925A369DC00F852F4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71BB25A477AE0081B4F2 /* Cells */,
+				DD7A71B425A4726A0081B4F2 /* EditDetailsCell.swift */,
+				DD7A71B525A4726A0081B4F2 /* EditDetailsCell.xib */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		DD96471A25A369F700F852F4 /* Plans */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71CC25A48A1F0081B4F2 /* EditPlansCell.swift */,
+				DD7A71CD25A48A1F0081B4F2 /* EditPlansCell.xib */,
+			);
+			path = Plans;
+			sourceTree = "<group>";
+		};
+		DD96471B25A369FD00F852F4 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A71D325A48E7C0081B4F2 /* EditDescriptionCell.swift */,
+				DD7A71D425A48E7C0081B4F2 /* EditDescriptionCell.xib */,
+			);
+			path = Description;
+			sourceTree = "<group>";
+		};
+		DD96471C25A36A1500F852F4 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				DD75DC2525A77BB2002062B6 /* Cell */,
+				DD7A71DA25A4959D0081B4F2 /* EditPriceCell.swift */,
+				DD7A71DB25A4959D0081B4F2 /* EditPriceCell.xib */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
+		DD96472425A36C1B00F852F4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD96472525A36C5000F852F4 /* FeatureCell.swift */,
+				DD96472625A36C5000F852F4 /* FeatureCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DD96472C25A374F400F852F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DDC4F1D4253ECAAB00766311 /* SectionView */ = {
@@ -1637,18 +1912,28 @@
 				DD8001652590D8590001E737 /* ComplaintsCell.xib in Resources */,
 				DD5668902588CB730072D03B /* PropertyInfoView.xib in Resources */,
 				DD5AF9C22590B7D700CE62B5 /* AbusesCell.xib in Resources */,
+				DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */,
 				DD3F371B2534988700B03FEF /* LaunchScreen.storyboard in Resources */,
+				DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */,
 				DD735F6E253D722D0079A56F /* MoreCell.xib in Resources */,
+				DD7A71B025A4692C0081B4F2 /* DataSelectCell.xib in Resources */,
+				DD7A71C125A477F50081B4F2 /* EditPropertyTextFieldCell.xib in Resources */,
 				DD50607525470FC0003E4F4B /* AmenitiesCell.xib in Resources */,
 				DD4150B52536FF4D00545E41 /* LoaderView.xib in Resources */,
 				DDAB993E258B6D880032FE0E /* InboxCell.xib in Resources */,
 				DD3F377725349E6900B03FEF /* Users.storyboard in Resources */,
+				DD96472825A36C5000F852F4 /* FeatureCell.xib in Resources */,
 				DD5668FA258903320072D03B /* Msg_Sent.caf in Resources */,
 				DD50606D25470ED5003E4F4B /* DetailsOverviewCell.xib in Resources */,
+				DD9646F925A32FE800F852F4 /* EditImagesCell.xib in Resources */,
 				DD5668A12588CD8A0072D03B /* ChatReplyView.xib in Resources */,
+				DD7A71B725A4726A0081B4F2 /* EditDetailsCell.xib in Resources */,
 				DD65D93725907F140099AE4B /* ChatNavView.xib in Resources */,
+				DD7A71C825A4780E0081B4F2 /* EditFrontIsPieceCell.xib in Resources */,
+				DD7A71CF25A48A1F0081B4F2 /* EditPlansCell.xib in Resources */,
 				DD78B991254160A000380231 /* UserDetailsProfileCell.xib in Resources */,
 				DD78B98A25415DC700380231 /* UserDetailsHeaderView.xib in Resources */,
+				DD7A71A825A468C00081B4F2 /* EditAmenitiesCell.xib in Resources */,
 				DD3F37182534988700B03FEF /* Assets.xcassets in Resources */,
 				DD50607F254710FF003E4F4B /* AmenityDetailsCell.xib in Resources */,
 				DD6891FC25400BAA004DB93A /* UserFilterDataCell.xib in Resources */,
@@ -1666,9 +1951,11 @@
 				DD7B909C25935D8F00926624 /* UserDetailsDataViewerCell.xib in Resources */,
 				DD4D12A1253591FB00999B28 /* EmptyBGView.xib in Resources */,
 				DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */,
+				DD75DC2925A77BFF002062B6 /* EditPriceTextFieldCell.xib in Resources */,
 				DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */,
 				DD735F5B253D6FDE0079A56F /* More.storyboard in Resources */,
 				DD5060982547129F003E4F4B /* TitleFloorPlanCell.xib in Resources */,
+				DD96472025A36A7300F852F4 /* EditFeaturesCell.xib in Resources */,
 				DD50608E2547122B003E4F4B /* FloorPlansCell.xib in Resources */,
 				DD3F377225349E5500B03FEF /* Chat.storyboard in Resources */,
 				DDC4F1DE253ECB2700766311 /* UserFilterHeaderView.xib in Resources */,
@@ -1677,6 +1964,7 @@
 				DD5060862547119B003E4F4B /* UserInfoCell.xib in Resources */,
 				DDC4F1E8253ED3CD00766311 /* UserFilterCell.xib in Resources */,
 				DD7833CC259C774F00D48DE3 /* LocationCell.xib in Resources */,
+				DD7A71D625A48E7C0081B4F2 /* EditDescriptionCell.xib in Resources */,
 				DD518292258BB45400D43136 /* GoogleService-Info.plist in Resources */,
 				DD50609F254712FC003E4F4B /* RentOptionsCell.xib in Resources */,
 				DD77A9D62547EC4D004D8985 /* PropertyDetailsHeaderView.xib in Resources */,
@@ -1798,6 +2086,7 @@
 				DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */,
 				DD4D12B225359CE700999B28 /* LoginViewController.swift in Sources */,
 				DD8001742590E6C90001E737 /* StatsViewController.swift in Sources */,
+				DD7A71D525A48E7C0081B4F2 /* EditDescriptionCell.swift in Sources */,
 				DD735F76253D74280079A56F /* MoreViewModel.swift in Sources */,
 				DD3F370F2534988600B03FEF /* AppDelegate.swift in Sources */,
 				DD6892112540A1A7004DB93A /* GenericCellConfig.swift in Sources */,
@@ -1808,6 +2097,8 @@
 				DD3F37C22534A7D300B03FEF /* PropertiesModel.swift in Sources */,
 				DD497251253867790068694C /* UserCell.swift in Sources */,
 				DD59BC1D2588C1C4003A2B40 /* ChatCell.swift in Sources */,
+				DD96471225A34CE200F852F4 /* EditPropertyDetailsViewModel.swift in Sources */,
+				DD7A71C025A477F50081B4F2 /* EditPropertyTextFieldCell.swift in Sources */,
 				DD4D1299253591E100999B28 /* EmptyBGView.swift in Sources */,
 				DD7CCB7F259B17A60048B478 /* PhotosPageViewController.swift in Sources */,
 				DD5668F42588FDCF0072D03B /* Audio.swift in Sources */,
@@ -1817,6 +2108,7 @@
 				DD50606C25470ED5003E4F4B /* DetailsOverviewCell.swift in Sources */,
 				DD4D12F32536046E00999B28 /* AppNetworkManager.swift in Sources */,
 				DDD97BC525458AF0000B0B8F /* PropertyDetailsViewModel.swift in Sources */,
+				DD96470C25A34CB200F852F4 /* EditPropertyDetailsViewController.swift in Sources */,
 				DDD8DDA9258A80AB0004C130 /* AbuseViewModel.swift in Sources */,
 				DD3F378E2534A67600B03FEF /* InboxViewController.swift in Sources */,
 				DD735FA4253DBC9E0079A56F /* UsersFilterViewModel.swift in Sources */,
@@ -1828,12 +2120,14 @@
 				DDD97BC025458ADE000B0B8F /* PropertyDetailsViewController.swift in Sources */,
 				DD58A3FA25948466006DB84D /* ResolveComplaintsCell.swift in Sources */,
 				DD50605725470CF7003E4F4B /* DescriptionCell.swift in Sources */,
+				DD75DC1B25A76219002062B6 /* FeedbackDetailsViewController.swift in Sources */,
 				DD50607425470FC0003E4F4B /* AmenitiesCell.swift in Sources */,
 				DD50608D2547122B003E4F4B /* FloorPlansCell.swift in Sources */,
 				DD3F37942534A6B600B03FEF /* InboxViewModel.swift in Sources */,
 				DD7B90AB259363DF00926624 /* UserPropertiesViewModel.swift in Sources */,
 				DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */,
 				DD59BC262588C3CF003A2B40 /* ChatModel.swift in Sources */,
+				DD96472E25A3751C00F852F4 /* EditPropertyModel.swift in Sources */,
 				DD5AF9A62590B20500CE62B5 /* AbusesViewModel.swift in Sources */,
 				DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */,
 				DD77A9E52547EE07004D8985 /* QRCodeGenerator.swift in Sources */,
@@ -1843,9 +2137,13 @@
 				DD3F37AE2534A74C00B03FEF /* UsersModel.swift in Sources */,
 				DD51828A258BA5D600D43136 /* MainTabBarController.swift in Sources */,
 				DD6892182540A252004DB93A /* UserDetailsModel.swift in Sources */,
+				DD9646DA25A325BC00F852F4 /* PropertyNetworkManager.swift in Sources */,
 				DD78B997254160DF00380231 /* UserDetailsDataCell.swift in Sources */,
 				DDC4F1E7253ED3CD00766311 /* UserFilterCell.swift in Sources */,
+				DD7A71A725A468C00081B4F2 /* EditAmenitiesCell.swift in Sources */,
 				DD4D12EB253603FB00999B28 /* BaseNetworkManager.swift in Sources */,
+				DD7A71AF25A4692C0081B4F2 /* DataSelectCell.swift in Sources */,
+				DD7A71B625A4726A0081B4F2 /* EditDetailsCell.swift in Sources */,
 				DD5AF98E2590B14C00CE62B5 /* AbusesViewController.swift in Sources */,
 				DD4150BE2537038F00545E41 /* Utility.swift in Sources */,
 				DDD8DDA3258A808C0004C130 /* AbuseCell.swift in Sources */,
@@ -1859,13 +2157,17 @@
 				DD735F7D253D7AB80079A56F /* UserFilterViewController.swift in Sources */,
 				DD88BA28259DDDEE0044BF53 /* FeedbackViewController.swift in Sources */,
 				DD7833CB259C774F00D48DE3 /* LocationCell.swift in Sources */,
+				DD75DC2825A77BFF002062B6 /* EditPriceTextFieldCell.swift in Sources */,
 				DDD8DDAE258A80C40004C130 /* AbuseViewController.swift in Sources */,
 				DD53BC4B2594E16200729C95 /* SendUserViewController.swift in Sources */,
 				DD5668D72588D24D0072D03B /* ChatDataProvider.swift in Sources */,
 				DD50606225470E77003E4F4B /* OverviewCell.swift in Sources */,
+				DD9646F825A32FE800F852F4 /* EditImagesCell.swift in Sources */,
 				DD735F62253D72030079A56F /* MoreViewController.swift in Sources */,
 				DD78B98525415DB100380231 /* UserDetailsHeaderView.swift in Sources */,
+				DD96470625A3361400F852F4 /* EditImagesViewController.swift in Sources */,
 				DD56687F2588C8E10072D03B /* ChatViewController.swift in Sources */,
+				DD96472725A36C5000F852F4 /* FeatureCell.swift in Sources */,
 				DD5668962588CCBE0072D03B /* ChatSectionHeader.swift in Sources */,
 				DD68920825406271004DB93A /* UserDetailsViewModel.swift in Sources */,
 				DD50607E254710FF003E4F4B /* AmenityDetailsCell.swift in Sources */,
@@ -1879,13 +2181,16 @@
 				DD735F9C253DB90D0079A56F /* UserFilterModel.swift in Sources */,
 				DD8001642590D8590001E737 /* ComplaintsCell.swift in Sources */,
 				DD65D93825907F140099AE4B /* ChatNavView.swift in Sources */,
+				DD75DC1425A71D49002062B6 /* EditImageCell.swift in Sources */,
 				DDAB993D258B6D880032FE0E /* InboxCell.swift in Sources */,
 				DD50609E254712FC003E4F4B /* RentOptionsCell.swift in Sources */,
 				DD68920225406256004DB93A /* UserDetailsViewController.swift in Sources */,
 				DD5668DD2588D2BA0072D03B /* AmakknCS.xcdatamodeld in Sources */,
+				DD96471F25A36A7300F852F4 /* EditFeaturesCell.swift in Sources */,
 				DD5AF9CD2590BE8400CE62B5 /* AbusesModel.swift in Sources */,
 				DD4D12C02535A39400999B28 /* BaseViewController.swift in Sources */,
 				DD4150B42536FF4D00545E41 /* LoaderView.swift in Sources */,
+				DD7A71C725A4780E0081B4F2 /* EditFrontIsPieceCell.swift in Sources */,
 				DD4D12AB2535981600999B28 /* AppSession.swift in Sources */,
 				DD78B990254160A000380231 /* UserDetailsProfileCell.swift in Sources */,
 				DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */,
@@ -1893,15 +2198,18 @@
 				DDD97BCB2545BF8E000B0B8F /* PropertyDetailsModel.swift in Sources */,
 				DD5060972547129F003E4F4B /* TitleFloorPlanCell.swift in Sources */,
 				DDD8DD90258A204C0004C130 /* UserModel.swift in Sources */,
+				DD96470125A3360000F852F4 /* EditImagesViewModel.swift in Sources */,
 				DD77A9DC2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift in Sources */,
 				DD5060852547119B003E4F4B /* UserInfoCell.swift in Sources */,
 				DD77A9D52547EC4D004D8985 /* PropertyDetailsHeaderView.swift in Sources */,
 				DD5907392599CC12003C5D72 /* NotificationHandler.swift in Sources */,
+				DD7A71DC25A4959D0081B4F2 /* EditPriceCell.swift in Sources */,
 				DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */,
 				DD5668A72588CFF60072D03B /* SocketIOManager.swift in Sources */,
 				DD58A3EF25947C2A006DB84D /* UsersNetworkManager.swift in Sources */,
 				DD67E066258FB0CB00443935 /* AppGeneral.swift in Sources */,
 				DD3F37BC2534A7BC00B03FEF /* PropertiesViewModel.swift in Sources */,
+				DD7A71CE25A48A1F0081B4F2 /* EditPlansCell.swift in Sources */,
 				DD56689C2588CD390072D03B /* ChatReplyView.swift in Sources */,
 				DD4150E3253707B500545E41 /* AppExtensions.swift in Sources */,
 				DD428986259B2A16008B38FA /* PageContentViewController.swift in Sources */,
@@ -2097,7 +2405,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2122,7 +2430,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

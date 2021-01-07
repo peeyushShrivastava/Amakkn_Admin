@@ -22,6 +22,7 @@ class UserCell: UICollectionViewCell {
     @IBOutlet weak var ibInitiallabel: UILabel!
     @IBOutlet weak var ibUserTypeLabel: UILabel!
     @IBOutlet weak var ibVerified: UIImageView!
+    @IBOutlet weak var ibCreatedDate: UILabel!
     
     var delegate: UserCellDelegate?
     var cellIndex = 0
@@ -65,6 +66,7 @@ class UserCell: UICollectionViewCell {
         ibNameLabel.text = userModel?.userName
         ibPhoneText.text = "\(userModel?.countryCode ?? "") \(userModel?.userPhone ?? "")"
         ibVerified.isHidden = userModel?.isVerified != "2"
+        ibCreatedDate.text = "Created On: \(Utility.shared.convertDates(for: userModel?.createdAt) ?? "")"
     }
 
     private func updateAvatar() {

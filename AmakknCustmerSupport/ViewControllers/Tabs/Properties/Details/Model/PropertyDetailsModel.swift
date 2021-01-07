@@ -107,6 +107,13 @@ struct PriceRent: Codable {
     let name: String?
 }
 
+struct Price: Codable {
+    let key: String?
+    let type: String?
+    let name: String?
+    let isDefault: String?
+}
+
 struct DetailsDataSource {
     var headerDataSource: DetailsHeaderModel?
     let description: String?

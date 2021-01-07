@@ -33,7 +33,7 @@ class PropertiesViewModel {
     var apiCallIndex = 49
 
     var cellHeight: CGFloat {
-        return UIDevice.current.userInterfaceIdiom == .pad ? 250.0 : 200.0
+        return UIDevice.current.userInterfaceIdiom == .pad ? 280.0 : 230.0
     }
 
     var cellWidth: CGFloat {
@@ -91,7 +91,7 @@ extension PropertiesViewModel {
         if page == 0 { propertyList = [PropertyCardsModel]() }
         page += 1
 
-        AppNetworkManager.shared.getProperties(for: "\(page)", pageSize, with: searchQuery ?? "") { [weak self] responseModel in
+        PropertyNetworkManager.shared.getProperties(for: "\(page)", pageSize, with: searchQuery ?? "") { [weak self] responseModel in
             self?.totalSize = responseModel?.totalCount
 
             if let chatList = responseModel?.properties {

@@ -44,6 +44,18 @@ class FeedbackViewController: BaseViewController {
     }
 }
 
+// MARK: - Navigation
+extension FeedbackViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "feedBackDetailsSegueID",
+            let destinationVC = segue.destination as? FeedbackDetailsViewController,
+            let index = sender as? Int {
+
+            destinationVC.feedback = viewModel.getFeedbackText(at: index)
+        }
+    }
+}
+
 // MARK: - API Calls
 extension FeedbackViewController {
     private func getFeedbackList() {
@@ -87,5 +99,9 @@ extension FeedbackViewController: UICollectionViewDelegate, UICollectionViewData
         cell.dataSource = viewModel[indexPath.item]
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "feedBackDetailsSegueID", sender: indexPath.item)
     }
 }

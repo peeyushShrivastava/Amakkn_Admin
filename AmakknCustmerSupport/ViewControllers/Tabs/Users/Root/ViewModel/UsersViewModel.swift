@@ -37,7 +37,7 @@ class UsersViewModel {
     }
 
     var cellHeight: CGFloat {
-        return 122.0
+        return 135.0
     }
 
     var cellWidth: CGFloat {

@@ -154,6 +154,10 @@ class PropertyDetailsViewModel {
 
         detailsDataSource?.headerDataSource?.likes = status ? "\(likesCount+1)" : "\(likesCount-1)"
     }
+
+    func getPropertyDetails() -> PropertyDetails? {
+        return propertyDetails
+    }
 }
 
 // MARK: - Public Methods
@@ -208,7 +212,7 @@ extension PropertyDetailsViewModel {
     func getPropertyDetails(successCallBack: @escaping() -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
         guard let propertyID = propertyID, let userID = AppSession.manager.userID else { return }
         
-        AppNetworkManager.shared.getPropertyDetails(for: userID, and: propertyID, successCallBack: { [weak self] responseModel in
+        PropertyNetworkManager.shared.getPropertyDetails(for: userID, and: propertyID, successCallBack: { [weak self] responseModel in
             self?.propertyDetails = responseModel
             self?.update()
 

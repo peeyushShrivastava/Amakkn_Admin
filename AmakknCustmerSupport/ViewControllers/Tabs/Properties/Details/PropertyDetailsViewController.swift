@@ -73,6 +73,9 @@ extension PropertyDetailsViewController {
             guard let images = sender as? [String] else { return }
 
             destinationVC.photos = images
+        } else if segue.identifier == "editDetailsSegueID",
+                  let destinationVC = segue.destination as? EditPropertyDetailsViewController {
+            destinationVC.viewModel.update(propertyDetails: viewModel.getPropertyDetails())
         }
     }
 }

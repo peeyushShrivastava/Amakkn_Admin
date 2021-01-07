@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Abuses APIs End Points
+// MARK: - More APIs End Points
 enum MoreAPIEndPoint: APIEndPoint {
     case getFeedbacks(_ page: String, _ pageSize: String)
     case none
@@ -69,7 +69,7 @@ class MoreNetworkManager: ConfigRequestDelegate {
     }
 }
 
-// MARK: - Abuse API
+// MARK: - More API
 extension MoreNetworkManager {
     func getFeedbackList(for page: String, pageSize: String, successCallBack: @escaping (_ response: FeedbackResponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: MoreAPIEndPoint.getFeedbacks(page, pageSize))

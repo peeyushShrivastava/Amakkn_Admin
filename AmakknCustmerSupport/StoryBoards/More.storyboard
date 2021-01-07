@@ -289,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="1828" y="856"/>
         </scene>
-        <!--Feedback-->
+        <!--Feedbacks-->
         <scene sceneID="eXb-cA-XZ8">
             <objects>
                 <viewController id="bLb-IH-73h" customClass="FeedbackViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
@@ -331,15 +331,52 @@
                             <constraint firstItem="II2-3a-828" firstAttribute="trailing" secondItem="BUr-bt-Jif" secondAttribute="trailing" id="zK1-VC-91d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feedback" id="Abn-M7-JEM"/>
+                    <navigationItem key="navigationItem" title="Feedbacks" id="Abn-M7-JEM">
+                        <barButtonItem key="backBarButtonItem" title=" " id="vpb-JT-pDt"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="II2-3a-828" id="7Pb-uT-XZH"/>
                         <outlet property="ibEmptyBGView" destination="GuA-68-qTs" id="qqC-Hi-b44"/>
+                        <segue destination="0rZ-BP-XX6" kind="show" identifier="feedBackDetailsSegueID" id="Zld-Z1-dLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qem-Pi-qk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2334.7826086956525" y="107.8125"/>
+        </scene>
+        <!--Feedback-->
+        <scene sceneID="fLi-h9-4FP">
+            <objects>
+                <viewController storyboardIdentifier="FeedbackDetailsViewController" id="0rZ-BP-XX6" customClass="FeedbackDetailsViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sbQ-MH-dmm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FT-Rc-6kg">
+                                <rect key="frame" x="20" y="98" width="374" height="705"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" name="selectedTitleTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="u29-Jb-8oV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u29-Jb-8oV" firstAttribute="bottom" secondItem="9FT-Rc-6kg" secondAttribute="bottom" constant="10" id="ANC-Kz-gao"/>
+                            <constraint firstItem="9FT-Rc-6kg" firstAttribute="top" secondItem="u29-Jb-8oV" secondAttribute="top" constant="10" id="Fbb-Ts-V8x"/>
+                            <constraint firstItem="u29-Jb-8oV" firstAttribute="trailing" secondItem="9FT-Rc-6kg" secondAttribute="trailing" constant="20" id="aow-7a-Bmc"/>
+                            <constraint firstItem="9FT-Rc-6kg" firstAttribute="leading" secondItem="u29-Jb-8oV" secondAttribute="leading" constant="20" id="cwH-YL-A57"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feedback" id="TX5-Qj-dEo"/>
+                    <connections>
+                        <outlet property="ibTextView" destination="9FT-Rc-6kg" id="Hqb-bi-EPA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1up-bq-nNn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3137.68115942029" y="107.8125"/>
         </scene>
         <!--Details-->
         <scene sceneID="tL3-7O-J4S">

@@ -26,12 +26,13 @@ struct PropertyCardsModel: Codable {
     let complaintCount: String?
 
     let propertyType: String?
+    let createdAt: String?
 
     private enum CodingKeys: String, CodingKey {
         case userID = "userId"
         case propertyID = "propertyId"
         case listedFor, defaultPrice, address, complaintCount
-        case propertyType, category, status, photos
+        case propertyType, category, status, photos, createdAt
     }
 }
 
@@ -42,7 +43,7 @@ struct Amenity: Codable {
 
 struct Room: Codable {
     let key: String?
-    let value: String?
+    var value: String?
     let name: String?
 }
 

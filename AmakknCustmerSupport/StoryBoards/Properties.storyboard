@@ -142,6 +142,95 @@
             </objects>
             <point key="canvasLocation" x="1808.6956521739132" y="436.60714285714283"/>
         </scene>
+        <!--Property Image(s)-->
+        <scene sceneID="UyF-PV-Fr2">
+            <objects>
+                <viewController storyboardIdentifier="EditImagesViewController" id="mZG-LF-cx9" customClass="EditImagesViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0eY-mg-Ku5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Sj-dI-TT8">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" name="viewBGColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9hd-nG-eZX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mZG-LF-cx9" id="ltY-lM-klD"/>
+                                    <outlet property="delegate" destination="mZG-LF-cx9" id="ffd-3j-YNC"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dls-Zf-L7d"/>
+                        <color key="backgroundColor" name="viewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="6Sj-dI-TT8" firstAttribute="bottom" secondItem="Dls-Zf-L7d" secondAttribute="bottom" id="aI6-ib-WEF"/>
+                            <constraint firstItem="6Sj-dI-TT8" firstAttribute="trailing" secondItem="Dls-Zf-L7d" secondAttribute="trailing" id="eLi-lG-kB3"/>
+                            <constraint firstItem="6Sj-dI-TT8" firstAttribute="leading" secondItem="Dls-Zf-L7d" secondAttribute="leading" id="jWX-FP-ieo"/>
+                            <constraint firstItem="6Sj-dI-TT8" firstAttribute="top" secondItem="Dls-Zf-L7d" secondAttribute="top" id="lLX-11-Bhg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Property Image(s)" id="gPE-uU-uoB">
+                        <barButtonItem key="rightBarButtonItem" title="Add Photo" id="61P-L2-NtG"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ibCollectionView" destination="6Sj-dI-TT8" id="SCz-0Z-F9W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ioe-mH-1Td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2673.913043478261" y="-1039.2857142857142"/>
+        </scene>
+        <!--Edit Property Details View Controller-->
+        <scene sceneID="pDC-ne-rwq">
+            <objects>
+                <viewController storyboardIdentifier="EditPropertyDetailsViewController" id="jkd-7e-LeU" customClass="EditPropertyDetailsViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3hw-3q-SSR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-B3-VLY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" name="viewBGColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cND-Gf-1Ge">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jkd-7e-LeU" id="MwG-Ls-gU1"/>
+                                    <outlet property="delegate" destination="jkd-7e-LeU" id="5g1-mM-xmp"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O5r-4r-AUd"/>
+                        <color key="backgroundColor" name="viewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="tKN-B3-VLY" firstAttribute="top" secondItem="O5r-4r-AUd" secondAttribute="top" id="Ljd-av-3U4"/>
+                            <constraint firstItem="tKN-B3-VLY" firstAttribute="leading" secondItem="O5r-4r-AUd" secondAttribute="leading" id="T5a-ij-SIS"/>
+                            <constraint firstItem="tKN-B3-VLY" firstAttribute="trailing" secondItem="O5r-4r-AUd" secondAttribute="trailing" id="rJH-oL-z4X"/>
+                            <constraint firstItem="tKN-B3-VLY" firstAttribute="bottom" secondItem="O5r-4r-AUd" secondAttribute="bottom" id="tFE-hp-MT6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hBd-dv-qgd">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BZc-hU-YPX"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ibCollectionView" destination="tKN-B3-VLY" id="otX-Xu-Av1"/>
+                        <segue destination="mZG-LF-cx9" kind="show" id="TWO-Ic-El3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tor-mH-Th0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="-1039"/>
+        </scene>
         <!--Details-->
         <scene sceneID="UB9-wB-JkL">
             <objects>
@@ -177,6 +266,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="8Nj-uo-uYg">
                         <barButtonItem key="backBarButtonItem" title=" " id="0aN-XM-b0Z"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="uLP-i9-Oa2">
+                            <connections>
+                                <segue destination="jkd-7e-LeU" kind="show" identifier="editDetailsSegueID" id="1X3-cM-uo8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="lg3-Dt-x7L" id="dlA-X6-WSG"/>

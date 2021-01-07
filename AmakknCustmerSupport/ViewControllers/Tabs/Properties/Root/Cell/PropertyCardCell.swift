@@ -12,7 +12,8 @@ class PropertyCardCell: UICollectionViewCell {
     @IBOutlet weak var ibPropertyTypeLabel: UILabel!
     @IBOutlet weak var ibPriceLabel: UILabel!
     @IBOutlet weak var ibAddressLabel: UILabel!
-
+    @IBOutlet weak var ibCreatedDate: UILabel!
+    
     var dataSource: PropertyCardsModel? {
         didSet {
             updateUI()
@@ -36,6 +37,7 @@ class PropertyCardCell: UICollectionViewCell {
         ibPriceLabel.text = dataSource?.defaultPrice?.amkFormat
         ibPropertyTypeLabel.text = "  \(Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.category) ?? "")  "
         ibAddressLabel.text = dataSource?.address
+        ibCreatedDate.text = "Created On: \(Utility.shared.convertDates(for: dataSource?.createdAt) ?? "")"
     }
 
     private func updatePhoto() {

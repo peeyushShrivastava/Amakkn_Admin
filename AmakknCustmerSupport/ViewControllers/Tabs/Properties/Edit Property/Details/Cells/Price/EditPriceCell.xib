@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EditPriceCell" id="gTV-IL-0wX" customClass="EditPriceCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="239"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="356" height="239"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcj-b2-L8x">
+                        <rect key="frame" x="10" y="10" width="336" height="229"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-ig-TYY">
+                                <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q13-qt-hOh">
+                                        <rect key="frame" x="15" y="15" width="36" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" name="selectedTitleTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="darkViewBGColor"/>
+                                <constraints>
+                                    <constraint firstItem="q13-qt-hOh" firstAttribute="leading" secondItem="mc3-ig-TYY" secondAttribute="leading" constant="15" id="3d8-Fa-cpc"/>
+                                    <constraint firstAttribute="height" constant="50" id="A8J-Sc-r6g"/>
+                                    <constraint firstItem="q13-qt-hOh" firstAttribute="top" secondItem="mc3-ig-TYY" secondAttribute="top" constant="15" id="PMc-eR-8NN"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add multiple rent options for certain property types." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCu-lw-r8S">
+                                <rect key="frame" x="20" y="60" width="296" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="iwd-s9-DOM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" name="selectedTitleTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eUl-Rk-ZW9">
+                                <rect key="frame" x="0.0" y="103" width="336" height="126"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WTt-Ni-1dE">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="gTV-IL-0wX" id="YtX-U8-I1h"/>
+                                    <outlet property="delegate" destination="gTV-IL-0wX" id="xy1-po-SmZ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" name="lightViewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="mCu-lw-r8S" firstAttribute="top" secondItem="mc3-ig-TYY" secondAttribute="bottom" constant="10" id="0EH-W6-zXF"/>
+                            <constraint firstItem="mc3-ig-TYY" firstAttribute="leading" secondItem="lcj-b2-L8x" secondAttribute="leading" id="5p7-DD-buD"/>
+                            <constraint firstItem="eUl-Rk-ZW9" firstAttribute="leading" secondItem="lcj-b2-L8x" secondAttribute="leading" id="7OC-JZ-ISY"/>
+                            <constraint firstAttribute="trailing" secondItem="mCu-lw-r8S" secondAttribute="trailing" constant="20" id="EX2-fB-EQg"/>
+                            <constraint firstItem="mCu-lw-r8S" firstAttribute="leading" secondItem="lcj-b2-L8x" secondAttribute="leading" constant="20" id="LyP-Vv-6K3"/>
+                            <constraint firstAttribute="bottom" secondItem="eUl-Rk-ZW9" secondAttribute="bottom" id="SBf-76-wTV"/>
+                            <constraint firstItem="eUl-Rk-ZW9" firstAttribute="top" secondItem="mCu-lw-r8S" secondAttribute="bottom" constant="8" symbolic="YES" id="dWF-GS-KGq"/>
+                            <constraint firstAttribute="trailing" secondItem="mc3-ig-TYY" secondAttribute="trailing" id="hck-ex-ub1"/>
+                            <constraint firstItem="mc3-ig-TYY" firstAttribute="top" secondItem="lcj-b2-L8x" secondAttribute="top" id="ngJ-5s-XVe"/>
+                            <constraint firstAttribute="trailing" secondItem="eUl-Rk-ZW9" secondAttribute="trailing" id="zz7-fY-mgs"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="lcj-b2-L8x" secondAttribute="trailing" constant="10" id="Bol-EB-D2v"/>
+                <constraint firstItem="lcj-b2-L8x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Tz8-1X-Eij"/>
+                <constraint firstAttribute="bottom" secondItem="lcj-b2-L8x" secondAttribute="bottom" id="b1t-DM-1hU"/>
+                <constraint firstItem="lcj-b2-L8x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="xPM-Wq-anD"/>
+            </constraints>
+            <size key="customSize" width="356" height="239"/>
+            <connections>
+                <outlet property="ibCollectionView" destination="eUl-Rk-ZW9" id="4k1-c9-3jQ"/>
+                <outlet property="ibTitleHolderView" destination="mc3-ig-TYY" id="GKD-tq-8pG"/>
+            </connections>
+            <point key="canvasLocation" x="124.6376811594203" y="101.45089285714285"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="darkViewBGColor">
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightViewBGColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

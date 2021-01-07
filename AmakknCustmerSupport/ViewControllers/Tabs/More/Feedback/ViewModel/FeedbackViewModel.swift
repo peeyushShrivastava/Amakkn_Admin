@@ -39,6 +39,10 @@ class FeedbackViewModel {
         return totalCount > listCount
     }
 
+    func getFeedbackText(at index: Int) -> String? {
+        return feedbackList?[index].message
+    }
+    
     subscript (_ index: Int) -> FeedbackModel? {
         return feedbackList?[index]
     }

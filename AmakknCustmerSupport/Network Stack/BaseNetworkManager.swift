@@ -28,7 +28,7 @@ struct BaseURL {
 
 // MARK: - Base URL String
 var amkBaseURL: String {
-    return BaseURL.devURL
+    return BaseURL.prodURL
 }
 
 // MARK: - HTTP Method
