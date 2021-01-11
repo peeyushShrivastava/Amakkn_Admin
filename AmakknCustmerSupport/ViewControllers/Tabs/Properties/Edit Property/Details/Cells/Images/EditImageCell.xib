@@ -59,6 +59,9 @@
                 <constraint firstAttribute="bottom" secondItem="xqf-es-MUJ" secondAttribute="bottom" id="vga-vG-Gob"/>
             </constraints>
             <size key="customSize" width="349" height="60"/>
+            <connections>
+                <outlet property="ibTitleLabel" destination="cBy-hU-tbC" id="J8d-Pd-Ptg"/>
+            </connections>
             <point key="canvasLocation" x="113.768115942029" y="59.598214285714285"/>
         </collectionViewCell>
     </objects>

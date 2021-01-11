@@ -38,7 +38,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cRa-9l-SgJ">
-                                <rect key="frame" x="10" y="50" width="253" height="110"/>
+                                <rect key="frame" x="10" y="60" width="253" height="100"/>
                                 <color key="backgroundColor" name="lightViewBGColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1R0-5e-ORH">
                                     <size key="itemSize" width="128" height="128"/>
@@ -54,7 +54,7 @@
                         </subviews>
                         <color key="backgroundColor" name="lightViewBGColor"/>
                         <constraints>
-                            <constraint firstItem="cRa-9l-SgJ" firstAttribute="top" secondItem="Tsh-zX-hQd" secondAttribute="bottom" id="7Zi-YB-MSu"/>
+                            <constraint firstItem="cRa-9l-SgJ" firstAttribute="top" secondItem="Tsh-zX-hQd" secondAttribute="bottom" constant="10" id="7Zi-YB-MSu"/>
                             <constraint firstAttribute="trailing" secondItem="cRa-9l-SgJ" secondAttribute="trailing" constant="10" id="8Rq-V2-rWz"/>
                             <constraint firstItem="cRa-9l-SgJ" firstAttribute="leading" secondItem="fAR-JT-7vk" secondAttribute="leading" constant="10" id="8Vq-rC-Gm3"/>
                             <constraint firstAttribute="trailing" secondItem="Tsh-zX-hQd" secondAttribute="trailing" id="XuX-iX-5hP"/>

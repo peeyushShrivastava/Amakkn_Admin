@@ -175,9 +175,7 @@
                             <constraint firstItem="6Sj-dI-TT8" firstAttribute="top" secondItem="Dls-Zf-L7d" secondAttribute="top" id="lLX-11-Bhg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Property Image(s)" id="gPE-uU-uoB">
-                        <barButtonItem key="rightBarButtonItem" title="Add Photo" id="61P-L2-NtG"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Property Image(s)" id="gPE-uU-uoB"/>
                     <connections>
                         <outlet property="ibCollectionView" destination="6Sj-dI-TT8" id="SCz-0Z-F9W"/>
                     </connections>
@@ -186,7 +184,7 @@
             </objects>
             <point key="canvasLocation" x="2673.913043478261" y="-1039.2857142857142"/>
         </scene>
-        <!--Edit Property Details View Controller-->
+        <!--Edit-->
         <scene sceneID="pDC-ne-rwq">
             <objects>
                 <viewController storyboardIdentifier="EditPropertyDetailsViewController" id="jkd-7e-LeU" customClass="EditPropertyDetailsViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,12 +217,18 @@
                             <constraint firstItem="tKN-B3-VLY" firstAttribute="bottom" secondItem="O5r-4r-AUd" secondAttribute="bottom" id="tFE-hp-MT6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hBd-dv-qgd">
+                    <navigationItem key="navigationItem" title="Edit" id="hBd-dv-qgd">
                         <barButtonItem key="backBarButtonItem" title=" " id="BZc-hU-YPX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="diZ-MK-v3U">
+                            <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="jkd-7e-LeU" id="bKM-Ac-Jp1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="tKN-B3-VLY" id="otX-Xu-Av1"/>
-                        <segue destination="mZG-LF-cx9" kind="show" id="TWO-Ic-El3"/>
+                        <segue destination="mZG-LF-cx9" kind="show" identifier="photosSegueID" id="TWO-Ic-El3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tor-mH-Th0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

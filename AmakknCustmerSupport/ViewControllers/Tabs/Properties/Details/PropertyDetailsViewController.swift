@@ -76,6 +76,7 @@ extension PropertyDetailsViewController {
         } else if segue.identifier == "editDetailsSegueID",
                   let destinationVC = segue.destination as? EditPropertyDetailsViewController {
             destinationVC.viewModel.update(propertyDetails: viewModel.getPropertyDetails())
+            destinationVC.delegate = self
         }
     }
 }
@@ -181,6 +182,13 @@ extension PropertyDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let percentage: CGFloat = Utility.shared.hasNotch ? 0.45 : 0.6
         return .init(width: view.frame.width, height: view.frame.height*percentage)
+    }
+}
+
+// MARK: - EditProperty Delegate
+extension PropertyDetailsViewController: EditPropertyDelegate {
+    func propertySaved() {
+        getPropertyDetails()
     }
 }
 

@@ -95,6 +95,7 @@
             <connections>
                 <outlet property="ibCollectionView" destination="eUl-Rk-ZW9" id="4k1-c9-3jQ"/>
                 <outlet property="ibTitleHolderView" destination="mc3-ig-TYY" id="GKD-tq-8pG"/>
+                <outlet property="ibTitleLabel" destination="q13-qt-hOh" id="7W5-5A-4I1"/>
             </connections>
             <point key="canvasLocation" x="124.6376811594203" y="101.45089285714285"/>
         </collectionViewCell>

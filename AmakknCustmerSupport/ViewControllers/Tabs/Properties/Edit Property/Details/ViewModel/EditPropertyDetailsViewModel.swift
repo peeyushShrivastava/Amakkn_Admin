@@ -16,6 +16,7 @@ typealias detailsCell = CollectionCellConfigurator<EditDetailsCell, EditProperty
 typealias plansCell = CollectionCellConfigurator<EditPlansCell, EditPlansDataSource?>
 typealias editDescriptionCell = CollectionCellConfigurator<EditDescriptionCell, EditDescriptionDataSource?>
 typealias editPriceCell = CollectionCellConfigurator<EditPriceCell, EditPriceDataSource?>
+typealias saveCell = CollectionCellConfigurator<PropertySaveCell, String?>
 
 // MARK: - Edit Details Cell Height
 enum EditDetailsCellsHeight: CGFloat {
@@ -26,11 +27,13 @@ enum EditDetailsCellsHeight: CGFloat {
     case plans = 60.0
     case description = 264.0
     case price = 85.0
+    case save = 60.01
 }
 
 // MARK: - EditPropertyDetails Delegate
 protocol EditPropertyDetailsDelegate {
     func reloadData()
+    func popVC()
     func showError(with errorStr: String?)
 }
 
@@ -45,6 +48,10 @@ class EditPropertyDetailsViewModel {
 
     var cellCount: Int {
         return cellsDataSource.count
+    }
+
+    var proprertyID: String? {
+        return propertyDetails?.propertyID
     }
 
     func update(propertyDetails: PropertyDetails?) {
@@ -85,8 +92,11 @@ class EditPropertyDetailsViewModel {
 
             let rows: CGFloat = CGFloat(details.params?.count ?? 0 + 1)
             let updatedRows = rows > 1 ? rows : 1.0
-            let height = (updatedRows * EditDetailsCellsHeight.details.rawValue) + 80.0
+            var height = (updatedRows * EditDetailsCellsHeight.details.rawValue) + 80.0
 
+            if details.frontispeice != nil {
+                height += 220.0
+            }
             cellsHeight.append(height)
         }
 
@@ -112,6 +122,12 @@ class EditPropertyDetailsViewModel {
             cellsHeight.append(height)
         }
 
+        if AppSession.manager.validSession {
+            cellsDataSource.append(saveCell(item: nil))
+
+            cellsHeight.append(EditDetailsCellsHeight.save.rawValue)
+        }
+
         delegate?.reloadData()
     }
 }
@@ -124,6 +140,14 @@ extension EditPropertyDetailsViewModel {
 
     func height(for row: Int) -> CGFloat {
         return cellsHeight[row]
+    }
+
+    func getPropertyImages() -> [String]? {
+        return editDetailsDataSource?.images?.dataSource
+    }
+
+    func getPlans() -> [String]? {
+        return editDetailsDataSource?.plans?.dataSource
     }
 }
 
@@ -156,33 +180,119 @@ extension EditPropertyDetailsViewModel {
         editDetailsDataSource?.features?.dataSource?[index].value = isPlus ? "\(valueInt + 1)" : "\(valueInt - 1)"
 
         if let features = editDetailsDataSource?.features, AppSession.manager.validSession {
-            cellsDataSource[0] = featuresCell(item: features)
-        }
+            cellsDataSource[1] = featuresCell(item: features)
 
-        callBack()
+            callBack()
+        }
     }
 }
 
 // MARK: - Update Amenities
 extension EditPropertyDetailsViewModel {
-    func update(_ amenity: Amenity?, isSelected: Bool, callBack: @escaping () -> Void) {
+    func update(_ amenity: Amenity?, isSelected: Bool, callBack: @escaping (_ index: Int) -> Void) {
         guard let amenity = amenity else { return }
 
         if isSelected {
             editDetailsDataSource?.amenities?.dataSource?.append(amenity)
         } else {
-            let _ = editDetailsDataSource?.amenities?.dataSource?.enumerated().map({ (count, data) -> Bool in
-                if data.name == amenity.name {
-                    editDetailsDataSource?.amenities?.dataSource?.remove(at: count)
-                }
-                return false
-            })
+            guard let index = editDetailsDataSource?.amenities?.dataSource?.firstIndex(where: { $0.key == amenity.key }) else { return }
+
+            editDetailsDataSource?.amenities?.dataSource?.remove(at: index)
         }
 
         if let amenities = editDetailsDataSource?.amenities, AppSession.manager.validSession {
-            cellsDataSource[1] = amenitiesCell(item: amenities)
+            let index = (editDetailsDataSource?.features != nil) ? 2 : 1
+            cellsDataSource[index] = amenitiesCell(item: amenities)
+
+            callBack(index)
+        }
+    }
+}
+
+// MARK: - Update Details
+extension EditPropertyDetailsViewModel {
+    func updateDetails(data: String?, with key: String?, for tag: Int, callBack: @escaping () -> Void) {
+        guard let key = key, let index = editDetailsDataSource?.details?.dataSource?.firstIndex(where: { $0.key == key }) else { return }
+
+        editDetailsDataSource?.details?.dataSource?[index].value = data
+
+        if let details = editDetailsDataSource?.details {
+            cellsDataSource[tag] = detailsCell(item: details)
+
+            callBack()
+        }
+    }
+
+    func update(frontispiece: Feature?, for tag: Int, callBack: @escaping () -> Void) {
+        guard let frontispiece = frontispiece, let index = editDetailsDataSource?.details?.dataSource?.firstIndex(where: { $0.key == frontispiece.key }) else { return }
+
+        editDetailsDataSource?.details?.dataSource?[index] = frontispiece
+
+        if let details = editDetailsDataSource?.details {
+            cellsDataSource[tag] = detailsCell(item: details)
+
+            callBack()
+        }
+    }
+}
+
+// MARK: - Update Description
+extension EditPropertyDetailsViewModel {
+    func updateDescription(data: String?, callBack: @escaping (_ index: Int) -> Void) {
+        guard let description = data else { return }
+
+        editDetailsDataSource?.description?.dataSource = description
+
+        if let description = editDetailsDataSource?.description, let index = cellsHeight.firstIndex(where: { $0 == EditDetailsCellsHeight.description.rawValue }) {
+            cellsDataSource[index] = editDescriptionCell(item: description)
+
+            callBack(index)
+        }
+    }
+}
+
+// MARK: - Update Price
+extension EditPropertyDetailsViewModel {
+    func updatePrice(data: String?, with key: String?, for tag: Int, callBack: @escaping () -> Void) {
+        if editDetailsDataSource?.price?.defaultPriceType == "0" {
+            editDetailsDataSource?.price?.salePrice = data
+            return
         }
 
-        callBack()
+        guard let key = key, let index = editDetailsDataSource?.price?.rentPrice?.firstIndex(where: { $0.key == key }) else { return }
+
+        editDetailsDataSource?.price?.rentPrice?[index].value = data
+
+        if let price = editDetailsDataSource?.price {
+            cellsDataSource[tag] = editPriceCell(item: price)
+
+            callBack()
+        }
+    }
+}
+
+// MARK: - Save Property
+extension EditPropertyDetailsViewModel {
+    func saveProperty() {
+        var saveDataSource = SavePropertyDataSource(with: propertyDetails?.propertyID)
+        saveDataSource.updateFeatures(with: editDetailsDataSource?.features?.dataSource)
+        saveDataSource.updateAmenities(with: editDetailsDataSource?.amenities?.dataSource)
+        saveDataSource.updateDetails(with: editDetailsDataSource?.details?.dataSource)
+        saveDataSource.updateDescription(with: editDetailsDataSource?.description?.dataSource)
+        if editDetailsDataSource?.price?.defaultPriceType == "0" {
+            saveDataSource.updateSalePrice(with: editDetailsDataSource?.price?.salePrice, propertyDetails?.listedFor, propertyDetails?.defaultPriceType?.key)
+        } else {
+            saveDataSource.updateRentPrice(with: editDetailsDataSource?.price?.rentPrice, propertyDetails?.listedFor, propertyDetails?.defaultPriceType?.key)
+        }
+
+        PropertyNetworkManager.shared.saveProperty(with: saveDataSource) { [weak self] in
+            DispatchQueue.main.async {
+                self?.delegate?.popVC()
+            }
+        } failureCallBack: { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.delegate?.showError(with: errorStr)
+            }
+        }
     }
 }

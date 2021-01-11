@@ -15,6 +15,8 @@ class EditImagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
+
         registerCell()
     }
 
@@ -27,6 +29,7 @@ class EditImagesViewController: UIViewController {
         layout.itemSize = CGSize(width: viewModel.cellWidth, height: viewModel.cellHeight)
 
         ibCollectionView.collectionViewLayout = layout
+        ibCollectionView.keyboardDismissMode = .interactive
     }
 }
 
@@ -39,20 +42,48 @@ extension EditImagesViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "editImageCellID", for: indexPath) as? EditImagesCell else { return UICollectionViewCell() }
 
-        cell.updateUI(with: viewModel[indexPath.item])
+        cell.tag = indexPath.item
+        cell.updateUI(with: viewModel[indexPath.item], isPlans: viewModel.isForPlans)
         cell.delegate = self
 
         return cell
     }
 }
 
-// MARK: - Edit Images delegate
-extension EditImagesViewController: EditImagesDelegate {
-    func deleteDidTapped() {
-        
+// MARK: - EditImagesView Delegate
+extension EditImagesViewController: EditImagesViewDelegate {
+    func reloadData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.ibCollectionView.reloadData()
+        }
     }
 
-    func makeDefault() {
-        
+    func show(_ errorStr: String?) {
+        let alertController = UIAlertController(title: nil, message: errorStr, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: nil))
+
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Edit Images delegate
+extension EditImagesViewController: EditImagesDelegate {
+    func keyboardDidShow(at index: Int) {
+        DispatchQueue.main.async { [weak self] in
+            self?.ibCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+        }
+    }
+    
+    func deleteDidTapped(at index: Int) {
+        viewModel.deleteImage(at: index)
+    }
+
+    func makeDefault(at index: Int) {
+        viewModel.makeDefault(at: index)
+    }
+
+    func update(_ photoTitle: String?, at index: Int) {
+        viewModel.updatePhoto(title: photoTitle, at: index)
     }
 }

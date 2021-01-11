@@ -91,7 +91,7 @@ struct PriceType: Codable {
 
 struct SalesPrice: Codable {
     let percentage: String?
-    let price: String?
+    var price: String?
     let date: String?
     let priceID: String?
 
@@ -103,7 +103,7 @@ struct SalesPrice: Codable {
 
 struct PriceRent: Codable {
     let key: String?
-    let value: String?
+    var value: String?
     let name: String?
 }
 

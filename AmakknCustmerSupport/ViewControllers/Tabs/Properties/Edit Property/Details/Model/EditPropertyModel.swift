@@ -24,17 +24,17 @@ struct EditDetailsDataSource {
     let images: EditImagesDataSource?
     var features: EditFeaturesDataSource?
     var amenities: EditAmenitiesDataSource?
-    let details: EditPropertyDetailsDataSource?
+    var details: EditPropertyDetailsDataSource?
     let plans: EditPlansDataSource?
-    let description: EditDescriptionDataSource?
-    let price: EditPriceDataSource?
+    var description: EditDescriptionDataSource?
+    var price: EditPriceDataSource?
 
     init(_ propertyDetails: PropertyDetails?, and params: AddPropertyParams?) {
         self.images = EditImagesDataSource(propertyDetails)
         self.features = EditFeaturesDataSource(propertyDetails, and: params?.features)
         self.amenities = EditAmenitiesDataSource(propertyDetails, and: params?.amenity)
         self.details = EditPropertyDetailsDataSource(propertyDetails, and: params?.details)
-        self.plans = EditPlansDataSource(dataSource: [""])
+        self.plans = EditPlansDataSource(propertyDetails)
         self.description = EditDescriptionDataSource(propertyDetails)
         self.price = EditPriceDataSource(propertyDetails, and: params?.price)
     }
@@ -44,7 +44,7 @@ struct EditImagesDataSource {
     var dataSource: [String]?
 
     init(_ propertyDetails: PropertyDetails?) {
-        dataSource = propertyDetails?.photos?.components(separatedBy: ",")
+        dataSource = propertyDetails?.photosNew?.components(separatedBy: ",")
     }
 }
 
@@ -69,17 +69,28 @@ struct EditAmenitiesDataSource {
 }
 
 struct EditPropertyDetailsDataSource {
+    var frontispeice: Feature?
     var params: [Feature]?
     var dataSource: [Feature]?
 
     init(_ propertyDetails: PropertyDetails?, and params: [Feature]?) {
-        self.params = params
+        if let index = params?.firstIndex(where: { $0.key == "7" }) {
+            self.params = params
+            frontispeice = params?[index]
+            self.params?.remove(at: index)
+        } else {
+            self.params = params
+        }
         dataSource = propertyDetails?.features
     }
 }
 
 struct EditPlansDataSource {
-    var dataSource = [String]()
+    var dataSource: [String]?
+
+    init(_ propertyDetails: PropertyDetails?) {
+        dataSource = propertyDetails?.floorPlans?.components(separatedBy: ",")
+    }
 }
 
 struct EditDescriptionDataSource {
@@ -92,12 +103,86 @@ struct EditDescriptionDataSource {
 
 struct EditPriceDataSource {
     var params: [Price]?
-    var salePrice: [SalesPrice]?
+    var salePrice: String?
     var rentPrice: [PriceRent]?
+    let defaultPriceType: String?
 
     init(_ propertyDetails: PropertyDetails?, and params: [Price]?) {
         self.params = params
-        salePrice = propertyDetails?.salePrices
+        salePrice = propertyDetails?.defaultPrice
         rentPrice = propertyDetails?.priceRent
+        defaultPriceType = propertyDetails?.defaultPriceType?.key
+    }
+}
+
+struct SavePropertyDataSource {
+    let propertyID: String?
+    var features: String?
+    var amenities: String?
+    var details: String?
+    var description: String?
+    var price: String?
+    var listedFor: String?
+    var defaultPriceType: String?
+
+    init(with propertyID: String?) {
+        self.propertyID = propertyID
+    }
+
+    mutating func updateFeatures(with data: [Room]?) {
+        guard let data = data else { return }
+
+        features = data.compactMap { feature -> String? in
+            guard let key = feature.key, let value = feature.value else { return nil }
+
+            return "\(key):\(value)"
+        }.joined(separator: ",")
+    }
+
+    mutating func updateAmenities(with data: [Amenity]?) {
+        guard let data = data else { return }
+
+        amenities = data.compactMap { amenity -> String? in
+            guard let key = amenity.key else { return nil }
+
+            return "\(key)"
+        }.joined(separator: ",")
+    }
+
+    mutating func updateDetails(with data: [Feature]?) {
+        guard let data = data else { return }
+
+        details = data.compactMap { detail -> String? in
+            guard let key = detail.key, let value = detail.value else { return nil }
+
+            return "\(key):\(value)"
+        }.joined(separator: ",")
+    }
+
+    mutating func updateDescription(with data: String?) {
+        guard let data = data else { return }
+
+        description = data
+    }
+
+    mutating func updateSalePrice(with price: String?, _ listedFor: String?, _ defaultPriceType: String?) {
+        guard let price = price else { return }
+
+        self.price = price
+        self.listedFor = listedFor
+        self.defaultPriceType = defaultPriceType
+    }
+
+    mutating func updateRentPrice(with price: [PriceRent]?, _ listedFor: String?, _ defaultPriceType: String?) {
+        guard let price = price else { return }
+
+        self.listedFor = listedFor
+        self.defaultPriceType = defaultPriceType
+
+        self.price = price.compactMap { price -> String? in
+            guard let key = price.key, let value = price.value else { return nil }
+
+            return "\(key):\(value)"
+        }.joined(separator: ",")
     }
 }

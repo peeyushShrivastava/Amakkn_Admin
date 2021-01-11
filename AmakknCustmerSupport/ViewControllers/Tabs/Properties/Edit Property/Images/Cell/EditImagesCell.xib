@@ -54,7 +54,7 @@
                                 <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="go"/>
                                 <connections>
                                     <outlet property="delegate" destination="gTV-IL-0wX" id="0WJ-fk-9Ch"/>
                                 </connections>
@@ -108,6 +108,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="ibDefaultButton" destination="cVO-5h-Vae" id="NEn-mu-h7u"/>
+                <outlet property="ibHolderView" destination="eP0-h5-vYj" id="fW9-WQ-UW8"/>
                 <outlet property="ibImageView" destination="QNo-0T-At3" id="agM-oS-kIj"/>
                 <outlet property="ibPlaceHolder" destination="CQX-Jg-aaW" id="uZW-DL-y93"/>
                 <outlet property="ibTextView" destination="Qdt-VM-IFv" id="Wwi-6I-NSL"/>

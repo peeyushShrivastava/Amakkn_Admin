@@ -8,13 +8,17 @@
 import UIKit
 
 class EditImageCell: UICollectionViewCell, ConfigurableCell {
+    @IBOutlet weak var ibTitleLabel: UILabel!
+
+    var count = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     func configure(data details: EditImagesDataSource?) {
-//        dataSource = details
+        count = details?.dataSource?.filter({ $0 != "" }).count ?? 0
+
+        ibTitleLabel.text = "Images (\(count))"
     }
 }

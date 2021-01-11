@@ -58,6 +58,9 @@
                 <constraint firstAttribute="trailing" secondItem="QCV-Cc-9l5" secondAttribute="trailing" constant="10" id="ieh-XP-NaX"/>
             </constraints>
             <size key="customSize" width="290" height="57"/>
+            <connections>
+                <outlet property="ibTitleLabel" destination="e92-n7-326" id="NWF-Ok-xcf"/>
+            </connections>
             <point key="canvasLocation" x="285.50724637681162" y="61.941964285714285"/>
         </collectionViewCell>
     </objects>

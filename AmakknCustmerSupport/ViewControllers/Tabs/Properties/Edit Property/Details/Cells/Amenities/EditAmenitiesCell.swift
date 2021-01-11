@@ -39,16 +39,16 @@ class EditAmenitiesCell: UICollectionViewCell, ConfigurableCell {
         ibCollectionView.register(UINib(nibName: "DataSelectCell", bundle: nil), forCellWithReuseIdentifier: "dataSelectCellID")
     }
 
-//    private func getAmenity(for bgColor: UIColor?, at index: Int) -> Amenity? {
-//        guard let bgColor = bgColor, bgColor != .clear else { return nil }
-//
-//        return Amenity(key: amenitiesKeys[index], name: amenities[index])
-//    }
+    private func getAmenity(at index: Int) -> Amenity? {
+        let amenity = dataSource?.params?[index]
+
+        return Amenity(key: amenity?.key, name: amenity?.name)
+    }
 
     func configure(data details: EditAmenitiesDataSource?) {
         dataSource = details
 
-        selectedData = dataSource?.params?.compactMap({ $0.name })
+        selectedData = dataSource?.dataSource?.compactMap({ $0.name })
 
         DispatchQueue.main.async { [weak self] in
             self?.ibCollectionView.reloadData()
@@ -76,7 +76,7 @@ extension EditAmenitiesCell: UICollectionViewDelegate, UICollectionViewDataSourc
 
         cell.backgroundColor = (cell.backgroundColor == .clear) ? AppColors.darkSlateColor : .clear
 
-//        delegate?.cellDid(select: (cell.backgroundColor != .clear), amenity: getAmenity(for: cell.backgroundColor, at: indexPath.row))
+        delegate?.cellDid(select: (cell.backgroundColor != .clear), amenity: getAmenity(at: indexPath.row))
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

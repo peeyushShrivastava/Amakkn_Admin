@@ -53,7 +53,7 @@ extension Utility {
     func getHashedID(for data: [String: String]) -> String? {
         guard let firstValue = data.keys.first, let secondValue = data.values.first else { return nil }
 
-        return MD5(firstValue + secondValue).localized()
+        return MD5(firstValue + secondValue).lowercased()
     }
 
     func getHashedUserID() -> String {

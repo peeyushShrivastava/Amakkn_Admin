@@ -49,7 +49,7 @@ struct Room: Codable {
 
 struct Feature: Codable {
     let key: String?
-    let value: String?
+    var value: String?
     let name: String?
     let unit: String?
 }

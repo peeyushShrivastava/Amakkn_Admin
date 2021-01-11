@@ -7,10 +7,19 @@
 
 import UIKit
 
+// MARK: - EditFrontispeice Delegate
+protocol EditFrontispeiceDelegate {
+    func cellDid(frontispeice: Feature?)
+}
+
 class EditFrontIsPieceCell: UICollectionViewCell {
     @IBOutlet weak var ibCollectionView: UICollectionView!
 
     private let frontispiece = ["North", "South", "East", "West", "North-East", "South-East", "South-West"]
+
+    var delegate: EditFrontispeiceDelegate?
+
+    var param: Feature?
     var selectedData: Feature? {
         didSet {
             ibCollectionView.reloadData()
@@ -40,7 +49,10 @@ extension EditFrontIsPieceCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        delegate?.didSelect(floorPlans?[indexPath.item], at: indexPath.item)
+        guard frontispiece[indexPath.item] != selectedData?.value else { return }
+
+        param?.value = frontispiece[indexPath.item]
+        delegate?.cellDid(frontispeice: param)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

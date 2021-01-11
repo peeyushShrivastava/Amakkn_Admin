@@ -64,7 +64,8 @@ class FeatureCell: UITableViewCell {
 // MARK: - Button Actions
 extension FeatureCell {
     @IBAction func minusButtonTapped(_ sender: UIButton) {
-        guard let value = param?.value, let intValue = Int(value) else { return }
+        guard let key = param?.key, let index = dataSource?.firstIndex(where: { $0.key == key }) else { return }
+        guard let value = dataSource?[index].value, let intValue = Int(value), intValue > 0 else { return }
 
         ibValueLabel.text = "\(intValue - 1)"
 
@@ -72,7 +73,8 @@ extension FeatureCell {
     }
 
     @IBAction func plusButtonTapped(_ sender: UIButton) {
-        guard let value = param?.value, let intValue = Int(value) else { return }
+        guard let key = param?.key, let index = dataSource?.firstIndex(where: { $0.key == key }) else { return }
+        guard let value = dataSource?[index].value, let intValue = Int(value) else { return }
 
         ibValueLabel.text = "\(intValue + 1)"
 
