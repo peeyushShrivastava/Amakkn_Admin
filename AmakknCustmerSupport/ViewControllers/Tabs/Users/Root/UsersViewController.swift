@@ -13,7 +13,6 @@ class UsersViewController: BaseViewController {
     @IBOutlet var ibSearchBar: UISearchBar!
 
     let viewModel = UsersViewModel()
-    var searchQuery: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +20,7 @@ class UsersViewController: BaseViewController {
         ibEmptyBGView.delegate = self
 
         registerCell()
+        getUsers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +30,7 @@ class UsersViewController: BaseViewController {
         navigationItem.titleView = ibSearchBar
 
         ibEmptyBGView.updateUI()
-        AppSession.manager.validSession ? ibEmptyBGView.update(message: "Search Users with UserId, User Name, User Type etc.") : ibEmptyBGView.updateErrorText()
+        AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Users...") : ibEmptyBGView.updateErrorText()
     }
 
     private func registerCell() {
@@ -69,7 +69,7 @@ extension UsersViewController {
     private func getUsers() {
         guard AppSession.manager.validSession else { ibCollectionView.isHidden = true; ibEmptyBGView.isHidden = false; return }
 
-        viewModel.getSearchedUserList(searchQuery, successCallBack: { [weak self] isListEmpty in
+        viewModel.getSearchedUserList(successCallBack: { [weak self] isListEmpty in
             DispatchQueue.main.async {
                 guard self?.viewModel.isFirstPage ?? true else { self?.ibCollectionView.reloadData(); return }
 
@@ -128,7 +128,7 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.cellIndex = indexPath.row
         cell.delegate = self
 
-        if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable {
+        if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable, viewModel.searchQuery != nil {
             viewModel.apiCallIndex += 50
             getUsers()
         }
@@ -141,7 +141,7 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionFooter, viewModel.isMoreDataAvailable  else { return UICollectionReusableView() }
+        guard kind == UICollectionView.elementKindSectionFooter, viewModel.isMoreDataAvailable, viewModel.searchQuery != nil  else { return UICollectionReusableView() }
 
         let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LoaderView", for: indexPath)
 
@@ -149,7 +149,7 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        guard viewModel.isMoreDataAvailable  else { return CGSize.zero }
+        guard viewModel.isMoreDataAvailable, viewModel.searchQuery != nil  else { return CGSize.zero }
 
         return .init(width: viewModel.cellWidth, height: 40.0)
     }
@@ -182,44 +182,37 @@ extension UsersViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         ibSearchBar.resignFirstResponder()
 
-        viewModel.updateLast(searchQuery)
+        viewModel.resetPage()
         ibCollectionView.reloadData()
         updateUsersList()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        guard searchQuery != viewModel.getLastSearchedStr() else {
-            viewModel.resetPage()
-            ibCollectionView.isHidden = true
-            ibEmptyBGView.isHidden = false
-            ibEmptyBGView.update(message: "Search Users with UserId, User Name, User Type etc.")
+        viewModel.updateSearch(with: nil)
 
-            ibSearchBar.text = nil
+        viewModel.resetPage()
 
-            return
-        }
-        searchQuery = viewModel.getLastSearchedStr()
-        ibSearchBar.text = searchQuery
+        ibCollectionView.isHidden = true
+        ibEmptyBGView.isHidden = false
+        ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
 
-        guard !(searchQuery?.isEmpty ?? true) else {
-            viewModel.resetPage()
-            ibCollectionView.isHidden = true
-            ibEmptyBGView.isHidden = false
-            ibEmptyBGView.update(message: "Search Users with UserId, User Name, User Type etc.")
-
-            return
-        }
+        ibSearchBar.text = nil
 
         updateUsersList()
+
+        DispatchQueue.main.async {
+            self.ibSearchBar.resignFirstResponder()
+            self.view.endEditing(true)
+        }
     }
 
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard text != "\n" else { return true }
 
         if let searchStr = searchBar.text, let textRange = Range(range, in: searchStr) {
-            searchQuery = searchStr.replacingCharacters(in: textRange, with: text)
+            let searchQuery = searchStr.replacingCharacters(in: textRange, with: text)
 
-            viewModel.updateLatest(searchQuery)
+            viewModel.updateSearch(with: searchQuery)
         }
         return true
     }
@@ -228,9 +221,14 @@ extension UsersViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             ibCollectionView.isHidden = true
             ibEmptyBGView.isHidden = false
-            ibEmptyBGView.update(message: "Search Users with UserId, User Name, User Type etc.")
+            ibEmptyBGView.startActivityIndicator(with: "Fetching Users...")
+
+            viewModel.updateSearch(with: nil)
 
             viewModel.resetPage()
+            ibCollectionView.reloadData()
+            getUsers()
+
             DispatchQueue.main.async {
                 self.ibSearchBar.resignFirstResponder()
                 self.view.endEditing(true)

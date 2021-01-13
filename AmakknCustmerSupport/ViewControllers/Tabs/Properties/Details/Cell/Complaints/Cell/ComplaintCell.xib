@@ -111,6 +111,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDg-SK-JAj">
+                                <rect key="frame" x="10" y="20" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hoQ-Fi-7oL"/>
+                                    <constraint firstAttribute="width" constant="50" id="pGm-dn-P7S"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="avatarButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yEI-6n-984"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="lightViewBGColor"/>
                         <constraints>
@@ -121,12 +131,14 @@
                             <constraint firstItem="fP8-uJ-odS" firstAttribute="top" secondItem="1nb-VL-eCv" secondAttribute="top" constant="20" id="VpY-7M-8eh"/>
                             <constraint firstAttribute="trailing" secondItem="FPP-Ln-pFD" secondAttribute="trailing" constant="10" id="WTu-xT-6FK"/>
                             <constraint firstAttribute="trailing" secondItem="Eo6-Ch-q0z" secondAttribute="trailing" constant="10" id="YSu-eU-0hG"/>
+                            <constraint firstItem="yDg-SK-JAj" firstAttribute="leading" secondItem="1nb-VL-eCv" secondAttribute="leading" constant="10" id="dkJ-Ju-Txo"/>
                             <constraint firstItem="1JI-YI-Bhp" firstAttribute="leading" secondItem="1nb-VL-eCv" secondAttribute="leading" constant="10" id="eOo-Iw-EpH"/>
                             <constraint firstItem="1JI-YI-Bhp" firstAttribute="top" secondItem="1nb-VL-eCv" secondAttribute="top" constant="20" id="fX1-r7-PH5"/>
                             <constraint firstItem="SUf-bh-Lk4" firstAttribute="leading" secondItem="kGH-iC-EuL" secondAttribute="trailing" constant="20" id="jS2-lt-5jN"/>
                             <constraint firstItem="FPP-Ln-pFD" firstAttribute="leading" secondItem="D43-EX-LIy" secondAttribute="leading" id="jrW-di-WIY"/>
                             <constraint firstAttribute="trailing" secondItem="lhQ-2Y-tcG" secondAttribute="trailing" constant="10" id="laE-ZN-yyd"/>
                             <constraint firstAttribute="bottom" secondItem="SUf-bh-Lk4" secondAttribute="bottom" constant="10" id="pNT-gW-hMw"/>
+                            <constraint firstItem="yDg-SK-JAj" firstAttribute="top" secondItem="1nb-VL-eCv" secondAttribute="top" constant="20" id="piH-K0-gA7"/>
                             <constraint firstItem="kGH-iC-EuL" firstAttribute="centerY" secondItem="SUf-bh-Lk4" secondAttribute="centerY" id="ric-fE-Ppz"/>
                             <constraint firstItem="lhQ-2Y-tcG" firstAttribute="leading" secondItem="D43-EX-LIy" secondAttribute="leading" id="sh0-Jr-dsj"/>
                             <constraint firstItem="kGH-iC-EuL" firstAttribute="top" secondItem="FPP-Ln-pFD" secondAttribute="bottom" constant="5" id="sm1-Yx-ePX"/>

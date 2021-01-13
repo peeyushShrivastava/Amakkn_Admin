@@ -22,7 +22,7 @@ extension UsersNetworkManager {
     internal var urlString: String {
         switch endPoint {
             case .getSearchedUsers(_, _, _): return "Extras/getUsersForSearchQuery/"
-            case .getUsers(_, _, _, _, _, _): return "Login/getUserStats/"
+            case .getUsers(_, _, _, _, _, _): return "Extras/getUserStatsNew/"
             case .getUserProperties(_): return "Property/getPropertyDescriptionsForAdmin/"
             case .changeUserStatus(_, _): return "Login/changeUserStatus/"
             case .sendNotification(_, _, _): return "Login/sendCustomNotification1/"

@@ -27,9 +27,7 @@ class UsersViewModel {
     private var filterOperator = "AND"
     private var filters = ""
 
-    private var lastSearchedStr: String?
-    private var latestSearchedStr: String?
-
+    var searchQuery: String?
     var apiCallIndex = 49
 
     var cellCount: Int {
@@ -75,31 +73,22 @@ class UsersViewModel {
     func resetPage() {
         page = 0
         apiCallIndex = 49
-        users = nil
     }
 
-    func updateLast(_ searchedStr: String?) {
-        lastSearchedStr = searchedStr
-    }
-
-    func getLastSearchedStr() -> String? {
-        return lastSearchedStr
-    }
-
-    func updateLatest(_ searchedStr: String?) {
-        latestSearchedStr = searchedStr
+    func updateSearch(with data: String?) {
+        searchQuery = data
     }
 }
 
 // MARK: - API Calls
 extension UsersViewModel {
-    func getSearchedUserList(_ searchQuery: String?, successCallBack: @escaping(_ isListEmpty: Bool) -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
-        guard AppSession.manager.validSession, let searchQuery = searchQuery else { return }
+    func getSearchedUserList(successCallBack: @escaping(_ isListEmpty: Bool) -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
+        guard AppSession.manager.validSession else { return }
 
         if page == 0 { users = [SearchedUserModel]() }
         page += 1
 
-        UsersNetworkManager.shared.getSearchedUsers(for: "\(page)", with: pageSize, searchQuery) { [weak self] responseModel in
+        UsersNetworkManager.shared.getSearchedUsers(for: "\(page)", with: pageSize, searchQuery ?? "") { [weak self] responseModel in
             self?.totalSize = responseModel?.totalCount
 
             if let userList = responseModel?.users {

@@ -19,6 +19,7 @@ enum PropertyAPIEndPoint: APIEndPoint {
     case savePropertyPrice(_ propertyID: String, _ price: String, _ listedFor: String, _ defaultPriceType: String)
     case updatePropertyImages(_ images: String, _ propertyID: String)
     case deletePlans(_ plans: String, _ propertyID: String)
+    case changePropertyStatus(_ propertyIDs: String, _ status: String)
     case none
 }
 
@@ -26,17 +27,18 @@ enum PropertyAPIEndPoint: APIEndPoint {
 extension PropertyNetworkManager {
     internal var urlString: String {
         switch endPoint {
-        case .getAllParamsForProperty(_): return "Property/getAllParamsForAddPropertyForPropertyType/"
-        case .getProperties(_, _, _): return "Extras/getPropertiesForSearchQuery/"
-        case .getPropertyDetails(_, _): return "Property/getPropertyDescription/"
-        case .savePropertyFeatures(_, _): return "Property/savePropertyRooms/"
-        case .savePropertyAmenities(_, _): return "Property/savePropertyAmenities/"
-        case .savePropertyDetails(_, _): return "Property/savePropertyFeatures/"
-        case .savePropertyDescription(_, _): return "Property/savePropertyDescription/"
-        case .savePropertyPrice(_, _, _, _): return "Property/savePropertyPriceNew/"
-        case .updatePropertyImages(_, _): return "Property/savePropertyPhotos/"
-        case .deletePlans(_, _): return "Property/savePropertyFloorPlans/"
-        case .none: return ""
+            case .getAllParamsForProperty(_): return "Property/getAllParamsForAddPropertyForPropertyType/"
+            case .getProperties(_, _, _): return "Extras/getPropertiesForSearchQuery/"
+            case .getPropertyDetails(_, _): return "Property/getPropertyDescription/"
+            case .savePropertyFeatures(_, _): return "Property/savePropertyRooms/"
+            case .savePropertyAmenities(_, _): return "Property/savePropertyAmenities/"
+            case .savePropertyDetails(_, _): return "Property/savePropertyFeatures/"
+            case .savePropertyDescription(_, _): return "Property/savePropertyDescription/"
+            case .savePropertyPrice(_, _, _, _): return "Property/savePropertyPriceNew/"
+            case .updatePropertyImages(_, _): return "Property/savePropertyPhotos/"
+            case .deletePlans(_, _): return "Property/savePropertyFloorPlans/"
+            case .changePropertyStatus(_, _): return "Property/publishMyListing/"
+            case .none: return ""
         }
     }
 }
@@ -72,6 +74,8 @@ extension PropertyNetworkManager {
                 return ["userId": hashedUserID, "propertyId": propertyID, "photos": images]
             case .deletePlans(let plans, let propertyID):
                 return ["userId": hashedUserID, "propertyId": propertyID, "floorPlans": plans]
+            case .changePropertyStatus(let propertyIDs, let status):
+                return ["userId": hashedUserID, "propertyIds": propertyIDs, "isPublish": status]
             default:
                 return nil
         }
@@ -357,6 +361,28 @@ extension PropertyNetworkManager {
 extension PropertyNetworkManager {
     func delete(_ plans: String, for propertyID: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: PropertyAPIEndPoint.deletePlans(plans, propertyID))
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: resData, options: [])
+                guard let jsonDictionary = jsonObject as? [String: Any], let respCode = jsonDictionary["resCode"] as? Int else { return }
+
+                respCode == 0 ? successCallBack() : failureCallBack(jsonDictionary["resStr"] as? String)
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+}
+
+// MARK: - Change Property Status
+extension PropertyNetworkManager {
+    func changeProperty(_ status: String, for propertyID: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: PropertyAPIEndPoint.changePropertyStatus(propertyID, status))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }

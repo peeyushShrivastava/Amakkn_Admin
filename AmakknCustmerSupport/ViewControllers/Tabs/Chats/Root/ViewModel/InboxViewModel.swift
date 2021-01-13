@@ -60,6 +60,11 @@ class InboxViewModel {
 
     func resetPage() {
         page = 0
+        apiCallIndex = 14
+    }
+
+    func resetUnreadCount(at index: Int) {
+        supportChats?[index].unreadCount = "0"
     }
 }
 

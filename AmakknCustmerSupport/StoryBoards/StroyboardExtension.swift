@@ -32,5 +32,6 @@ enum AppStoryboard: String {
     case chat = "Chat"
     case users = "Users"
     case properties = "Properties"
+    case abuse = "Abuse"
     case more = "More"
 }

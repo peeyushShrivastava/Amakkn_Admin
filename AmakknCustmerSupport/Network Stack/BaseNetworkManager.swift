@@ -141,6 +141,7 @@ class BaseNetworkManager: Transport {
 
     fileprivate init(session: URLSession = .shared) {
         networkSession = session
+        AppSession.manager.update(session)
     }
 
     func fetch(_ request: URLRequest?, successCallBack: @escaping (_ resData: Data?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {

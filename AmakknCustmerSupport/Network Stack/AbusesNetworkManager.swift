@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Abuses APIs End Points
 enum AbusesAPIEndPoint: APIEndPoint {
-    case getAbuses(_ page: String, _ pageSize: String)
+    case getAbuses(_ page: String, _ pageSize: String, _ sortOrder: String)
     case getComplaints(_ propertyID: String)
     case resolveComplaints(_ complaintIDs: String)
     case none
@@ -19,7 +19,7 @@ enum AbusesAPIEndPoint: APIEndPoint {
 extension AbusesNetworkManager {
     internal var urlString: String {
         switch endPoint {
-            case .getAbuses(_, _): return "Extras/getReportedProperties/"
+            case .getAbuses(_, _, _): return "Extras/getReportedProperties/"
             case .getComplaints(_): return "Extras/getComplaintsForProperty/"
             case .resolveComplaints(_): return "Extras/resolveComplaints/"
             case .none: return ""
@@ -38,8 +38,8 @@ extension AbusesNetworkManager {
 extension AbusesNetworkManager {
     internal var params: [String: Any]? {
         switch endPoint {
-            case .getAbuses(let page, let pageSize):
-                return ["page": page, "pageSize": pageSize, "userId": hashedUserID]
+        case .getAbuses(let page, let pageSize, let sortOrder):
+            return ["page": page, "pageSize": pageSize, "userId": hashedUserID, "sortOrder": sortOrder]
             case .getComplaints(let propertyID):
                 return ["propertyId": propertyID, "userId": hashedUserID]
             case .resolveComplaints(let complaintIDs):
@@ -79,8 +79,8 @@ class AbusesNetworkManager: ConfigRequestDelegate {
 
 // MARK: - Get Abuses API Call
 extension AbusesNetworkManager {
-    func getAbuses(for page: String, with pageSize: String, successCallBack: @escaping (_ response: AbusesModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
-        let request = getRequest(with: AbusesAPIEndPoint.getAbuses(page, pageSize))
+    func getAbuses(for page: String, with pageSize: String, _ sortOrder: String, successCallBack: @escaping (_ response: AbusesModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: AbusesAPIEndPoint.getAbuses(page, pageSize, sortOrder))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }

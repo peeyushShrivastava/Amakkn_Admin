@@ -18,10 +18,12 @@ class AbusesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
         ibEmptyBGView.delegate = self
 
         updateRefresh()
         registerCells()
+        getAbuses()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,9 +33,6 @@ class AbusesViewController: BaseViewController {
 
         ibEmptyBGView.updateUI()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
-
-        viewModel.resetPage()
-        getAbuses()
     }
 
     private func registerCells() {
@@ -54,27 +53,39 @@ class AbusesViewController: BaseViewController {
     }
 }
 
+// MARK: - Button Actions
+extension AbusesViewController {
+    @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
+        guard let popOverVC = PopoverViewController.instantiateSelf() else { return }
+
+        popOverVC.view.frame = CGRect(x: 0.0, y: 0.0, width: 200.0, height: 300.0)
+        popOverVC.modalPresentationStyle = .popover
+        popOverVC.titleList = viewModel.getSortOrders()
+        popOverVC.selectedTitle = viewModel.selectedOrder
+        popOverVC.delegate = self
+
+        let popOver = popOverVC.popoverPresentationController
+        popOver?.barButtonItem = sender
+        popOver?.sourceRect = CGRect(x:0.0, y: 0.0, width: 315, height: 230)
+        popOver?.delegate = self
+
+        present(popOverVC, animated: true, completion:nil)
+    }
+}
+
+// MARK: - UIPopover Delegate
+extension AbusesViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+
 // MARK: - API Call
 extension AbusesViewController {
     private func getAbuses() {
         guard AppSession.manager.validSession else { ibTableView.isHidden = true; ibEmptyBGView.isHidden = false; return }
 
-        viewModel.getAbuses { [weak self] isListEmpty in
-            guard self?.viewModel.isFirstPage ?? true else { self?.ibTableView.reloadData(); return }
-
-            self?.ibTableView.isHidden = isListEmpty
-            self?.ibEmptyBGView.isHidden = !isListEmpty
-
-            self?.ibTableView.reloadData()
-            self?.refreshControl.endRefreshing()
-        } failureCallBack: { [weak self] errorStr in
-            self?.ibTableView.isHidden = true
-            self?.ibEmptyBGView.isHidden = false
-            self?.ibEmptyBGView.updateErrorText()
-
-            self?.showAlert(with: errorStr)
-            self?.refreshControl.endRefreshing()
-        }
+        viewModel.getAbuses()
     }
 }
 
@@ -101,7 +112,7 @@ extension AbusesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dataSource = viewModel[indexPath.row]
 
         if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable {
-            viewModel.apiCallIndex += 10
+            viewModel.apiCallIndex += 15
             getAbuses()
         }
 
@@ -116,12 +127,81 @@ extension AbusesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let propertyDetailsVC = PropertyDetailsViewController.instantiateSelf() else { return }
 
         propertyDetailsVC.viewModel.update(with: viewModel[indexPath.item]?.propertyID)
+        propertyDetailsVC.delegate = self
 
         navigationController?.pushViewController(propertyDetailsVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1.0
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard viewModel.isMoreDataAvailable else { return 1.0 }
+
+        return 50.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard viewModel.isMoreDataAvailable else { return UIView(frame: .zero) }
+
+        return getFooterView()
+    }
+
+    private func getFooterView() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: 40.0))
+        footerView.backgroundColor = .clear
+        
+        let loader = UIActivityIndicatorView(style: .medium)
+        loader.tintColor = .white
+        loader.hidesWhenStopped = true
+        loader.startAnimating()
+        loader.center = footerView.center
+        
+        footerView.addSubview(loader)
+        
+        return footerView
+    }
+}
+
+// MARK: - AbuseView Delegate
+extension AbusesViewController: AbusesViewDelegate {
+    func reloadView(_ isListEmpty: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard self?.viewModel.isFirstPage ?? true else { self?.ibTableView.reloadData(); return }
+
+            self?.ibTableView.isHidden = isListEmpty
+            self?.ibEmptyBGView.isHidden = !isListEmpty
+
+            self?.ibTableView.reloadData()
+            self?.refreshControl.endRefreshing()
+        }
+    }
+
+    func showError(_ errorStr: String?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.ibTableView.isHidden = true
+            self?.ibEmptyBGView.isHidden = false
+            self?.ibEmptyBGView.updateErrorText()
+
+            self?.showAlert(with: errorStr)
+            self?.refreshControl.endRefreshing()
+        }
+    }
+}
+
+// MARK: - Popover Delegate
+extension AbusesViewController: AppPopoverDelegate {
+    func didSelectCell(with title: String?) {
+        guard let title = title else { return }
+
+        ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
+        ibTableView.isHidden = true
+        ibEmptyBGView.isHidden = false
+
+        viewModel.resetPage()
+        viewModel.selectedOrder = title
+        getAbuses()
     }
 }
 
@@ -131,5 +211,16 @@ extension AbusesViewController {
         viewModel.resetPage()
 
         getAbuses()
+    }
+}
+
+// MARK: - PropertyDetails Delegate
+extension AbusesViewController: PropertyDetailsDelegate {
+    func updateComplaint(for propertyID: String?) {
+        viewModel.updateComplaint(for: propertyID)
+    }
+
+    func updateAllComplaints(for propertyID: String?) {
+        viewModel.updateAllComplaints(for: propertyID)
     }
 }

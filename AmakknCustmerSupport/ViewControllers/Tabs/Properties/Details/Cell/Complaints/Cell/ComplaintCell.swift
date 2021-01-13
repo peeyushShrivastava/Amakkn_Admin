@@ -7,6 +7,13 @@
 
 import UIKit
 
+// MARK:- ComplaintCell Delgate
+protocol ComplaintCellDelegate {
+    func avatarDidTapped(for userID: String?)
+    func didSelectCall(with phone: String?, _ countryCode: String?)
+    func didSelectChat(at index: Int)
+}
+
 class ComplaintCell: UITableViewCell {
     @IBOutlet weak var ibReporterNameLabel: UILabel!
     @IBOutlet weak var ibUserTypeLabel: UILabel!
@@ -16,7 +23,7 @@ class ComplaintCell: UITableViewCell {
     @IBOutlet weak var ibInitialLabel: UILabel!
 
     var index = 0
-    var delegate: UserCellDelegate?
+    var delegate: ComplaintCellDelegate?
 
     var complaint: ComplaintModel? {
         didSet {
@@ -81,6 +88,10 @@ class ComplaintCell: UITableViewCell {
 
 // MARK: - Button Actions
 extension ComplaintCell {
+    @IBAction func avatarButtonTapped(_ sender: UIButton) {
+        delegate?.avatarDidTapped(for: complaint?.userID)
+    }
+
     @IBAction func callButtonTapped(_ sender: UIButton) {
         delegate?.didSelectCall(with: complaint?.phone, complaint?.countryCode)
     }

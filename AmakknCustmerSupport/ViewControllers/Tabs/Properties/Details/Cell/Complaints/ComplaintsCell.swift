@@ -12,6 +12,7 @@ protocol ComplaintsDelegate {
     func resolveComplaint(id: String?)
     func didSelectCall(with phone: String?, _ countryCode: String?)
     func didSelectChat(at index: Int)
+    func avatarDidTapped(for userID: String?)
 }
 
 class ComplaintsCell: UICollectionViewCell, ConfigurableCell {
@@ -107,7 +108,11 @@ extension ComplaintsCell: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - UserCell Delegate
-extension ComplaintsCell: UserCellDelegate {
+extension ComplaintsCell: ComplaintCellDelegate {
+    func avatarDidTapped(for userID: String?) {
+        delegate?.avatarDidTapped(for: userID)
+    }
+
     func didSelectCall(with phone: String?, _ countryCode: String?) {
         delegate?.didSelectCall(with: phone, countryCode)
     }
@@ -124,11 +129,10 @@ extension ComplaintsCell: ResolveDelegate {
     }
 
     private func getComplaintIDs() -> String? {
-        let complaintsIDs = complaints?.enumerated().compactMap({ [weak self] (index, complaint) -> String? in
-            self?.deleteRow(at: index)
+        let complaintsIDs = complaints?.compactMap({ $0.complaintID }).joined(separator: ",")
 
-            return complaint.complaintID
-        }).joined(separator: ",")
+        complaints?.removeAll()
+        ibTableView.reloadData()
 
         return complaintsIDs
     }

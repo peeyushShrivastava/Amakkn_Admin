@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="136" id="Jyc-xN-uMv"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="btl-eb-XDW">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="btl-eb-XDW">
                                 <rect key="frame" x="15" y="88" width="384" height="725"/>
                                 <color key="backgroundColor" name="viewBGColor"/>
                                 <connections>

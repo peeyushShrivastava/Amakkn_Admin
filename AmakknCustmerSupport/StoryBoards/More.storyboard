@@ -304,39 +304,50 @@
                                     <constraint firstAttribute="height" constant="136" id="siO-xO-CAB"/>
                                 </constraints>
                             </view>
-                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="II2-3a-828">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" name="viewBGColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LcX-mc-bas">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3ss-Ki-IUD">
+                                <rect key="frame" x="47" y="108" width="320" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="ywx-j3-dCM"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="New"/>
+                                    <segment title="Reviewed"/>
+                                    <segment title="Starred"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="bLb-IH-73h" id="KXp-R4-Vlw"/>
-                                    <outlet property="delegate" destination="bLb-IH-73h" id="7Od-aT-uLZ"/>
+                                    <action selector="segmentValueChanged:" destination="bLb-IH-73h" eventType="valueChanged" id="uls-a2-w3x"/>
                                 </connections>
-                            </collectionView>
+                            </segmentedControl>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zX5-6G-i7W">
+                                <rect key="frame" x="0.0" y="169" width="414" height="644"/>
+                                <color key="backgroundColor" name="viewBGColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bLb-IH-73h" id="Sab-85-90D"/>
+                                    <outlet property="delegate" destination="bLb-IH-73h" id="ooN-Ku-yKT"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BUr-bt-Jif"/>
                         <color key="backgroundColor" name="viewBGColor"/>
                         <constraints>
-                            <constraint firstItem="II2-3a-828" firstAttribute="bottom" secondItem="BUr-bt-Jif" secondAttribute="bottom" id="AsH-MC-jez"/>
-                            <constraint firstItem="II2-3a-828" firstAttribute="leading" secondItem="BUr-bt-Jif" secondAttribute="leading" id="Oj4-Sb-Z64"/>
+                            <constraint firstItem="3ss-Ki-IUD" firstAttribute="top" secondItem="BUr-bt-Jif" secondAttribute="top" constant="20" id="6o1-7C-Zdl"/>
+                            <constraint firstItem="zX5-6G-i7W" firstAttribute="leading" secondItem="BUr-bt-Jif" secondAttribute="leading" id="FX1-7d-uaO"/>
+                            <constraint firstItem="zX5-6G-i7W" firstAttribute="top" secondItem="3ss-Ki-IUD" secondAttribute="bottom" constant="30" id="Uf4-wC-1PF"/>
+                            <constraint firstItem="zX5-6G-i7W" firstAttribute="trailing" secondItem="BUr-bt-Jif" secondAttribute="trailing" id="Vb0-Op-6C2"/>
+                            <constraint firstItem="3ss-Ki-IUD" firstAttribute="centerX" secondItem="H09-7I-IIW" secondAttribute="centerX" id="Xkk-dn-FVA"/>
                             <constraint firstItem="GuA-68-qTs" firstAttribute="centerX" secondItem="H09-7I-IIW" secondAttribute="centerX" id="ZFQ-cg-aHs"/>
                             <constraint firstItem="GuA-68-qTs" firstAttribute="centerY" secondItem="H09-7I-IIW" secondAttribute="centerY" id="cMH-er-oFs"/>
-                            <constraint firstItem="II2-3a-828" firstAttribute="top" secondItem="BUr-bt-Jif" secondAttribute="top" id="s5O-HP-Cpe"/>
-                            <constraint firstItem="II2-3a-828" firstAttribute="trailing" secondItem="BUr-bt-Jif" secondAttribute="trailing" id="zK1-VC-91d"/>
+                            <constraint firstItem="zX5-6G-i7W" firstAttribute="bottom" secondItem="BUr-bt-Jif" secondAttribute="bottom" id="lP2-um-ftq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feedbacks" id="Abn-M7-JEM">
                         <barButtonItem key="backBarButtonItem" title=" " id="vpb-JT-pDt"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="ibCollectionView" destination="II2-3a-828" id="7Pb-uT-XZH"/>
                         <outlet property="ibEmptyBGView" destination="GuA-68-qTs" id="qqC-Hi-b44"/>
+                        <outlet property="ibSegmentedControl" destination="3ss-Ki-IUD" id="Pnm-3p-Ofg"/>
+                        <outlet property="ibTableView" destination="zX5-6G-i7W" id="JQ2-Xd-oDB"/>
                         <segue destination="0rZ-BP-XX6" kind="show" identifier="feedBackDetailsSegueID" id="Zld-Z1-dLU"/>
                     </connections>
                 </viewController>

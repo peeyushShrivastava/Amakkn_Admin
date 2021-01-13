@@ -32,6 +32,20 @@ enum DetailsCellsHeight: CGFloat {
     case complaints = 154.0
 }
 
+// MARK: - PropertyDetails Delegate
+protocol PropertyDetailsDelegate {
+    func updateComplaint(for propertyID: String?)
+    func updateAllComplaints(for propertyID: String?)
+}
+
+// MARK: - PropertyStatus Enum
+enum PropertyStatus: Int {
+    case incomplete = 0
+    case unpublish
+    case publish
+    case soldout
+}
+
 class PropertyDetailsViewModel {
     private var propertyID: String?
     private var propertyDetails: PropertyDetails?
@@ -40,6 +54,7 @@ class PropertyDetailsViewModel {
     private var cellsDataSource = [CellConfigurator]()
     private var cellsHeight = [CGFloat]()
     private var publishStatus: String?
+    private var propertyStatus: PropertyStatus?
 
     var title: String {
         return "Details for Id - \(propertyID ?? "")"
@@ -77,6 +92,16 @@ class PropertyDetailsViewModel {
         detailsDataSource = DetailsDataSource(propertyDetails)
 
         updateCellsDataSource()
+    }
+
+    private func updatePropertyStatus() {
+        guard let status = propertyDetails?.status, let price = propertyDetails?.defaultPrice else { return }
+
+        switch status {
+            case "0": propertyStatus = (price == "" || price == "0") ? .incomplete : .unpublish
+            case "1": propertyStatus = .publish
+            default: propertyStatus = .soldout
+        }
     }
 
     private func updateCellsDataSource() {
@@ -158,6 +183,10 @@ class PropertyDetailsViewModel {
     func getPropertyDetails() -> PropertyDetails? {
         return propertyDetails
     }
+
+    func getPropertyStatus() -> PropertyStatus? {
+        return propertyStatus
+    }
 }
 
 // MARK: - Public Methods
@@ -215,6 +244,7 @@ extension PropertyDetailsViewModel {
         PropertyNetworkManager.shared.getPropertyDetails(for: userID, and: propertyID, successCallBack: { [weak self] responseModel in
             self?.propertyDetails = responseModel
             self?.update()
+            self?.updatePropertyStatus()
 
             successCallBack()
         }, failureCallBack: { errorStr in
@@ -222,16 +252,23 @@ extension PropertyDetailsViewModel {
         })
     }
 
-    func publishProperty(successCallBack: @escaping() -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
-        guard let propertyID = propertyID, let userID = AppSession.manager.userID, let publishStatus = publishStatus else { return }
+    func changeProperty(status: String, successCallBack: @escaping() -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
+        guard let propertyID = propertyID else { return }
 
-//        NetworkManager.shared.publishProperty(propertyID: propertyID, userID: userID, isPublish: publishStatus, completion: { (_, error) in
-//            if let error = error {
-//                failureCallBack(error.logDescription())
-//            } else {
-//                successCallBack()
-//            }
-//        })
+        var propertyStatus = ""
+        switch status {
+            case "Publish": propertyStatus = "1"
+            case "Unpublish": propertyStatus = "0"
+            case "Sold out": propertyStatus = "2"
+            case "Delete": propertyStatus = "4"
+            default: break
+        }
+
+        PropertyNetworkManager.shared.changeProperty(propertyStatus, for: propertyID) {
+            successCallBack()
+        } failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        }
     }
 
     func getcomplaints(callBack: @escaping() -> Void) {

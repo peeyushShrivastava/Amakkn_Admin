@@ -25,7 +25,7 @@ struct CSInboxModel: Codable {
 
     let readByUser1: String?
     let readByUser2: String?
-    let unreadCount: String?
+    var unreadCount: String?
 
     let userID1: String?
     let userID2: String?

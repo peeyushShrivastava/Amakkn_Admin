@@ -10,10 +10,11 @@ import UIKit
 class PropertyCardCell: UICollectionViewCell {
     @IBOutlet weak var ibPropertyImageView: UIImageView!
     @IBOutlet weak var ibPropertyTypeLabel: UILabel!
+    @IBOutlet weak var ibStatusLabel: UILabel!
     @IBOutlet weak var ibPriceLabel: UILabel!
     @IBOutlet weak var ibAddressLabel: UILabel!
     @IBOutlet weak var ibCreatedDate: UILabel!
-    
+
     var dataSource: PropertyCardsModel? {
         didSet {
             updateUI()
@@ -31,6 +32,9 @@ class PropertyCardCell: UICollectionViewCell {
 
         ibPropertyTypeLabel.layer.masksToBounds = true
         ibPropertyTypeLabel.layer.cornerRadius = 2.0
+
+        ibStatusLabel.layer.masksToBounds = true
+        ibStatusLabel.layer.cornerRadius = 2.0
     }
 
     private func updateUI() {
@@ -38,6 +42,7 @@ class PropertyCardCell: UICollectionViewCell {
         ibPropertyTypeLabel.text = "  \(Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.category) ?? "")  "
         ibAddressLabel.text = dataSource?.address
         ibCreatedDate.text = "Created On: \(Utility.shared.convertDates(for: dataSource?.createdAt) ?? "")"
+        ibStatusLabel.text = getStatus()
     }
 
     private func updatePhoto() {
@@ -54,5 +59,23 @@ class PropertyCardCell: UICollectionViewCell {
 
         ibPropertyImageView.sd_setImage(with: URL(string: imageURLStr), placeholderImage: placeHolderImage)
         ibPropertyImageView.contentMode = .scaleAspectFill
+    }
+
+    private func getStatus() -> String? {
+        guard let status = dataSource?.status, let price = dataSource?.defaultPrice else { return nil }
+
+        switch status {
+            case "0":
+                if price == "" || price == "0" {
+                    return "  Incomplete  "
+                } else {
+                    return "  Unpublished  "
+                }
+            case "1":
+                return "  Published  "
+            default:
+                return "  Sold out  "
+                
+        }
     }
 }

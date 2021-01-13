@@ -41,6 +41,7 @@ class AppSession {
     private init() { self.user = AppUserDefaults.manager.getUser() }
 
     private var user: User?
+    private var networkSession: URLSession?
 }
 
 // MARK: - Public Methods
@@ -77,5 +78,13 @@ extension AppSession {
     func resetAppSession() {
         user = nil
         AppUserDefaults.manager.resetDefaults()
+    }
+
+    func update(_ urlSession: URLSession?) {
+        networkSession = urlSession
+    }
+
+    func cancelURLSession() {
+        networkSession?.invalidateAndCancel()
     }
 }

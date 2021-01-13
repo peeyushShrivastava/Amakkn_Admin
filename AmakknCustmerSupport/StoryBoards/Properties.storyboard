@@ -270,15 +270,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="8Nj-uo-uYg">
                         <barButtonItem key="backBarButtonItem" title=" " id="0aN-XM-b0Z"/>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="uLP-i9-Oa2">
+                        <barButtonItem key="rightBarButtonItem" image="icMoreIcon" id="uLP-i9-Oa2">
                             <connections>
-                                <segue destination="jkd-7e-LeU" kind="show" identifier="editDetailsSegueID" id="1X3-cM-uo8"/>
+                                <action selector="moreButtonTapped:" destination="JDo-kG-WFB" id="Va8-uP-0tf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="lg3-Dt-x7L" id="dlA-X6-WSG"/>
                         <segue destination="KEA-Jf-14m" kind="show" identifier="photoViewerSegueID" id="132-rI-tu3"/>
+                        <segue destination="jkd-7e-LeU" kind="show" identifier="editDetailsSegueID" id="DV3-Ak-hZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z89-L0-dSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -414,7 +415,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Nd-X7-O5d">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.14117647059999999" green="0.78823529410000004" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -428,6 +429,7 @@
     </scenes>
     <resources>
         <image name="Tab3_Listings" width="25" height="22"/>
+        <image name="icMoreIcon" width="25" height="7"/>
         <namedColor name="selectedTitleTextColor">
             <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

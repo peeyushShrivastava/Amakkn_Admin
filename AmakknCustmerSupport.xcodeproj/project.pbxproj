@@ -177,12 +177,13 @@
 		DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD80016B2590E6B20001E737 /* StatsViewModel.swift */; };
 		DD8001742590E6C90001E737 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001732590E6C90001E737 /* StatsViewController.swift */; };
 		DD80017A2590F6A40001E737 /* StatsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001792590F6A40001E737 /* StatsDetailsViewController.swift */; };
+		DD809FCE25AD9B340034B732 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD809FCC25AD9B340034B732 /* FeedbackCell.swift */; };
+		DD809FCF25AD9B340034B732 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD809FCD25AD9B340034B732 /* FeedbackCell.xib */; };
+		DD84844C25AEDD8A00FE1876 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD84844B25AEDD8A00FE1876 /* PopoverViewController.swift */; };
 		DD88BA1E259DDDC90044BF53 /* FeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA1D259DDDC90044BF53 /* FeedbackModel.swift */; };
 		DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */; };
 		DD88BA28259DDDEE0044BF53 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */; };
 		DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */; };
-		DD88BA37259DED1F0044BF53 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */; };
-		DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */; };
 		DD9646DA25A325BC00F852F4 /* PropertyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */; };
 		DD9646F825A32FE800F852F4 /* EditImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646F625A32FE800F852F4 /* EditImagesCell.swift */; };
 		DD9646F925A32FE800F852F4 /* EditImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9646F725A32FE800F852F4 /* EditImagesCell.xib */; };
@@ -417,12 +418,13 @@
 		DD80016B2590E6B20001E737 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		DD8001732590E6C90001E737 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		DD8001792590F6A40001E737 /* StatsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDetailsViewController.swift; sourceTree = "<group>"; };
+		DD809FCC25AD9B340034B732 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		DD809FCD25AD9B340034B732 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
+		DD84844B25AEDD8A00FE1876 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		DD88BA1D259DDDC90044BF53 /* FeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModel.swift; sourceTree = "<group>"; };
 		DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNetworkManager.swift; sourceTree = "<group>"; };
-		DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
-		DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
 		DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyNetworkManager.swift; sourceTree = "<group>"; };
 		DD9646F625A32FE800F852F4 /* EditImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImagesCell.swift; sourceTree = "<group>"; };
 		DD9646F725A32FE800F852F4 /* EditImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImagesCell.xib; sourceTree = "<group>"; };
@@ -1137,6 +1139,7 @@
 		DD5AF9922590B19400CE62B5 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				DD84844A25AEDD4800FE1876 /* PopoverView */,
 				DD5AF9952590B1AD00CE62B5 /* Cell */,
 				DD5AF9942590B1A700CE62B5 /* Model */,
 				DD5AF9932590B19D00CE62B5 /* ViewModel */,
@@ -1559,6 +1562,14 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		DD84844A25AEDD4800FE1876 /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				DD84844B25AEDD8A00FE1876 /* PopoverViewController.swift */,
+			);
+			path = PopoverView;
+			sourceTree = "<group>";
+		};
 		DD88BA1A259DDD9B0044BF53 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1590,8 +1601,8 @@
 		DD88BA34259DED070044BF53 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				DD88BA35259DED1F0044BF53 /* FeedbackCell.swift */,
-				DD88BA36259DED1F0044BF53 /* FeedbackCell.xib */,
+				DD809FCC25AD9B340034B732 /* FeedbackCell.swift */,
+				DD809FCD25AD9B340034B732 /* FeedbackCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1942,6 +1953,7 @@
 				DD5AF9C22590B7D700CE62B5 /* AbusesCell.xib in Resources */,
 				DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */,
 				DD3F371B2534988700B03FEF /* LaunchScreen.storyboard in Resources */,
+				DD809FCF25AD9B340034B732 /* FeedbackCell.xib in Resources */,
 				DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */,
 				DD735F6E253D722D0079A56F /* MoreCell.xib in Resources */,
 				DD7A71B025A4692C0081B4F2 /* DataSelectCell.xib in Resources */,
@@ -1982,7 +1994,6 @@
 				DD4D12A1253591FB00999B28 /* EmptyBGView.xib in Resources */,
 				DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */,
 				DD75DC2925A77BFF002062B6 /* EditPriceTextFieldCell.xib in Resources */,
-				DD88BA38259DED1F0044BF53 /* FeedbackCell.xib in Resources */,
 				DD735F5B253D6FDE0079A56F /* More.storyboard in Resources */,
 				DD5060982547129F003E4F4B /* TitleFloorPlanCell.xib in Resources */,
 				DD96472025A36A7300F852F4 /* EditFeaturesCell.xib in Resources */,
@@ -2202,7 +2213,6 @@
 				DD5668962588CCBE0072D03B /* ChatSectionHeader.swift in Sources */,
 				DD68920825406271004DB93A /* UserDetailsViewModel.swift in Sources */,
 				DD50607E254710FF003E4F4B /* AmenityDetailsCell.swift in Sources */,
-				DD88BA37259DED1F0044BF53 /* FeedbackCell.swift in Sources */,
 				DD5AF9C12590B7D700CE62B5 /* AbusesCell.swift in Sources */,
 				DD5060A525471379003E4F4B /* VisitingHoursCell.swift in Sources */,
 				DD4151112537325000545E41 /* SubjectCell.swift in Sources */,
@@ -2211,6 +2221,7 @@
 				DD735F87253D8F050079A56F /* StroyboardExtension.swift in Sources */,
 				DD735F9C253DB90D0079A56F /* UserFilterModel.swift in Sources */,
 				DD8001642590D8590001E737 /* ComplaintsCell.swift in Sources */,
+				DD809FCE25AD9B340034B732 /* FeedbackCell.swift in Sources */,
 				DD65D93825907F140099AE4B /* ChatNavView.swift in Sources */,
 				DD75DC1425A71D49002062B6 /* EditImageCell.swift in Sources */,
 				DDAB993D258B6D880032FE0E /* InboxCell.swift in Sources */,
@@ -2238,6 +2249,7 @@
 				DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */,
 				DD5668A72588CFF60072D03B /* SocketIOManager.swift in Sources */,
 				DD58A3EF25947C2A006DB84D /* UsersNetworkManager.swift in Sources */,
+				DD84844C25AEDD8A00FE1876 /* PopoverViewController.swift in Sources */,
 				DD67E066258FB0CB00443935 /* AppGeneral.swift in Sources */,
 				DD3F37BC2534A7BC00B03FEF /* PropertiesViewModel.swift in Sources */,
 				DD7A71CE25A48A1F0081B4F2 /* EditPlansCell.swift in Sources */,
@@ -2437,7 +2449,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2462,7 +2474,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

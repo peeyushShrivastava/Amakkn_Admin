@@ -12,12 +12,13 @@ class FeedbackViewModel {
     private var page = 0
     private var pageSize = "50"
     private var totalSize: String?
+    var status = "0"
     private var feedbackList: [FeedbackModel]?
 
     var apiCallIndex = 49
 
     var cellHeight: CGFloat {
-        return 101.0
+        return 145.0
     }
 
     var cellWidth: CGFloat {
@@ -42,9 +43,16 @@ class FeedbackViewModel {
     func getFeedbackText(at index: Int) -> String? {
         return feedbackList?[index].message
     }
-    
+
     subscript (_ index: Int) -> FeedbackModel? {
         return feedbackList?[index]
+    }
+
+    func reset(completion: @escaping () -> Void) {
+        page = 0
+        apiCallIndex = 49
+
+        completion()
     }
 }
 
@@ -56,9 +64,9 @@ extension FeedbackViewModel {
         if page == 0 { feedbackList = [FeedbackModel]() }
         page += 1
 
-        MoreNetworkManager.shared.getFeedbackList(for: "\(page)", pageSize: pageSize, successCallBack: { [weak self] responseModel in
+        MoreNetworkManager.shared.getFeedbackList(for: "\(page)", pageSize, status, successCallBack: { [weak self] responseModel in
             DispatchQueue.main.async {
-                self?.totalSize = responseModel?.totalCount
+                self?.totalSize = String(responseModel?.totalCount ?? 0)
 
                 if let feedbackList = responseModel?.feedbackArray {
                     self?.feedbackList?.append(contentsOf: feedbackList)
@@ -71,5 +79,15 @@ extension FeedbackViewModel {
                 failureCallBack(errorStr)
             }
         })
+    }
+
+    func changeFeedback(_ status: String?, for feedbackID: String?, completion: @escaping() -> Void) {
+        guard let status = status, let feedbackID = feedbackID else { return }
+
+        feedbackList = feedbackList?.filter({ $0.feedbackID != feedbackID })
+
+        MoreNetworkManager.shared.changeFeedback(status, for: feedbackID)
+
+        completion()
     }
 }

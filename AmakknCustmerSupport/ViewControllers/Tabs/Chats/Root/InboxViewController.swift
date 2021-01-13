@@ -24,6 +24,7 @@ class InboxViewController: BaseViewController {
         updateRefresh()
         registerCell()
         viewModel.getSubjects()
+        getChats()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,10 +35,6 @@ class InboxViewController: BaseViewController {
         ibEmptyBGView.updateUI()
         ibFilterButton.isEnabled = AppSession.manager.validSession
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Chats...") : ibEmptyBGView.updateErrorText()
-
-        viewModel.resetPage()
-        ibChatTableView.reloadData()
-        getChats()
     }
 
     private func registerCell() {
@@ -134,7 +131,7 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
         cell.inboxModel = viewModel[indexPath.section]
 
         if viewModel.apiCallIndex == indexPath.section, viewModel.isMoreDataAvailable {
-            viewModel.apiCallIndex += 10
+            viewModel.apiCallIndex += 15
             getChats()
         }
 
@@ -143,6 +140,9 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let chat = viewModel[indexPath.section] else { return }
+
+        viewModel.resetUnreadCount(at: indexPath.section)
+        ibChatTableView.reloadData()
 
         pushChatVC(for: chat)
     }
@@ -158,7 +158,17 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == viewModel.sectionCount-1, viewModel.isMoreDataAvailable {
+            return 50.0
+        }
         return 1.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == viewModel.sectionCount-1, viewModel.isMoreDataAvailable {
+            return getFooterView()
+        }
+        return UIView(frame: .zero)
     }
 
 //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -172,6 +182,21 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
 //            tableView.deleteRows(at: [indexPath], with: .fade)
 //        }
 //    }
+    
+    private func getFooterView() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: 40.0))
+        footerView.backgroundColor = .clear
+        
+        let loader = UIActivityIndicatorView(style: .medium)
+        loader.tintColor = .white
+        loader.hidesWhenStopped = true
+        loader.startAnimating()
+        loader.center = footerView.center
+        
+        footerView.addSubview(loader)
+        
+        return footerView
+    }
 }
 
 // MARK: - Subjects Delegate

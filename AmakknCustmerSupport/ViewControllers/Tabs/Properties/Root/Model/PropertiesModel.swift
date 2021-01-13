@@ -23,7 +23,7 @@ struct PropertyCardsModel: Codable {
     let photos: String?
     let address: String?
     let category: String?
-    let complaintCount: String?
+    var complaintCount: String?
 
     let propertyType: String?
     let createdAt: String?

@@ -10,6 +10,7 @@ import UIKit
 class PropertyDetailsViewController: UIViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
 
+    var delegate: PropertyDetailsDelegate?
     var detailsHeaderView: PropertyDetailsHeaderView?
 
     let viewModel = PropertyDetailsViewModel()
@@ -81,12 +82,84 @@ extension PropertyDetailsViewController {
     }
 }
 
+// MARK: - Button Actions
+extension PropertyDetailsViewController {
+    @IBAction func moreButtonTapped(_ sender: UIBarButtonItem) {
+        guard let barButtonItem = navigationItem.rightBarButtonItem else { return }
+        guard let buttonItemView = barButtonItem.value(forKey: "view") as? UIView else { return }
+
+        let moreMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { [weak self] _ in
+            self?.performSegue(withIdentifier: "editDetailsSegueID", sender: nil)
+        })
+        let publish = UIAlertAction(title: "Publish", style: .default, handler: { [weak self] _ in
+            self?.showChangeStatusAlert(for: "Publish")
+        })
+        let unpublish = UIAlertAction(title: "Unpublish", style: .default, handler: { [weak self] _ in
+            self?.showChangeStatusAlert(for: "Unpublish")
+        })
+        let soldOut = UIAlertAction(title: "Sold out", style: .default, handler: { [weak self] _ in
+            self?.showChangeStatusAlert(for: "Sold out")
+        })
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] (alert: UIAlertAction) in
+            self?.showChangeStatusAlert(for: "Delete")
+        })
+        let cancelAction = UIAlertAction(title: "Alert_Cancel".localized(), style: .cancel, handler: nil)
+
+        /// Add Actions
+        guard let status = viewModel.getPropertyStatus() else { return }
+
+        switch status {
+            case .unpublish: moreMenu.addAction(publish)
+            case .publish:
+                moreMenu.addAction(unpublish)
+                moreMenu.addAction(soldOut)
+            default: break
+                
+        }
+
+        moreMenu.addAction(edit)
+        moreMenu.addAction(delete)
+        moreMenu.addAction(cancelAction)
+
+        /// Applicable for iPad
+        moreMenu.popoverPresentationController?.sourceRect = buttonItemView.bounds
+        moreMenu.popoverPresentationController?.sourceView = buttonItemView
+
+        present(moreMenu, animated: true, completion: nil)
+    }
+}
+
 // MARK: - Alert View
 extension PropertyDetailsViewController {
     private func showAlert(with errorStr: String?) {
         let alertController = UIAlertController(title: nil, message: errorStr, preferredStyle: .alert)
 
         alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: nil))
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func showChangeStatusAlert(for key: String) {
+        let title = "Do you want to \(key) this property?"
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: key.localized(), style: .default, handler: { [weak self] _ in
+            self?.changeProperty(status: key)
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func showSuccessAlert(for key: String) {
+        let title = "Property \(key)ed successfully!!"
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }))
 
         present(alertController, animated: true, completion: nil)
     }
@@ -109,6 +182,17 @@ extension PropertyDetailsViewController {
             self?.ibCollectionView.reloadData()
         }
     }
+
+    private func changeProperty(status: String) {
+        viewModel.changeProperty(status: status) { [weak self] in
+            DispatchQueue.main.async {
+            }
+        } failureCallBack: { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.showAlert(with: errorStr)
+            }
+        }
+    }
 }
 
 // MARK: - Push VCs
@@ -123,6 +207,15 @@ extension PropertyDetailsViewController {
 //        qrCodeVC.model = model
 //
 //        navigationController?.pushViewController(qrCodeVC, animated: true)
+    }
+
+    private func pushUserVC(with userID: String?) {
+        guard let userProfileVC = UserDetailsViewController.instantiateSelf() else { return }
+
+        userProfileVC.viewModel.userID = userID
+        userProfileVC.viewModel.updateDataSource(with: nil)
+
+        navigationController?.pushViewController(userProfileVC, animated: true)
     }
 }
 
@@ -239,32 +332,26 @@ extension PropertyDetailsViewController: DetailsFloorPlanDelegate {
 // MARK: - HostInfo Delegate
 extension PropertyDetailsViewController: DetailsHostdelegate {
     func companyDidTapped(for companyID: String?, and userType: String?) {
-        guard let companyID = companyID, let userType = userType else { return }
-//        guard let companyDetailsVC = UIStoryboard.init(name: "Realtor", bundle: nil).instantiateViewController(withIdentifier: "CompanyDetailsViewControllerId") as? CompanyDetailsViewController else { return }
-//
-//        companyDetailsVC.companyId = companyID
-//        companyDetailsVC.userType = userType
-//
-//        if userType == UserType.broker.rawValue {
-//            companyDetailsVC.isCompany = "0"
-//        }
-//
-//        navigationController?.pushViewController(companyDetailsVC, animated: true)
+        guard let companyID = companyID else { return }
+
+        pushUserVC(with: companyID)
     }
 
     func hostDidTapped(for userID: String?, and userType: String?) {
-        guard let userID = userID, let userType = userType else { return }
-//        guard let agentProfileVC = UIStoryboard.init(name: "Agents", bundle: nil).instantiateViewController(withIdentifier: "AgentProfileViewControllerId") as? AgentProfileViewController else { return }
-//
-//        agentProfileVC.userId = userID
-//        agentProfileVC.userType = userType
-//
-//        navigationController?.pushViewController(agentProfileVC, animated: true)
+        guard let userID = userID else { return }
+
+        pushUserVC(with: userID)
     }
 }
 
 // MARK: - Complaints delegate
 extension PropertyDetailsViewController: ComplaintsDelegate {
+    func avatarDidTapped(for userID: String?) {
+        guard let userID = userID else { return }
+
+        pushUserVC(with: userID)
+    }
+
     func didSelectCall(with phone: String?, _ countryCode: String?) {
         viewModel.call(with: phone, countryCode) { [weak self] errorStr in
             DispatchQueue.main.async {
@@ -286,7 +373,15 @@ extension PropertyDetailsViewController: ComplaintsDelegate {
     }
 
     func resolveComplaint(id: String?) {
+        guard let cID = id else { return }
+
         viewModel.resolveComplaint(id: id)
+
+        if cID.components(separatedBy: ",").count == 1 {
+            delegate?.updateComplaint(for: viewModel.getPropertyDetails()?.propertyID)
+        } else {
+            delegate?.updateAllComplaints(for: viewModel.getPropertyDetails()?.propertyID)
+        }
     }
 }
 
