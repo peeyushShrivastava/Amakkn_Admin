@@ -40,6 +40,8 @@
 		DD4151122537325000545E41 /* SubjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4151102537325000545E41 /* SubjectCell.xib */; };
 		DD428986259B2A16008B38FA /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD428984259B2A16008B38FA /* PageContentViewController.swift */; };
 		DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD441C40259CC97B00AE6E6C /* ViewLocationViewController.swift */; };
+		DD47A3E925B043B5006269C5 /* UserFilterDataHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD47A3E825B043B5006269C5 /* UserFilterDataHeaderView.swift */; };
+		DD47A3EE25B043CD006269C5 /* UserFilterDataHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD47A3ED25B043CD006269C5 /* UserFilterDataHeaderView.xib */; };
 		DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724725383EB90068694C /* PropertyCardCell.swift */; };
 		DD49724A25383EB90068694C /* PropertyCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD49724825383EB90068694C /* PropertyCardCell.xib */; };
 		DD497251253867790068694C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49724F253867790068694C /* UserCell.swift */; };
@@ -281,6 +283,8 @@
 		DD428984259B2A16008B38FA /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		DD4306D5259866D000CF3481 /* AmakknCustmerSupport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AmakknCustmerSupport.entitlements; sourceTree = "<group>"; };
 		DD441C40259CC97B00AE6E6C /* ViewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationViewController.swift; sourceTree = "<group>"; };
+		DD47A3E825B043B5006269C5 /* UserFilterDataHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterDataHeaderView.swift; sourceTree = "<group>"; };
+		DD47A3ED25B043CD006269C5 /* UserFilterDataHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserFilterDataHeaderView.xib; sourceTree = "<group>"; };
 		DD49724725383EB90068694C /* PropertyCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCardCell.swift; sourceTree = "<group>"; };
 		DD49724825383EB90068694C /* PropertyCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyCardCell.xib; sourceTree = "<group>"; };
 		DD49724F253867790068694C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -622,7 +626,6 @@
 				DD7B90A02593634900926624 /* PropertyList */,
 				DD68920025406235004DB93A /* Details */,
 				DD735F7A253D7A780079A56F /* Root */,
-				DD735F7B253D7A8E0079A56F /* Filter */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1258,6 +1261,7 @@
 		DD735F60253D71DC0079A56F /* More */ = {
 			isa = PBXGroup;
 			children = (
+				DD735F7B253D7A8E0079A56F /* Users Filter */,
 				DD88BA1A259DDD9B0044BF53 /* Feedback */,
 				DD8001692590E6910001E737 /* Stats */,
 				DDD8DD9D258A7FF70004C130 /* Root */,
@@ -1294,7 +1298,7 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		DD735F7B253D7A8E0079A56F /* Filter */ = {
+		DD735F7B253D7A8E0079A56F /* Users Filter */ = {
 			isa = PBXGroup;
 			children = (
 				DD735F9A253DB53C0079A56F /* Model */,
@@ -1302,7 +1306,7 @@
 				DD735F8E253DB1360079A56F /* ViewModel */,
 				DD735F7C253D7AB80079A56F /* UserFilterViewController.swift */,
 			);
-			path = Filter;
+			path = "Users Filter";
 			sourceTree = "<group>";
 		};
 		DD735F84253D8E7A0079A56F /* Root */ = {
@@ -1757,6 +1761,8 @@
 			children = (
 				DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */,
 				DDC4F1DD253ECB2700766311 /* UserFilterHeaderView.xib */,
+				DD47A3E825B043B5006269C5 /* UserFilterDataHeaderView.swift */,
+				DD47A3ED25B043CD006269C5 /* UserFilterDataHeaderView.xib */,
 			);
 			path = SectionView;
 			sourceTree = "<group>";
@@ -1957,6 +1963,7 @@
 				DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */,
 				DD735F6E253D722D0079A56F /* MoreCell.xib in Resources */,
 				DD7A71B025A4692C0081B4F2 /* DataSelectCell.xib in Resources */,
+				DD47A3EE25B043CD006269C5 /* UserFilterDataHeaderView.xib in Resources */,
 				DD7A71C125A477F50081B4F2 /* EditPropertyTextFieldCell.xib in Resources */,
 				DD50607525470FC0003E4F4B /* AmenitiesCell.xib in Resources */,
 				DD4150B52536FF4D00545E41 /* LoaderView.xib in Resources */,
@@ -2180,6 +2187,7 @@
 				DD51828A258BA5D600D43136 /* MainTabBarController.swift in Sources */,
 				DD6892182540A252004DB93A /* UserDetailsModel.swift in Sources */,
 				DD9646DA25A325BC00F852F4 /* PropertyNetworkManager.swift in Sources */,
+				DD47A3E925B043B5006269C5 /* UserFilterDataHeaderView.swift in Sources */,
 				DD78B997254160DF00380231 /* UserDetailsDataCell.swift in Sources */,
 				DDC4F1E7253ED3CD00766311 /* UserFilterCell.swift in Sources */,
 				DD7A71A725A468C00081B4F2 /* EditAmenitiesCell.swift in Sources */,
@@ -2449,7 +2457,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2474,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

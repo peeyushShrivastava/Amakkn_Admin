@@ -42,7 +42,7 @@ class InboxCell: UITableViewCell {
 
         ibAvatarView.layer.masksToBounds = true
         ibAvatarView.layer.borderWidth = 1.0
-        ibAvatarView.layer.cornerRadius = 30.0
+        ibAvatarView.layer.cornerRadius = 32.5
         ibAvatarView.layer.borderColor = AppColors.borderColor?.cgColor
     }
 
@@ -50,21 +50,21 @@ class InboxCell: UITableViewCell {
         let userType = AppSession.manager.userID == inboxModel?.userID1 ? inboxModel?.userType2 : inboxModel?.userType1
         let userName = AppSession.manager.userID == inboxModel?.userID1 ? inboxModel?.userName2 : inboxModel?.userName1
 
-        if let userTypeStr = userType, let userType = UserType(rawValue: userTypeStr), let userName = userName {
-            switch userType {
+        guard let userTypeStr = userType, let type = UserType(rawValue: userTypeStr), let name = userName else { ibNameLabel.text = nil; return }
+
+        switch type {
             case .normal:
-                ibNameLabel.text = "\(UserTypeStr.normal.rawValue): \(userName)"
+                ibNameLabel.text = "\(UserTypeStr.normal.rawValue): \(name)"
             case .owner:
-                ibNameLabel.text = "\(UserTypeStr.owner.rawValue): \(userName)"
+                ibNameLabel.text = "\(UserTypeStr.owner.rawValue): \(name)"
             case .broker:
-                ibNameLabel.text = "\(UserTypeStr.broker.rawValue): \(userName)"
+                ibNameLabel.text = "\(UserTypeStr.broker.rawValue): \(name)"
             case .company:
-                ibNameLabel.text = "\(UserTypeStr.company.rawValue): \(userName)"
+                ibNameLabel.text = "\(UserTypeStr.company.rawValue): \(name)"
             case .agent:
-                ibNameLabel.text = "\(UserTypeStr.agent.rawValue): \(userName)"
+                ibNameLabel.text = "\(UserTypeStr.agent.rawValue): \(name)"
             case .admin:
-                ibNameLabel.text = "\(UserTypeStr.admin.rawValue): \(userName)"
-            }
+                ibNameLabel.text = "\(UserTypeStr.admin.rawValue): \(name)"
         }
     }
 
@@ -78,9 +78,9 @@ class InboxCell: UITableViewCell {
     }
 
     private func updateAvater() {
-        guard let userName = AppSession.manager.userID == inboxModel?.userID1 ? inboxModel?.userName2 : inboxModel?.userName1 else { return }
+        guard let userName = AppSession.manager.userID == inboxModel?.userID1 ? inboxModel?.userName2 : inboxModel?.userName1 else { ibAvatarView.image = nil; ibInitialLabel.text = nil; return }
 
-        let avatar = AppSession.manager.userID == inboxModel?.userAvatar2 ? inboxModel?.userName2 : inboxModel?.userAvatar1
+        let avatar = AppSession.manager.userID == inboxModel?.userID1 ? inboxModel?.userAvatar2 : inboxModel?.userAvatar1
 
         if avatar?.isEmpty ?? true {
             ibAvatarView.image = nil

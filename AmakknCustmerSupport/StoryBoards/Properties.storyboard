@@ -40,16 +40,43 @@
                                     <outlet property="delegate" destination="DcM-a6-XHl" id="EmL-OO-9bY"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVo-kR-KC5">
+                                <rect key="frame" x="197" y="108" width="20" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPp-VM-LkJ">
+                                        <rect key="frame" x="10" y="2" width="0.0" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.50388362131962172" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qPp-VM-LkJ" secondAttribute="trailing" constant="10" id="Heo-9H-FW3"/>
+                                    <constraint firstItem="qPp-VM-LkJ" firstAttribute="leading" secondItem="KVo-kR-KC5" secondAttribute="leading" constant="10" id="Jzk-2z-vkv"/>
+                                    <constraint firstItem="qPp-VM-LkJ" firstAttribute="top" secondItem="KVo-kR-KC5" secondAttribute="top" constant="2" id="aIV-3l-zBs"/>
+                                    <constraint firstAttribute="height" constant="30" id="abF-FT-8HK"/>
+                                    <constraint firstAttribute="bottom" secondItem="qPp-VM-LkJ" secondAttribute="bottom" constant="2" id="fG6-UL-psk"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3nP-Ua-bkg"/>
                         <color key="backgroundColor" name="viewBGColor"/>
                         <constraints>
+                            <constraint firstItem="KVo-kR-KC5" firstAttribute="centerX" secondItem="lbr-HV-llu" secondAttribute="centerX" id="4Ld-UG-beg"/>
                             <constraint firstItem="Zgy-IV-Ol3" firstAttribute="top" secondItem="3nP-Ua-bkg" secondAttribute="top" id="F2h-XI-49s"/>
                             <constraint firstItem="Zgy-IV-Ol3" firstAttribute="trailing" secondItem="3nP-Ua-bkg" secondAttribute="trailing" id="Qad-ak-p36"/>
                             <constraint firstItem="Zgy-IV-Ol3" firstAttribute="leading" secondItem="3nP-Ua-bkg" secondAttribute="leading" id="UuN-nn-1nN"/>
                             <constraint firstItem="hCw-Y8-6Zq" firstAttribute="centerY" secondItem="lbr-HV-llu" secondAttribute="centerY" id="WEY-a1-mRI"/>
                             <constraint firstItem="hCw-Y8-6Zq" firstAttribute="centerX" secondItem="lbr-HV-llu" secondAttribute="centerX" id="fTo-m9-Exz"/>
                             <constraint firstItem="Zgy-IV-Ol3" firstAttribute="bottom" secondItem="3nP-Ua-bkg" secondAttribute="bottom" id="hD6-28-rjf"/>
+                            <constraint firstItem="KVo-kR-KC5" firstAttribute="top" secondItem="3nP-Ua-bkg" secondAttribute="top" constant="20" id="qZu-69-CcR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Properties" id="lJM-ao-Y1S">
@@ -57,6 +84,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="Zgy-IV-Ol3" id="4Un-8h-FhM"/>
+                        <outlet property="ibCountHolderView" destination="KVo-kR-KC5" id="JoP-ZG-gAb"/>
+                        <outlet property="ibCountLabel" destination="qPp-VM-LkJ" id="rLU-Lh-aVA"/>
                         <outlet property="ibEmptyBGView" destination="hCw-Y8-6Zq" id="dOj-ct-VlE"/>
                         <outlet property="ibSearchBar" destination="Jpe-o0-YUi" id="eEk-W6-XyT"/>
                         <segue destination="JDo-kG-WFB" kind="show" identifier="detailsSegueID" id="EnS-c1-ijA"/>

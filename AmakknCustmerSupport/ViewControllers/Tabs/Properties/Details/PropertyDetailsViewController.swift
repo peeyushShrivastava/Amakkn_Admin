@@ -158,6 +158,8 @@ extension PropertyDetailsViewController {
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
         alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: { [weak self] _ in
+            self?.delegate?.update(status: key, for: self?.viewModel.getPropertyID())
+
             self?.navigationController?.popViewController(animated: true)
         }))
 
@@ -186,6 +188,7 @@ extension PropertyDetailsViewController {
     private func changeProperty(status: String) {
         viewModel.changeProperty(status: status) { [weak self] in
             DispatchQueue.main.async {
+                self?.showSuccessAlert(for: status)
             }
         } failureCallBack: { [weak self] errorStr in
             DispatchQueue.main.async {

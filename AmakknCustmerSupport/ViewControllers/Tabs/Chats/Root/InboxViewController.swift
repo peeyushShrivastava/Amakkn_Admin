@@ -117,10 +117,6 @@ extension InboxViewController {
 
 // MARK: - UITableViewView Delegate / DataSource
 extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.sectionCount
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cellCount
     }
@@ -128,10 +124,10 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCellID") as? InboxCell else { return UITableViewCell() }
 
-        cell.inboxModel = viewModel[indexPath.section]
+        cell.inboxModel = viewModel[indexPath.row]
 
-        if viewModel.apiCallIndex == indexPath.section, viewModel.isMoreDataAvailable {
-            viewModel.apiCallIndex += 15
+        if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable {
+            viewModel.apiCallIndex += 50
             getChats()
         }
 
@@ -139,9 +135,9 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let chat = viewModel[indexPath.section] else { return }
+        guard let chat = viewModel[indexPath.row] else { return }
 
-        viewModel.resetUnreadCount(at: indexPath.section)
+        viewModel.resetUnreadCount(at: indexPath.row)
         ibChatTableView.reloadData()
 
         pushChatVC(for: chat)
@@ -154,35 +150,45 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard section != 0 else { return 10.0 }
 
-        return 10.0
+        return 1.0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == viewModel.sectionCount-1, viewModel.isMoreDataAvailable {
+        if viewModel.isMoreDataAvailable {
             return 50.0
         }
         return 1.0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1, viewModel.isMoreDataAvailable {
+        if viewModel.isMoreDataAvailable {
             return getFooterView()
         }
         return UIView(frame: .zero)
     }
 
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-////            viewModel.deleteObject(at: indexPath.section)
-//            ibChatTableView.reloadData()
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let closeAction = UIContextualAction(style: .normal, title: "Close") { [weak self] (_, _, _) in
+            self?.viewModel.deleteObject(at: indexPath.row)
+            self?.viewModel.closeChatThread(self?.viewModel.getChatID(at: indexPath.row)) {
+                DispatchQueue.main.async {
+                    self?.viewModel.deleteObject(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+        closeAction.backgroundColor = UIColor.systemPurple
+
+        let configuration = UISwipeActionsConfiguration(actions: [closeAction])
+        configuration.performsFirstActionWithFullSwipe = false
+
+        return configuration
+    }
+
     private func getFooterView() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: 40.0))
         footerView.backgroundColor = .clear

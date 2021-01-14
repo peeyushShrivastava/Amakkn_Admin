@@ -36,6 +36,13 @@ enum DetailsCellsHeight: CGFloat {
 protocol PropertyDetailsDelegate {
     func updateComplaint(for propertyID: String?)
     func updateAllComplaints(for propertyID: String?)
+    func update(status: String?, for propertyID: String?)
+}
+
+extension PropertyDetailsDelegate {
+    func updateComplaint(for propertyID: String?) { }
+    func updateAllComplaints(for propertyID: String?) { }
+    func update(status: String?, for propertyID: String?) { }
 }
 
 // MARK: - PropertyStatus Enum
@@ -182,6 +189,10 @@ class PropertyDetailsViewModel {
 
     func getPropertyDetails() -> PropertyDetails? {
         return propertyDetails
+    }
+
+    func getPropertyID() -> String? {
+        return propertyID
     }
 
     func getPropertyStatus() -> PropertyStatus? {

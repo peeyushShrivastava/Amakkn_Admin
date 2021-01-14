@@ -120,7 +120,7 @@ class PropertiesFilterViewModel {
         let dataSource = [UsersFilterType.order.rawValue: getFilterData(at: 0),
                           UsersFilterType.sequence.rawValue: getFilterData(at: 1),
                           UsersFilterType.searchOperator.rawValue: getFilterData(at: 2),
-                          UsersFilterType.filters.rawValue: getFilterValues()]
+                          UsersFilterType.filter1.rawValue: getFilterValues()]
 
         return dataSource
     }

@@ -41,9 +41,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ibMoreTableView" destination="Wfl-Hv-0Jy" id="RkU-vE-Kvc"/>
-                        <segue destination="gZt-sr-eLu" kind="show" identifier="abuseSegueID" id="olq-se-2kw"/>
                         <segue destination="YkY-vv-OF8" kind="show" identifier="statsSegueID" id="KxO-HQ-0Kp"/>
                         <segue destination="bLb-IH-73h" kind="show" identifier="feedBackSegueID" id="mIj-DI-wLM"/>
+                        <segue destination="Tol-wh-HoR" kind="show" identifier="userFilterSegueID" id="afb-Uf-kgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVh-kJ-4il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -67,7 +67,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-Tj-fKd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" name="viewBGColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FDv-NW-gyT">
                                     <size key="itemSize" width="128" height="128"/>
@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tbe-AI-bu2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="-595"/>
+            <point key="canvasLocation" x="5933" y="-378"/>
         </scene>
         <!--Stats-->
         <scene sceneID="1jP-hT-Xjo">
@@ -287,7 +287,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1828" y="856"/>
+            <point key="canvasLocation" x="2520" y="108"/>
         </scene>
         <!--Feedbacks-->
         <scene sceneID="eXb-cA-XZ8">
@@ -353,7 +353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qem-Pi-qk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2334.7826086956525" y="107.8125"/>
+            <point key="canvasLocation" x="1814" y="-605"/>
         </scene>
         <!--Feedback-->
         <scene sceneID="fLi-h9-4FP">
@@ -387,7 +387,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1up-bq-nNn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137.68115942029" y="107.8125"/>
+            <point key="canvasLocation" x="2775" y="-605"/>
         </scene>
         <!--Details-->
         <scene sceneID="tL3-7O-J4S">
@@ -421,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6V-Md-b6c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2799" y="856"/>
+            <point key="canvasLocation" x="3412" y="108"/>
         </scene>
         <!--More-->
         <scene sceneID="5av-wt-g88">
@@ -433,6 +433,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WpS-Ux-Aia">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -442,6 +443,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SO-NB-t0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="107.8125"/>
+        </scene>
+        <!--User Filter-->
+        <scene sceneID="5EK-AC-Oix">
+            <objects>
+                <viewController storyboardIdentifier="UserFilterViewController" id="Tol-wh-HoR" customClass="UserFilterViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wtm-dP-09k">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="E55-se-ysz">
+                                <rect key="frame" x="0.0" y="88" width="414" height="640"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="typ-vb-o8l"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tol-wh-HoR" id="1v8-qk-OgN"/>
+                                    <outlet property="delegate" destination="Tol-wh-HoR" id="wMd-Z8-XvP"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5F3-h1-Kxa">
+                                <rect key="frame" x="32" y="748" width="350" height="45"/>
+                                <color key="backgroundColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="JO8-4j-uuI"/>
+                                    <constraint firstAttribute="height" constant="45" id="zbi-zp-Vqn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="applyButtonTapped:" destination="Tol-wh-HoR" eventType="touchUpInside" id="kuv-hZ-AiK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aVq-9P-WW7"/>
+                        <color key="backgroundColor" name="viewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="E55-se-ysz" firstAttribute="centerX" secondItem="Wtm-dP-09k" secondAttribute="centerX" id="22l-is-kgv"/>
+                            <constraint firstItem="aVq-9P-WW7" firstAttribute="bottom" secondItem="5F3-h1-Kxa" secondAttribute="bottom" constant="20" id="oZd-id-iHb"/>
+                            <constraint firstItem="5F3-h1-Kxa" firstAttribute="centerX" secondItem="Wtm-dP-09k" secondAttribute="centerX" id="ofE-0W-UlY"/>
+                            <constraint firstItem="5F3-h1-Kxa" firstAttribute="top" secondItem="E55-se-ysz" secondAttribute="bottom" constant="20" id="q5L-su-CA3"/>
+                            <constraint firstItem="E55-se-ysz" firstAttribute="top" secondItem="aVq-9P-WW7" secondAttribute="top" id="wIp-yy-WTG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Filter" id="inv-3P-pBT">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="NQW-Qy-MdZ">
+                            <color key="tintColor" red="0.4561076213404075" green="0.021683629419606817" blue="0.09906843300921632" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="resetButtonTapped:" destination="Tol-wh-HoR" id="I7H-cF-sM3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ibResetButton" destination="NQW-Qy-MdZ" id="LAX-Id-MWE"/>
+                        <outlet property="ibTableViewWidth" destination="typ-vb-o8l" id="n3k-Yk-UTc"/>
+                        <outlet property="ibUserFilterTableView" destination="E55-se-ysz" id="dgV-Ok-7qt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1RK-AT-9o9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813" y="806"/>
         </scene>
     </scenes>
     <resources>

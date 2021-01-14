@@ -40,13 +40,40 @@
                                     <outlet property="delegate" destination="ZvD-BK-ZNO" id="mro-1W-PGE"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vox-Tm-6Ue">
+                                <rect key="frame" x="202" y="108" width="10" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xu-Nu-Ns0">
+                                        <rect key="frame" x="5" y="2" width="0.0" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.30423067050000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="9xu-Nu-Ns0" secondAttribute="bottom" constant="2" id="7Ep-gR-YIo"/>
+                                    <constraint firstItem="9xu-Nu-Ns0" firstAttribute="top" secondItem="Vox-Tm-6Ue" secondAttribute="top" constant="2" id="9tU-o3-gEI"/>
+                                    <constraint firstAttribute="height" constant="30" id="SRw-28-zuk"/>
+                                    <constraint firstItem="9xu-Nu-Ns0" firstAttribute="leading" secondItem="Vox-Tm-6Ue" secondAttribute="leading" constant="5" id="pJV-Gy-Mch"/>
+                                    <constraint firstAttribute="trailing" secondItem="9xu-Nu-Ns0" secondAttribute="trailing" constant="5" id="pwq-MC-ihJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hEb-WL-1xW"/>
                         <color key="backgroundColor" name="viewBGColor"/>
                         <constraints>
+                            <constraint firstItem="Vox-Tm-6Ue" firstAttribute="centerX" secondItem="c2r-3K-KVr" secondAttribute="centerX" id="3T7-Ss-VCd"/>
                             <constraint firstItem="Gyc-re-mPZ" firstAttribute="centerX" secondItem="c2r-3K-KVr" secondAttribute="centerX" id="5PM-fZ-8lS"/>
                             <constraint firstItem="Gyc-re-mPZ" firstAttribute="centerY" secondItem="c2r-3K-KVr" secondAttribute="centerY" id="G2u-j3-Ndf"/>
                             <constraint firstItem="Gyc-re-mPZ" firstAttribute="leading" secondItem="hEb-WL-1xW" secondAttribute="leading" id="Ggl-VA-gn5"/>
+                            <constraint firstItem="Vox-Tm-6Ue" firstAttribute="top" secondItem="hEb-WL-1xW" secondAttribute="top" constant="20" id="dPx-o4-lW7"/>
                             <constraint firstItem="hEb-WL-1xW" firstAttribute="trailing" secondItem="Gyc-re-mPZ" secondAttribute="trailing" id="j4c-Qz-2H2"/>
                             <constraint firstItem="9oc-RS-bp2" firstAttribute="bottom" secondItem="hEb-WL-1xW" secondAttribute="bottom" id="kvD-tR-Ot0"/>
                             <constraint firstItem="9oc-RS-bp2" firstAttribute="top" secondItem="hEb-WL-1xW" secondAttribute="top" id="mKA-Vl-9wb"/>
@@ -59,6 +86,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ibCollectionView" destination="9oc-RS-bp2" id="ziN-pL-Hd0"/>
+                        <outlet property="ibCountHolderView" destination="Vox-Tm-6Ue" id="tzx-oB-Cnc"/>
+                        <outlet property="ibCountLabel" destination="9xu-Nu-Ns0" id="hvq-Am-RVz"/>
                         <outlet property="ibEmptyBGView" destination="Gyc-re-mPZ" id="vlX-Ks-T2n"/>
                         <outlet property="ibSearchBar" destination="zvf-fN-Rld" id="4JS-8c-p2L"/>
                         <segue destination="MTs-X7-d8m" kind="show" identifier="userDetailsSegueID" id="oZe-Hk-f9P"/>

@@ -11,6 +11,8 @@ class PropertiesViewController: BaseViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ibEmptyBGView: EmptyBGView!
     @IBOutlet var ibSearchBar: UISearchBar!
+    @IBOutlet weak var ibCountHolderView: UIView!
+    @IBOutlet weak var ibCountLabel: UILabel!
     
     var refreshControl = UIRefreshControl()
 
@@ -19,10 +21,12 @@ class PropertiesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
         ibEmptyBGView.delegate = self
 
         registerCell()
         updateRefresh()
+        getProperties()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,8 +37,6 @@ class PropertiesViewController: BaseViewController {
 
         ibEmptyBGView.updateUI()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
-
-        getProperties()
     }
 
     private func registerCell() {
@@ -86,23 +88,7 @@ extension PropertiesViewController {
     private func getProperties() {
         guard AppSession.manager.validSession else { ibCollectionView.isHidden = true; ibEmptyBGView.isHidden = false; return }
 
-        viewModel.getProperties { [weak self] isListEmpty in
-            guard self?.viewModel.isFirstPage ?? true else { self?.ibCollectionView.reloadData(); return }
-
-            self?.ibCollectionView.isHidden = isListEmpty
-            self?.ibEmptyBGView.isHidden = !isListEmpty
-            self?.ibEmptyBGView.updateText()
-
-            self?.ibCollectionView.reloadData()
-            self?.refreshControl.endRefreshing()
-        } failureCallBack: { [weak self] errorStr in
-            self?.ibCollectionView.isHidden = true
-            self?.ibEmptyBGView.isHidden = false
-            self?.ibEmptyBGView.updateErrorText()
-
-            self?.showAlert(with: errorStr)
-            self?.refreshControl.endRefreshing()
-        }
+        viewModel.getProperties()
     }
 }
 
@@ -140,6 +126,7 @@ extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDa
         guard let propertyDetailsVC = PropertyDetailsViewController.instantiateSelf() else { return }
 
         propertyDetailsVC.viewModel.update(with: viewModel[indexPath.item]?.propertyID)
+        propertyDetailsVC.delegate = self
 
         navigationController?.pushViewController(propertyDetailsVC, animated: true)
     }
@@ -156,6 +143,45 @@ extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDa
         guard viewModel.isMoreDataAvailable  else { return CGSize.zero }
 
         return .init(width: viewModel.cellWidth, height: 40.0)
+    }
+}
+
+// MARK: - UIScrollView Delegate
+extension PropertiesViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        ibCountHolderView.isHidden = true
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        ibCountHolderView.isHidden = false
+    }
+}
+
+// MARK: - PropertiesView Delegate
+extension PropertiesViewController: PropertiesViewDelegate {
+    func reloadView(_ isListEmpty: Bool) {
+        guard viewModel.isFirstPage else { ibCollectionView.reloadData(); return }
+
+        ibCollectionView.isHidden = isListEmpty
+        ibEmptyBGView.isHidden = !isListEmpty
+        ibEmptyBGView.updateText()
+
+        ibCollectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
+    func show(_ errorStr: String?) {
+        ibCollectionView.isHidden = true
+        ibEmptyBGView.isHidden = false
+        ibEmptyBGView.updateErrorText()
+
+        showAlert(with: errorStr)
+        refreshControl.endRefreshing()
+    }
+
+    func updateProperty(count: String?) {
+        ibCountHolderView.isHidden = false
+        ibCountLabel.text = count
     }
 }
 
@@ -236,6 +262,18 @@ extension PropertiesViewController: UISearchBarDelegate {
             DispatchQueue.main.async {
                 self.ibSearchBar.resignFirstResponder()
                 self.view.endEditing(true)
+            }
+        }
+    }
+}
+
+// MARK: - PropertyDetails Delegate
+extension PropertiesViewController: PropertyDetailsDelegate {
+    func update(status: String?, for propertyID: String?) {
+        viewModel.change(status: status, for: propertyID) { [weak self] (index, isDeleted) in
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: index, section: 0)
+                isDeleted ? self?.ibCollectionView.deselectItem(at: indexPath, animated: true): self?.ibCollectionView.reloadItems(at: [indexPath])
             }
         }
     }

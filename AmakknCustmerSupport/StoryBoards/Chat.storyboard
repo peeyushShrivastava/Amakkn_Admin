@@ -27,7 +27,7 @@
                                 </constraints>
                             </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="btl-eb-XDW">
-                                <rect key="frame" x="15" y="88" width="384" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" name="viewBGColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="QcJ-7R-knd" id="Zg3-3d-MAb"/>
@@ -41,8 +41,8 @@
                             <constraint firstItem="btl-eb-XDW" firstAttribute="top" secondItem="Zbq-QS-g7L" secondAttribute="top" id="4Sn-gs-2Jb"/>
                             <constraint firstItem="ZPi-96-Z1g" firstAttribute="centerY" secondItem="qVb-Fe-VM0" secondAttribute="centerY" id="Auc-Vg-33g"/>
                             <constraint firstItem="ZPi-96-Z1g" firstAttribute="centerX" secondItem="qVb-Fe-VM0" secondAttribute="centerX" id="Fzr-0r-nVs"/>
-                            <constraint firstItem="Zbq-QS-g7L" firstAttribute="trailing" secondItem="btl-eb-XDW" secondAttribute="trailing" constant="15" id="UvG-1T-c2P"/>
-                            <constraint firstItem="btl-eb-XDW" firstAttribute="leading" secondItem="Zbq-QS-g7L" secondAttribute="leading" constant="15" id="rxt-xp-q6y"/>
+                            <constraint firstItem="Zbq-QS-g7L" firstAttribute="trailing" secondItem="btl-eb-XDW" secondAttribute="trailing" id="UvG-1T-c2P"/>
+                            <constraint firstItem="btl-eb-XDW" firstAttribute="leading" secondItem="Zbq-QS-g7L" secondAttribute="leading" id="rxt-xp-q6y"/>
                             <constraint firstItem="btl-eb-XDW" firstAttribute="bottom" secondItem="Zbq-QS-g7L" secondAttribute="bottom" id="ukf-8x-yDA"/>
                         </constraints>
                     </view>

@@ -13,7 +13,16 @@ enum UsersFilterType: String {
     case order = "Order"
     case sequence = "Sequence"
     case searchOperator = "Search Operator"
-    case filters = "Filters"
+    case filter1 = "Filter 1"
+    case filter2 = "Filter 2"
+    case filter3 = "Filter 3"
+}
+
+// MARK: - UsersView Delegate
+protocol UsersViewDelegate {
+    func reloadView(_ isListEmpty: Bool)
+    func show(_ errorStr: String?)
+    func updateProperty(count: String?)
 }
 
 class UsersViewModel {
@@ -27,6 +36,7 @@ class UsersViewModel {
     private var filterOperator = "AND"
     private var filters = ""
 
+    var delegate: UsersViewDelegate?
     var searchQuery: String?
     var apiCallIndex = 49
 
@@ -64,7 +74,7 @@ class UsersViewModel {
     func updateFilter(_ dataSource: [String: String]) {
         filterOrder = dataSource[UsersFilterType.order.rawValue] ?? "userId"
         filterOperator = dataSource[UsersFilterType.searchOperator.rawValue]?.uppercased() ?? "AND"
-        filters = dataSource[UsersFilterType.filters.rawValue] ?? ""
+        filters = dataSource[UsersFilterType.filter1.rawValue] ?? ""
         filterSequence = dataSource[UsersFilterType.sequence.rawValue] == "ascendingOrder" ? "asc" : "desc"
 
         page = 0
@@ -82,7 +92,7 @@ class UsersViewModel {
 
 // MARK: - API Calls
 extension UsersViewModel {
-    func getSearchedUserList(successCallBack: @escaping(_ isListEmpty: Bool) -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
+    func getSearchedUserList() {
         guard AppSession.manager.validSession else { return }
 
         if page == 0 { users = [SearchedUserModel]() }
@@ -95,9 +105,14 @@ extension UsersViewModel {
                 self?.users?.append(contentsOf: userList)
             }
 
-            successCallBack(self?.users?.isEmpty ?? true)
-        } failureCallBack: { errorStr in
-            failureCallBack(errorStr)
+            DispatchQueue.main.async {
+                self?.delegate?.reloadView(self?.users?.isEmpty ?? true)
+                self?.delegate?.updateProperty(count: " \(self?.users?.count ?? 0) of \(self?.totalSize ?? "")")
+            }
+        } failureCallBack: { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.delegate?.show(errorStr)
+            }
         }
     }
 }

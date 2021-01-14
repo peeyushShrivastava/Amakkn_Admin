@@ -7,10 +7,7 @@
 
 import UIKit
 
-// MARK: - UserFilterData Delegate
-protocol UserFilterDataDelegate {
-    func textFieldDidChange(_ text: String?, for filterData: String?)
-}
+
 
 class UserFilterDataCell: UITableViewCell {
     @IBOutlet weak var ibTitleLabel: UILabel!
@@ -45,7 +42,7 @@ extension UserFilterDataCell: UITextFieldDelegate {
            let textRange = Range(range, in: text) {
             let updatedText = text.replacingCharacters(in: textRange, with: string)
 
-            delegate?.textFieldDidChange(updatedText, for: ibTitleLabel.text)
+//            delegate?.textFieldDidChange(updatedText, for: ibTitleLabel.text)
         }
 
         return true

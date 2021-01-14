@@ -16,7 +16,7 @@ struct PropertyCardsModel: Codable {
     let userID: String?
     let propertyID: String?
 
-    let status: String?
+    var status: String?
     let defaultPrice: String?
     let listedFor: String?
 

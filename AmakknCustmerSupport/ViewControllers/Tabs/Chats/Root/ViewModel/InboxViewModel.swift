@@ -10,21 +10,21 @@ import UIKit
 
 class InboxViewModel {
     private var page = 0
-    private var pageSize = "15"
+    private var pageSize = "50"
     private var totalSize: String?
     private var filteredSupportChats: [CSInboxModel]?
     private var supportChats: [CSInboxModel]?
     private var subjects: [ChatSubjectModel]?
 
-    var apiCallIndex = 14
+    var apiCallIndex = 49
     var subjectID = ""
 
     var cellHeight: CGFloat {
-        return 100.0
+        return 115.0
     }
 
     var cellWidth: CGFloat {
-        let width = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width*0.7 : UIScreen.main.bounds.width - 20.0
+        let width = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width*0.7 : UIScreen.main.bounds.width
         return width
     }
 
@@ -33,10 +33,6 @@ class InboxViewModel {
     }
 
     var cellCount: Int {
-        return 1
-    }
-
-    var sectionCount: Int {
         return supportChats?.count ?? 0
     }
 
@@ -60,11 +56,15 @@ class InboxViewModel {
 
     func resetPage() {
         page = 0
-        apiCallIndex = 14
+        apiCallIndex = 49
     }
 
     func resetUnreadCount(at index: Int) {
         supportChats?[index].unreadCount = "0"
+    }
+
+    func getChatID(at index: Int) -> String? {
+        return supportChats?[index].chatID
     }
 }
 
@@ -97,5 +97,13 @@ extension InboxViewModel {
             let newSubject = ChatSubjectModel(subjectID: "", adminID: "1", subject: "All")
             self?.subjects?.insert(newSubject, at: 0)
         }, failureCallBack: { _ in })
+    }
+
+    func closeChatThread(_ chatID: String?, completion: @escaping() -> Void) {
+        guard let chatID = chatID else { return }
+
+        AppNetworkManager.shared.closeChatThead(chatID)
+
+        completion()
     }
 }

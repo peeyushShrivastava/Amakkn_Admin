@@ -36,10 +36,12 @@ class UsersFilterViewModel {
     }
 
     private func updateData() {
-        filterData = [UserFilterModel(with: UsersFilterType.order.rawValue, for: orderFilterData, [orderFilterData.first ?? "": true]),
+        filterData = [UserFilterModel(with: UsersFilterType.filter1.rawValue, for: orderFilterData),
+                      UserFilterModel(with: UsersFilterType.filter2.rawValue, for: orderFilterData),
+                      UserFilterModel(with: UsersFilterType.filter3.rawValue, for: orderFilterData),
+                      UserFilterModel(with: UsersFilterType.order.rawValue, for: orderFilterData, [orderFilterData.first ?? "": true]),
                       UserFilterModel(with: UsersFilterType.sequence.rawValue, for: sequenceFilterData, [sequenceFilterData.first ?? "": true]),
-                      UserFilterModel(with: UsersFilterType.searchOperator.rawValue, for: searchFilterData, [searchFilterData.first ?? "": true]),
-                      UserFilterModel(with: UsersFilterType.filters.rawValue, for: orderFilterData)]
+                      UserFilterModel(with: UsersFilterType.searchOperator.rawValue, for: searchFilterData, [searchFilterData.first ?? "": true])]
     }
 
     var sectionCount: Int {
@@ -61,6 +63,13 @@ class UsersFilterViewModel {
     var cellWidth: CGFloat {
         let width = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width*0.7 : UIScreen.main.bounds.width
         return width
+    }
+
+    func getHeaderHeight(at section: Int) -> CGFloat {
+        guard section <= 2 else { return 45.0 }
+        guard let filterData = filterData?[section] else { return 45.0 }
+
+        return filterData.selectedData?.count == 0 ? 45.0: 90.0
     }
 
     func getCellCount(for section: Int) -> Int {
@@ -102,10 +111,10 @@ class UsersFilterViewModel {
         return orderData.selectedData?.keys.first
     }
 
-    func updateFilterData(_ text: String?, for data: String?) {
+    func updateFilterData(_ text: String?, for data: String?, at index: Int) {
         guard let data = data else { return }
 
-        filterData?[3].selectedValues?[data] = text ?? ""
+        filterData?[index].selectedValues?[data] = text ?? ""
     }
 
     func getSelectedValue(at indexPath: IndexPath) -> String? {
@@ -116,10 +125,12 @@ class UsersFilterViewModel {
     }
 
     func getFilteredDataSource() -> [String: String] {
-        let dataSource = [UsersFilterType.order.rawValue: getFilterData(at: 0),
-                          UsersFilterType.sequence.rawValue: getFilterData(at: 1),
-                          UsersFilterType.searchOperator.rawValue: getFilterData(at: 2),
-                          UsersFilterType.filters.rawValue: getFilterValues()]
+        let dataSource = [UsersFilterType.filter1.rawValue: getFilterValues(at: 0),
+                          UsersFilterType.filter2.rawValue: getFilterValues(at: 1),
+                          UsersFilterType.filter3.rawValue: getFilterValues(at: 2),
+                          UsersFilterType.order.rawValue: getFilterData(at: 3),
+                          UsersFilterType.sequence.rawValue: getFilterData(at: 4),
+                          UsersFilterType.searchOperator.rawValue: getFilterData(at: 5)]
 
         return dataSource
     }
@@ -128,8 +139,8 @@ class UsersFilterViewModel {
         return filterData?[index].selectedData?.keys.first?.trimWhitespaces.firstLowerCased ?? ""
     }
 
-    private func getFilterValues() -> String {
-        guard let selectedValues = filterData?.last?.selectedValues else { return "" }
+    private func getFilterValues(at index: Int) -> String {
+        guard let selectedValues = filterData?[index].selectedValues else { return "" }
 
         var dataSource = ""
         for item in selectedValues {

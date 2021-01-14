@@ -17,6 +17,13 @@ enum PropertyFilterType: String {
     case filters = "Filters"
 }
 
+// MARK: - PropertiesView Delegate
+protocol PropertiesViewDelegate {
+    func reloadView(_ isListEmpty: Bool)
+    func show(_ errorStr: String?)
+    func updateProperty(count: String?)
+}
+
 class PropertiesViewModel {
     private var filterOrder = "userId"
     private var filterSequence = "desc"
@@ -29,6 +36,7 @@ class PropertiesViewModel {
     private var totalSize: String?
     private var propertyList: [PropertyCardsModel]?
 
+    var delegate: PropertiesViewDelegate?
     private var searchQuery: String?
     var apiCallIndex = 49
 
@@ -81,11 +89,24 @@ class PropertiesViewModel {
         page = 0
         apiCallIndex = 49
     }
+
+    func change(status: String?, for propertyID: String?, completion: @escaping(_ index: Int, _ isDeleted: Bool) -> Void) {
+        guard let status = status, let propertyID = propertyID else { return }
+        guard let index = propertyList?.firstIndex(where: { $0.propertyID == propertyID}) else { return }
+
+        switch status {
+        case "Publish": propertyList?[index].status = "1"; completion(index, false)
+            case "Unpublish": propertyList?[index].status = "0"; completion(index, false)
+            case "Sold out": propertyList?[index].status = "2"; completion(index, false)
+            case "Delete": propertyList?.remove(at: index); completion(index, true)
+            default: break
+        }
+    }
 }
 
 // MARK: - API Calls
 extension PropertiesViewModel {
-    func getProperties(successCallBack: @escaping(_ isListEmpty: Bool) -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
+    func getProperties() {
         guard AppSession.manager.validSession else { return }
 
         if page == 0 { propertyList = [PropertyCardsModel]() }
@@ -99,11 +120,12 @@ extension PropertiesViewModel {
             }
 
             DispatchQueue.main.async {
-                successCallBack(self?.propertyList?.isEmpty ?? true)
+                self?.delegate?.reloadView(self?.propertyList?.isEmpty ?? true)
+                self?.delegate?.updateProperty(count: " \(self?.propertyList?.count ?? 0) of \(self?.totalSize ?? "")")
             }
-        } failureCallBack: { errorStr in
+        } failureCallBack: { [weak self] errorStr in
             DispatchQueue.main.async {
-                failureCallBack(errorStr)
+                self?.delegate?.show(errorStr)
             }
         }
     }

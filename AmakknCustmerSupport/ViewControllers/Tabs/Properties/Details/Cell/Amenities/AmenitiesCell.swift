@@ -16,7 +16,7 @@ class AmenitiesCell: UICollectionViewCell, ConfigurableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        ibTitleLabel.text = "Edit_property_Amenities".localized()
+        ibTitleLabel.text = "Amenities"
 
         registerCell()
     }

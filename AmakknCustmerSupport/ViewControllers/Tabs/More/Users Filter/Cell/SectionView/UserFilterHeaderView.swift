@@ -32,5 +32,11 @@ class UserFilterHeaderView: UIView {
 
     @IBAction func expandButtonTapped(_ sender: UIButton) {
         delegate?.expandCell(at: sender.tag)
+
+        if let buttonImg = ibIndicatorIcon.image?.pngData(), let img = UIImage(named: "icArrowDown")?.pngData(), buttonImg == img {
+            ibIndicatorIcon.image = UIImage(named: "icArrowUp")
+        } else {
+            ibIndicatorIcon.image = UIImage(named: "icArrowDown")
+        }
     }
 }

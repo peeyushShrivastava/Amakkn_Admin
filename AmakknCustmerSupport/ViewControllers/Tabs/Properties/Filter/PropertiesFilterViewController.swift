@@ -141,7 +141,7 @@ extension PropertiesFilterViewController: UserFilterHeaderDelegate {
 
 // MARK: - UserFilterData Delegate
 extension PropertiesFilterViewController: UserFilterDataDelegate {
-    func textFieldDidChange(_ text: String?, for filterData: String?) {
+    func textFieldDidChange(_ text: String?, for filterData: String?, at index: Int) {
         viewModel.updateFilterData(text, for: filterData)
     }
 }

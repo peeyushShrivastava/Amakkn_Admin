@@ -55,7 +55,7 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
         ibAddressLabel.text = model?.address
         ibPriceTypeLabel.text = model?.priceType?.isEmpty ?? true ? model?.priceType : "(per \(model?.priceType ?? ""))"
 
-        ibPropertyTypeLabel.text = "  \(model?.propertyTypeName ?? "") \(model?.listedFor ?? "")  "
+        ibPropertyTypeLabel.text = "  \(model?.listedFor ?? "")  "
 
         updatePhoto()
         updateQRCode()

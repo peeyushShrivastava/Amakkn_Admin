@@ -20,6 +20,7 @@ enum AppAPIEndPoint: APIEndPoint {
     case initChat(_ userID1: String, _ userID2: String, _ subjectID: String)
     case getAbuseList
     case getStatsDetails(_ startDate: String, _ endDate: String)
+    case closeChatThread(_ chatID: String)
     case none
 }
 
@@ -38,6 +39,7 @@ extension AppNetworkManager {
             case .initChat(_, _, _): return "Login/initiateSupportChatChannel/"
             case .getAbuseList: return "Property/getListOfReportAbuses/"
             case .getStatsDetails(_, _): return "Property/getStats/"
+            case .closeChatThread(_): return "Login/closeSupportThread/"
             case .none: return ""
         }
     }
@@ -77,6 +79,8 @@ extension AppNetworkManager {
                 return ["userId1": userID1, "userId2": userID2, "subjectId": subjectID]
             case .getStatsDetails(let startDate, let endDate):
                 return ["startDate": startDate, "endDate": endDate]
+            case .closeChatThread(let chatID):
+                return ["chatId": chatID]
             default:
                 return nil
         }
@@ -351,6 +355,22 @@ extension AppNetworkManager {
                 guard let jsonDictionary = jsonObject as? [String: Any], let responseDict = jsonDictionary["response"] as? [String: Any] else { return }
 
                 successCallBack(responseDict)
+            } catch _ { }
+        }, failureCallBack: { _ in })
+    }
+}
+
+// MARK: - Close Chat Thread
+extension AppNetworkManager {
+    func closeChatThead(_ chatID: String) {
+        let request = getRequest(with: AppAPIEndPoint.closeChatThread(chatID))
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: resData, options: [])
+                guard let jsonDictionary = jsonObject as? [String: Any], let _ = jsonDictionary["resCode"] as? Int else { return }
             } catch _ { }
         }, failureCallBack: { _ in })
     }

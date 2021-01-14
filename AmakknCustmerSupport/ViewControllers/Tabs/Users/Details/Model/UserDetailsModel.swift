@@ -60,10 +60,10 @@ struct UserAccountDetails {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        let date = dateFormatter.date(from: dateStr)
+        guard let date = dateFormatter.date(from: dateStr) else { return nil }
         dateFormatter.dateFormat = "dd MMM yyyy, HH:mm aaa"
 
-        return dateFormatter.string(from: date ?? Date())
+        return dateFormatter.string(from: date)
     }
 
     private func update(userType: String?) -> String? {
@@ -125,10 +125,10 @@ struct UserProfilePropertiesDetails {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        let date = dateFormatter.date(from: dateStr)
+        guard let date = dateFormatter.date(from: dateStr) else { return nil }
         dateFormatter.dateFormat = "dd MMM yyyy, HH:mm aaa"
 
-        return dateFormatter.string(from: date ?? Date())
+        return dateFormatter.string(from: date)
     }
 }
 
@@ -149,10 +149,10 @@ struct UserAppUsagesDetails {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        let date = dateFormatter.date(from: dateStr)
+        guard let date = dateFormatter.date(from: dateStr) else { return nil }
         dateFormatter.dateFormat = "dd MMM yyyy, HH:mm aaa"
 
-        return dateFormatter.string(from: date ?? Date())
+        return dateFormatter.string(from: date)
     }
 }
 

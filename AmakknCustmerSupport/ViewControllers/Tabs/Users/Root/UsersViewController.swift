@@ -11,15 +11,21 @@ class UsersViewController: BaseViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ibEmptyBGView: EmptyBGView!
     @IBOutlet var ibSearchBar: UISearchBar!
+    @IBOutlet weak var ibCountHolderView: UIView!
+    @IBOutlet weak var ibCountLabel: UILabel!
+
+    var refreshControl = UIRefreshControl()
 
     let viewModel = UsersViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel.delegate = self
         ibEmptyBGView.delegate = self
 
         registerCell()
+        updateRefresh()
         getUsers()
     }
 
@@ -45,6 +51,19 @@ class UsersViewController: BaseViewController {
         ibCollectionView.collectionViewLayout = layout
         ibCollectionView.keyboardDismissMode = .interactive
     }
+
+    private func updateRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        ibCollectionView.addSubview(refreshControl)
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+        refreshControl.attributedTitle = NSAttributedString(string: "Reloading data...")
+
+        viewModel.resetPage()
+        getUsers()
+    }
 }
 
 // MARK: - Navigation
@@ -69,28 +88,7 @@ extension UsersViewController {
     private func getUsers() {
         guard AppSession.manager.validSession else { ibCollectionView.isHidden = true; ibEmptyBGView.isHidden = false; return }
 
-        viewModel.getSearchedUserList(successCallBack: { [weak self] isListEmpty in
-            DispatchQueue.main.async {
-                guard self?.viewModel.isFirstPage ?? true else { self?.ibCollectionView.reloadData(); return }
-
-                self?.ibCollectionView.isHidden = isListEmpty
-                self?.ibEmptyBGView.isHidden = !isListEmpty
-
-                if isListEmpty {
-                    self?.ibEmptyBGView.updateText()
-                }
-
-                self?.ibCollectionView.reloadData()
-            }
-        }, failureCallBack: { [weak self] errorStr in
-            DispatchQueue.main.async {
-                self?.ibCollectionView.isHidden = true
-                self?.ibEmptyBGView.isHidden = false
-                self?.ibEmptyBGView.updateErrorText()
-
-                self?.showAlert(with: errorStr)
-            }
-        })
+        viewModel.getSearchedUserList()
     }
 
     private func updateUsersList() {
@@ -152,6 +150,48 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
         guard viewModel.isMoreDataAvailable, viewModel.searchQuery != nil  else { return CGSize.zero }
 
         return .init(width: viewModel.cellWidth, height: 40.0)
+    }
+}
+
+// MARK: - UIScrollView Delegate
+extension UsersViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        ibCountHolderView.isHidden = true
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        ibCountHolderView.isHidden = false
+    }
+}
+
+// MARK: - UsersView Delegate
+extension UsersViewController: UsersViewDelegate {
+    func reloadView(_ isListEmpty: Bool) {
+        guard viewModel.isFirstPage else { ibCollectionView.reloadData(); return }
+
+        ibCollectionView.isHidden = isListEmpty
+        ibEmptyBGView.isHidden = !isListEmpty
+
+        if isListEmpty {
+            ibEmptyBGView.updateText()
+        }
+
+        ibCollectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
+    func show(_ errorStr: String?) {
+        ibCollectionView.isHidden = true
+        ibEmptyBGView.isHidden = false
+        ibEmptyBGView.updateErrorText()
+
+        showAlert(with: errorStr)
+        refreshControl.endRefreshing()
+    }
+
+    func updateProperty(count: String?) {
+        ibCountHolderView.isHidden = false
+        ibCountLabel.text = count
     }
 }
 

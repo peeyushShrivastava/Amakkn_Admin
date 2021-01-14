@@ -101,8 +101,8 @@ extension UserInfoCell {
             let compPlaceHolder = Utility.shared.selectedLanguage == .english ? UIImage(named: "icCompanyLogoIcon") : UIImage(named: "icCompanyLogoArabic")
             let individualpPlaceHolder = UIImage(named: "icIndividualPlaceHolder")
 
-            ibIndividualButton.isHidden = !(userType == .company)
-            ibIndividualAvatar.isHidden = !(userType == .company)
+            ibIndividualButton.isHidden = true//!(userType == .company)
+            ibIndividualAvatar.isHidden = true//!(userType == .company)
 
             ibVerifiedIcon.isHidden = !(hostModel?.hasCompanyVerified ?? false)
 

@@ -170,7 +170,7 @@ struct DetailsHeaderModel {
 
         photos = propertyDetails?.photos?.components(separatedBy: ",")
         priceType = propertyDetails?.defaultPriceType?.name
-        listedFor = propertyDetails?.listedFor == "1" ? "ListedFor1_Property".localized() : "ListedFor2_Property".localized()
+        listedFor = Utility.shared.getPropertyTypeName(for: propertyDetails?.propertyType, with: propertyDetails?.category)
 
         favStatus = propertyDetails?.isInFavourites == "1"
         compareStatus = propertyDetails?.isInCompareList == "1"
