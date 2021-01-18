@@ -32,8 +32,8 @@ class UsersViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tabBarController?.tabBar.isHidden = false
-        navigationItem.titleView = ibSearchBar
+        tabBarController?.tabBar.isHidden = viewModel.isFilterCalled
+        navigationItem.titleView = viewModel.isFilterCalled ? nil: ibSearchBar
 
         ibEmptyBGView.updateUI()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Users...") : ibEmptyBGView.updateErrorText()
@@ -69,14 +69,10 @@ class UsersViewController: BaseViewController {
 // MARK: - Navigation
 extension UsersViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "filterSegueID",
-            let destinationVC = segue.destination as? UserFilterViewController {
-
-            destinationVC.delegate = self
-        } else if segue.identifier == "userDetailsSegueID",
+        if segue.identifier == "userDetailsSegueID",
             let destinationVC = segue.destination as? UserDetailsViewController, let row = sender as? Int {
 
-            let userID = viewModel[row]?.userID
+            let userID = viewModel.isFilterCalled ? viewModel[row]?.userId : viewModel[row]?.userID
             destinationVC.viewModel.userID = userID
             destinationVC.viewModel.updateDataSource(with: nil)
         }
@@ -204,19 +200,6 @@ extension UsersViewController {
     }
 }
 
-// MARK: - UsersFilter Delegate
-extension UsersViewController: UserFilterDelegate {
-    func didUpdateFilter(with dataSource: [String : String]) {
-        viewModel.updateFilter(dataSource)
-
-        ibEmptyBGView.startActivityIndicator(with: "Fetching Users...")
-        ibEmptyBGView.isHidden = false
-        ibCollectionView.isHidden = true
-
-        getUsers()
-    }
-}
-
 // MARK: - Search Delegate
 extension UsersViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -309,5 +292,12 @@ extension UsersViewController {
         chatVC.subject = viewModel.subjectID
 
         navigationController?.pushViewController(chatVC, animated: true)
+    }
+}
+
+// MARK: - Init Self
+extension UsersViewController: InitiableViewController {
+    static var storyboardType: AppStoryboard {
+        return .users
     }
 }

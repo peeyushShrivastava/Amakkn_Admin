@@ -12,10 +12,7 @@ class PropertiesFilterViewController: UIViewController {
     @IBOutlet weak var ibTableViewWidth: NSLayoutConstraint!
     @IBOutlet weak var ibResetButton: UIBarButtonItem!
 
-    var headerView: UserFilterHeaderView?
-
     let viewModel = PropertiesFilterViewModel()
-    var delegate: UserFilterDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +34,16 @@ class PropertiesFilterViewController: UIViewController {
 
         ibTableViewWidth.constant = viewModel.cellWidth
     }
-    @IBAction func applyButtonTapped(_ sender: UIButton) {
-    }
 }
 
 // MARK: - Button Actions
 extension PropertiesFilterViewController {
-    @IBAction func applyButtonTapped123(_ sender: UIButton) {
-        delegate?.didUpdateFilter(with: viewModel.getFilteredDataSource())
+    @IBAction func applyButtonTapped(_ sender: UIButton) {
+        guard let propertiesVC = PropertiesViewController.instantiateSelf() else { return }
+ 
+        propertiesVC.viewModel.updateFilter(viewModel.getFilteredDataSource())
 
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(propertiesVC, animated: true)
     }
 
     @IBAction func resetButtonTapped(_ sender: UIBarButtonItem) {
@@ -68,27 +65,13 @@ extension PropertiesFilterViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sectionType = PropertyFilterSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userFilterCellID", for: indexPath) as? UserFilterCell else { return UITableViewCell() }
 
-        switch sectionType {
-        case .filters:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userFilterDataCellID", for: indexPath) as? UserFilterDataCell else { return UITableViewCell() }
+        let model = viewModel.getData(at: indexPath.section)
+        cell.update(model?.filterData?[indexPath.row])
+        cell.ibTickIcon.isHidden = !viewModel.isValueSelected(at: indexPath)
 
-            let model = viewModel.getData(at: indexPath.section)
-            cell.update(model?.filterData?[indexPath.row], with: indexPath.row)
-            cell.updateValue(viewModel.getSelectedValue(at: indexPath))
-            cell.delegate = self
-
-            return cell
-        default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userFilterCellID", for: indexPath) as? UserFilterCell else { return UITableViewCell() }
-
-            let model = viewModel.getData(at: indexPath.section)
-            cell.update(model?.filterData?[indexPath.row])
-            cell.ibTickIcon.isHidden = !viewModel.isValueSelected(at: indexPath)
-
-            return cell
-        }
+        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,20 +79,33 @@ extension PropertiesFilterViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        /// Create Header View
-        headerView = Bundle.main.loadNibNamed("UserFilterHeaderView", owner: self, options: nil)?.last as? UserFilterHeaderView
+        if section > 2 {
+            let headerView = Bundle.main.loadNibNamed("UserFilterHeaderView", owner: self, options: nil)?.last as? UserFilterHeaderView
+
+            headerView?.backgroundColor = AppColors.darkViewBGColor
+            headerView?.update(viewModel.getData(at: section)?.filterTitle, at: section)
+            headerView?.updateValue(viewModel.getData(at: section)?.selectedData?.keys.first)
+
+            headerView?.delegate = self
+
+            return headerView
+        }
+        let headerView = Bundle.main.loadNibNamed("UserFilterDataHeaderView", owner: self, options: nil)?.last as? UserFilterDataHeaderView
 
         headerView?.backgroundColor = AppColors.darkViewBGColor
         headerView?.update(viewModel.getData(at: section)?.filterTitle, at: section)
-        headerView?.updateValue(viewModel.getData(at: section)?.selectedData?.keys.first)
+
+        let data = viewModel.getData(at: section)
+        headerView?.updateValue(for: data?.selectedData?.keys.first, data?.selectedValues?.values.first)
 
         headerView?.delegate = self
+        headerView?.dataDelegate = self
 
         return headerView
     }
 
     func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.headerHeight
+        return viewModel.getHeaderHeight(at: section)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -142,6 +138,6 @@ extension PropertiesFilterViewController: UserFilterHeaderDelegate {
 // MARK: - UserFilterData Delegate
 extension PropertiesFilterViewController: UserFilterDataDelegate {
     func textFieldDidChange(_ text: String?, for filterData: String?, at index: Int) {
-        viewModel.updateFilterData(text, for: filterData)
+        viewModel.updateFilterData(text, for: filterData, at: index)
     }
 }

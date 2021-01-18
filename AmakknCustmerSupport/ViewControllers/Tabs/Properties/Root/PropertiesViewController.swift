@@ -32,8 +32,8 @@ class PropertiesViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tabBarController?.tabBar.isHidden = false
-        navigationItem.titleView = ibSearchBar
+        tabBarController?.tabBar.isHidden = viewModel.isFilterCalled
+        navigationItem.titleView = viewModel.isFilterCalled ? nil: ibSearchBar
 
         ibEmptyBGView.updateUI()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
@@ -62,17 +62,6 @@ class PropertiesViewController: BaseViewController {
 
         viewModel.resetPage()
         getProperties()
-    }
-}
-
-// MARK: - Navigation
-extension PropertiesViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "propertyFilterSegueID",
-            let destinationVC = segue.destination as? PropertiesFilterViewController {
-
-            destinationVC.delegate = self
-        }
     }
 }
 
@@ -194,19 +183,6 @@ extension PropertiesViewController {
     }
 }
 
-// MARK: - UsersFilter Delegate
-extension PropertiesViewController: UserFilterDelegate {
-    func didUpdateFilter(with dataSource: [String : String]) {
-        viewModel.updateFilter(dataSource)
-
-        ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...")
-        ibEmptyBGView.isHidden = false
-        ibCollectionView.isHidden = true
-
-        getProperties()
-    }
-}
-
 // MARK: - Search Delegate
 extension PropertiesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -276,5 +252,12 @@ extension PropertiesViewController: PropertyDetailsDelegate {
                 isDeleted ? self?.ibCollectionView.deselectItem(at: indexPath, animated: true): self?.ibCollectionView.reloadItems(at: [indexPath])
             }
         }
+    }
+}
+
+// MARK: - Init Self
+extension PropertiesViewController: InitiableViewController {
+    static var storyboardType: AppStoryboard {
+        return .properties
     }
 }

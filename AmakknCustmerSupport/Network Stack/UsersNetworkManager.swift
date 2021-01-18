@@ -87,7 +87,7 @@ class UsersNetworkManager: ConfigRequestDelegate {
 
 // MARK: - Get Users API Call
 extension UsersNetworkManager {
-    func getUsers(for page: String, with pageSize: String, _ sortBy: String, _ sortOrder: String, _ searchString: String, _ searchOperator: String, successCallBack: @escaping (_ response: UsersReponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+    func getUser(for page: String, with pageSize: String, _ sortBy: String, _ sortOrder: String, _ searchString: String, _ searchOperator: String, successCallBack: @escaping (_ response: UsersReponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: UsersAPIEndPoint.getUsers(page, pageSize, sortBy, sortOrder, searchString, searchOperator))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
@@ -96,6 +96,25 @@ extension UsersNetworkManager {
             do {
                 let decoder = JSONDecoder()
                 let model = try decoder.decode(ResponseModel<UsersReponseModel>.self, from: resData)
+
+                successCallBack(model.response)
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+
+    func getUsers(for page: String, with pageSize: String, _ sortBy: String, _ sortOrder: String, _ searchString: String, _ searchOperator: String, successCallBack: @escaping (_ response: FilteredUsersReponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: UsersAPIEndPoint.getUsers(page, pageSize, sortBy, sortOrder, searchString, searchOperator))
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<FilteredUsersReponseModel>.self, from: resData)
 
                 successCallBack(model.response)
             } catch _ {

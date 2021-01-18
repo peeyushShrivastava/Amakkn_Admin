@@ -634,7 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				DD9646DE25A328B800F852F4 /* Edit Property */,
-				DD77A9E925481E4B004D8985 /* Filter */,
 				DD735F85253D8E8A0079A56F /* Details */,
 				DD735F84253D8E7A0079A56F /* Root */,
 			);
@@ -1261,6 +1260,7 @@
 		DD735F60253D71DC0079A56F /* More */ = {
 			isa = PBXGroup;
 			children = (
+				DD77A9E925481E4B004D8985 /* Filter */,
 				DD735F7B253D7A8E0079A56F /* Users Filter */,
 				DD88BA1A259DDD9B0044BF53 /* Feedback */,
 				DD8001692590E6910001E737 /* Stats */,
@@ -2457,7 +2457,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2482,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

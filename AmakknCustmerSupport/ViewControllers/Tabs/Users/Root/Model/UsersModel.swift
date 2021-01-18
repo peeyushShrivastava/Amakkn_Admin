@@ -84,6 +84,11 @@ struct UserStatsModel: Codable {
     }
 }
 
+struct FilteredUsersReponseModel: Codable {
+    let userArray: [SearchedUserModel]?
+    let totalCount: Int?
+}
+
 struct SearchedUsersReponseModel: Codable {
     let users: [SearchedUserModel]?
     let totalCount: String?
@@ -91,6 +96,7 @@ struct SearchedUsersReponseModel: Codable {
 
 struct SearchedUserModel: Codable {
     let userID: String?
+    let userId: String?
     let userName: String?
     let userAvatar: String?
     let userPhone: String?
@@ -100,13 +106,14 @@ struct SearchedUserModel: Codable {
     let accountType: String?
     let createdAt: String?
     let isVerified: String?
+    let isUserVerified: String?
 
     private enum CodingKeys: String, CodingKey {
         case userID = "id"
         case userName = "name"
         case userAvatar = "avatar"
         case userPhone = "phone"
-        case countryCode, createdAt, isVerified
-        case userType, accountType
+        case countryCode, createdAt, isVerified, userId
+        case userType, accountType, isUserVerified
     }
 }

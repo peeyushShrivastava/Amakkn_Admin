@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct FilteredPropertyResponseModel: Codable {
+    let propertyArray: [PropertyCardsModel]?
+    let totalCount: Int?
+}
+
 struct PropertyResponseModel: Codable {
     let properties: [PropertyCardsModel]?
     let totalCount: String?

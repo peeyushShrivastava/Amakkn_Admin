@@ -23,7 +23,9 @@ class UserCell: UICollectionViewCell {
     @IBOutlet weak var ibUserTypeLabel: UILabel!
     @IBOutlet weak var ibVerified: UIImageView!
     @IBOutlet weak var ibCreatedDate: UILabel!
-    
+
+    var isFilterCalled = false
+
     var delegate: UserCellDelegate?
     var cellIndex = 0
 
@@ -65,7 +67,7 @@ class UserCell: UICollectionViewCell {
     private func updateUI() {
         ibNameLabel.text = userModel?.userName
         ibPhoneText.text = "\(userModel?.countryCode ?? "") \(userModel?.userPhone ?? "")"
-        ibVerified.isHidden = userModel?.isVerified != "2"
+        ibVerified.isHidden = isFilterCalled ? (userModel?.isUserVerified != "2") : (userModel?.isVerified != "2")
         ibCreatedDate.text = "Created On: \(Utility.shared.convertDates(for: userModel?.createdAt) ?? "")"
     }
 

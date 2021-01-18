@@ -44,6 +44,7 @@
                         <segue destination="YkY-vv-OF8" kind="show" identifier="statsSegueID" id="KxO-HQ-0Kp"/>
                         <segue destination="bLb-IH-73h" kind="show" identifier="feedBackSegueID" id="mIj-DI-wLM"/>
                         <segue destination="Tol-wh-HoR" kind="show" identifier="userFilterSegueID" id="afb-Uf-kgP"/>
+                        <segue destination="dx5-e4-Rbi" kind="show" identifier="propertiesFilterSegueID" id="EvY-ru-UB9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVh-kJ-4il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -496,8 +497,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User Filter" id="inv-3P-pBT">
+                        <barButtonItem key="backBarButtonItem" title=" " id="kv8-JV-e6n"/>
                         <barButtonItem key="rightBarButtonItem" title="Reset" id="NQW-Qy-MdZ">
-                            <color key="tintColor" red="0.4561076213404075" green="0.021683629419606817" blue="0.09906843300921632" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="1" green="0.086228678358009181" blue="0.21453608667037027" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="resetButtonTapped:" destination="Tol-wh-HoR" id="I7H-cF-sM3"/>
                             </connections>
@@ -512,6 +514,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RK-AT-9o9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1813" y="806"/>
+        </scene>
+        <!--Property Filter-->
+        <scene sceneID="oxF-8O-tgB">
+            <objects>
+                <viewController storyboardIdentifier="PropertiesFilterViewController" id="dx5-e4-Rbi" customClass="PropertiesFilterViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lqQ-tQ-V7F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-Dy-oj3">
+                                <rect key="frame" x="32" y="748" width="350" height="45"/>
+                                <color key="backgroundColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="9OM-Da-yOy"/>
+                                    <constraint firstAttribute="height" constant="45" id="NKs-uK-6f4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="applyButtonTapped:" destination="dx5-e4-Rbi" eventType="touchUpInside" id="kQ4-0D-I0p"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nKv-fH-0dV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="640"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="S4H-qL-gxb"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="dx5-e4-Rbi" id="JNl-AJ-8ZZ"/>
+                                    <outlet property="delegate" destination="dx5-e4-Rbi" id="Gal-mH-Kqy"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OWi-f1-bb5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nKv-fH-0dV" firstAttribute="top" secondItem="OWi-f1-bb5" secondAttribute="top" id="0zZ-TY-9zp"/>
+                            <constraint firstItem="Nnd-Dy-oj3" firstAttribute="top" secondItem="nKv-fH-0dV" secondAttribute="bottom" constant="20" id="335-e9-GGc"/>
+                            <constraint firstItem="OWi-f1-bb5" firstAttribute="bottom" secondItem="Nnd-Dy-oj3" secondAttribute="bottom" constant="20" id="MQK-Br-xWn"/>
+                            <constraint firstItem="nKv-fH-0dV" firstAttribute="centerX" secondItem="lqQ-tQ-V7F" secondAttribute="centerX" id="Syq-uV-cwr"/>
+                            <constraint firstItem="Nnd-Dy-oj3" firstAttribute="centerX" secondItem="lqQ-tQ-V7F" secondAttribute="centerX" id="wcd-zf-YBv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Property Filter" id="QCY-IU-TGV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="g8C-l9-ht1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="oxZ-2Q-bDe">
+                            <color key="tintColor" red="1" green="0.086228678360000005" blue="0.21453608669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="resetButtonTapped:" destination="dx5-e4-Rbi" id="LSS-T0-Cri"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ibPropertyFilterTableView" destination="nKv-fH-0dV" id="2Q4-Aq-aRN"/>
+                        <outlet property="ibResetButton" destination="oxZ-2Q-bDe" id="qji-M9-W2h"/>
+                        <outlet property="ibTableViewWidth" destination="S4H-qL-gxb" id="wzB-Q2-Hw6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uce-9k-s9r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2774" y="806"/>
         </scene>
     </scenes>
     <resources>

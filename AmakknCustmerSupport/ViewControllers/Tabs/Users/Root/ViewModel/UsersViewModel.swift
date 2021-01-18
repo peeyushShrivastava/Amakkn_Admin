@@ -13,6 +13,7 @@ enum UsersFilterType: String {
     case order = "Order"
     case sequence = "Sequence"
     case searchOperator = "Search Operator"
+    case status = "Status"
     case filter1 = "Filter 1"
     case filter2 = "Filter 2"
     case filter3 = "Filter 3"
@@ -35,6 +36,7 @@ class UsersViewModel {
     private var filterSequence = "desc"
     private var filterOperator = "AND"
     private var filters = ""
+    var isFilterCalled = false
 
     var delegate: UsersViewDelegate?
     var searchQuery: String?
@@ -72,12 +74,17 @@ class UsersViewModel {
     }
 
     func updateFilter(_ dataSource: [String: String]) {
+        isFilterCalled = true
         filterOrder = dataSource[UsersFilterType.order.rawValue] ?? "userId"
         filterOperator = dataSource[UsersFilterType.searchOperator.rawValue]?.uppercased() ?? "AND"
-        filters = dataSource[UsersFilterType.filter1.rawValue] ?? ""
         filterSequence = dataSource[UsersFilterType.sequence.rawValue] == "ascendingOrder" ? "asc" : "desc"
 
+        filters = "\(dataSource[UsersFilterType.filter1.rawValue] ?? ""),\(dataSource[UsersFilterType.filter2.rawValue] ?? ""),\(dataSource[UsersFilterType.filter3.rawValue] ?? "")"
+
+        filters = filters.components(separatedBy: ",").filter({ $0 != ""}).joined(separator: ",")
+
         page = 0
+        searchQuery = ""
     }
 
     func resetPage() {
@@ -98,10 +105,33 @@ extension UsersViewModel {
         if page == 0 { users = [SearchedUserModel]() }
         page += 1
 
+        isFilterCalled ? getFilteredUsers() : getSearchedUsers()
+    }
+
+    private func getSearchedUsers() {
         UsersNetworkManager.shared.getSearchedUsers(for: "\(page)", with: pageSize, searchQuery ?? "") { [weak self] responseModel in
             self?.totalSize = responseModel?.totalCount
 
             if let userList = responseModel?.users {
+                self?.users?.append(contentsOf: userList)
+            }
+
+            DispatchQueue.main.async {
+                self?.delegate?.reloadView(self?.users?.isEmpty ?? true)
+                self?.delegate?.updateProperty(count: " \(self?.users?.count ?? 0) of \(self?.totalSize ?? "")")
+            }
+        } failureCallBack: { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.delegate?.show(errorStr)
+            }
+        }
+    }
+
+    private func getFilteredUsers() {
+        UsersNetworkManager.shared.getUsers(for: "\(page)", with: pageSize, filterOrder, filterSequence, filters, filterOperator) { [weak self] responseModel in
+            self?.totalSize = String(responseModel?.totalCount ?? 0)
+
+            if let userList = responseModel?.userArray {
                 self?.users?.append(contentsOf: userList)
             }
 

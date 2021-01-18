@@ -89,7 +89,6 @@
                         <outlet property="ibEmptyBGView" destination="hCw-Y8-6Zq" id="dOj-ct-VlE"/>
                         <outlet property="ibSearchBar" destination="Jpe-o0-YUi" id="eEk-W6-XyT"/>
                         <segue destination="JDo-kG-WFB" kind="show" identifier="detailsSegueID" id="EnS-c1-ijA"/>
-                        <segue destination="K8K-zQ-x2m" kind="show" identifier="propertyFilterSegueID" id="RXL-HG-B8i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uG-Y9-F6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -103,73 +102,7 @@
                     </connections>
                 </searchBar>
             </objects>
-            <point key="canvasLocation" x="868.11594202898561" y="44.866071428571423"/>
-        </scene>
-        <!--Filter-->
-        <scene sceneID="IxB-bq-Grw">
-            <objects>
-                <viewController storyboardIdentifier="PropertiesFilterViewController" id="K8K-zQ-x2m" customClass="PropertiesFilterViewController" customModule="AmakknCustmerSupport" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uer-hQ-fIr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XH3-7q-1nq">
-                                <rect key="frame" x="32" y="748" width="350" height="45"/>
-                                <color key="backgroundColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="M1p-Gb-YeY"/>
-                                    <constraint firstAttribute="width" constant="350" id="jf4-BE-C0N"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                <state key="normal" title="Apply">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="applyButtonTapped:" destination="K8K-zQ-x2m" eventType="touchUpInside" id="qqj-xq-Cz9"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="PMj-i9-38j">
-                                <rect key="frame" x="0.0" y="88" width="414" height="640"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="Q53-Ii-VhW"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="K8K-zQ-x2m" id="uUf-S1-eQ8"/>
-                                    <outlet property="delegate" destination="K8K-zQ-x2m" id="oBP-3j-lTM"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="5sq-FK-Vb2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="PMj-i9-38j" firstAttribute="centerX" secondItem="uer-hQ-fIr" secondAttribute="centerX" id="Aeg-7T-aTw"/>
-                            <constraint firstItem="PMj-i9-38j" firstAttribute="top" secondItem="5sq-FK-Vb2" secondAttribute="top" id="FSf-Fi-q9B"/>
-                            <constraint firstItem="XH3-7q-1nq" firstAttribute="top" secondItem="PMj-i9-38j" secondAttribute="bottom" constant="20" id="Jb2-fT-3Nv"/>
-                            <constraint firstItem="XH3-7q-1nq" firstAttribute="centerX" secondItem="uer-hQ-fIr" secondAttribute="centerX" id="PfS-NX-0ii"/>
-                            <constraint firstItem="5sq-FK-Vb2" firstAttribute="bottom" secondItem="XH3-7q-1nq" secondAttribute="bottom" constant="20" id="S2p-n4-bEe"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Filter" id="GaU-ho-6vq">
-                        <barButtonItem key="rightBarButtonItem" title="Reset" id="8q3-ac-7ch">
-                            <color key="tintColor" red="0.1450980392" green="0.27058823529999998" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="ibPropertyFilterTableView" destination="PMj-i9-38j" id="pXn-jv-KyC"/>
-                        <outlet property="ibResetButton" destination="8q3-ac-7ch" id="jFX-SA-U9S"/>
-                        <outlet property="ibTableViewWidth" destination="Q53-Ii-VhW" id="IyP-fc-2bp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w0u-Gh-eRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1808.6956521739132" y="436.60714285714283"/>
+            <point key="canvasLocation" x="943" y="-291"/>
         </scene>
         <!--Property Image(s)-->
         <scene sceneID="UyF-PV-Fr2">
@@ -453,7 +386,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vhe-rc-phQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42.028985507246382" y="44.866071428571423"/>
+            <point key="canvasLocation" x="36" y="-291"/>
         </scene>
     </scenes>
     <resources>

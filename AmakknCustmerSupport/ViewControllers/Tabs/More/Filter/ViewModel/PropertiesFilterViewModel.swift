@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - UserFilter Delegate
-protocol PropertyFilterDelegate {
-    func didUpdateFilter(with dataSource: [String: String])
-}
-
 // MARK: - Sections Enum
 enum PropertyFilterSection: Int {
     case order = 0
@@ -23,7 +18,7 @@ enum PropertyFilterSection: Int {
 }
 
 class PropertiesFilterViewModel {
-    private let orderFilterData = ["Property ID", "User ID", "Category", "Type Number", "Address", "Description",
+    private let orderFilterData = ["Property Id", "User Id", "Category", "Type Number", "Address", "Description",
                                    "Price", "Views", "IsFeatured", "Created Date", "Updated Date"]
     private let sequenceFilterData = ["Ascending Order", "Decending Order"]
     private let searchFilterData = ["And", "Or"]
@@ -36,11 +31,13 @@ class PropertiesFilterViewModel {
     }
 
     private func updateData() {
-        filterData = [UserFilterModel(with: PropertyFilterType.order.rawValue, for: orderFilterData, [orderFilterData.first ?? "": true]),
+        filterData = [UserFilterModel(with: PropertyFilterType.filter1.rawValue, for: orderFilterData),
+                      UserFilterModel(with: PropertyFilterType.filter2.rawValue, for: orderFilterData),
+                      UserFilterModel(with: PropertyFilterType.filter3.rawValue, for: orderFilterData),
+                      UserFilterModel(with: PropertyFilterType.order.rawValue, for: orderFilterData, [orderFilterData.first ?? "": true]),
                       UserFilterModel(with: PropertyFilterType.sequence.rawValue, for: sequenceFilterData, [sequenceFilterData.first ?? "": true]),
                       UserFilterModel(with: PropertyFilterType.searchOperator.rawValue, for: searchFilterData, [searchFilterData.first ?? "": true]),
-                      UserFilterModel(with: PropertyFilterType.status.rawValue, for: statusFilterData, [statusFilterData.first ?? "": true]),
-                      UserFilterModel(with: PropertyFilterType.filters.rawValue, for: orderFilterData)]
+                      UserFilterModel(with: PropertyFilterType.status.rawValue, for: statusFilterData, [statusFilterData.first ?? "": true])]
     }
 
     var sectionCount: Int {
@@ -55,10 +52,6 @@ class PropertiesFilterViewModel {
         return 45.0
     }
 
-    var headerHeight: CGFloat {
-        return 45.0
-    }
-
     var cellWidth: CGFloat {
         let width = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width*0.7 : UIScreen.main.bounds.width
         return width
@@ -68,6 +61,13 @@ class PropertiesFilterViewModel {
         guard let filterData = filterData?[section] else { return 0 }
 
         return filterData.isExpanded ? (filterData.filterData?.count ?? 0) : 0
+    }
+
+    func getHeaderHeight(at section: Int) -> CGFloat {
+        guard section <= 2 else { return 45.0 }
+        guard let filterData = filterData?[section] else { return 45.0 }
+
+        return filterData.selectedData?.count == 0 ? 45.0: 90.0
     }
 
     func getData(at section: Int) -> UserFilterModel? {
@@ -91,6 +91,7 @@ class PropertiesFilterViewModel {
         guard let filteredValue = filteredData?.filterData?[indexPath.row] else { return }
 
         filterData?[indexPath.section].selectedData = [filteredValue: true]
+        filterData?[indexPath.section].selectedValues = nil
     }
 
     func resetFilter() {
@@ -103,10 +104,10 @@ class PropertiesFilterViewModel {
         return orderData.selectedData?.keys.first
     }
 
-    func updateFilterData(_ text: String?, for data: String?) {
+    func updateFilterData(_ text: String?, for data: String?, at index: Int) {
         guard let data = data else { return }
 
-        filterData?[3].selectedValues?[data] = text ?? ""
+        filterData?[index].selectedValues = [data: text ?? ""]
     }
 
     func getSelectedValue(at indexPath: IndexPath) -> String? {
@@ -117,10 +118,13 @@ class PropertiesFilterViewModel {
     }
 
     func getFilteredDataSource() -> [String: String] {
-        let dataSource = [UsersFilterType.order.rawValue: getFilterData(at: 0),
-                          UsersFilterType.sequence.rawValue: getFilterData(at: 1),
-                          UsersFilterType.searchOperator.rawValue: getFilterData(at: 2),
-                          UsersFilterType.filter1.rawValue: getFilterValues()]
+        let dataSource = [UsersFilterType.filter1.rawValue: getFilterValues(at: 0),
+                          UsersFilterType.filter2.rawValue: getFilterValues(at: 1),
+                          UsersFilterType.filter3.rawValue: getFilterValues(at: 2),
+                          UsersFilterType.order.rawValue: getFilterData(at: 3),
+                          UsersFilterType.sequence.rawValue: getFilterData(at: 4),
+                          UsersFilterType.searchOperator.rawValue: getFilterData(at: 5),
+                          UsersFilterType.status.rawValue: getFilterData(at: 6)]
 
         return dataSource
     }
@@ -129,8 +133,8 @@ class PropertiesFilterViewModel {
         return filterData?[index].selectedData?.keys.first?.trimWhitespaces.firstLowerCased ?? ""
     }
 
-    private func getFilterValues() -> String {
-        guard let selectedValues = filterData?.last?.selectedValues else { return "" }
+    private func getFilterValues(at index: Int) -> String {
+        guard let selectedValues = filterData?[index].selectedValues else { return "" }
 
         var dataSource = ""
         for item in selectedValues {

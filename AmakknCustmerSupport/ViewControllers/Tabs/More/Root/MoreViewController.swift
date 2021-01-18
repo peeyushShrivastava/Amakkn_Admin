@@ -63,6 +63,8 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
                     performSegue(withIdentifier: "statsSegueID", sender: nil)
                 } else if indexPath.row == 2 {
                     performSegue(withIdentifier: "userFilterSegueID", sender: nil)
+                } else if indexPath.row == 3 {
+                    performSegue(withIdentifier: "propertiesFilterSegueID", sender: nil)
                 }
         }
     }

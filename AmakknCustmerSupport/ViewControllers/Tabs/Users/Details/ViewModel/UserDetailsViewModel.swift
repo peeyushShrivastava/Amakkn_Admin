@@ -121,7 +121,7 @@ extension UserDetailsViewModel {
     func getUserStats() {
         guard AppSession.manager.validSession, let userID = userID else { return }
 
-        UsersNetworkManager.shared.getUsers(for: "1", with: "1", "userId", "asc", "userId:\(userID)", "AND") { [weak self] responseModel in
+        UsersNetworkManager.shared.getUser(for: "1", with: "1", "userId", "asc", "userId:\(userID)", "AND") { [weak self] responseModel in
             if let chatList = responseModel?.userArray, responseModel?.totalCount != 0 {
                 self?.updateDataSource(with: chatList.first)
             }

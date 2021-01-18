@@ -11,6 +11,7 @@ import Foundation
 enum PropertyAPIEndPoint: APIEndPoint {
     case getAllParamsForProperty(_ propertyType: String)
     case getProperties(_ page: String, _ pageSize: String, _ searchQuery: String)
+    case getPropertyStats(_ page: String, _ pageSize: String, _ sortBy: String, _ sortOrder: String, _ status: String, _ searchOperator: String, _ searchString: String)
     case getPropertyDetails(_ userID: String, _ propertyID: String)
     case savePropertyFeatures(_ propertyID: String, _ features: String)
     case savePropertyAmenities(_ propertyID: String, _ amenities: String)
@@ -29,6 +30,7 @@ extension PropertyNetworkManager {
         switch endPoint {
             case .getAllParamsForProperty(_): return "Property/getAllParamsForAddPropertyForPropertyType/"
             case .getProperties(_, _, _): return "Extras/getPropertiesForSearchQuery/"
+            case .getPropertyStats(_, _, _, _, _, _, _): return "Property/getPropertiesForAdmin/"
             case .getPropertyDetails(_, _): return "Property/getPropertyDescription/"
             case .savePropertyFeatures(_, _): return "Property/savePropertyRooms/"
             case .savePropertyAmenities(_, _): return "Property/savePropertyAmenities/"
@@ -58,6 +60,8 @@ extension PropertyNetworkManager {
                 return ["propertyType": propertyType, "language": selectedLanguage]
             case .getProperties(let page, let pageSize, let searchQuery):
                 return ["page": page, "pageSize": pageSize, "searchQuery": searchQuery, "userId": hashedUserID]
+            case .getPropertyStats(let page, let pageSize, let sortBy, let sortOrder, let status, let searchOperator, let searchString):
+                return ["page": page, "pageSize": pageSize, "sortBy": sortBy, "sortOrder": sortOrder, "status": status, "searchOperator": searchOperator, "searchString": searchString]
             case .getPropertyDetails(let userID, let propertyID):
                 return ["userId": userID, "propertyId": propertyID, "language": selectedLanguage]
             case .savePropertyFeatures(let propertyID, let features):
@@ -158,6 +162,28 @@ extension PropertyNetworkManager {
             do {
                 let decoder = JSONDecoder()
                 let model = try decoder.decode(ResponseModel<PropertyDetails>.self, from: resData)
+
+                successCallBack(model.response)
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+}
+
+// MARK: - Get Property Stats
+extension PropertyNetworkManager {
+    func getPropertyStats(_ page: String, _ pageSize: String, _ sortBy: String, _ sortOrder: String, _ status: String, _ searchOperator: String, _ searchString: String, successCallBack: @escaping (_ response: FilteredPropertyResponseModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: PropertyAPIEndPoint.getPropertyStats(page, pageSize, sortBy, sortOrder, status, searchOperator, searchString))
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<FilteredPropertyResponseModel>.self, from: resData)
 
                 successCallBack(model.response)
             } catch _ {

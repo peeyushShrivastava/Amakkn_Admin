@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - UserFilter Delegate
-protocol UserFilterDelegate {
-    func didUpdateFilter(with dataSource: [String: String])
-}
-
 // MARK: - Sections Enum
 enum UserFilterSection: Int {
     case order = 0
@@ -56,10 +51,6 @@ class UsersFilterViewModel {
         return 45.0
     }
 
-    var headerHeight: CGFloat {
-        return 45.0
-    }
-
     var cellWidth: CGFloat {
         let width = UIDevice.current.userInterfaceIdiom == .pad ? UIScreen.main.bounds.width*0.7 : UIScreen.main.bounds.width
         return width
@@ -99,6 +90,7 @@ class UsersFilterViewModel {
         guard let filteredValue = filteredData?.filterData?[indexPath.row] else { return }
 
         filterData?[indexPath.section].selectedData = [filteredValue: true]
+        filterData?[indexPath.section].selectedValues = nil
     }
 
     func resetFilter() {
@@ -114,7 +106,7 @@ class UsersFilterViewModel {
     func updateFilterData(_ text: String?, for data: String?, at index: Int) {
         guard let data = data else { return }
 
-        filterData?[index].selectedValues?[data] = text ?? ""
+        filterData?[index].selectedValues = [data: text ?? ""]
     }
 
     func getSelectedValue(at indexPath: IndexPath) -> String? {

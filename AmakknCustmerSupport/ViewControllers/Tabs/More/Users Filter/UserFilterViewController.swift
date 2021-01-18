@@ -13,7 +13,6 @@ class UserFilterViewController: UIViewController {
     @IBOutlet weak var ibResetButton: UIBarButtonItem!
 
     let viewModel = UsersFilterViewModel()
-    var delegate: UserFilterDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +39,11 @@ class UserFilterViewController: UIViewController {
 // MARK: - Button Actions
 extension UserFilterViewController {
     @IBAction func applyButtonTapped(_ sender: UIButton) {
-        viewModel.getFilteredDataSource()
-        delegate?.didUpdateFilter(with: viewModel.getFilteredDataSource())
+        guard let usersVC = UsersViewController.instantiateSelf() else { return }
+ 
+        usersVC.viewModel.updateFilter(viewModel.getFilteredDataSource())
 
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(usersVC, animated: true)
     }
 
     @IBAction func resetButtonTapped(_ sender: UIBarButtonItem) {

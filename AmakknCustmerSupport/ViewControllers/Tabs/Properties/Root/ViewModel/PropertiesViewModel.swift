@@ -14,7 +14,9 @@ enum PropertyFilterType: String {
     case sequence = "Sequence"
     case searchOperator = "Search Operator"
     case status = "Status"
-    case filters = "Filters"
+    case filter1 = "Filter 1"
+    case filter2 = "Filter 2"
+    case filter3 = "Filter 3"
 }
 
 // MARK: - PropertiesView Delegate
@@ -35,6 +37,7 @@ class PropertiesViewModel {
     private var pageSize = "50"
     private var totalSize: String?
     private var propertyList: [PropertyCardsModel]?
+    var isFilterCalled = false
 
     var delegate: PropertiesViewDelegate?
     private var searchQuery: String?
@@ -76,13 +79,17 @@ class PropertiesViewModel {
     }
 
     func updateFilter(_ dataSource: [String: String]) {
+        isFilterCalled = true
         filterOrder = dataSource[PropertyFilterType.order.rawValue] ?? "userId"
         status = dataSource[PropertyFilterType.status.rawValue] ?? "All"
         filterOperator = dataSource[PropertyFilterType.searchOperator.rawValue]?.uppercased() ?? "AND"
-        filters = dataSource[PropertyFilterType.filters.rawValue] ?? ""
         filterSequence = dataSource[PropertyFilterType.sequence.rawValue] == "ascendingOrder" ? "asc" : "desc"
+        filters = "\(dataSource[UsersFilterType.filter1.rawValue] ?? ""),\(dataSource[UsersFilterType.filter2.rawValue] ?? ""),\(dataSource[UsersFilterType.filter3.rawValue] ?? "")"
+
+        filters = filters.components(separatedBy: ",").filter({ $0 != ""}).joined(separator: ",")
 
         page = 0
+        searchQuery = ""
     }
 
     func resetPage() {
@@ -112,10 +119,33 @@ extension PropertiesViewModel {
         if page == 0 { propertyList = [PropertyCardsModel]() }
         page += 1
 
+        isFilterCalled ? getFilteredProperties() : getSearchedProperties()
+    }
+
+    private func getSearchedProperties() {
         PropertyNetworkManager.shared.getProperties(for: "\(page)", pageSize, with: searchQuery ?? "") { [weak self] responseModel in
             self?.totalSize = responseModel?.totalCount
 
             if let chatList = responseModel?.properties {
+                self?.propertyList?.append(contentsOf: chatList)
+            }
+
+            DispatchQueue.main.async {
+                self?.delegate?.reloadView(self?.propertyList?.isEmpty ?? true)
+                self?.delegate?.updateProperty(count: " \(self?.propertyList?.count ?? 0) of \(self?.totalSize ?? "")")
+            }
+        } failureCallBack: { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.delegate?.show(errorStr)
+            }
+        }
+    }
+
+    private func getFilteredProperties() {
+        PropertyNetworkManager.shared.getPropertyStats("\(page)", pageSize, filterOrder, filterSequence, status, filterOperator, filters) { [weak self] responseModel in
+            self?.totalSize = String(responseModel?.totalCount ?? 0)
+
+            if let chatList = responseModel?.propertyArray {
                 self?.propertyList?.append(contentsOf: chatList)
             }
 
