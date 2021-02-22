@@ -131,6 +131,8 @@
 		DD735F87253D8F050079A56F /* StroyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F86253D8F050079A56F /* StroyboardExtension.swift */; };
 		DD735F9C253DB90D0079A56F /* UserFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F9B253DB90D0079A56F /* UserFilterModel.swift */; };
 		DD735FA4253DBC9E0079A56F /* UsersFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735FA3253DBC9E0079A56F /* UsersFilterViewModel.swift */; };
+		DD75689C25E3D036008F3723 /* AccessoryDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75689B25E3D036008F3723 /* AccessoryDatePickerView.swift */; };
+		DD7568A425E3D049008F3723 /* AccessoryDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7568A325E3D049008F3723 /* AccessoryDatePickerView.xib */; };
 		DD75DC1425A71D49002062B6 /* EditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75DC1225A71D49002062B6 /* EditImageCell.swift */; };
 		DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD75DC1325A71D49002062B6 /* EditImageCell.xib */; };
 		DD75DC1B25A76219002062B6 /* FeedbackDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD75DC1A25A76219002062B6 /* FeedbackDetailsViewController.swift */; };
@@ -374,6 +376,8 @@
 		DD735F86253D8F050079A56F /* StroyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyboardExtension.swift; sourceTree = "<group>"; };
 		DD735F9B253DB90D0079A56F /* UserFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterModel.swift; sourceTree = "<group>"; };
 		DD735FA3253DBC9E0079A56F /* UsersFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFilterViewModel.swift; sourceTree = "<group>"; };
+		DD75689B25E3D036008F3723 /* AccessoryDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryDatePickerView.swift; sourceTree = "<group>"; };
+		DD7568A325E3D049008F3723 /* AccessoryDatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessoryDatePickerView.xib; sourceTree = "<group>"; };
 		DD75DC1225A71D49002062B6 /* EditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageCell.swift; sourceTree = "<group>"; };
 		DD75DC1325A71D49002062B6 /* EditImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImageCell.xib; sourceTree = "<group>"; };
 		DD75DC1A25A76219002062B6 /* FeedbackDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailsViewController.swift; sourceTree = "<group>"; };
@@ -801,6 +805,8 @@
 		DD4D12972535916500999B28 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD75689725E3CF21008F3723 /* AccessoryDatePickerView */,
+				DD6941BF25AC6EEA00790558 /* InputAccessoryView */,
 				DD4D12A52535920100999B28 /* EmptyView */,
 			);
 			path = "Custom Views";
@@ -1236,13 +1242,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		DD6941BF25AC6EEA00790558 /* AccessoryView */ = {
+		DD6941BF25AC6EEA00790558 /* InputAccessoryView */ = {
 			isa = PBXGroup;
 			children = (
 				DD6941C025AC6F2700790558 /* EditAccessoryView.swift */,
 				DD6941C825AC6F3400790558 /* EditAccessoryView.xib */,
 			);
-			path = AccessoryView;
+			path = InputAccessoryView;
 			sourceTree = "<group>";
 		};
 		DD735F5F253D71A20079A56F /* Tabs */ = {
@@ -1362,6 +1368,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		DD75689725E3CF21008F3723 /* AccessoryDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				DD75689B25E3D036008F3723 /* AccessoryDatePickerView.swift */,
+				DD7568A325E3D049008F3723 /* AccessoryDatePickerView.xib */,
+			);
+			path = AccessoryDatePickerView;
+			sourceTree = "<group>";
+		};
 		DD75DC0125A71A03002062B6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1458,7 +1473,6 @@
 		DD7A71AC25A468D50081B4F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DD6941BF25AC6EEA00790558 /* AccessoryView */,
 				DD7A71AD25A4692C0081B4F2 /* DataSelectCell.swift */,
 				DD7A71AE25A4692C0081B4F2 /* DataSelectCell.xib */,
 			);
@@ -1958,6 +1972,7 @@
 				DD5668902588CB730072D03B /* PropertyInfoView.xib in Resources */,
 				DD5AF9C22590B7D700CE62B5 /* AbusesCell.xib in Resources */,
 				DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */,
+				DD7568A425E3D049008F3723 /* AccessoryDatePickerView.xib in Resources */,
 				DD3F371B2534988700B03FEF /* LaunchScreen.storyboard in Resources */,
 				DD809FCF25AD9B340034B732 /* FeedbackCell.xib in Resources */,
 				DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */,
@@ -2259,6 +2274,7 @@
 				DD58A3EF25947C2A006DB84D /* UsersNetworkManager.swift in Sources */,
 				DD84844C25AEDD8A00FE1876 /* PopoverViewController.swift in Sources */,
 				DD67E066258FB0CB00443935 /* AppGeneral.swift in Sources */,
+				DD75689C25E3D036008F3723 /* AccessoryDatePickerView.swift in Sources */,
 				DD3F37BC2534A7BC00B03FEF /* PropertiesViewModel.swift in Sources */,
 				DD7A71CE25A48A1F0081B4F2 /* EditPlansCell.swift in Sources */,
 				DD56689C2588CD390072D03B /* ChatReplyView.swift in Sources */,
@@ -2457,7 +2473,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2482,7 +2498,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

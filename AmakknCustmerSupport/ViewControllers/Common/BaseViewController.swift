@@ -19,6 +19,8 @@ extension BaseViewController {
     private func presentLoginVC() {
         guard let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
 
+        loginVC.delegate = self
+
         let navigationVC = UINavigationController(rootViewController: loginVC)
         navigationVC.modalPresentationStyle = .fullScreen
 
@@ -34,5 +36,12 @@ extension BaseViewController: EmptyBGViewDelegate {
     
     func didSelectLogin() {
         presentLoginVC()
+    }
+}
+
+// MARK: - Login Delegate
+extension BaseViewController: LoginDelegate {
+    @objc func loginSuccess() {
+        // Override in Child VC
     }
 }

@@ -7,6 +7,12 @@
 
 import UIKit
 
+// MARK: - UserDetailsProfile Delegate
+protocol UserDetailsProfileDelegate {
+    func callDidTapped(with phone: String?, _ countryCode: String?)
+    func chatDidTapped(with userID: String?)
+}
+
 class UserDetailsProfileCell: UITableViewCell {
     @IBOutlet weak var ibAvatar: UIImageView!
     @IBOutlet weak var ibInitialLabel: UILabel!
@@ -14,6 +20,8 @@ class UserDetailsProfileCell: UITableViewCell {
     @IBOutlet weak var ibNamelabel: UILabel!
     @IBOutlet weak var ibEmailLabel: UILabel!
     @IBOutlet weak var ibPhoneLabel: UILabel!
+
+    var delegate: UserDetailsProfileDelegate?
 
     var profileModel: UserProfileDetails? {
         didSet {
@@ -50,5 +58,16 @@ class UserDetailsProfileCell: UITableViewCell {
         ibInitialLabel.isHidden = true
         ibAvatar.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage())
         ibAvatar.contentMode = .scaleAspectFit
+    }
+}
+
+// MARK: - Button Actions
+extension UserDetailsProfileCell {
+    @IBAction func callButtonTapped(_ sender: UIButton) {
+        delegate?.callDidTapped(with: profileModel?.userPhone, profileModel?.countryCode)
+    }
+
+    @IBAction func chatButtonTapped(_ sender: UIButton) {
+        delegate?.chatDidTapped(with: profileModel?.userID)
     }
 }

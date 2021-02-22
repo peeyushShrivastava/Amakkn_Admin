@@ -45,6 +45,33 @@ class UserFilterDataHeaderView: UIView {
 
         ibSelectedTitleLabel.text = title
         ibSelectedDataTextField.text = text
+
+        updateAccessoryViews(for: title)
+    }
+
+    private func updateAccessoryViews(for title: String?) {
+        guard let title = title else { return }
+        
+        if title == "Last Added property" || title == "Created Date" || title == "Last Opened" {
+            ibSelectedDataTextField.inputAccessoryView = getInputAccessoryView()
+            ibSelectedDataTextField.inputView = getAccessoryView()
+        }
+    }
+
+    private func getAccessoryView() -> UIView {
+        guard let accessoryView = Bundle.main.loadNibNamed("AccessoryDatePickerView", owner: self, options: nil)?.last as? AccessoryDatePickerView else { return UIView() }
+
+        accessoryView.delegate = self
+
+        return accessoryView
+    }
+    
+    func getInputAccessoryView() -> UIView {
+        guard let accessoryView = Bundle.main.loadNibNamed("EditAccessoryView", owner: self, options: nil)?.last as? EditAccessoryView else { return UIView() }
+
+        accessoryView.delegate = self
+
+        return accessoryView
     }
 }
 
@@ -71,5 +98,28 @@ extension UserFilterDataHeaderView: UITextFieldDelegate {
         dataDelegate?.textFieldDidChange(updatedString, for: ibSelectedTitleLabel.text, at: ibExpandButton.tag)
 
         return true
+    }
+}
+
+// MARK: - DatePickerView Delegate
+extension UserFilterDataHeaderView: DatePickerViewDelegate {
+    func didValueChanged(_ date: Date) {
+        updateDate(date)
+    }
+
+    private func updateDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat =  "dd/MM/yyyy"
+
+        ibSelectedDataTextField.text = dateFormatter.string(from: date)
+        dataDelegate?.textFieldDidChange(ibSelectedDataTextField.text, for: ibSelectedTitleLabel.text, at: ibExpandButton.tag)
+    }
+}
+
+// MARK: - InputAccessoryView Delegate
+extension UserFilterDataHeaderView: EditAccessoryViewDelegate {
+    func didTappedDone() {
+        ibSelectedDataTextField.resignFirstResponder()
     }
 }

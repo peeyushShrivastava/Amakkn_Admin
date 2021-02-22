@@ -214,6 +214,15 @@ extension AbusesViewController {
     }
 }
 
+// MARK: - Login Delegate
+extension AbusesViewController {
+    override func loginSuccess() {
+        viewModel.resetPage()
+
+        getAbuses()
+    }
+}
+
 // MARK: - PropertyDetails Delegate
 extension AbusesViewController: PropertyDetailsDelegate {
     func updateComplaint(for propertyID: String?) {

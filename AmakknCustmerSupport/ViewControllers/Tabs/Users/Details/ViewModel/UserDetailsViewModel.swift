@@ -89,6 +89,10 @@ class UserDetailsViewModel {
         return 45.0
     }
 
+    var subjectID: String {
+        return "4" // Can be changed according to backend
+    }
+
     func getCellCount(for section: Int) -> Int {
         guard (userDataSource?[section].detailsData) != nil else { return 1 }
         guard let details = userDataSource?[section] else { return 0 }
@@ -113,6 +117,49 @@ class UserDetailsViewModel {
         guard let dataCount = userDataSource?[indexPath.section].detailsData?.count else { return false }
 
         return (dataCount-1 == indexPath.row)
+    }
+}
+
+// MARK: - Call Action
+extension UserDetailsViewModel {
+    func call(with phone: String?, _ countryCode: String?, callBack: @escaping(_ errorStr: String?) -> Void) {
+        guard let phone = phone, let countryCode = countryCode else { return }
+
+        if AppGeneral.shared.isSimAvialbale() || AppGeneral.shared.isESimAvialable() {
+            AppGeneral.shared.callingAction(phoneNumber: "\(countryCode)\(phone)")
+        } else {
+            callBack("Sim is not avialbale")
+        }
+    }
+}
+
+// MARK: - Chat
+extension UserDetailsViewModel {
+    func getChatModel(for userID: String?, successCallBack: @escaping (_ chatModel: ChatInboxModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void)  {
+        guard let  senderID = AppSession.manager.userID, let receiverID = userID else { return }
+
+        AppNetworkManager.shared.initChat(for: senderID, receiverID, subjectID) { [weak self] channelID in
+            guard let channelID = channelID else { return }
+
+            successCallBack(self?.chatModel(for: channelID))
+        } failureCallBack: { (errorStr) in
+            failureCallBack(errorStr)
+        }
+    }
+
+    private func chatModel(for channelID: String?) -> ChatInboxModel? {
+        guard let userModel = userDataType?.profileDetails else { return nil }
+        guard let  senderID = AppSession.manager.userID, let receiverID = userModel.userID,
+              let senderName = AppSession.manager.userName, let receiverName = userModel.userName,
+              let senderAvatar = AppSession.manager.userAvatar, let receiverAvatar = userModel.userAvatar else { return nil }
+
+        let model = ChatInboxModel(senderID: senderID, receiverID: receiverID, channelID: channelID, propertyID: subjectID, chatID: senderID,
+                                   senderName: senderName, receiverName: receiverName, senderAvatar: senderAvatar, receiverAvatar: receiverAvatar, isVerified: userModel.isVerified,
+                                   category: nil, propertyType: nil, propertyTypeName: nil, listedFor: nil,
+                                   unreadCount: nil, lastMessage: nil, time: nil,
+                                   photos: nil, defaultPrice: nil, address: nil, senderUserType: nil, receiverUserType: nil)
+
+        return model
     }
 }
 

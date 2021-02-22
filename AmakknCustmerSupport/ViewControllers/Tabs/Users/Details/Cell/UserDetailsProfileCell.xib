@@ -114,9 +114,46 @@
                         <color key="textColor" name="selectedTitleTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjq-Nj-FLg">
+                        <rect key="frame" x="264" y="20" width="40" height="40"/>
+                        <color key="backgroundColor" name="darkViewBGColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Jml-y6-Jjw"/>
+                            <constraint firstAttribute="height" constant="40" id="fFJ-Nz-zOF"/>
+                        </constraints>
+                        <state key="normal" image="icChatButtonIcon"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="chatButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="o6j-0J-DAT"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUx-mq-pQS">
+                        <rect key="frame" x="209" y="20" width="40" height="40"/>
+                        <color key="backgroundColor" name="darkViewBGColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="57m-Cd-dGp"/>
+                            <constraint firstAttribute="height" constant="40" id="6mZ-yF-8oT"/>
+                        </constraints>
+                        <state key="normal" image="icCallButtonIcon"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBound" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="callButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0bv-8h-EuH"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ptX-sM-wmd" firstAttribute="leading" secondItem="F09-oC-sDy" secondAttribute="leading" id="1hS-Wc-qpt"/>
+                    <constraint firstItem="qjq-Nj-FLg" firstAttribute="top" secondItem="xEO-oV-igX" secondAttribute="top" id="6Iw-9O-ERg"/>
                     <constraint firstItem="F09-oC-sDy" firstAttribute="leading" secondItem="1wU-jk-5TM" secondAttribute="leading" id="7RB-i2-hQz"/>
                     <constraint firstItem="ptX-sM-wmd" firstAttribute="trailing" secondItem="F09-oC-sDy" secondAttribute="trailing" id="7fF-P7-CYB"/>
                     <constraint firstItem="3Tn-SY-DcM" firstAttribute="top" secondItem="EKk-68-mN9" secondAttribute="bottom" constant="10" id="9mV-CB-3Wc"/>
@@ -138,6 +175,9 @@
                     <constraint firstItem="1wU-jk-5TM" firstAttribute="leading" secondItem="7T8-EH-CM6" secondAttribute="leading" id="hHC-CJ-cOL"/>
                     <constraint firstItem="ptX-sM-wmd" firstAttribute="top" secondItem="F09-oC-sDy" secondAttribute="bottom" constant="10" id="j36-2p-KSe"/>
                     <constraint firstItem="xEO-oV-igX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="kMM-lg-etu"/>
+                    <constraint firstItem="LUx-mq-pQS" firstAttribute="centerY" secondItem="qjq-Nj-FLg" secondAttribute="centerY" id="mRL-uU-wHC"/>
+                    <constraint firstItem="qjq-Nj-FLg" firstAttribute="leading" secondItem="LUx-mq-pQS" secondAttribute="trailing" constant="15" id="npg-4a-MAy"/>
+                    <constraint firstAttribute="trailing" secondItem="qjq-Nj-FLg" secondAttribute="trailing" constant="16" id="ork-1y-xMK"/>
                     <constraint firstItem="EKk-68-mN9" firstAttribute="trailing" secondItem="Ye4-xy-81s" secondAttribute="trailing" id="r3H-tm-9iQ"/>
                     <constraint firstItem="xEO-oV-igX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sK1-dR-Dxn"/>
                     <constraint firstItem="7T8-EH-CM6" firstAttribute="top" secondItem="xEO-oV-igX" secondAttribute="bottom" constant="19" id="u0d-Cj-qjy"/>
@@ -159,6 +199,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icCallButtonIcon" width="24" height="24"/>
+        <image name="icChatButtonIcon" width="24" height="24"/>
         <namedColor name="darkViewBGColor">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

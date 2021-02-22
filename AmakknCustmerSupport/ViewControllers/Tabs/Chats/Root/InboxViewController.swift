@@ -229,6 +229,15 @@ extension InboxViewController {
     }
 }
 
+// MARK: - Login Delegate
+extension InboxViewController {
+    override func loginSuccess() {
+        viewModel.resetPage()
+
+        getChats()
+    }
+}
+
 // MARK: - Push Chat VC
 extension InboxViewController {
     private func pushChatVC(for chat: CSInboxModel) {

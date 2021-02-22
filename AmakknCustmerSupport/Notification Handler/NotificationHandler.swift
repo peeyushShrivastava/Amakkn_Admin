@@ -11,6 +11,17 @@ import UIKit
 // MARK: - NotificationScreens Enum
 enum NotificationScreen: String {
     case cs = "cs"
+    case propertyDetails = "propertyAdded"
+    case userDetails = "userAdded"
+}
+
+// MARK: - NotificationScreens Enum
+enum AppTabs: Int {
+    case inbox = 0
+    case users
+    case properties
+    case abuse
+    case more
 }
 
 // MARK: - Notification Thread Identifiers
@@ -46,6 +57,65 @@ extension NotificationHandler {
         case .cs:
             notificationContent.threadIdentifier = NotifThreadIDs.inbox
             notificationContent.summaryArgument = NotifSummaryArgs.inbox
+        default: break
         }
+    }
+
+    func handleNotification(for response: UNNotificationResponse) {
+        let userInfo = response.notification.request.content.userInfo
+
+        guard let aps = userInfo[AnyHashable("aps")] as? [AnyHashable: Any], let alert = aps[AnyHashable("alert")] as? [AnyHashable: Any] else { return }
+        guard let _ = alert[AnyHashable("body")] as? String, let data = userInfo[AnyHashable("propertyOrUserId")] as? String else { return }
+        guard let screen = userInfo[AnyHashable("screen")] as? String, let screenType = NotificationScreen(rawValue: screen) else { return }
+
+        pushVCs(with: data, at: getTab(for: screenType))
+    }
+
+    private func getTab(for screenType: NotificationScreen) -> AppTabs {
+        switch screenType {
+            case .cs: return .inbox
+            case .propertyDetails: return .properties
+            case .userDetails: return .users
+        }
+    }
+}
+
+// MARK: - Push to VCs
+extension NotificationHandler {
+    private func pushVCs(with data: String, at tab: AppTabs) {
+        guard let window = UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.selectedIndex = tab.rawValue
+
+        guard let navController = tabBarController.viewControllers?[tab.rawValue] as? UINavigationController else { return }
+
+        switch tab {
+            case .inbox: break
+            case .users: pushToUserDetailsVC(for: data, with: navController)
+            case .properties: pushToPropertyDetailsVC(for: data, with: navController)
+            case .abuse: break
+            case .more: break
+        }
+    }
+
+    private func pushToPropertyDetailsVC(for propertyID: String, with navController: UINavigationController) {
+        guard let rootController = navController.children.first as? PropertiesViewController else { return }
+        guard let propertyDetailsVC = PropertyDetailsViewController.instantiateSelf() else { return }
+
+        propertyDetailsVC.viewModel.update(with: propertyID)
+        propertyDetailsVC.delegate = rootController
+
+        rootController.navigationController?.pushViewController(propertyDetailsVC, animated: false)
+    }
+
+    private func pushToUserDetailsVC(for userID: String, with navController: UINavigationController) {
+        guard let rootController = navController.children.first as? UsersViewController else { return }
+        guard let userDetailsVC = UserDetailsViewController.instantiateSelf() else { return }
+
+        userDetailsVC.viewModel.userID = userID
+        userDetailsVC.viewModel.updateDataSource(with: nil)
+
+        rootController.navigationController?.pushViewController(userDetailsVC, animated: false)
     }
 }

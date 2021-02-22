@@ -200,6 +200,15 @@ extension UsersViewController {
     }
 }
 
+// MARK: - Login Delegate
+extension UsersViewController {
+    override func loginSuccess() {
+        viewModel.resetPage()
+
+        getUsers()
+    }
+}
+
 // MARK: - Search Delegate
 extension UsersViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

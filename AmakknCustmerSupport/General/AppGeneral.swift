@@ -24,8 +24,8 @@ enum PropertyType: String {
 
 // MARK: - Property Type
 enum PropertyCategory: String {
-    case sale = "1"
-    case rent = "2"
+    case sale = "2"
+    case rent = "1"
 }
 
 class AppGeneral {

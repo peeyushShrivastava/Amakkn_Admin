@@ -131,6 +131,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userDetailsProfileCellID", for: indexPath) as? UserDetailsProfileCell else { return UITableViewCell() }
 
             cell.profileModel = viewModel.getProfileData()
+            cell.delegate = self
 
             return cell
         default:
@@ -277,6 +278,39 @@ extension UserDetailsViewController: UserDetailsDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.ibDetailsTableView.reloadData()
         }
+    }
+}
+
+// MARK: - UserDetailsProfile Delegate
+extension UserDetailsViewController: UserDetailsProfileDelegate {
+    func callDidTapped(with phone: String?, _ countryCode: String?) {
+        viewModel.call(with: phone, countryCode) { [weak self] errorStr in
+            DispatchQueue.main.async {
+                self?.showAlert(with: errorStr)
+            }
+        }
+    }
+
+    func chatDidTapped(with userID: String?) {
+        viewModel.getChatModel(for: userID) { [weak self] chatModel in
+            DispatchQueue.main.async {
+                self?.pushChatVC(with: chatModel)
+            }
+        } failureCallBack: { [weak self] errorStr in
+            self?.showAlert(with: errorStr)
+        }
+    }
+}
+
+// MARK: - Push Chat VC
+extension UserDetailsViewController {
+    private func pushChatVC(with chatModel: ChatInboxModel?) {
+        guard let chatVC = ChatViewController.instantiateSelf() else { return }
+
+        chatVC.viewModel.update(chatInboxModel: chatModel)
+        chatVC.subject = viewModel.subjectID
+
+        navigationController?.pushViewController(chatVC, animated: true)
     }
 }
 

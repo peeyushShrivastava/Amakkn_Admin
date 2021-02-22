@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     var countryShortNameAndCode: [String] = [String]()
 
     private let viewModel = LoginViewModel()
+    var delegate: LoginDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,8 @@ extension LoginViewController {
     }
 
     @IBAction func nextButtonTapped(_ sender: UIButton) {
+        ibPhoneTextField.resignFirstResponder()
+        ibPasswordTextField.becomeFirstResponder()
     }
 
     @IBAction func keyPadDismiss(_ sender: UIButton) {
@@ -204,6 +207,7 @@ extension LoginViewController {
         viewModel.login(with: countryCode, phone, and: pwd) { [weak self] in
             // SocketIO Establish Connection
             SocketIOManager.sharedInstance.establishConnection()
+            self?.delegate?.loginSuccess()
 
             self?.dismiss(animated: true, completion: nil)
         } failureCallBack: { (errorStr) in

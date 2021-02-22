@@ -7,6 +7,11 @@
 
 import Foundation
 
+// MARK: - Login Delegate
+protocol LoginDelegate {
+    func loginSuccess()
+}
+
 class LoginViewModel {
     func login(with countryCode: String, _ phone: String, and pwd: String, successCallBack: @escaping() -> Void, failureCallBack: @escaping(_ errorStr: String?) -> Void) {
         AppNetworkManager.shared.login(with: countryCode, phone, and: pwd) {

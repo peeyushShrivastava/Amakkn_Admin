@@ -106,8 +106,8 @@ extension ChatReplyView {
 // MARK: - UITextViewDelegate
 extension ChatReplyView: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        ibTextViewBottomConstraint.constant = 18.0
-        ibsendBottomConstraints.constant = 18.0
+        ibTextViewBottomConstraint.constant = Utility.shared.hasNotch ? 0.0 : -18.0
+        ibsendBottomConstraints.constant = Utility.shared.hasNotch ? 0.0 : -18.0
 
         delegate?.didShowKeyboard()
         return true

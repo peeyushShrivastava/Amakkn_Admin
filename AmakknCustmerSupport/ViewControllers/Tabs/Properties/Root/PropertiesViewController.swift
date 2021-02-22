@@ -183,6 +183,15 @@ extension PropertiesViewController {
     }
 }
 
+// MARK: - Login Delegate
+extension PropertiesViewController {
+    override func loginSuccess() {
+        viewModel.resetPage()
+
+        getProperties()
+    }
+}
+
 // MARK: - Search Delegate
 extension PropertiesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
