@@ -52,9 +52,16 @@ class UserFilterDataHeaderView: UIView {
     private func updateAccessoryViews(for title: String?) {
         guard let title = title else { return }
         
-        if title == "Last Added property" || title == "Created Date" || title == "Last Opened" {
+        if title == "Last Added property" || title == "Created Date" || title == "Last Opened" || title == "Updated Date" {
             ibSelectedDataTextField.inputAccessoryView = getInputAccessoryView()
             ibSelectedDataTextField.inputView = getAccessoryView()
+        }
+        
+        if title == "Property Id" || title == "User Id" || title == "Type Number" || title == "Views" {
+            ibSelectedDataTextField.keyboardType = .numberPad
+            ibSelectedDataTextField.inputAccessoryView = getInputAccessoryView()
+        } else {
+            ibSelectedDataTextField.keyboardType = .asciiCapable
         }
     }
 
@@ -78,6 +85,7 @@ class UserFilterDataHeaderView: UIView {
 // MARK: - Button Action
 extension UserFilterDataHeaderView {
     @IBAction func expandButtonTapped(_ sender: UIButton) {
+        endEditing(true)
         delegate?.expandCell(at: sender.tag)
 
         if let buttonImg = ibIndicatorIcon.image?.pngData(), let img = UIImage(named: "icArrowDown")?.pngData(), buttonImg == img {

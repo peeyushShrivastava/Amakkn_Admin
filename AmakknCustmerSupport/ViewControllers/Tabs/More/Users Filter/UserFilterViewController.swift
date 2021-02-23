@@ -47,6 +47,7 @@ extension UserFilterViewController {
     }
 
     @IBAction func resetButtonTapped(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
         viewModel.resetFilter()
 
         ibResetButton.isEnabled = false
