@@ -20,7 +20,8 @@ class UserDetailsProfileCell: UITableViewCell {
     @IBOutlet weak var ibNamelabel: UILabel!
     @IBOutlet weak var ibEmailLabel: UILabel!
     @IBOutlet weak var ibPhoneLabel: UILabel!
-
+    @IBOutlet weak var ibVerifiedIcon: UIImageView!
+    
     var delegate: UserDetailsProfileDelegate?
 
     var profileModel: UserProfileDetails? {
@@ -41,6 +42,7 @@ class UserDetailsProfileCell: UITableViewCell {
         ibUserIDLabel.text = profileModel?.userID
         ibNamelabel.text = profileModel?.userName
         ibPhoneLabel.text = "\(profileModel?.countryCode ?? "") \(profileModel?.userPhone ?? "")"
+        ibVerifiedIcon.isHidden = (profileModel?.isVerified != "2")
 
         if let email = profileModel?.userEmail {
             ibEmailLabel.text = email.isEmpty ? "--" : email

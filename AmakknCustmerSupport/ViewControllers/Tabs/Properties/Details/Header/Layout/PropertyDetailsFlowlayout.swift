@@ -19,6 +19,8 @@ class PropertyDetailsFlowlayout: UICollectionViewFlowLayout {
                 let width = collectionView.frame.width
                 let height = attributes.frame.height - contentOffsetY
 
+                guard height > attributes.frame.height  else { return }
+
                 attributes.frame = CGRect(x: 0.0, y: contentOffsetY, width: width, height: height)
             }
         })

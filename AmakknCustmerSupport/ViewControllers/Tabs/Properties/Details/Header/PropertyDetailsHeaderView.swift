@@ -27,7 +27,9 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
     @IBOutlet weak var ibPriceLabel: UILabel!
     @IBOutlet weak var ibPriceTypeLabel: UILabel!
     @IBOutlet weak var ibAddressLabel: UILabel!
-    
+    @IBOutlet weak var ibImageCount: UILabel!
+    @IBOutlet weak var ibImageCountHolderView: UIView!
+
     @IBOutlet weak var ibQRCodeButton: UIButton!
 
     var delegate: PropertyDetailsHeaderDelegate?
@@ -55,10 +57,11 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
         ibAddressLabel.text = model?.address
         ibPriceTypeLabel.text = model?.priceType?.isEmpty ?? true ? model?.priceType : "(per \(model?.priceType ?? ""))"
 
-        ibPropertyTypeLabel.text = "  \(model?.listedFor ?? "")  "
+        ibPropertyTypeLabel.text = "\(model?.listedFor ?? "")"
 
         updatePhoto()
         updateQRCode()
+        updatePhotoCunt()
     }
 
     private func updatePhoto() {
@@ -72,7 +75,14 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
         guard let imageURLStr = model?.photos?.first else { return }
 
         ibHeaderImageView.sd_setImage(with: URL(string: imageURLStr), placeholderImage: placeHolderImage)
-        ibHeaderImageView.contentMode = .scaleAspectFit
+        ibHeaderImageView.contentMode = .scaleAspectFill
+    }
+
+    private func updatePhotoCunt() {
+        guard let photos = model?.photos, photos.count > 0 else { ibImageCountHolderView.isHidden = true; return }
+
+        ibImageCountHolderView.isHidden = false
+        ibImageCount.text = "1/\(photos.count)"
     }
 
     private func updateQRCode() {
@@ -81,7 +91,6 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
         let shareURLStr = "https://amakkn.com/#!/propertyDescription/\(propertyID)"
         let qrCodeImage = QRCodeGenerator.generateQRCode(for: shareURLStr)
 
-//        ibQRCodeButton.backgroundColor = .red
         ibQRCodeButton.setImage(qrCodeImage, for: .normal)
     }
 }

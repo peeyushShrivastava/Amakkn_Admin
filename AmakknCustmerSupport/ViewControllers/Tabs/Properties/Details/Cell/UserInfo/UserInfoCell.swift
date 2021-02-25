@@ -72,11 +72,11 @@ extension UserInfoCell {
 
         switch accountType {
         case .individual:
-            let typeText = userType == .broker ? "\("UserType_Broker".localized()):" : "\("UserType_Owner".localized()):"
+            let typeText = userType == .broker ? "\("UserType_Broker".localized())" : "\("UserType_Owner".localized())"
 
             ibAccountTypeLabel.text = typeText
         case .corporate:
-            let typeText = userType == .company ? "\("UserType_Corporate".localized())" : "\("UserType_Agent".localized()):"
+            let typeText = userType == .company ? "\("UserType_Corporate".localized())" : "\("UserType_Agent".localized())"
 
             ibAccountTypeLabel.text = typeText
         }

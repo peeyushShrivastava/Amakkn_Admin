@@ -19,15 +19,6 @@ class DetailsOverviewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        ibTitleLabel.layer.masksToBounds = true
-        ibValueLabel.layer.masksToBounds = true
-
-        ibTitleLabel.layer.borderWidth = 1.0
-        ibValueLabel.layer.borderWidth = 1.0
-
-        ibTitleLabel.layer.borderColor = AppColors.borderColor?.cgColor
-        ibValueLabel.layer.borderColor = AppColors.borderColor?.cgColor
     }
 
     private func updateUI() {

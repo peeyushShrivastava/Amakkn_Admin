@@ -23,7 +23,7 @@ typealias complaintsCell = CollectionCellConfigurator<ComplaintsCell, [Complaint
 enum DetailsCellsHeight: CGFloat {
     case description = 80.0
     case overview = 45.01
-    case amenity = 44.0
+    case amenity = 55.0
     case rentOptions = 45.02
     case location = 350.0
     case visitingHrs = 160.0

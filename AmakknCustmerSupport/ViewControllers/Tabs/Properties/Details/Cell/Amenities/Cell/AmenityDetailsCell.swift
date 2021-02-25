@@ -18,10 +18,6 @@ class AmenityDetailsCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        layer.masksToBounds = true
-        layer.borderColor = AppColors.borderColor?.cgColor
-        layer.borderWidth = 1.0
     }
 
     private func updateUI() {

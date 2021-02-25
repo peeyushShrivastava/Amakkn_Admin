@@ -17,14 +17,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="357" height="181"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-7p-aPQ">
+                        <rect key="frame" x="16" y="0.0" width="325" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="0.2046990427" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="X0L-ZF-4BM"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visiting Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1G-mf-b5S">
-                        <rect key="frame" x="20" y="20" width="93" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <rect key="frame" x="20" y="20" width="129" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" name="selectedTitleTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjn-Kc-GE4">
-                        <rect key="frame" x="0.0" y="52" width="357" height="129"/>
+                        <rect key="frame" x="0.0" y="59" width="357" height="122"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A61-BY-f3O">
                                 <rect key="frame" x="20" y="20" width="49.5" height="17"/>
@@ -33,13 +40,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jA-Pd-RMT">
-                                <rect key="frame" x="20" y="56" width="37" height="17"/>
+                                <rect key="frame" x="20" y="52.5" width="37" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" name="selectedTitleTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEV-RD-2t5">
-                                <rect key="frame" x="20" y="92" width="46.5" height="17"/>
+                                <rect key="frame" x="20" y="85" width="46.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" name="selectedTitleTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,13 +58,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0D-5X-yvb">
-                                <rect key="frame" x="92" y="64.5" width="245" height="0.0"/>
+                                <rect key="frame" x="92" y="61" width="245" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="selectedTitleTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDv-gd-HNL">
-                                <rect key="frame" x="104.5" y="85.5" width="232.5" height="30"/>
+                                <rect key="frame" x="104.5" y="78.5" width="232.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IqU-nb-gwU"/>
                                 </constraints>
@@ -69,7 +76,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="lightViewBGColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BEV-RD-2t5" firstAttribute="leading" secondItem="A61-BY-f3O" secondAttribute="leading" id="24Z-bj-EqO"/>
                             <constraint firstItem="A61-BY-f3O" firstAttribute="top" secondItem="qjn-Kc-GE4" secondAttribute="top" constant="20" id="8sm-bT-Rpt"/>
@@ -91,13 +98,17 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="F77-BF-W51"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="kBL-7p-aPQ" secondAttribute="trailing" constant="16" id="0ne-HH-PJE"/>
                 <constraint firstAttribute="bottom" secondItem="qjn-Kc-GE4" secondAttribute="bottom" id="79s-iA-jMB"/>
                 <constraint firstItem="qjn-Kc-GE4" firstAttribute="leading" secondItem="5qG-b0-lMn" secondAttribute="leading" id="Nde-ZI-d5S"/>
+                <constraint firstItem="kBL-7p-aPQ" firstAttribute="leading" secondItem="5qG-b0-lMn" secondAttribute="leading" constant="16" id="Qk2-g5-ppT"/>
                 <constraint firstAttribute="trailing" secondItem="qjn-Kc-GE4" secondAttribute="trailing" id="Ujt-2m-TWx"/>
                 <constraint firstItem="X1G-mf-b5S" firstAttribute="top" secondItem="5qG-b0-lMn" secondAttribute="top" constant="20" id="geo-A2-CkG"/>
                 <constraint firstItem="X1G-mf-b5S" firstAttribute="leading" secondItem="5qG-b0-lMn" secondAttribute="leading" constant="20" id="jPb-Xb-gQ1"/>
                 <constraint firstItem="qjn-Kc-GE4" firstAttribute="top" secondItem="X1G-mf-b5S" secondAttribute="bottom" constant="15" id="u3i-AB-UwA"/>
+                <constraint firstItem="kBL-7p-aPQ" firstAttribute="top" secondItem="5qG-b0-lMn" secondAttribute="top" id="xI3-7B-rKm"/>
             </constraints>
             <size key="customSize" width="357" height="181"/>
             <connections>
@@ -113,9 +124,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="lightViewBGColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="selectedTitleTextColor">
             <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

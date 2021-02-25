@@ -17,15 +17,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="442" height="162"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlP-dB-ZaY">
+                        <rect key="frame" x="16" y="0.0" width="410" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="0.2046990427" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="wcz-cX-UE8"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rent Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDC-sX-J5g">
-                        <rect key="frame" x="20" y="20" width="86" height="17"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <rect key="frame" x="20" y="20" width="119.5" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" name="selectedTitleTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uFZ-a9-AHx">
-                        <rect key="frame" x="0.0" y="52" width="442" height="110"/>
-                        <color key="backgroundColor" name="lightViewBGColor"/>
+                        <rect key="frame" x="0.0" y="59" width="442" height="103"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
                             <outlet property="dataSource" destination="JK0-ic-pj5" id="qQE-zg-fYR"/>
                             <outlet property="delegate" destination="JK0-ic-pj5" id="qyf-f3-6oG"/>
@@ -34,13 +41,17 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="UCt-ES-bHJ"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="LlP-dB-ZaY" firstAttribute="top" secondItem="JK0-ic-pj5" secondAttribute="top" id="5DP-KV-DKK"/>
                 <constraint firstAttribute="trailing" secondItem="uFZ-a9-AHx" secondAttribute="trailing" id="7FH-2n-YGr"/>
                 <constraint firstAttribute="bottom" secondItem="uFZ-a9-AHx" secondAttribute="bottom" id="JCR-Mx-WJp"/>
                 <constraint firstItem="uFZ-a9-AHx" firstAttribute="leading" secondItem="JK0-ic-pj5" secondAttribute="leading" id="Jzp-6q-mVZ"/>
                 <constraint firstItem="bDC-sX-J5g" firstAttribute="leading" secondItem="JK0-ic-pj5" secondAttribute="leading" constant="20" id="LXK-NT-KHc"/>
                 <constraint firstItem="uFZ-a9-AHx" firstAttribute="top" secondItem="bDC-sX-J5g" secondAttribute="bottom" constant="15" id="NBJ-i3-BsC"/>
+                <constraint firstItem="LlP-dB-ZaY" firstAttribute="leading" secondItem="JK0-ic-pj5" secondAttribute="leading" constant="16" id="je2-dr-pjX"/>
                 <constraint firstItem="bDC-sX-J5g" firstAttribute="top" secondItem="JK0-ic-pj5" secondAttribute="top" constant="20" id="kZm-aa-bbV"/>
+                <constraint firstAttribute="trailing" secondItem="LlP-dB-ZaY" secondAttribute="trailing" constant="16" id="wAi-hg-vpn"/>
             </constraints>
             <size key="customSize" width="442" height="163"/>
             <connections>
@@ -51,9 +62,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="lightViewBGColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="selectedTitleTextColor">
             <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
