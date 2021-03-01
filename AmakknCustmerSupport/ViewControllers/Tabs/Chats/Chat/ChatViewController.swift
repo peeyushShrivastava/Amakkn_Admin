@@ -116,7 +116,7 @@ class ChatViewController: UIViewController {
         layout.sectionHeadersPinToVisibleBounds = true
 
         ibChatCollectionView.alwaysBounceVertical = true
-        ibChatCollectionView.keyboardDismissMode = .interactive
+//        ibChatCollectionView.keyboardDismissMode = .interactive
     }
 
     private func updateInfoView() {

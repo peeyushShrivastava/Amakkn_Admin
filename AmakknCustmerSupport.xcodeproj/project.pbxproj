@@ -122,6 +122,7 @@
 		DD6892182540A252004DB93A /* UserDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6892172540A252004DB93A /* UserDetailsModel.swift */; };
 		DD6941C125AC6F2700790558 /* EditAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6941C025AC6F2700790558 /* EditAccessoryView.swift */; };
 		DD6941C925AC6F3400790558 /* EditAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6941C825AC6F3400790558 /* EditAccessoryView.xib */; };
+		DD71C93A25EBCED70008A92F /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71C93925EBCED70008A92F /* CopyableLabel.swift */; };
 		DD735F5B253D6FDE0079A56F /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD735F5A253D6FDE0079A56F /* More.storyboard */; };
 		DD735F62253D72030079A56F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F61253D72030079A56F /* MoreViewController.swift */; };
 		DD735F6D253D722D0079A56F /* MoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD735F6B253D722D0079A56F /* MoreCell.swift */; };
@@ -367,6 +368,7 @@
 		DD6892172540A252004DB93A /* UserDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModel.swift; sourceTree = "<group>"; };
 		DD6941C025AC6F2700790558 /* EditAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccessoryView.swift; sourceTree = "<group>"; };
 		DD6941C825AC6F3400790558 /* EditAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditAccessoryView.xib; sourceTree = "<group>"; };
+		DD71C93925EBCED70008A92F /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		DD735F5A253D6FDE0079A56F /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		DD735F61253D72030079A56F /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		DD735F6B253D722D0079A56F /* MoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCell.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 		DD4D12972535916500999B28 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD71C93825EBCB9B0008A92F /* CopyableLabel */,
 				DD75689725E3CF21008F3723 /* AccessoryDatePickerView */,
 				DD6941BF25AC6EEA00790558 /* InputAccessoryView */,
 				DD4D12A52535920100999B28 /* EmptyView */,
@@ -1249,6 +1252,14 @@
 				DD6941C825AC6F3400790558 /* EditAccessoryView.xib */,
 			);
 			path = InputAccessoryView;
+			sourceTree = "<group>";
+		};
+		DD71C93825EBCB9B0008A92F /* CopyableLabel */ = {
+			isa = PBXGroup;
+			children = (
+				DD71C93925EBCED70008A92F /* CopyableLabel.swift */,
+			);
+			path = CopyableLabel;
 			sourceTree = "<group>";
 		};
 		DD735F5F253D71A20079A56F /* Tabs */ = {
@@ -2239,6 +2250,7 @@
 				DD5AF9C12590B7D700CE62B5 /* AbusesCell.swift in Sources */,
 				DD5060A525471379003E4F4B /* VisitingHoursCell.swift in Sources */,
 				DD4151112537325000545E41 /* SubjectCell.swift in Sources */,
+				DD71C93A25EBCED70008A92F /* CopyableLabel.swift in Sources */,
 				DD7B90A22593636A00926624 /* UserPropertiesViewController.swift in Sources */,
 				DD5668BC2588D1F20072D03B /* ChatAPIModel.swift in Sources */,
 				DD735F87253D8F050079A56F /* StroyboardExtension.swift in Sources */,
@@ -2473,7 +2485,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2498,7 +2510,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

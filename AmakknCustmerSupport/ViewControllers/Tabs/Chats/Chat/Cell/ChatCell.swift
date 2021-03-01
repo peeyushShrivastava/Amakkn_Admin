@@ -9,7 +9,7 @@ import UIKit
 
 class ChatCell: UICollectionViewCell {
     @IBOutlet weak var ibBubbleView: UIView!
-    @IBOutlet weak var ibTextlabel: UILabel!
+    @IBOutlet weak var ibTextlabel: CopyableLabel!
 
     @IBOutlet weak var ibSenderDateLabel: UILabel!
     @IBOutlet weak var ibReceiverDateLabel: UILabel!
@@ -37,6 +37,7 @@ class ChatCell: UICollectionViewCell {
     private func updateChatText() {
         ibTextlabel.text = chatModel?.chatText
         ibTextlabel.numberOfLines = 0
+        ibTextlabel.isUserInteractionEnabled = true
     }
 }
 
