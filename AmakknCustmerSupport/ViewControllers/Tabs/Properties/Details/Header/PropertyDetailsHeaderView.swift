@@ -55,7 +55,7 @@ class PropertyDetailsHeaderView: UICollectionReusableView {
         ibLikesLabel.text = "\(model?.likes ?? "0") Likes"
         ibPriceLabel.text = model?.propertyPrice?.amkFormat
         ibAddressLabel.text = model?.address
-        ibPriceTypeLabel.text = model?.priceType?.isEmpty ?? true ? model?.priceType : "(per \(model?.priceType ?? ""))"
+        ibPriceTypeLabel.text = (model?.priceType?.isEmpty ?? true || model?.priceType == "salePrice") ? "" : "(per \(model?.priceType ?? ""))"
 
         ibPropertyTypeLabel.text = "\(model?.listedFor ?? "")"
 

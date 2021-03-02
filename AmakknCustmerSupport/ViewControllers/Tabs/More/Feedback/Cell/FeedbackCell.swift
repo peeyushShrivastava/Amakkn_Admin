@@ -21,6 +21,7 @@ class FeedbackCell: UITableViewCell {
     @IBOutlet weak var ibNextIcon: UIImageView!
     @IBOutlet weak var ibNextIconWidth: NSLayoutConstraint!
 
+    @IBOutlet weak var ibUserIDLabel: UILabel!
     @IBOutlet weak var ibHeaderLabel: UILabel!
     @IBOutlet weak var ibNameLabel: UILabel!
     @IBOutlet weak var ibMessageLabel: UILabel!
@@ -56,7 +57,7 @@ class FeedbackCell: UITableViewCell {
 
     private func updateUserID() {
         let title = (dataSource?.userID == "0") ? "Guest" : "UserID: \(dataSource?.userID ?? "")"
-        ibUserIDButton.setTitle(title, for: .normal)
+        ibUserIDLabel.text = title
 
         ibUserIDButton.isUserInteractionEnabled = (dataSource?.userID != "0")
         ibNextIcon.isHidden = (dataSource?.userID == "0")

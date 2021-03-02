@@ -23,6 +23,7 @@ struct PropertyCardsModel: Codable {
 
     var status: String?
     let defaultPrice: String?
+    let defaultPriceType: PriceType?
     let listedFor: String?
 
     let photos: String?
@@ -36,7 +37,7 @@ struct PropertyCardsModel: Codable {
     private enum CodingKeys: String, CodingKey {
         case userID = "userId"
         case propertyID = "propertyId"
-        case listedFor, defaultPrice, address, complaintCount
+        case listedFor, defaultPrice, address, complaintCount, defaultPriceType
         case propertyType, category, status, photos, createdAt
     }
 }
