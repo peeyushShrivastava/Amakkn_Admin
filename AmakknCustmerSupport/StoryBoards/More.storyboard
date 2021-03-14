@@ -428,7 +428,7 @@
         <scene sceneID="5av-wt-g88">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bPC-OM-Lkr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="Tab4_More" id="nXb-g0-CMl"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="More" image="Tab4_More" id="nXb-g0-CMl"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WpS-Ux-Aia">

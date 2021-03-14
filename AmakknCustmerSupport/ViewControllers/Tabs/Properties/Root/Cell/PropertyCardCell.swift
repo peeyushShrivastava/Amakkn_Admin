@@ -40,7 +40,7 @@ class PropertyCardCell: UICollectionViewCell {
     private func updateUI() {
         let priceType = (dataSource?.defaultPriceType?.name?.isEmpty ?? true || dataSource?.defaultPriceType?.name == "salePrice") ? "" : "(/ \(dataSource?.defaultPriceType?.name ?? ""))"
         ibPriceLabel.text = priceType.isEmpty ? dataSource?.defaultPrice?.amkFormat : dataSource?.defaultPrice?.amkFormat ?? "" + priceType
-        ibPropertyTypeLabel.text = "  \(Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.category) ?? "")  "
+        ibPropertyTypeLabel.text = "  \(Utility.shared.getPropertyTypeName(for: dataSource?.propertyType, with: dataSource?.listedFor) ?? "")  "
         ibAddressLabel.text = dataSource?.address
         ibCreatedDate.text = "Created On: \(Utility.shared.convertDates(for: dataSource?.createdAt) ?? "")"
         ibStatusLabel.text = getStatus()

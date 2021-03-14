@@ -33,6 +33,7 @@ class InboxViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = false
 
         ibEmptyBGView.updateUI()
+        updateMainTabDelegate()
         ibFilterButton.isEnabled = AppSession.manager.validSession
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Chats...") : ibEmptyBGView.updateErrorText()
     }
@@ -45,6 +46,13 @@ class InboxViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         ibChatTableView.addSubview(refreshControl)
+    }
+
+    private func updateMainTabDelegate() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.tabDelegate = self
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -220,6 +228,15 @@ extension InboxViewController: SubjectsDelegate {
     }
 }
 
+// MARK: - MainTab Delegate
+extension InboxViewController {
+    override func scrollToTop() {
+        DispatchQueue.main.async {
+            self.ibChatTableView.setContentOffset(CGPoint(x: 0, y: self.ibChatTableView.contentInset.top), animated: true)
+        }
+    }
+}
+
 // MARK: - EmptyBGView Delegate
 extension InboxViewController {
     override func didSelectRefresh() {
@@ -245,6 +262,13 @@ extension InboxViewController {
 
         chatVC.viewModel.update(chatInboxModel: getChatModel(for: chat))
         chatVC.subject = chat.subject ?? ""
+        
+        chatVC.reloadChat = { [weak self] in
+            DispatchQueue.main.async {
+                self?.viewModel.resetPage()
+                self?.getChats()
+            }
+        }
 
         navigationController?.pushViewController(chatVC, animated: true)
     }

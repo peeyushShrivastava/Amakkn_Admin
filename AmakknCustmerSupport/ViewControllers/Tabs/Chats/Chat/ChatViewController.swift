@@ -22,6 +22,8 @@ class ChatViewController: UIViewController {
     var ibNavBarTitleView: UIView?
     var ibStatusLabel: UILabel?
 
+    var reloadChat: (() -> Void)?
+
     /// Private Constants
     private let maxWidth: CGFloat = 255.0
     private let maxHeight: CGFloat = 1000.0
@@ -104,6 +106,11 @@ class ChatViewController: UIViewController {
 
         /// Disconnect Channel Socket
         SocketIOManager.sharedInstance.offChannelSocket()
+
+        // Reload Chat once Popped to Inbox VC
+        if let reloadChat = reloadChat {
+            reloadChat()
+        }
     }
 
     /// Register ChatCell

@@ -70,6 +70,8 @@ class UsersViewModel {
     }
 
     subscript (_ index: Int) -> SearchedUserModel? {
+        guard users?.count ?? 0 > 0 else { return nil }
+
         return users?[index]
     }
 

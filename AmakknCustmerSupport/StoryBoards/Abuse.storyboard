@@ -100,7 +100,7 @@
         <scene sceneID="oP6-de-Nu4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wsY-iJ-3Eq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Abuse" image="Tab3_Listings" id="H6b-Il-rue"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Abuse" image="Tab3_Listings" id="H6b-Il-rue"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tRr-OF-Q1c">

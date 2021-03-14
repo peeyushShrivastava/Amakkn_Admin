@@ -27,6 +27,8 @@ class Utility {
 
     private init() { }
 
+    private var selectedTabItem = 0
+
     var selectedLanguage: LanguageType {
         return .english
     }
@@ -208,5 +210,16 @@ extension Utility {
             case .showroom: return "Showroom for \(propertyCategory)"
             case .office: return "Office for \(propertyCategory)"
         }
+    }
+}
+
+// MARK: - Selected Tab
+extension Utility {
+    func getSelectedTab() -> Int {
+        return selectedTabItem
+    }
+
+    func updateSelectedTab(with tag: Int?) {
+        selectedTabItem = tag ?? 0
     }
 }

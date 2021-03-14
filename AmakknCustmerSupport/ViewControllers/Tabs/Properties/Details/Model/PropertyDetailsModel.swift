@@ -170,7 +170,7 @@ struct DetailsHeaderModel {
 
         photos = propertyDetails?.photos?.components(separatedBy: ",")
         priceType = propertyDetails?.defaultPriceType?.name
-        listedFor = Utility.shared.getPropertyTypeName(for: propertyDetails?.propertyType, with: propertyDetails?.category)
+        listedFor = Utility.shared.getPropertyTypeName(for: propertyDetails?.propertyType, with: propertyDetails?.listedFor)
 
         favStatus = propertyDetails?.isInFavourites == "1"
         compareStatus = propertyDetails?.isInCompareList == "1"

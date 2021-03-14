@@ -365,7 +365,7 @@
         <scene sceneID="j74-Ax-gbT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SdU-Kp-gHb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Properties" image="Tab3_Listings" id="qD8-Iq-exD">
+                    <tabBarItem key="tabBarItem" tag="2" title="Properties" image="Tab3_Listings" id="qD8-Iq-exD">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.14117647059999999" green="0.78823529410000004" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>

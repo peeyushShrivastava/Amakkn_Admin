@@ -394,7 +394,7 @@
         <scene sceneID="Nry-Od-yid">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8VP-A4-Jsv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Users" image="Tab2_Users" id="ZIq-bf-R3h">
+                    <tabBarItem key="tabBarItem" tag="1" title="Users" image="Tab2_Users" id="ZIq-bf-R3h">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.14117647059999999" green="0.78823529410000004" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>

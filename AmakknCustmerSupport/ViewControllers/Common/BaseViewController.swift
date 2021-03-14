@@ -15,6 +15,13 @@ class BaseViewController: UIViewController {
 }
 
 // MARK: - Push VCs
+extension BaseViewController: MainTabDelegate {
+    @objc func scrollToTop() {
+        // Override in Child VC
+    }
+}
+
+// MARK: - Push VCs
 extension BaseViewController {
     private func presentLoginVC() {
         guard let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }

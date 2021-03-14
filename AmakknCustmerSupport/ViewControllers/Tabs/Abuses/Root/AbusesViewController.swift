@@ -32,6 +32,7 @@ class AbusesViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
 
         ibEmptyBGView.updateUI()
+        updateMainTabDelegate()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
     }
 
@@ -43,6 +44,13 @@ class AbusesViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         ibTableView.addSubview(refreshControl)
+    }
+
+    private func updateMainTabDelegate() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.tabDelegate = self
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -202,6 +210,15 @@ extension AbusesViewController: AppPopoverDelegate {
         viewModel.resetPage()
         viewModel.selectedOrder = title
         getAbuses()
+    }
+}
+
+// MARK: - MainTab Delegate
+extension AbusesViewController {
+    override func scrollToTop() {
+        DispatchQueue.main.async {
+            self.ibTableView.setContentOffset(CGPoint(x: 0, y: self.ibTableView.contentInset.top), animated: true)
+        }
     }
 }
 

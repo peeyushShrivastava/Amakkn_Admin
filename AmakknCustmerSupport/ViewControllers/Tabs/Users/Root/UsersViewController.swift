@@ -36,6 +36,7 @@ class UsersViewController: BaseViewController {
         navigationItem.titleView = viewModel.isFilterCalled ? nil: ibSearchBar
 
         ibEmptyBGView.updateUI()
+        updateMainTabDelegate()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Users...") : ibEmptyBGView.updateErrorText()
     }
 
@@ -56,6 +57,13 @@ class UsersViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         ibCollectionView.addSubview(refreshControl)
+    }
+
+    private func updateMainTabDelegate() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.tabDelegate = self
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -188,6 +196,15 @@ extension UsersViewController: UsersViewDelegate {
     func updateProperty(count: String?) {
         ibCountHolderView.isHidden = false
         ibCountLabel.text = count
+    }
+}
+
+// MARK: - MainTab Delegate
+extension UsersViewController {
+    override func scrollToTop() {
+        DispatchQueue.main.async {
+            self.ibCollectionView.setContentOffset(CGPoint(x: 0, y: self.ibCollectionView.contentInset.top), animated: true)
+        }
     }
 }
 
