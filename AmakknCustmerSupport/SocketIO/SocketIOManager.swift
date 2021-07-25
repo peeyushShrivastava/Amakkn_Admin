@@ -182,6 +182,8 @@ extension SocketIOManager {
 // MARK: - SocketIO Emit Chat
 extension SocketIOManager {
     private func emit(_ chatDict: [String: Any]?) {
+        updateConnection()
+
         guard let chatDict = chatDict else { return }
 
         socket?.emit(chatChannelID, chatDict)

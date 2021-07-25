@@ -9,6 +9,7 @@
 "alert_OK" = "Ok";
 "alert_Yes" = "Yes";
 "Alert_Cancel" = "Cancel";
+"Done" = "Done";
 
 "Chat_Today" = "Today";
 "Chat_yesterday" = "Yesterday";
@@ -17,7 +18,8 @@
 "Report_Abuse" = "Report Abuse";
 "Logout" = "Logout";
 "Login" = "Login";
-"More_Are_you_sure_Logout"="Are you sure you want to logout?";
+"Tickets" = "Tickets";
+"More_Are_you_sure_Logout" = "Are you sure you want to logout?";
 
 "User_Suspend" = "Suspend User";
 "Send_Notif" = "Send Notification";

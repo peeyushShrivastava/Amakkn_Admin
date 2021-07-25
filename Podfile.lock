@@ -1,4 +1,7 @@
 PODS:
+  - AWSCore (2.10.3)
+  - AWSS3 (2.10.3):
+    - AWSCore (= 2.10.3)
   - Firebase/CoreOnly (7.3.0):
     - FirebaseCore (= 7.3.0)
   - Firebase/Messaging (7.3.0):
@@ -70,6 +73,8 @@ PODS:
   - SwiftHash (2.0.2)
 
 DEPENDENCIES:
+  - AWSCore (~> 2.10.0)
+  - AWSS3 (~> 2.10.0)
   - Firebase/Messaging
   - Localize-Swift
   - SDWebImage
@@ -78,6 +83,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AWSCore
+    - AWSS3
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -95,6 +102,8 @@ SPEC REPOS:
     - SwiftHash
 
 SPEC CHECKSUMS:
+  AWSCore: f9b8a30d9e8ec07d1a6dd8f0ec5fe84b6a215041
+  AWSS3: c6f0f7a49a74384b9d0fe055c822d1fa5c633905
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
   FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
@@ -111,6 +120,6 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftHash: 6d312abe61c8359bdef8d0093642f3a70b1c17ba
 
-PODFILE CHECKSUM: 26a8396dd9d1c74994bc01d7a73006860e9a8afd
+PODFILE CHECKSUM: f35be5f3e00eb5a4456cf781609c9ab615ccf2a2
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

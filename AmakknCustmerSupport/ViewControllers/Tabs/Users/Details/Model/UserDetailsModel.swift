@@ -31,6 +31,7 @@ struct UserProfileDetails {
     let userPhone: String?
     let countryCode: String?
     let isVerified: String?
+    let createdAt: String?
 
     init(_ userDetails: UserStatsModel?) {
         userID =  userDetails?.userID
@@ -40,6 +41,7 @@ struct UserProfileDetails {
         userPhone = userDetails?.userPhone
         countryCode = userDetails?.countryCode
         isVerified = userDetails?.isUserVerified
+        createdAt = userDetails?.createdAt
     }
 }
 

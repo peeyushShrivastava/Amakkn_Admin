@@ -180,7 +180,7 @@ extension UsersViewModel {
     private func chatModel(for channelID: String?, _ userModel: SearchedUserModel) -> ChatInboxModel? {
         guard let  senderID = AppSession.manager.userID, let receiverID = userModel.userID,
               let senderName = AppSession.manager.userName, let receiverName = userModel.userName,
-              let senderAvatar = AppSession.manager.userAvatar,let receiverAvatar = userModel.userAvatar else { return nil }
+              let senderAvatar = AppSession.manager.userAvatar, let receiverAvatar = userModel.userAvatar else { return nil }
 
         let model = ChatInboxModel(senderID: senderID, receiverID: receiverID, channelID: channelID, propertyID: subjectID, chatID: senderID,
                                    senderName: senderName, receiverName: receiverName, senderAvatar: senderAvatar, receiverAvatar: receiverAvatar, isVerified: userModel.isVerified,

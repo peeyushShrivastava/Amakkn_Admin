@@ -177,6 +177,7 @@
 		DD7CCB7F259B17A60048B478 /* PhotosPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CCB7E259B17A60048B478 /* PhotosPageViewController.swift */; };
 		DD7D0B212591DF1C00A95530 /* ComplaintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D0B1F2591DF1C00A95530 /* ComplaintCell.swift */; };
 		DD7D0B222591DF1C00A95530 /* ComplaintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD7D0B202591DF1C00A95530 /* ComplaintCell.xib */; };
+		DD7D96A726A7EE9900F8C8C4 /* AppLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D96A626A7EE9900F8C8C4 /* AppLoader.swift */; };
 		DD8001642590D8590001E737 /* ComplaintsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8001622590D8590001E737 /* ComplaintsCell.swift */; };
 		DD8001652590D8590001E737 /* ComplaintsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD8001632590D8590001E737 /* ComplaintsCell.xib */; };
 		DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD80016B2590E6B20001E737 /* StatsViewModel.swift */; };
@@ -189,6 +190,10 @@
 		DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */; };
 		DD88BA28259DDDEE0044BF53 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */; };
 		DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */; };
+		DD8A3EF426AD7A220070DB22 /* SelectSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8A3EF326AD7A220070DB22 /* SelectSubjectViewController.swift */; };
+		DD8A3EF626AD7A360070DB22 /* SelectSubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8A3EF526AD7A360070DB22 /* SelectSubjectViewModel.swift */; };
+		DD8A3EFA26AD7AA80070DB22 /* SelectSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8A3EF826AD7AA80070DB22 /* SelectSubCell.swift */; };
+		DD8A3EFB26AD7AA80070DB22 /* SelectSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD8A3EF926AD7AA80070DB22 /* SelectSubCell.xib */; };
 		DD9646DA25A325BC00F852F4 /* PropertyNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */; };
 		DD9646F825A32FE800F852F4 /* EditImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9646F625A32FE800F852F4 /* EditImagesCell.swift */; };
 		DD9646F925A32FE800F852F4 /* EditImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9646F725A32FE800F852F4 /* EditImagesCell.xib */; };
@@ -201,6 +206,24 @@
 		DD96472725A36C5000F852F4 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96472525A36C5000F852F4 /* FeatureCell.swift */; };
 		DD96472825A36C5000F852F4 /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD96472625A36C5000F852F4 /* FeatureCell.xib */; };
 		DD96472E25A3751C00F852F4 /* EditPropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */; };
+		DDA3392326A6851F00A1BAC8 /* TicketListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392226A6851F00A1BAC8 /* TicketListModel.swift */; };
+		DDA3392526A6855D00A1BAC8 /* CreateTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392426A6855D00A1BAC8 /* CreateTicketViewController.swift */; };
+		DDA3392726A6857C00A1BAC8 /* CreateTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392626A6857C00A1BAC8 /* CreateTicketViewModel.swift */; };
+		DDA3392A26A6861400A1BAC8 /* TicketDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392926A6861400A1BAC8 /* TicketDetailsViewController.swift */; };
+		DDA3392C26A6862E00A1BAC8 /* TicketDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392B26A6862E00A1BAC8 /* TicketDetailsViewModel.swift */; };
+		DDA3393026A686FB00A1BAC8 /* TDCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3392F26A686FB00A1BAC8 /* TDCustomView.swift */; };
+		DDA3393226A6870900A1BAC8 /* TDCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA3393126A6870900A1BAC8 /* TDCustomView.xib */; };
+		DDA3393426A6875800A1BAC8 /* TDCustomInActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3393326A6875800A1BAC8 /* TDCustomInActiveView.swift */; };
+		DDA3393626A6876600A1BAC8 /* TDCustomInActiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA3393526A6876600A1BAC8 /* TDCustomInActiveView.xib */; };
+		DDA3393E26A687F100A1BAC8 /* TicketInboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3393C26A687F100A1BAC8 /* TicketInboxCell.swift */; };
+		DDA3393F26A687F100A1BAC8 /* TicketInboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA3393D26A687F100A1BAC8 /* TicketInboxCell.xib */; };
+		DDA3394126A6884600A1BAC8 /* TicketsInboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3394026A6884600A1BAC8 /* TicketsInboxViewController.swift */; };
+		DDA3394326A6885D00A1BAC8 /* TicketsInboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3394226A6885D00A1BAC8 /* TicketsInboxViewModel.swift */; };
+		DDA3394526A6893E00A1BAC8 /* TicketsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3394426A6893E00A1BAC8 /* TicketsNetworkManager.swift */; };
+		DDA3394926A6C2EB00A1BAC8 /* AppPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3394726A6C2EB00A1BAC8 /* AppPhotoPickerViewController.swift */; };
+		DDA3394A26A6C2EB00A1BAC8 /* AppPhotoPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA3394826A6C2EB00A1BAC8 /* AppPhotoPickerViewController.xib */; };
+		DDA3394E26A6C6C900A1BAC8 /* GalleryImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3394C26A6C6C900A1BAC8 /* GalleryImageCell.swift */; };
+		DDA3394F26A6C6C900A1BAC8 /* GalleryImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA3394D26A6C6C900A1BAC8 /* GalleryImageCell.xib */; };
 		DDAB993D258B6D880032FE0E /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB993B258B6D880032FE0E /* InboxCell.swift */; };
 		DDAB993E258B6D880032FE0E /* InboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDAB993C258B6D880032FE0E /* InboxCell.xib */; };
 		DDC4F1D6253ECB1C00766311 /* UserFilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */; };
@@ -423,6 +446,7 @@
 		DD7CCB7E259B17A60048B478 /* PhotosPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPageViewController.swift; sourceTree = "<group>"; };
 		DD7D0B1F2591DF1C00A95530 /* ComplaintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintCell.swift; sourceTree = "<group>"; };
 		DD7D0B202591DF1C00A95530 /* ComplaintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplaintCell.xib; sourceTree = "<group>"; };
+		DD7D96A626A7EE9900F8C8C4 /* AppLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLoader.swift; sourceTree = "<group>"; };
 		DD8001622590D8590001E737 /* ComplaintsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplaintsCell.swift; sourceTree = "<group>"; };
 		DD8001632590D8590001E737 /* ComplaintsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplaintsCell.xib; sourceTree = "<group>"; };
 		DD80016B2590E6B20001E737 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
@@ -435,6 +459,10 @@
 		DD88BA22259DDDDD0044BF53 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DD88BA27259DDDEE0044BF53 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNetworkManager.swift; sourceTree = "<group>"; };
+		DD8A3EF326AD7A220070DB22 /* SelectSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubjectViewController.swift; sourceTree = "<group>"; };
+		DD8A3EF526AD7A360070DB22 /* SelectSubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubjectViewModel.swift; sourceTree = "<group>"; };
+		DD8A3EF826AD7AA80070DB22 /* SelectSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubCell.swift; sourceTree = "<group>"; };
+		DD8A3EF926AD7AA80070DB22 /* SelectSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectSubCell.xib; sourceTree = "<group>"; };
 		DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyNetworkManager.swift; sourceTree = "<group>"; };
 		DD9646F625A32FE800F852F4 /* EditImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImagesCell.swift; sourceTree = "<group>"; };
 		DD9646F725A32FE800F852F4 /* EditImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImagesCell.xib; sourceTree = "<group>"; };
@@ -447,6 +475,24 @@
 		DD96472525A36C5000F852F4 /* FeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
 		DD96472625A36C5000F852F4 /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
 		DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyModel.swift; sourceTree = "<group>"; };
+		DDA3392226A6851F00A1BAC8 /* TicketListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListModel.swift; sourceTree = "<group>"; };
+		DDA3392426A6855D00A1BAC8 /* CreateTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTicketViewController.swift; sourceTree = "<group>"; };
+		DDA3392626A6857C00A1BAC8 /* CreateTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTicketViewModel.swift; sourceTree = "<group>"; };
+		DDA3392926A6861400A1BAC8 /* TicketDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailsViewController.swift; sourceTree = "<group>"; };
+		DDA3392B26A6862E00A1BAC8 /* TicketDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailsViewModel.swift; sourceTree = "<group>"; };
+		DDA3392F26A686FB00A1BAC8 /* TDCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCustomView.swift; sourceTree = "<group>"; };
+		DDA3393126A6870900A1BAC8 /* TDCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TDCustomView.xib; sourceTree = "<group>"; };
+		DDA3393326A6875800A1BAC8 /* TDCustomInActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCustomInActiveView.swift; sourceTree = "<group>"; };
+		DDA3393526A6876600A1BAC8 /* TDCustomInActiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TDCustomInActiveView.xib; sourceTree = "<group>"; };
+		DDA3393C26A687F100A1BAC8 /* TicketInboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInboxCell.swift; sourceTree = "<group>"; };
+		DDA3393D26A687F100A1BAC8 /* TicketInboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketInboxCell.xib; sourceTree = "<group>"; };
+		DDA3394026A6884600A1BAC8 /* TicketsInboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsInboxViewController.swift; sourceTree = "<group>"; };
+		DDA3394226A6885D00A1BAC8 /* TicketsInboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsInboxViewModel.swift; sourceTree = "<group>"; };
+		DDA3394426A6893E00A1BAC8 /* TicketsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsNetworkManager.swift; sourceTree = "<group>"; };
+		DDA3394726A6C2EB00A1BAC8 /* AppPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPhotoPickerViewController.swift; sourceTree = "<group>"; };
+		DDA3394826A6C2EB00A1BAC8 /* AppPhotoPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppPhotoPickerViewController.xib; sourceTree = "<group>"; };
+		DDA3394C26A6C6C900A1BAC8 /* GalleryImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageCell.swift; sourceTree = "<group>"; };
+		DDA3394D26A6C6C900A1BAC8 /* GalleryImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryImageCell.xib; sourceTree = "<group>"; };
 		DDAB993B258B6D880032FE0E /* InboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
 		DDAB993C258B6D880032FE0E /* InboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxCell.xib; sourceTree = "<group>"; };
 		DDC4F1D5253ECB1C00766311 /* UserFilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterHeaderView.swift; sourceTree = "<group>"; };
@@ -807,6 +853,8 @@
 		DD4D12972535916500999B28 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD7D96A526A7EE6800F8C8C4 /* LoaderView */,
+				DDA3394626A6C2B400A1BAC8 /* CustomPhotoPicker */,
 				DD71C93825EBCB9B0008A92F /* CopyableLabel */,
 				DD75689725E3CF21008F3723 /* AccessoryDatePickerView */,
 				DD6941BF25AC6EEA00790558 /* InputAccessoryView */,
@@ -869,6 +917,7 @@
 				DD58A3F3259481BB006DB84D /* AbusesNetworkManager.swift */,
 				DD88BA2F259DE8540044BF53 /* MoreNetworkManager.swift */,
 				DD9646D925A325BC00F852F4 /* PropertyNetworkManager.swift */,
+				DDA3394426A6893E00A1BAC8 /* TicketsNetworkManager.swift */,
 			);
 			path = "Network Stack";
 			sourceTree = "<group>";
@@ -1277,6 +1326,7 @@
 		DD735F60253D71DC0079A56F /* More */ = {
 			isa = PBXGroup;
 			children = (
+				DDA3391D26A6849800A1BAC8 /* Tickets */,
 				DD77A9E925481E4B004D8985 /* Filter */,
 				DD735F7B253D7A8E0079A56F /* Users Filter */,
 				DD88BA1A259DDD9B0044BF53 /* Feedback */,
@@ -1555,6 +1605,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		DD7D96A526A7EE6800F8C8C4 /* LoaderView */ = {
+			isa = PBXGroup;
+			children = (
+				DD7D96A626A7EE9900F8C8C4 /* AppLoader.swift */,
+			);
+			path = LoaderView;
+			sourceTree = "<group>";
+		};
 		DD8001612590D8060001E737 /* Complaints */ = {
 			isa = PBXGroup;
 			children = (
@@ -1632,6 +1690,25 @@
 			children = (
 				DD809FCC25AD9B340034B732 /* FeedbackCell.swift */,
 				DD809FCD25AD9B340034B732 /* FeedbackCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DD8A3EF226AD79E90070DB22 /* Subjects */ = {
+			isa = PBXGroup;
+			children = (
+				DD8A3EF726AD7A910070DB22 /* Cell */,
+				DD8A3EF326AD7A220070DB22 /* SelectSubjectViewController.swift */,
+				DD8A3EF526AD7A360070DB22 /* SelectSubjectViewModel.swift */,
+			);
+			path = Subjects;
+			sourceTree = "<group>";
+		};
+		DD8A3EF726AD7A910070DB22 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD8A3EF826AD7AA80070DB22 /* SelectSubCell.swift */,
+				DD8A3EF926AD7AA80070DB22 /* SelectSubCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1779,6 +1856,110 @@
 				DD96472D25A3751C00F852F4 /* EditPropertyModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DDA3391D26A6849800A1BAC8 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3392126A684FC00A1BAC8 /* Model */,
+				DDA3392026A684EB00A1BAC8 /* Create */,
+				DDA3391F26A684DE00A1BAC8 /* Details */,
+				DDA3391E26A684CB00A1BAC8 /* Inbox */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		DDA3391E26A684CB00A1BAC8 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3393726A687AA00A1BAC8 /* Cell */,
+				DDA3394026A6884600A1BAC8 /* TicketsInboxViewController.swift */,
+				DDA3394226A6885D00A1BAC8 /* TicketsInboxViewModel.swift */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		DDA3391F26A684DE00A1BAC8 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3392826A685F000A1BAC8 /* CustomView */,
+				DDA3392926A6861400A1BAC8 /* TicketDetailsViewController.swift */,
+				DDA3392B26A6862E00A1BAC8 /* TicketDetailsViewModel.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		DDA3392026A684EB00A1BAC8 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				DD8A3EF226AD79E90070DB22 /* Subjects */,
+				DDA3392426A6855D00A1BAC8 /* CreateTicketViewController.swift */,
+				DDA3392626A6857C00A1BAC8 /* CreateTicketViewModel.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		DDA3392126A684FC00A1BAC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3392226A6851F00A1BAC8 /* TicketListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DDA3392826A685F000A1BAC8 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3392D26A6864400A1BAC8 /* Active */,
+				DDA3392E26A6864F00A1BAC8 /* Inactive */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		DDA3392D26A6864400A1BAC8 /* Active */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3392F26A686FB00A1BAC8 /* TDCustomView.swift */,
+				DDA3393126A6870900A1BAC8 /* TDCustomView.xib */,
+			);
+			path = Active;
+			sourceTree = "<group>";
+		};
+		DDA3392E26A6864F00A1BAC8 /* Inactive */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3393326A6875800A1BAC8 /* TDCustomInActiveView.swift */,
+				DDA3393526A6876600A1BAC8 /* TDCustomInActiveView.xib */,
+			);
+			path = Inactive;
+			sourceTree = "<group>";
+		};
+		DDA3393726A687AA00A1BAC8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3393C26A687F100A1BAC8 /* TicketInboxCell.swift */,
+				DDA3393D26A687F100A1BAC8 /* TicketInboxCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DDA3394626A6C2B400A1BAC8 /* CustomPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3394B26A6C69E00A1BAC8 /* Cell */,
+				DDA3394726A6C2EB00A1BAC8 /* AppPhotoPickerViewController.swift */,
+				DDA3394826A6C2EB00A1BAC8 /* AppPhotoPickerViewController.xib */,
+			);
+			path = CustomPhotoPicker;
+			sourceTree = "<group>";
+		};
+		DDA3394B26A6C69E00A1BAC8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DDA3394C26A6C6C900A1BAC8 /* GalleryImageCell.swift */,
+				DDA3394D26A6C6C900A1BAC8 /* GalleryImageCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		DDC4F1D4253ECAAB00766311 /* SectionView */ = {
@@ -1985,15 +2166,20 @@
 				DD75DC1525A71D49002062B6 /* EditImageCell.xib in Resources */,
 				DD7568A425E3D049008F3723 /* AccessoryDatePickerView.xib in Resources */,
 				DD3F371B2534988700B03FEF /* LaunchScreen.storyboard in Resources */,
+				DDA3394F26A6C6C900A1BAC8 /* GalleryImageCell.xib in Resources */,
 				DD809FCF25AD9B340034B732 /* FeedbackCell.xib in Resources */,
 				DD7A71DD25A4959D0081B4F2 /* EditPriceCell.xib in Resources */,
 				DD735F6E253D722D0079A56F /* MoreCell.xib in Resources */,
+				DDA3393626A6876600A1BAC8 /* TDCustomInActiveView.xib in Resources */,
 				DD7A71B025A4692C0081B4F2 /* DataSelectCell.xib in Resources */,
+				DDA3394A26A6C2EB00A1BAC8 /* AppPhotoPickerViewController.xib in Resources */,
 				DD47A3EE25B043CD006269C5 /* UserFilterDataHeaderView.xib in Resources */,
 				DD7A71C125A477F50081B4F2 /* EditPropertyTextFieldCell.xib in Resources */,
 				DD50607525470FC0003E4F4B /* AmenitiesCell.xib in Resources */,
 				DD4150B52536FF4D00545E41 /* LoaderView.xib in Resources */,
+				DDA3393226A6870900A1BAC8 /* TDCustomView.xib in Resources */,
 				DDAB993E258B6D880032FE0E /* InboxCell.xib in Resources */,
+				DD8A3EFB26AD7AA80070DB22 /* SelectSubCell.xib in Resources */,
 				DD3F377725349E6900B03FEF /* Users.storyboard in Resources */,
 				DD96472825A36C5000F852F4 /* FeatureCell.xib in Resources */,
 				DD5668FA258903320072D03B /* Msg_Sent.caf in Resources */,
@@ -2015,6 +2201,7 @@
 				DD58A3FB25948466006DB84D /* ResolveComplaintsCell.xib in Resources */,
 				DD4150F025370A4100545E41 /* Localizable.strings in Resources */,
 				DD5668FE258903350072D03B /* Msg_Recvd.caf in Resources */,
+				DDA3393F26A687F100A1BAC8 /* TicketInboxCell.xib in Resources */,
 				DD5AF9822590AD9900CE62B5 /* Abuse.storyboard in Resources */,
 				DD78B998254160DF00380231 /* UserDetailsDataCell.xib in Resources */,
 				DD4151122537325000545E41 /* SubjectCell.xib in Resources */,
@@ -2158,6 +2345,7 @@
 				DD7CCB77259B17820048B478 /* PhotosViewController.swift in Sources */,
 				DD77A9EB25481E89004D8985 /* PropertiesFilterViewController.swift in Sources */,
 				DD49724925383EB90068694C /* PropertyCardCell.swift in Sources */,
+				DDA3394E26A6C6C900A1BAC8 /* GalleryImageCell.swift in Sources */,
 				DD4D12B225359CE700999B28 /* LoginViewController.swift in Sources */,
 				DD8001742590E6C90001E737 /* StatsViewController.swift in Sources */,
 				DD7A71D525A48E7C0081B4F2 /* EditDescriptionCell.swift in Sources */,
@@ -2179,8 +2367,10 @@
 				DD59BC2B2588C5E9003A2B40 /* ChatViewModel.swift in Sources */,
 				DD4150FE253716DA00545E41 /* AppColors.swift in Sources */,
 				DD3F37A22534A70C00B03FEF /* UsersViewController.swift in Sources */,
+				DDA3392326A6851F00A1BAC8 /* TicketListModel.swift in Sources */,
 				DD50606C25470ED5003E4F4B /* DetailsOverviewCell.swift in Sources */,
 				DD4D12F32536046E00999B28 /* AppNetworkManager.swift in Sources */,
+				DD8A3EF426AD7A220070DB22 /* SelectSubjectViewController.swift in Sources */,
 				DDD97BC525458AF0000B0B8F /* PropertyDetailsViewModel.swift in Sources */,
 				DD96470C25A34CB200F852F4 /* EditPropertyDetailsViewController.swift in Sources */,
 				DDD8DDA9258A80AB0004C130 /* AbuseViewModel.swift in Sources */,
@@ -2196,12 +2386,15 @@
 				DD50605725470CF7003E4F4B /* DescriptionCell.swift in Sources */,
 				DD75DC1B25A76219002062B6 /* FeedbackDetailsViewController.swift in Sources */,
 				DD50607425470FC0003E4F4B /* AmenitiesCell.swift in Sources */,
+				DD8A3EF626AD7A360070DB22 /* SelectSubjectViewModel.swift in Sources */,
+				DDA3392526A6855D00A1BAC8 /* CreateTicketViewController.swift in Sources */,
 				DD50608D2547122B003E4F4B /* FloorPlansCell.swift in Sources */,
 				DD3F37942534A6B600B03FEF /* InboxViewModel.swift in Sources */,
 				DD7B90AB259363DF00926624 /* UserPropertiesViewModel.swift in Sources */,
 				DD441C41259CC97B00AE6E6C /* ViewLocationViewController.swift in Sources */,
 				DD59BC262588C3CF003A2B40 /* ChatModel.swift in Sources */,
 				DD96472E25A3751C00F852F4 /* EditPropertyModel.swift in Sources */,
+				DDA3393426A6875800A1BAC8 /* TDCustomInActiveView.swift in Sources */,
 				DD5AF9A62590B20500CE62B5 /* AbusesViewModel.swift in Sources */,
 				DD88BA30259DE8540044BF53 /* MoreNetworkManager.swift in Sources */,
 				DD77A9E52547EE07004D8985 /* QRCodeGenerator.swift in Sources */,
@@ -2225,6 +2418,7 @@
 				DDD8DDA3258A808C0004C130 /* AbuseCell.swift in Sources */,
 				DD5668CD2588D2100072D03B /* CoreDataStack.swift in Sources */,
 				DD3F379A2534A6EF00B03FEF /* ChatsModel.swift in Sources */,
+				DDA3393E26A687F100A1BAC8 /* TicketInboxCell.swift in Sources */,
 				DD3F37B62534A76200B03FEF /* PropertiesViewController.swift in Sources */,
 				DD77A9F725481ED2004D8985 /* PropertiesFilterViewModel.swift in Sources */,
 				DD5668EE2588DA120072D03B /* ChatNetworkManager.swift in Sources */,
@@ -2243,8 +2437,12 @@
 				DD78B98525415DB100380231 /* UserDetailsHeaderView.swift in Sources */,
 				DD96470625A3361400F852F4 /* EditImagesViewController.swift in Sources */,
 				DD56687F2588C8E10072D03B /* ChatViewController.swift in Sources */,
+				DD8A3EFA26AD7AA80070DB22 /* SelectSubCell.swift in Sources */,
+				DDA3394326A6885D00A1BAC8 /* TicketsInboxViewModel.swift in Sources */,
 				DD96472725A36C5000F852F4 /* FeatureCell.swift in Sources */,
+				DD7D96A726A7EE9900F8C8C4 /* AppLoader.swift in Sources */,
 				DD5668962588CCBE0072D03B /* ChatSectionHeader.swift in Sources */,
+				DDA3392C26A6862E00A1BAC8 /* TicketDetailsViewModel.swift in Sources */,
 				DD68920825406271004DB93A /* UserDetailsViewModel.swift in Sources */,
 				DD50607E254710FF003E4F4B /* AmenityDetailsCell.swift in Sources */,
 				DD5AF9C12590B7D700CE62B5 /* AbusesCell.swift in Sources */,
@@ -2266,28 +2464,34 @@
 				DD96471F25A36A7300F852F4 /* EditFeaturesCell.swift in Sources */,
 				DD5AF9CD2590BE8400CE62B5 /* AbusesModel.swift in Sources */,
 				DD4D12C02535A39400999B28 /* BaseViewController.swift in Sources */,
+				DDA3392726A6857C00A1BAC8 /* CreateTicketViewModel.swift in Sources */,
 				DD4150B42536FF4D00545E41 /* LoaderView.swift in Sources */,
 				DD7A71C725A4780E0081B4F2 /* EditFrontIsPieceCell.swift in Sources */,
 				DD4D12AB2535981600999B28 /* AppSession.swift in Sources */,
 				DD78B990254160A000380231 /* UserDetailsProfileCell.swift in Sources */,
 				DD88BA23259DDDDD0044BF53 /* FeedbackViewModel.swift in Sources */,
 				DD7D0B212591DF1C00A95530 /* ComplaintCell.swift in Sources */,
+				DDA3394926A6C2EB00A1BAC8 /* AppPhotoPickerViewController.swift in Sources */,
 				DDD97BCB2545BF8E000B0B8F /* PropertyDetailsModel.swift in Sources */,
 				DD5060972547129F003E4F4B /* TitleFloorPlanCell.swift in Sources */,
 				DDD8DD90258A204C0004C130 /* UserModel.swift in Sources */,
 				DD96470125A3360000F852F4 /* EditImagesViewModel.swift in Sources */,
+				DDA3392A26A6861400A1BAC8 /* TicketDetailsViewController.swift in Sources */,
 				DD77A9DC2547ECBA004D8985 /* PropertyDetailsFlowlayout.swift in Sources */,
 				DD5060852547119B003E4F4B /* UserInfoCell.swift in Sources */,
+				DDA3393026A686FB00A1BAC8 /* TDCustomView.swift in Sources */,
 				DD77A9D52547EC4D004D8985 /* PropertyDetailsHeaderView.swift in Sources */,
 				DD5907392599CC12003C5D72 /* NotificationHandler.swift in Sources */,
 				DD7A71DC25A4959D0081B4F2 /* EditPriceCell.swift in Sources */,
 				DD80016C2590E6B20001E737 /* StatsViewModel.swift in Sources */,
 				DD5668A72588CFF60072D03B /* SocketIOManager.swift in Sources */,
 				DD58A3EF25947C2A006DB84D /* UsersNetworkManager.swift in Sources */,
+				DDA3394126A6884600A1BAC8 /* TicketsInboxViewController.swift in Sources */,
 				DD84844C25AEDD8A00FE1876 /* PopoverViewController.swift in Sources */,
 				DD67E066258FB0CB00443935 /* AppGeneral.swift in Sources */,
 				DD75689C25E3D036008F3723 /* AccessoryDatePickerView.swift in Sources */,
 				DD3F37BC2534A7BC00B03FEF /* PropertiesViewModel.swift in Sources */,
+				DDA3394526A6893E00A1BAC8 /* TicketsNetworkManager.swift in Sources */,
 				DD7A71CE25A48A1F0081B4F2 /* EditPlansCell.swift in Sources */,
 				DD56689C2588CD390072D03B /* ChatReplyView.swift in Sources */,
 				DD6831B525A89EE600A8AEBE /* PropertySaveCell.swift in Sources */,
@@ -2485,7 +2689,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;
@@ -2510,7 +2714,7 @@
 				CODE_SIGN_ENTITLEMENTS = AmakknCustmerSupport/AmakknCustmerSupport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 32Z5NWZ8T5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AmakknCustmerSupport/Info.plist;

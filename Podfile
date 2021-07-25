@@ -8,7 +8,8 @@ def common_pods
   pod 'SwiftHash'
   pod 'Socket.IO-Client-Swift'
   pod 'Firebase/Messaging'
-
+  pod 'AWSS3', '~> 2.10.0'
+  pod 'AWSCore', '~> 2.10.0'
 end
 
 target 'AmakknCustmerSupport' do

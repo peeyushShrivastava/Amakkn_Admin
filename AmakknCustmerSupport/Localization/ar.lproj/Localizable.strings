@@ -9,6 +9,7 @@
 "alert_OK" = "موافق";
 "alert_Yes" = "Yes";
 "Alert_Cancel" = "Cancel";
+"Done" = "منجز";
 
 "Chat_Today" = "اليوم";
 "Chat_yesterday" = "في الامس";
@@ -17,6 +18,7 @@
 "Report_Abuse" = "إبلاغ";
 "Logout" = "تسجيل الخروج";
 "Login" = "Login";
+"Tickets" = "Tickets";
 "More_Are_you_sure_Logout"="هل تود تسجيل الخروج من التطبيق؟";
 
 "User_Suspend" = "Suspend User";

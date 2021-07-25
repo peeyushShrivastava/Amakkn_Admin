@@ -73,6 +73,12 @@ extension Utility {
         let createdDateStr = formatter.string(from: createdAt)
         return MD5(createdDateStr + userID).lowercased()
     }
+
+    func getHashedUserID(for userID: String?, createdAt: String?) -> String {
+        guard let userID = userID, let createdAt = createdAt else { return "" }
+
+        return MD5(createdAt + userID).lowercased()
+    }
 }
 
 // MARK: - Date Conversion
@@ -95,6 +101,18 @@ extension Utility {
         let since1970 = currentDate.timeIntervalSince1970
 
         return Int(since1970 * 1000)
+    }
+
+    func dateStrInMilliSecs(dateStr: String?) -> String? {
+        guard let dateStr = dateStr else { return "" }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        guard let date = formatter.date(from: dateStr) else { return "" }
+        let since1970 = date.timeIntervalSince1970
+
+        return String(since1970 * 1000)
     }
 
     func isFormat24Hrs() -> Bool {

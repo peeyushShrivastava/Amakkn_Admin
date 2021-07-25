@@ -7,10 +7,17 @@
 
 import UIKit
 import Firebase
+import AWSCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.EUCentral1,
+                                                                identityPoolId:"eu-central-1:14032726-16fe-4208-b032-5a1585ad6e53")
+        let configuration = AWSServiceConfiguration(region:.EUCentral1, credentialsProvider:credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+
         AppNetworkManager.shared.getBadge()
 
         FirebaseApp.configure()

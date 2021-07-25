@@ -74,6 +74,14 @@ extension UserDetailsViewController {
         let notification = UIAlertAction(title: "Send_Notif".localized(), style: .default, handler: { [weak self] _ in
             self?.performSegue(withIdentifier: "notificationSegueID", sender: nil)
         })
+        let ticket = UIAlertAction(title: "Create Ticket", style: .default, handler: { [weak self] _ in
+            guard let createTicketVC = CreateTicketViewController.instantiateSelf() else { return }
+
+            let profileModel = self?.viewModel.getProfileData()
+            createTicketVC.viewModel.updateUserID(Utility.shared.getHashedUserID(for: profileModel?.userID, createdAt: profileModel?.createdAt))
+
+            self?.navigationController?.pushViewController(createTicketVC, animated: true)
+        })
         let active = UIAlertAction(title: "User_Active".localized(), style: .default, handler: { [weak self] _ in
             self?.showActionAlert(for: UserChangeStatus.activate.rawValue)
         })
@@ -89,17 +97,21 @@ extension UserDetailsViewController {
             case .activate:
                 moreMenu.addAction(suspend)
                 moreMenu.addAction(notification)
+                moreMenu.addAction(ticket)
                 moreMenu.addAction(delete)
             case .delete:
                 moreMenu.addAction(notification)
+                moreMenu.addAction(ticket)
             case .suspend:
                 moreMenu.addAction(active)
                 moreMenu.addAction(notification)
+                moreMenu.addAction(ticket)
                 moreMenu.addAction(delete)
             case .created:
                 moreMenu.addAction(suspend)
                 moreMenu.addAction(active)
                 moreMenu.addAction(notification)
+                moreMenu.addAction(ticket)
                 moreMenu.addAction(delete)
         }
 

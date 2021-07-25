@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ticketInboxICellD" id="Aa7-om-LJI" customClass="TicketInboxCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="130"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="130"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problem in Account Verification" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-va-Uf4">
+                        <rect key="frame" x="16" y="31.5" width="342" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebJ-VL-73t">
+                        <rect key="frame" x="297" y="85" width="61" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohb-pS-Ikp">
+                                <rect key="frame" x="15" y="2" width="31" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="selectedTitleTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="viewBGColor"/>
+                        <constraints>
+                            <constraint firstItem="ohb-pS-Ikp" firstAttribute="top" secondItem="ebJ-VL-73t" secondAttribute="top" constant="2" id="2qF-uJ-FcJ"/>
+                            <constraint firstAttribute="height" constant="30" id="6d7-4R-z5A"/>
+                            <constraint firstItem="ohb-pS-Ikp" firstAttribute="leading" secondItem="ebJ-VL-73t" secondAttribute="leading" constant="15" id="kDh-YQ-TTV"/>
+                            <constraint firstAttribute="trailing" secondItem="ohb-pS-Ikp" secondAttribute="trailing" constant="15" id="mzs-S6-P35"/>
+                            <constraint firstAttribute="bottom" secondItem="ohb-pS-Ikp" secondAttribute="bottom" constant="2" id="sx7-OR-rCW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                <integer key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Nov 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flk-fS-Mbv">
+                        <rect key="frame" x="285" y="12" width="73" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="26U-2x-2OB"/>
+            <color key="backgroundColor" name="darkViewBGColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ebJ-VL-73t" secondAttribute="trailing" constant="16" id="3w5-La-tLW"/>
+                <constraint firstAttribute="trailing" secondItem="2Va-va-Uf4" secondAttribute="trailing" constant="16" id="7bL-GB-zqP"/>
+                <constraint firstItem="2Va-va-Uf4" firstAttribute="top" secondItem="flk-fS-Mbv" secondAttribute="bottom" constant="5" id="CJR-to-2aj"/>
+                <constraint firstItem="flk-fS-Mbv" firstAttribute="top" secondItem="Aa7-om-LJI" secondAttribute="top" constant="12" id="GJc-BX-BlV"/>
+                <constraint firstItem="2Va-va-Uf4" firstAttribute="leading" secondItem="Aa7-om-LJI" secondAttribute="leading" constant="16" id="aS8-sF-Rl9"/>
+                <constraint firstAttribute="bottom" secondItem="ebJ-VL-73t" secondAttribute="bottom" constant="15" id="uTN-fI-eoH"/>
+                <constraint firstAttribute="trailing" secondItem="flk-fS-Mbv" secondAttribute="trailing" constant="16" id="xuL-e1-T19"/>
+            </constraints>
+            <size key="customSize" width="374" height="125"/>
+            <connections>
+                <outlet property="ibStatusHolder" destination="ebJ-VL-73t" id="fbt-uz-6iB"/>
+                <outlet property="ibStatusLabel" destination="ohb-pS-Ikp" id="OXd-pZ-d9X"/>
+                <outlet property="ticketTitleLabel" destination="2Va-va-Uf4" id="dGJ-gS-heb"/>
+            </connections>
+            <point key="canvasLocation" x="317.39130434782612" y="122.87946428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="darkViewBGColor">
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBGColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

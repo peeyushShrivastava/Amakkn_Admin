@@ -66,7 +66,7 @@ extension AppNetworkManager {
             case .saveFCMToken:
                 return ["userId": hashedUserID, "pushToken": AppUserDefaults.manager.pushFCMToken ?? "", "platform": Utility.shared.appPlatform, "language": selectedLanguage, "identifier": Utility.shared.deviceIdentifier]
             case .logout:
-                return ["userId": hashedUserID, "pushToken": AppUserDefaults.manager.pushFCMToken ?? "abcd"]
+                return ["userId": hashedUserID, "pushToken": "abcd"]
             case .getBadgeCount:
                 return ["userId": hashedUserID]
             case .getSupportChats(let page, let pageSize, let subjectID):

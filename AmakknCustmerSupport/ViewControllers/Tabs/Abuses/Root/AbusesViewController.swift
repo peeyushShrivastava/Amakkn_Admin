@@ -181,6 +181,10 @@ extension AbusesViewController: AbusesViewDelegate {
             self?.ibTableView.isHidden = isListEmpty
             self?.ibEmptyBGView.isHidden = !isListEmpty
 
+            if isListEmpty {
+                self?.ibEmptyBGView.updateErrorText()
+            }
+
             self?.ibTableView.reloadData()
             self?.refreshControl.endRefreshing()
         }
