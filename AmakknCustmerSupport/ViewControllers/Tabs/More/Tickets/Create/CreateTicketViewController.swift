@@ -75,19 +75,19 @@ extension CreateTicketViewController {
         switch sender.tag {
             case 1:
                 guard let image = ibScreenShot1.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(at: sender.tag-1))
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
             case 2:
                 guard let image = ibScreenShot2.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(at: sender.tag-1))
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
             case 3:
                 guard let image = ibScreenShot3.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(at: sender.tag-1))
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
             case 4:
                 guard let image = ibScreenShot4.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(at: sender.tag-1))
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
             case 5:
                 guard let image = ibScreenShot5.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(at: sender.tag-1))
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
             default:
                 return
         }
@@ -256,7 +256,7 @@ extension CreateTicketViewController {
                                 }
                              _ = self.navigationController?.popViewController(animated: false)
                             }))
-                            alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                            alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                             self.present(alertController, animated: true, completion: nil)
                         })
                     }
@@ -283,7 +283,7 @@ extension CreateTicketViewController {
                     }
                  _ = self.navigationController?.popViewController(animated: false)
                 }))
-                alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             })
         case .notDetermined:
@@ -304,7 +304,7 @@ extension CreateTicketViewController {
                             }
                          _ = self.navigationController?.popViewController(animated: false)
                         }))
-                        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     })
                 case .notDetermined:
@@ -318,7 +318,7 @@ extension CreateTicketViewController {
                             }
                          _ = self.navigationController?.popViewController(animated: false)
                         }))
-                        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     })
                 default: break
@@ -431,7 +431,7 @@ extension CreateTicketViewController {
             }
         }))
 
-        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
 
@@ -446,14 +446,12 @@ extension CreateTicketViewController {
 
 // MARK: - View Image
 extension CreateTicketViewController {
-    private func viewImage(for imageURL: String?) {
-        guard let imageURL = imageURL  else { return }
-//        guard let webVC = UIStoryboard.init(name: "More", bundle: nil).instantiateViewController(withIdentifier: "MoreWebViewController") as? MoreWebViewController else { return }
-//
-//        webVC.contentIdentifier = 0
-//        webVC.urlStrToLoad = imageURL
-//
-//        navigationController?.pushViewController(webVC, animated: true)
+    private func viewImage(for images: [String]?) {
+        guard let imageURLs = images  else { return }
+        guard let photoVC = PhotosViewController.instantiateSelf() else { return }
+
+        photoVC.photos = imageURLs
+        navigationController?.pushViewController(photoVC, animated: true)
     }
 }
 

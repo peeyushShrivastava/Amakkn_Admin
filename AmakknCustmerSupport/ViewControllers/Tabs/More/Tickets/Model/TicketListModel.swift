@@ -77,7 +77,8 @@ struct StatusModel: Codable {
 }
 
 struct TicketDetails: Codable {
-    let userID: String?
+    let userId: String?
+    let statusId: String?
     let status: String?
     let statusName: String?
     let isActive: String?
@@ -85,14 +86,7 @@ struct TicketDetails: Codable {
     let images: [DetailsImage]?
     let comments: [DetailsComment]?
 
-    let createdDate: String?
-
-    private enum Codingkeys: String, CodingKey {
-        case userID = "userId"
-        case createdDate = "createdAt"
-
-        case status, statusName, images, comments
-    }
+    let createdAt: String?
 }
 
 struct DetailsImage: Codable {

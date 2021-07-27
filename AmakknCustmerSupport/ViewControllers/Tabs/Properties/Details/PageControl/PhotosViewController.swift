@@ -51,3 +51,10 @@ extension PhotosViewController: PhotosPageControlDelegate {
         updateCounter(with: page)
     }
 }
+
+// MARK: - Init Self
+extension PhotosViewController: InitiableViewController {
+    static var storyboardType: AppStoryboard {
+        return .properties
+    }
+}

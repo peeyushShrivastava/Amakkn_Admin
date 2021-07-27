@@ -11,7 +11,7 @@ import Photos
 
 class TicketDetailsViewController: UIViewController {
     let picker = UIImagePickerController()
-    let scrollView = UIScrollView()
+    var scrollView = UIScrollView()
 
     let viewModel = TicketDetailsViewModel()
 
@@ -24,6 +24,35 @@ class TicketDetailsViewController: UIViewController {
         viewModel.getTicketDetails()
         viewModel.getStatusList()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NotificationHandler.manager.delegate = self
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationHandler.manager.delegate = nil
+    }
+}
+
+// MARK: - Button Actions
+extension TicketDetailsViewController {
+    @IBAction func refreshButtonTapped(_ sender: UIBarButtonItem) {
+        viewModel.getTicketDetails()
+    }
+
+    @IBAction func infoButtonTapped(_ sender: UIBarButtonItem) {
+        guard let userDetailsVC = UserDetailsViewController.instantiateSelf() else { return }
+
+        userDetailsVC.viewModel.userID = viewModel.getUserID()
+        userDetailsVC.viewModel.updateDataSource(with: nil)
+
+        navigationController?.pushViewController(userDetailsVC, animated: true)
+    }
 }
 
 // MARK: - UIAlertView
@@ -31,12 +60,7 @@ extension TicketDetailsViewController {
     private func showAlert(for errorStr: String?) {
         let alertController = UIAlertController(title: errorStr, message: nil, preferredStyle: .alert)
 
-        alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .cancel, handler: { [weak self] _ in
-            guard self?.viewModel.statusChanged ?? false else { return }
-
-            self?.navigationController?.popViewController(animated: true)
-        }))
-
+        alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .cancel, handler: nil))
 
         present(alertController, animated: true, completion: nil)
     }
@@ -45,15 +69,31 @@ extension TicketDetailsViewController {
 // MARK: - TicketList Delegate
 extension TicketDetailsViewController: TicketsListDelegate {
     func success() {
-        guard !viewModel.statusChanged else { showAlert(for: "Ticket Status has been changed Successfully!"); return }
-
         scrollView.subviews.forEach({ $0.removeFromSuperview() })
+        scrollView.frame = CGRect.zero
+        scrollView.contentSize.height = 0.0
         scrollView.removeFromSuperview()
+
         updateUI()
+
+        if viewModel.statusChanged {
+            viewModel.statusChanged = false
+
+            showAlert(for: "Ticket Status has been changed Successfully!")
+        }
     }
 
     func failed(with errorStr: String?) {
         showAlert(for: errorStr)
+    }
+}
+
+// MARK: - AppNotification Delegate
+extension TicketDetailsViewController: AppNotificationDelegate {
+    func didReceiveNotification(for ticketID: String?) {
+        guard ticketID == viewModel.getTicketID() else { return }
+
+        viewModel.getTicketDetails()
     }
 }
 
@@ -147,28 +187,26 @@ extension TicketDetailsViewController {
 
 // MARK: - TDCustomView Delegate
 extension TicketDetailsViewController: TDCustomViewDelegate {
-    func changeStatusDidTapped(for status: String?) {
-        showActionSheet(for: status)
+    func changeStatusDidTapped(for status: String?, and statusID: String?) {
+        showActionSheet(for: status, and: statusID)
     }
 
-    func sendDidTapped(with comment: String?, for status: String?) {
-        viewModel.addComment(comment, for: status)
+    func sendDidTapped(with comment: String?, for statusID: String?) {
+        viewModel.addComment(comment, for: statusID)
     }
 
-    func addImage(for sender: UIButton, _ status: String?) {
-        viewModel.updateTicketStatus(status)
+    func addImage(for sender: UIButton, and statusID: String?) {
+        viewModel.updateStatusID(statusID)
 
         showActionSheet(for: sender)
     }
 
-    func viewImage(for imageURL: String?) {
-        guard let imageURL = imageURL  else { return }
-//        guard let webVC = UIStoryboard.init(name: "More", bundle: nil).instantiateViewController(withIdentifier: "MoreWebViewController") as? MoreWebViewController else { return }
-//
-//        webVC.contentIdentifier = 0
-//        webVC.urlStrToLoad = imageURL
-//
-//        navigationController?.pushViewController(webVC, animated: true)
+    func viewImage(for images: [String]?) {
+        guard let imageURLs = images  else { return }
+        guard let photoVC = PhotosViewController.instantiateSelf() else { return }
+
+        photoVC.photos = imageURLs
+        navigationController?.pushViewController(photoVC, animated: true)
     }
 
     private func showActionSheet(for sender: UIButton) {
@@ -184,7 +222,7 @@ extension TicketDetailsViewController: TDCustomViewDelegate {
             }
         }))
 
-        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
 
@@ -196,7 +234,7 @@ extension TicketDetailsViewController: TDCustomViewDelegate {
         present(alertController, animated: true, completion: nil)
     }
 
-    private func showActionSheet(for statusID: String?) {
+    private func showActionSheet(for statusID: String?, and fromStatusID: String?) {
         let  alertController = UIAlertController(title: "Change Status", message: "", preferredStyle: .actionSheet)
 
         viewModel.statusList?.forEach({ status in
@@ -204,12 +242,12 @@ extension TicketDetailsViewController: TDCustomViewDelegate {
                 DispatchQueue.main.async { [weak self] in
                     guard status.statusID != statusID else { self?.showAlert(for: "Cannot change selected Status to same Status."); return }
 
-                    self?.viewModel.changeStatus(for: status.statusID, status: statusID)
+                    self?.viewModel.changeStatus(for: status.statusID, status: statusID, and: fromStatusID)
                 }
             }))
         })
 
-        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
 
@@ -250,7 +288,7 @@ extension TicketDetailsViewController {
                                 }
                              _ = self.navigationController?.popViewController(animated: false)
                             }))
-                            alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                            alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                             self.present(alertController, animated: true, completion: nil)
                         })
                     }
@@ -277,7 +315,7 @@ extension TicketDetailsViewController {
                     }
                  _ = self.navigationController?.popViewController(animated: false)
                 }))
-                alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             })
         case .notDetermined:
@@ -298,7 +336,7 @@ extension TicketDetailsViewController {
                             }
                          _ = self.navigationController?.popViewController(animated: false)
                         }))
-                        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     })
                 case .notDetermined:
@@ -312,7 +350,7 @@ extension TicketDetailsViewController {
                             }
                          _ = self.navigationController?.popViewController(animated: false)
                         }))
-                        alertController.addAction(UIAlertAction(title: "alert_cancel".localized(), style: .default, handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     })
                 default: break
@@ -408,5 +446,12 @@ extension TicketDetailsViewController: PhotoPickerDelegate {
         AppLoader.show()
 
         uploadToS3Server(image: image)
+    }
+}
+
+// MARK: - Init Self
+extension TicketDetailsViewController: InitiableViewController {
+    static var storyboardType: AppStoryboard {
+        return .more
     }
 }

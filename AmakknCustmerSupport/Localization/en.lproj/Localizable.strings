@@ -21,6 +21,10 @@
 "Tickets" = "Tickets";
 "More_Are_you_sure_Logout" = "Are you sure you want to logout?";
 
+"More_Choose_Photo"="Choose Photo";
+"More_Gallery"="Gallery";
+"More_Camera"="Camera";
+
 "User_Suspend" = "Suspend User";
 "Send_Notif" = "Send Notification";
 "User_Active" = "Activate User";

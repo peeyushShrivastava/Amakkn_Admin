@@ -13,6 +13,7 @@ enum NotificationScreen: String {
     case cs = "cs"
     case propertyDetails = "propertyAdded"
     case userDetails = "userAdded"
+    case ticket = "ticket"
 }
 
 // MARK: - NotificationScreens Enum
@@ -34,8 +35,15 @@ struct NotifSummaryArgs {
     static let inbox = "Inbox"
 }
 
+// MARK: - NotificationHandler Delegate
+protocol AppNotificationDelegate {
+    func didReceiveNotification(for ticketID: String?)
+}
+
 class NotificationHandler {
     static let manager = NotificationHandler()
+
+    var delegate: AppNotificationDelegate?
 
     private init() { }
 }
@@ -67,6 +75,7 @@ extension NotificationHandler {
         guard let aps = userInfo[AnyHashable("aps")] as? [AnyHashable: Any], let alert = aps[AnyHashable("alert")] as? [AnyHashable: Any] else { return }
         guard let _ = alert[AnyHashable("body")] as? String, let data = userInfo[AnyHashable("propertyOrUserId")] as? String else { return }
         guard let screen = userInfo[AnyHashable("screen")] as? String, let screenType = NotificationScreen(rawValue: screen) else { return }
+        guard delegate == nil else { delegate?.didReceiveNotification(for: data); return }
 
         pushVCs(with: data, at: getTab(for: screenType))
     }
@@ -76,6 +85,7 @@ extension NotificationHandler {
             case .cs: return .inbox
             case .propertyDetails: return .properties
             case .userDetails: return .users
+            case .ticket: return .more
         }
     }
 }
@@ -95,7 +105,7 @@ extension NotificationHandler {
             case .users: pushToUserDetailsVC(for: data, with: navController)
             case .properties: pushToPropertyDetailsVC(for: data, with: navController)
             case .abuse: break
-            case .more: break
+            case .more: pushToTicketDetailsVC(for: data, with: navController)
         }
     }
 
@@ -117,5 +127,14 @@ extension NotificationHandler {
         userDetailsVC.viewModel.updateDataSource(with: nil)
 
         rootController.navigationController?.pushViewController(userDetailsVC, animated: false)
+    }
+
+    private func pushToTicketDetailsVC(for ticketID: String, with navController: UINavigationController) {
+        guard let rootController = navController.children.first as? MoreViewController else { return }
+        guard let ticketDetailsVC = TicketDetailsViewController.instantiateSelf() else { return }
+
+        ticketDetailsVC.viewModel.updateTicket(ticketID)
+
+        rootController.navigationController?.pushViewController(ticketDetailsVC, animated: false)
     }
 }

@@ -15,9 +15,9 @@ enum TicketsAPIEndPoint: APIEndPoint {
     case getSubjects
     case getStatusList
     case getTicketDetails(_ ticketID: String)
-    case addComment(_ text: String, _ ticketID: String, _ status: String)
-    case changeStatus(_ note: String, _ ticketID: String, _ status: String)
-    case addScreenShot(_ images: String, _ ticketID: String, _ status: String)
+    case addComment(_ text: String, _ ticketID: String, _ statusID: String)
+    case changeStatus(_ note: String, _ ticketID: String, _ status: String, _ statusID: String)
+    case addScreenShot(_ images: String, _ ticketID: String, _ statusID: String)
     case createTicket(_ userID: String, _ title: String, _ images: String, _ notes: String, _ propertyID: String)
     case none
 }
@@ -31,7 +31,7 @@ extension TicketsNetworkManager {
             case .getStatusList: return "Feedback/getTicketStatusList/"
             case .getTicketDetails(_): return "Feedback/getTicketDetails/"
             case .addComment(_, _, _): return "Feedback/addCommentToATicket/"
-            case .changeStatus(_, _, _): return "Feedback/changeStatusOfATicket/"
+            case .changeStatus(_, _, _, _): return "Feedback/changeStatusOfATicket/"
             case .addScreenShot(_, _, _): return "Feedback/addScreenshotsToATicket/"
             case .createTicket(_, _, _, _, _): return "Feedback/createATicket/"
             case .none: return ""
@@ -47,9 +47,9 @@ extension TicketsNetworkManager {
             case .getSubjects: return ["language": selectedLanguage]
             case .getStatusList: return ["language": selectedLanguage]
             case .getTicketDetails(let ticketID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage]
-            case .addComment(let comment, let ticketID, let status): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "text": comment, "status": status]
-            case .changeStatus(let note, let ticketID, let status): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "notes": note, "status": status]
-            case .addScreenShot(let images, let ticketID, let status): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "images": images, "status": status]
+            case .addComment(let comment, let ticketID, let statusID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "text": comment, "statusId": statusID]
+            case .changeStatus(let note, let ticketID, let status, let statusID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "notes": note, "status": status, "fromStatusId": statusID]
+            case .addScreenShot(let images, let ticketID, let statusID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "images": images, "statusId": statusID]
             case .createTicket(let userID, let title, let images, let notes, let propertyID): return ["title": title, "userId": userID, "createdBy": hashedUserID, "language": selectedLanguage, "screenshots": images, "notes": notes, "propertyId": propertyID]
             default:
                 return nil
@@ -214,8 +214,8 @@ extension TicketsNetworkManager {
 
 // MARK: - Add Comments
 extension TicketsNetworkManager {
-    func addComment(_ comment: String, for ticketID: String, and status: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping () -> Void) {
-        let request = getRequest(with: TicketsAPIEndPoint.addComment(comment, ticketID, status))
+    func addComment(_ comment: String, for ticketID: String, and statusID: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping () -> Void) {
+        let request = getRequest(with: TicketsAPIEndPoint.addComment(comment, ticketID, statusID))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { _ in successCallBack() }, failureCallBack: { _ in failureCallBack() })
     }
@@ -223,8 +223,8 @@ extension TicketsNetworkManager {
 
 // MARK: - Change Status
 extension TicketsNetworkManager {
-    func changeStatus(with note: String, _ ticketID: String, and status: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
-        let request = getRequest(with: TicketsAPIEndPoint.changeStatus(note, ticketID, status))
+    func changeStatus(with note: String, _ ticketID: String, _ status: String, and statusID: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: TicketsAPIEndPoint.changeStatus(note, ticketID, status, statusID))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { _ in successCallBack() }, failureCallBack: { errorStr in failureCallBack(errorStr) })
     }
@@ -232,8 +232,8 @@ extension TicketsNetworkManager {
 
 // MARK: - Add ScreenShots
 extension TicketsNetworkManager {
-    func addScreenShots(_ images: String, for ticketID: String, and status: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping () -> Void) {
-        let request = getRequest(with: TicketsAPIEndPoint.addScreenShot(images, ticketID, status))
+    func addScreenShots(_ images: String, for ticketID: String, and statusID: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping () -> Void) {
+        let request = getRequest(with: TicketsAPIEndPoint.addScreenShot(images, ticketID, statusID))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { _ in successCallBack() }, failureCallBack: { _ in failureCallBack() })
     }

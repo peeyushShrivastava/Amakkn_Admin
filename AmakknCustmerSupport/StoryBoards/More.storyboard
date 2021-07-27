@@ -594,7 +594,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Iev-vJ-aKJ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Iev-vJ-aKJ">
                                 <rect key="frame" x="0.0" y="45" width="414" height="768"/>
                                 <color key="backgroundColor" name="viewBGColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BdV-qG-AbX">
@@ -1083,7 +1083,23 @@
                         <viewLayoutGuide key="safeArea" id="oZb-E2-xkp"/>
                         <color key="backgroundColor" name="viewBGColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Ticket Details" id="nOZ-fY-PD1"/>
+                    <navigationItem key="navigationItem" title="Ticket Details" id="nOZ-fY-PD1">
+                        <barButtonItem key="backBarButtonItem" title=" " id="nQV-wV-g7q"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="info.circle.fill" catalog="system" id="CZx-1F-dVy">
+                                <color key="tintColor" red="0.16862745100000001" green="0.30588235289999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="infoButtonTapped:" destination="hCX-e0-Idb" id="Jyq-fo-eNt"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="Ms4-b3-tt5">
+                                <color key="tintColor" red="0.16862745100000001" green="0.30588235289999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="refreshButtonTapped:" destination="hCX-e0-Idb" id="00h-UP-huv"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3U-Ra-tUA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1094,6 +1110,7 @@
         <image name="Tab4_More" width="25" height="8"/>
         <image name="icNextIcon" width="24" height="24"/>
         <image name="icRoomsPlus" width="44" height="44"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="lightViewBGColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

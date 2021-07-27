@@ -68,6 +68,7 @@
             </constraints>
             <size key="customSize" width="374" height="125"/>
             <connections>
+                <outlet property="ibDateLabel" destination="flk-fS-Mbv" id="oZh-bH-qaY"/>
                 <outlet property="ibStatusHolder" destination="ebJ-VL-73t" id="fbt-uz-6iB"/>
                 <outlet property="ibStatusLabel" destination="ohb-pS-Ikp" id="OXd-pZ-d9X"/>
                 <outlet property="ticketTitleLabel" destination="2Va-va-Uf4" id="dGJ-gS-heb"/>

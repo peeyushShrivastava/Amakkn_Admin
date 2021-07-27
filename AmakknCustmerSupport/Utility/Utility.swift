@@ -112,7 +112,7 @@ extension Utility {
         guard let date = formatter.date(from: dateStr) else { return "" }
         let since1970 = date.timeIntervalSince1970
 
-        return String(since1970 * 1000)
+        return "\(Int64(since1970) * 1000)"
     }
 
     func isFormat24Hrs() -> Bool {

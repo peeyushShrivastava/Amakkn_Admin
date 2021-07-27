@@ -11,7 +11,8 @@ class TicketInboxCell: UICollectionViewCell {
     @IBOutlet weak var ticketTitleLabel: UILabel!
     @IBOutlet weak var ibStatusHolder: UIView!
     @IBOutlet weak var ibStatusLabel: UILabel!
-
+    @IBOutlet weak var ibDateLabel: UILabel!
+    
     var ticketModel: TicketsModel? {
         didSet {
             updateData()
@@ -36,6 +37,10 @@ class TicketInboxCell: UICollectionViewCell {
     private func updateData() {
         ticketTitleLabel.text = ticketModel?.title
         ibStatusLabel.text = ticketModel?.statusName
+
+        let dateInMilliSec = Utility.shared.dateStrInMilliSecs(dateStr: ticketModel?.createdDate)
+        let dateStr = Utility.shared.convertDates(with: dateInMilliSec)
+        ibDateLabel.text = dateStr
     }
 }
 

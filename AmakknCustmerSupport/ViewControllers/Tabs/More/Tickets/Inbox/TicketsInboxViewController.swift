@@ -10,7 +10,9 @@ import UIKit
 class TicketsInboxViewController: UIViewController {
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ibCreateButton: UIButton!
-    
+
+    var refreshControl = UIRefreshControl()
+
     private let viewModel = TicketsInboxViewModel()
 
     override func viewDidLoad() {
@@ -20,21 +22,28 @@ class TicketsInboxViewController: UIViewController {
 
         updateUI()
         registerCell()
-
-        /// Get List of Tickets created
-        viewModel.getTickets()
+        updateRefresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+
+        /// Get List of Tickets created
+        viewModel.getTickets()
     }
 
     private func updateUI() {
         ibCreateButton.layer.masksToBounds = true
         ibCreateButton.layer.borderColor = UIColor.white.cgColor
         ibCreateButton.layer.borderWidth = 0.5
+    }
+
+    private func updateRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh!!")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        ibCollectionView.addSubview(refreshControl)
     }
 
     private func registerCell() {
@@ -47,16 +56,23 @@ class TicketsInboxViewController: UIViewController {
 
         ibCollectionView.collectionViewLayout = layout
     }
+
+    @objc func refresh(_ sender: AnyObject) {
+        refreshControl.attributedTitle = NSAttributedString(string: "Reloading data...")
+
+        viewModel.getTickets()
+    }
 }
 
 // MARK: - Navigation
 extension TicketsInboxViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailsSegueID" {
-            guard let ticketID = sender as? String else { return }
+            guard let ticketModel = sender as? TicketsModel else { return }
             guard let detailsVC =  segue.destination as? TicketDetailsViewController else { return }
 
-            detailsVC.viewModel.updateTicket(ticketID)
+            detailsVC.viewModel.updateTicket(ticketModel.ticketID)
+            detailsVC.viewModel.updateUserID(ticketModel.userID)
         }
     }
 }
@@ -87,7 +103,7 @@ extension TicketsInboxViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detailsSegueID", sender: viewModel[indexPath.item]?.ticketID)
+        performSegue(withIdentifier: "detailsSegueID", sender: viewModel[indexPath.item])
     }
 }
 
@@ -95,9 +111,11 @@ extension TicketsInboxViewController: UICollectionViewDelegate, UICollectionView
 extension TicketsInboxViewController: TicketsListDelegate {
     func success() {
         ibCollectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     func failed(with errorStr: String?) {
         showAlert(for: errorStr)
+        refreshControl.endRefreshing()
     }
 }

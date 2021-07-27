@@ -10,7 +10,8 @@ import UIKit
 
 class TicketDetailsViewModel {
     private var ticketID: String?
-    private var status: String?
+    private var userID: String?
+    private var statusID: String?
     private var ticketDetails: [TicketDetails]?
     var statusList: [StatusModel]?
     var statusChanged = false
@@ -39,8 +40,12 @@ class TicketDetailsViewModel {
         self.ticketID = ticketID
     }
 
-    func updateTicketStatus(_ status: String?) {
-        self.status = status
+    func updateUserID(_ userID: String?) {
+        self.userID = userID
+    }
+
+    func updateStatusID(_ statusID: String?) {
+        self.statusID = statusID
     }
 
     func getDetails() -> [TicketDetails]? {
@@ -49,6 +54,14 @@ class TicketDetailsViewModel {
 
     func isLast(index: Int) -> Bool {
         return ticketDetails?.count == (index+1)
+    }
+
+    func getUserID() -> String? {
+        return userID
+    }
+
+    func getTicketID() -> String? {
+        return ticketID
     }
 }
 
@@ -82,12 +95,12 @@ extension TicketDetailsViewModel {
         }
     }
 
-    func addComment(_ text: String?, for status: String?) {
-        guard let comment = text, let status = status, let ticketID = ticketID else { return }
+    func addComment(_ text: String?, for statusID: String?) {
+        guard let comment = text, let ticketID = ticketID, let statusID = statusID else { return }
 
         AppLoader.show()
 
-        TicketsNetworkManager.shared.addComment(comment, for: ticketID, and: status, successCallBack: {
+        TicketsNetworkManager.shared.addComment(comment, for: ticketID, and: statusID, successCallBack: {
             DispatchQueue.main.async { [weak self] in
                 self?.getTicketDetails()
             }
@@ -113,9 +126,9 @@ extension TicketDetailsViewModel {
     }
 
     private func addScreenShot(with imageURLStr: String) {
-        guard let status = status, let ticketID = ticketID else { return }
+        guard let ticketID = ticketID, let statusID = statusID else { return }
 
-        TicketsNetworkManager.shared.addScreenShots(imageURLStr, for: ticketID, and: status, successCallBack: {
+        TicketsNetworkManager.shared.addScreenShots(imageURLStr, for: ticketID, and: statusID, successCallBack: {
             DispatchQueue.main.async { [weak self] in
                 self?.getTicketDetails()
             }
@@ -126,17 +139,15 @@ extension TicketDetailsViewModel {
         })
     }
 
-    func changeStatus(for statusID: String?, status: String?) {
-        guard let statusID = statusID, let ticketID = ticketID else { return }
+    func changeStatus(for statusID: String?, status: String?, and fromStatusID: String?) {
+        guard let statusID = statusID, let ticketID = ticketID, let fromStatusID = fromStatusID else { return }
 
         statusChanged = true
         AppLoader.show()
 
-        TicketsNetworkManager.shared.changeStatus(with: "", ticketID, and: statusID) {
+        TicketsNetworkManager.shared.changeStatus(with: "", ticketID, statusID, and: fromStatusID) {
             DispatchQueue.main.async { [weak self] in
-                AppLoader.dismiss()
-
-                self?.delegate?.success()
+                self?.getTicketDetails()
             }
         } failureCallBack: { [weak self] errorStr in
             DispatchQueue.main.async {

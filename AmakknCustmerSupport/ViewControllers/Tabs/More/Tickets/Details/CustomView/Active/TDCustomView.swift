@@ -9,10 +9,10 @@ import UIKit
 
 // MARK: - TDCustomView Delegate
 protocol TDCustomViewDelegate {
-    func sendDidTapped(with comment: String?, for status: String?)
-    func addImage(for sender: UIButton, _ status: String?)
-    func viewImage(for imageURL: String?)
-    func changeStatusDidTapped(for status: String?)
+    func sendDidTapped(with comment: String?, for statusID: String?)
+    func addImage(for sender: UIButton, and statusID: String?)
+    func viewImage(for images: [String]?)
+    func changeStatusDidTapped(for status: String?, and statusID: String?)
 }
 
 class TDCustomView: UIView {
@@ -48,6 +48,7 @@ class TDCustomView: UIView {
     private var prevHeight: CGFloat = 0.0
 
     private let maxCharCount = 100
+    private var images: [String]?
 
     /// Ticket Model
     var ticketModel: TicketDetails? {
@@ -76,17 +77,25 @@ class TDCustomView: UIView {
     }
 
     private func updateUI() {
+        images = getImages()
+
         updateCommentView()
         updateImages()
 
-        let dateInMilliSec = Utility.shared.dateStrInMilliSecs(dateStr: ticketModel?.createdDate)
-        let dateStr = Utility.shared.convertDates(for: dateInMilliSec)
+        let dateInMilliSec = Utility.shared.dateStrInMilliSecs(dateStr: ticketModel?.createdAt)
+        let dateStr = Utility.shared.convertDates(with: dateInMilliSec)
         ibTitleLabel.text = "\(ticketModel?.statusName ?? "") \(dateStr ?? "")"
         ibPlaceHolder.text = "Add comment"
     }
 
+    private func getImages() -> [String]? {
+        let images = ticketModel?.images?.compactMap({ $0.image })
+
+        return images
+    }
+
     @IBAction func statusChanged(_ sender: UIButton) {
-        delegate?.changeStatusDidTapped(for: ticketModel?.status)
+        delegate?.changeStatusDidTapped(for: ticketModel?.status, and: ticketModel?.statusId)
     }
 }
 
@@ -103,7 +112,7 @@ extension TDCustomView {
         guard ibCommentTextView.text.count > 0 else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.delegate?.sendDidTapped(with: self?.ibCommentTextView.text.trimmingCharacters(in: .newlines), for: self?.ticketModel?.status)
+            self?.delegate?.sendDidTapped(with: self?.ibCommentTextView.text.trimmingCharacters(in: .newlines), for: self?.ticketModel?.statusId)
 
             self?.ibCommentTextView.text = nil
             self?.updateSendButtonFor(state: false)
@@ -147,19 +156,19 @@ extension TDCustomView {
         switch sender.tag {
             case 1:
                 guard let image = ibImage1View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, ticketModel?.status) : delegate?.viewImage(for: ticketModel?.images?[sender.tag-1].image)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
             case 2:
                 guard let image = ibImage2View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, ticketModel?.status) : delegate?.viewImage(for: ticketModel?.images?[sender.tag-1].image)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
             case 3:
                 guard let image = ibImage3View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, ticketModel?.status) : delegate?.viewImage(for: ticketModel?.images?[sender.tag-1].image)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
             case 4:
                 guard let image = ibImage4View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, ticketModel?.status) : delegate?.viewImage(for: ticketModel?.images?[sender.tag-1].image)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
             case 5:
                 guard let image = ibImage5View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, ticketModel?.status) : delegate?.viewImage(for: ticketModel?.images?[sender.tag-1].image)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
             default:
                 return
         }

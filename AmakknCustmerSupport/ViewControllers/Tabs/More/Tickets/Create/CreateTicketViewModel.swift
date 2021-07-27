@@ -28,8 +28,8 @@ class CreateTicketViewModel {
         return (screenShots.last, screenShots.count-1)
     }
 
-    func getimageURL(at index: Int) -> String {
-        return screenShots[index]
+    func getimageURL() -> [String] {
+        return screenShots
     }
 
     func updateUserID(_ hashedID: String?) {

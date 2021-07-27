@@ -21,6 +21,10 @@
 "Tickets" = "Tickets";
 "More_Are_you_sure_Logout"="هل تود تسجيل الخروج من التطبيق؟";
 
+"More_Choose_Photo"="اختر صورة";
+"More_Gallery"="معرض الصور";
+"More_Camera"="الكاميرا";
+
 "User_Suspend" = "Suspend User";
 "Send_Notif" = "Send Notification";
 "User_Active" = "Activate User";
