@@ -78,7 +78,7 @@ extension UserDetailsViewController {
             guard let createTicketVC = CreateTicketViewController.instantiateSelf() else { return }
 
             let profileModel = self?.viewModel.getProfileData()
-            createTicketVC.viewModel.updateUserID(Utility.shared.getHashedUserID(for: profileModel?.userID, createdAt: profileModel?.createdAt))
+            createTicketVC.viewModel.updateUserID(profileModel?.userID)
 
             self?.navigationController?.pushViewController(createTicketVC, animated: true)
         })

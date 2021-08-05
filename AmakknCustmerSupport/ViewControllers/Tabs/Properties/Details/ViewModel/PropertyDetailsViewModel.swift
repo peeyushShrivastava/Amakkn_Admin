@@ -198,6 +198,17 @@ class PropertyDetailsViewModel {
     func getPropertyStatus() -> PropertyStatus? {
         return propertyStatus
     }
+
+    func getPropertyInfo() -> PropertyInfo? {
+        let placeHolder = "PlaceHolder_\(propertyDetails?.category ?? "")_\(propertyDetails?.propertyType ?? "")"
+        let propertyInfo = PropertyInfo(imageURL: propertyDetails?.photos, type: propertyDetails?.propertyTypeName, price: propertyDetails?.defaultPrice, address: propertyDetails?.address, placeHolderStr: placeHolder, propertyID: propertyDetails?.propertyID, userID: propertyDetails?.userID, cCode: propertyDetails?.hostInfo?.countryCode, phone: propertyDetails?.hostInfo?.phone)
+
+        return propertyInfo
+    }
+
+    func getUserInfo() -> UserInfo? {
+        return UserInfo(userID: propertyDetails?.userID, userName: propertyDetails?.hostInfo?.name, userPhone: propertyDetails?.hostInfo?.phone, cCode: propertyDetails?.hostInfo?.countryCode)
+    }
 }
 
 // MARK: - Public Methods

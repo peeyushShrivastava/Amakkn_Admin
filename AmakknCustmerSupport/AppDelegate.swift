@@ -100,9 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        NotificationHandler.manager.manageNotification(for: notification)
-
-        completionHandler( [.banner, .sound] )
+        NotificationHandler.manager.handleSilent(notification) {
+            completionHandler( [.banner, .sound] )
+        }
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

@@ -35,14 +35,14 @@ class PropertyInfoView: UIView {
 
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = AppColors.lightViewBGColor
 
         updateUI()
     }
 
     private func updateUI() {
         ibPropertyImageView.layer.masksToBounds = true
-        ibPropertyImageView.layer.cornerRadius = 4.0
+        ibPropertyImageView.layer.cornerRadius = 8.0
         ibPropertyImageView.contentMode = .scaleAspectFill
     }
 

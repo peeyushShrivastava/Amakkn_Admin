@@ -15,10 +15,12 @@ class CreateTicketViewController: UIViewController {
     @IBOutlet weak var ibAddScreenShotTitle: UILabel!
     
     @IBOutlet weak var ibSubjectHolder: UIView!
+    @IBOutlet weak var ibUserHolder: UIView!
     @IBOutlet weak var ibMessageHolder: UIView!
     @IBOutlet weak var ibScreenShotHolder: UIView!
 
     @IBOutlet weak var ibSelectSubButton: UIButton!
+    @IBOutlet weak var ibSelectUserButton: UIButton!
     @IBOutlet weak var ibNextIcon: UIImageView!
     @IBOutlet weak var ibMessageTextView: UITextView!
     @IBOutlet weak var ibCreateButton: UIButton!
@@ -28,6 +30,8 @@ class CreateTicketViewController: UIViewController {
     @IBOutlet weak var ibScreenShot3: UIImageView!
     @IBOutlet weak var ibScreenShot4: UIImageView!
     @IBOutlet weak var ibScreenShot5: UIImageView!
+    @IBOutlet weak var ibPropertyInfoView: PropertyInfoView!
+    @IBOutlet weak var ibPropertyInfoViewHeight: NSLayoutConstraint!
 
     let picker = UIImagePickerController()
     let viewModel = CreateTicketViewModel()
@@ -41,20 +45,27 @@ class CreateTicketViewController: UIViewController {
 
         updateUI()
         updateCreateButton(with: false)
+        updateInfoView()
     }
 
     private func updateUI() {
         ibSubjectHolder.layer.masksToBounds = true
+        ibUserHolder.layer.masksToBounds = true
         ibMessageHolder.layer.masksToBounds = true
         ibScreenShotHolder.layer.masksToBounds = true
+        ibPropertyInfoView.layer.masksToBounds = true
 
         ibSubjectHolder.layer.borderWidth = 1.0
+        ibUserHolder.layer.borderWidth = 1.0
         ibMessageHolder.layer.borderWidth = 1.0
         ibScreenShotHolder.layer.borderWidth = 1.0
+        ibPropertyInfoView.layer.borderWidth = 1.0
 
         ibSubjectHolder.layer.borderColor = AppColors.borderColor?.cgColor
+        ibUserHolder.layer.borderColor = AppColors.borderColor?.cgColor
         ibMessageHolder.layer.borderColor = AppColors.borderColor?.cgColor
         ibScreenShotHolder.layer.borderColor = AppColors.borderColor?.cgColor
+        ibPropertyInfoView.layer.borderColor = AppColors.borderColor?.cgColor
 
         ibScreenShot1.image = UIImage(named: "icRoomsPlus")
     }
@@ -62,6 +73,19 @@ class CreateTicketViewController: UIViewController {
     private func updateCreateButton(with state: Bool) {
         ibCreateButton.isUserInteractionEnabled = state
         ibCreateButton.alpha = state ? 1.0 : 0.5
+    }
+
+    private func updateInfoView() {
+        guard let propertyInfo = viewModel.propertyInfo else { ibPropertyInfoView.isHidden = true; ibPropertyInfoViewHeight.constant = 0.0; updateUser(); return }
+
+        ibPropertyInfoView.update(with: propertyInfo)
+        ibSelectUserButton.isUserInteractionEnabled = false
+
+        updateUser()
+    }
+
+    private func updateUser() {
+        ibSelectUserButton.setTitle(viewModel.userData, for: .normal)
     }
 }
 
@@ -75,22 +99,36 @@ extension CreateTicketViewController {
         switch sender.tag {
             case 1:
                 guard let image = ibScreenShot1.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(), at: sender.tag)
             case 2:
                 guard let image = ibScreenShot2.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(), at: sender.tag)
             case 3:
                 guard let image = ibScreenShot3.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(), at: sender.tag)
             case 4:
                 guard let image = ibScreenShot4.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(), at: sender.tag)
             case 5:
                 guard let image = ibScreenShot5.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL())
+                image == UIImage(named: "icRoomsPlus") ? showActionSheet(for: sender) : viewImage(for: viewModel.getimageURL(), at: sender.tag)
             default:
                 return
         }
+    }
+
+    @IBAction func selectUserButtonTapped(_ sender: UIButton) {
+        guard let usersVC = UsersViewController.instantiateSelf() else { return }
+
+        usersVC.viewModel.isFromViolation = true
+        usersVC.getUser = { [weak self] user in
+            DispatchQueue.main.async {
+                self?.viewModel.update(user)
+                self?.updateUser()
+            }
+        }
+
+        navigationController?.pushViewController(usersVC, animated: true)
     }
 }
 
@@ -101,7 +139,7 @@ extension CreateTicketViewController {
             guard let subjectsVC =  segue.destination as? SelectSubjectViewController else { return }
 
             subjectsVC.subject = { [weak self] subjectModel in
-                self?.viewModel.updateSubject(subjectModel?.subject)
+                self?.viewModel.updateSubjectID(subjectModel?.subjectID)
 
                 self?.ibSelectSubButton.setTitle(subjectModel?.subject, for: .normal)
                 self?.updateCreateButton(with: true)
@@ -141,8 +179,8 @@ extension CreateTicketViewController: TicketsListDelegate {
 // MARK: - Update ScreenShots
 extension CreateTicketViewController {
     private func updateScreenShots() {
-        let (imageURL, index) = viewModel.getLastScreenShot()
-        guard index >= 0, let imageURLStr = imageURL else { return }
+        let (image, index) = viewModel.getLastScreenShot()
+        guard index >= 0, let imageURLStr = image?.fileURL, let ext = image?.format else { return }
 
         switch index {
             case 0:
@@ -151,16 +189,20 @@ extension CreateTicketViewController {
                 ibScreenShot1.layer.borderWidth = 1.0
                 ibScreenShot1.layer.borderColor = AppColors.borderColor?.cgColor
 
-                ibScreenShot1.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                ext == "pdf" ?
+                    ibScreenShot1.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                    ibScreenShot1.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
 
-                ibScreenShot2.image = UIImage(named: "icRoomsPlus")
+//                ibScreenShot2.image = UIImage(named: "icRoomsPlus")
             case 1:
                 ibScreenShot2.image = nil
                 ibScreenShot2.layer.masksToBounds = true
                 ibScreenShot2.layer.borderWidth = 1.0
                 ibScreenShot2.layer.borderColor = AppColors.borderColor?.cgColor
 
-                ibScreenShot2.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                ext == "pdf" ?
+                    ibScreenShot2.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                    ibScreenShot2.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
 
                 ibScreenShot3.image = UIImage(named: "icRoomsPlus")
             case 2:
@@ -169,7 +211,9 @@ extension CreateTicketViewController {
                 ibScreenShot3.layer.borderWidth = 1.0
                 ibScreenShot3.layer.borderColor = AppColors.borderColor?.cgColor
 
-                ibScreenShot3.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                ext == "pdf" ?
+                    ibScreenShot3.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                    ibScreenShot3.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
 
                 ibScreenShot4.image = UIImage(named: "icRoomsPlus")
             case 3:
@@ -178,7 +222,9 @@ extension CreateTicketViewController {
                 ibScreenShot4.layer.borderWidth = 1.0
                 ibScreenShot4.layer.borderColor = AppColors.borderColor?.cgColor
 
-                ibScreenShot4.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                ext == "pdf" ?
+                    ibScreenShot4.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                    ibScreenShot4.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
 
                 ibScreenShot5.image = UIImage(named: "icRoomsPlus")
             case 4:
@@ -187,7 +233,9 @@ extension CreateTicketViewController {
                 ibScreenShot5.layer.borderWidth = 1.0
                 ibScreenShot5.layer.borderColor = AppColors.borderColor?.cgColor
 
-                ibScreenShot5.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                ext == "pdf" ?
+                    ibScreenShot5.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                    ibScreenShot5.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
             default:
             /// Do nothing
             break
@@ -341,7 +389,7 @@ extension CreateTicketViewController {
         guard let image = image else { return }
         guard let compressedImageData = reduceImageSize(in: 200, image: image) else { return }
 
-        viewModel.uploadToS3(imageData: compressedImageData)
+        viewModel.uploadToS3(imageData: compressedImageData, for: "png")
     }
 
     func reduceImageSize(in kiloByte: Int, image: UIImage) -> Data? {
@@ -430,7 +478,15 @@ extension CreateTicketViewController {
                 self?.galleryTapped()
             }
         }))
+        alertController.addAction(UIAlertAction(title: "Documents", style: .default, handler: { [weak self] _ in
+            let supportedTypes: [UTType] = [.text, .pdf, .rtf]
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
 
+            picker.delegate = self
+            picker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+
+            self?.present(picker, animated: true, completion: nil)
+        }))
         alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
@@ -444,13 +500,41 @@ extension CreateTicketViewController {
     }
 }
 
+// MARK: - Documents Delegate
+extension CreateTicketViewController: UIDocumentPickerDelegate {
+    func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        urls.forEach { url in
+            _ = url.startAccessingSecurityScopedResource()
+
+            let coordinator = NSFileCoordinator()
+
+            var error: NSError?
+
+            coordinator.coordinate(readingItemAt: url, options: [], error: &error, byAccessor: { [weak self] url in
+                guard let extStr = url.absoluteString.components(separatedBy: ".").last else { self?.showAlert(for: "Invalid file format. Only .pdf, .png, .jpg extensions are allowed."); return }
+                guard extStr == "pdf" || extStr == "png" || extStr == "jpg" else { self?.showAlert(for: "Invalid file format. Only .pdf, .png, .jpg extensions are allowed."); return }
+                guard let fileData = try? Data(contentsOf: url) else { return }
+
+                AppLoader.show()
+                self?.viewModel.uploadToS3(imageData: fileData, for: extStr)
+            })
+
+            url.stopAccessingSecurityScopedResource()
+        }
+    }
+
+    func documentPickerWasCancelled(_: UIDocumentPickerViewController) {
+    }
+}
+
 // MARK: - View Image
 extension CreateTicketViewController {
-    private func viewImage(for images: [String]?) {
-        guard let imageURLs = images  else { return }
+    private func viewImage(for images: [ImageTypeModel]?, at index: Int) {
+        guard let images = images  else { return }
         guard let photoVC = PhotosViewController.instantiateSelf() else { return }
 
-        photoVC.photos = imageURLs
+        photoVC.photos = images.map({$0.fileURL})
+        photoVC.counter = index
         navigationController?.pushViewController(photoVC, animated: true)
     }
 }

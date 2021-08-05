@@ -11,7 +11,7 @@ import UIKit
 protocol TDCustomViewDelegate {
     func sendDidTapped(with comment: String?, for statusID: String?)
     func addImage(for sender: UIButton, and statusID: String?)
-    func viewImage(for images: [String]?)
+    func viewImage(for images: [String]?, at index: Int)
     func changeStatusDidTapped(for status: String?, and statusID: String?)
 }
 
@@ -35,7 +35,8 @@ class TDCustomView: UIView {
     @IBOutlet weak var ibSendButton: UIButton!
     @IBOutlet weak var ibCommentTextView: UITextView!
     @IBOutlet weak var ibStatusChangeButton: UIButton!
-    
+    @IBOutlet weak var ibVerticalLine: UIView!
+
     /// Private Constants
     private let maxWidth: CGFloat = 255.0
     private let maxHeight: CGFloat = 1000.0
@@ -49,6 +50,7 @@ class TDCustomView: UIView {
 
     private let maxCharCount = 100
     private var images: [String]?
+    var isTicketClosed = false
 
     /// Ticket Model
     var ticketModel: TicketDetails? {
@@ -66,7 +68,14 @@ class TDCustomView: UIView {
     private func updateCommentView() {
         ibCommentHolder.semanticContentAttribute = .forceLeftToRight
         ibCommentHolder.isHidden = ticketModel?.isActive == "-1"
-        ibStatusChangeButton.isHidden = ticketModel?.isActive == "-1"
+
+        if isTicketClosed, ticketModel?.isActive == "-1", ticketModel?.status == "5" {
+            ibStatusChangeButton.isHidden = false
+        } else if ticketModel?.isActive == "1" {
+            ibStatusChangeButton.isHidden = false
+        } else {
+            ibStatusChangeButton.isHidden = true
+        }
 
         ibCommentHolder.layer.masksToBounds = true
         ibCommentHolder.layer.borderWidth = 1.0
@@ -81,6 +90,8 @@ class TDCustomView: UIView {
 
         updateCommentView()
         updateImages()
+
+        ibVerticalLine.isHidden = (isTicketClosed && ticketModel?.isActive == "-1" && ticketModel?.status == "5")
 
         let dateInMilliSec = Utility.shared.dateStrInMilliSecs(dateStr: ticketModel?.createdAt)
         let dateStr = Utility.shared.convertDates(with: dateInMilliSec)
@@ -156,19 +167,19 @@ extension TDCustomView {
         switch sender.tag {
             case 1:
                 guard let image = ibImage1View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images, at: sender.tag)
             case 2:
                 guard let image = ibImage2View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images, at: sender.tag)
             case 3:
                 guard let image = ibImage3View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images, at: sender.tag)
             case 4:
                 guard let image = ibImage4View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images, at: sender.tag)
             case 5:
                 guard let image = ibImage5View.image else { return }
-                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images)
+                image == UIImage(named: "icRoomsPlus") ? delegate?.addImage(for: sender, and: ticketModel?.statusId) : delegate?.viewImage(for: images, at: sender.tag)
             default:
                 return
         }
@@ -287,7 +298,9 @@ extension TDCustomView {
                 if image == nil {
                     ibImage1View.image = UIImage(named: "icRoomsPlus")
                 } else {
-                    ibImage1View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                    image?.image?.contains(".pdf") ?? true ?
+                        ibImage1View.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                        ibImage1View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
                 }
             case 1:
                 ibImage2View.image = nil
@@ -298,7 +311,9 @@ extension TDCustomView {
                 if image == nil {
                     ibImage2View.image = UIImage(named: "icRoomsPlus")
                 } else {
-                    ibImage2View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                    image?.image?.contains(".pdf") ?? true ?
+                        ibImage2View.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                        ibImage2View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
                 }
             case 2:
                 ibImage3View.image = nil
@@ -309,7 +324,9 @@ extension TDCustomView {
                 if image == nil {
                     ibImage3View.image = UIImage(named: "icRoomsPlus")
                 } else {
-                    ibImage3View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                    image?.image?.contains(".pdf") ?? true ?
+                        ibImage3View.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                        ibImage3View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
                 }
             case 3:
                 ibImage4View.image = nil
@@ -320,7 +337,9 @@ extension TDCustomView {
                 if image == nil {
                     ibImage4View.image = UIImage(named: "icRoomsPlus")
                 } else {
-                    ibImage4View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                    image?.image?.contains(".pdf") ?? true ?
+                        ibImage4View.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                        ibImage4View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
                 }
             case 4:
                 ibImage5View.image = nil
@@ -331,7 +350,9 @@ extension TDCustomView {
                 if image == nil {
                     ibImage5View.image = UIImage(named: "icRoomsPlus")
                 } else {
-                    ibImage5View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
+                    image?.image?.contains(".pdf") ?? true ?
+                        ibImage5View.image = UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder") :
+                        ibImage5View.sd_setImage(with: URL(string: image?.image ?? ""), placeholderImage: UIImage(named: "PropertyDetailFloorPlanImagePlaceHolder"))
                 }
             default:
             /// Do nothing

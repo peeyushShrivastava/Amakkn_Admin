@@ -16,6 +16,8 @@ class UsersViewController: BaseViewController {
 
     var refreshControl = UIRefreshControl()
 
+    var getUser: ((_ user: SearchedUserModel?) -> Void)?
+
     let viewModel = UsersViewModel()
 
     override func viewDidLoad() {
@@ -32,8 +34,8 @@ class UsersViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tabBarController?.tabBar.isHidden = viewModel.isFilterCalled
-        navigationItem.titleView = viewModel.isFilterCalled ? nil: ibSearchBar
+        tabBarController?.tabBar.isHidden = viewModel.isFilterCalled || viewModel.isFromViolation
+        navigationItem.titleView = viewModel.isFilterCalled ? nil : ibSearchBar
 
         ibEmptyBGView.updateUI()
         updateMainTabDelegate()
@@ -139,7 +141,10 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "userDetailsSegueID", sender: indexPath.row)
+        guard let getUser = getUser else { performSegue(withIdentifier: "userDetailsSegueID", sender: indexPath.row); return }
+
+        getUser(viewModel[indexPath.row])
+        navigationController?.popViewController(animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

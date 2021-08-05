@@ -69,6 +69,17 @@ extension NotificationHandler {
         }
     }
 
+    func handleSilent(_ notification: UNNotification, callBack: @escaping() -> Void) {
+        let userInfo = notification.request.content.userInfo
+
+        guard let aps = userInfo[AnyHashable("aps")] as? [AnyHashable: Any], let alert = aps[AnyHashable("alert")] as? [AnyHashable: Any] else { return }
+        guard let _ = alert[AnyHashable("body")] as? String, let data = userInfo[AnyHashable("propertyOrUserId")] as? String else { return }
+//        guard let screen = userInfo[AnyHashable("screen")] as? String, let screenType = NotificationScreen(rawValue: screen) else { return }
+        guard delegate == nil else { delegate?.didReceiveNotification(for: data); return }
+
+        callBack()
+    }
+
     func handleNotification(for response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
 

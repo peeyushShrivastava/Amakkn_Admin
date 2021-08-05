@@ -10,6 +10,11 @@ import AVFoundation
 import Photos
 
 class TicketDetailsViewController: UIViewController {
+    @IBOutlet weak var ibPropertyInfoView: PropertyInfoView!
+    @IBOutlet weak var ibPropertyInfoViewHeight: NSLayoutConstraint!
+
+    @IBOutlet weak var ibScrollContainerView: UIView!
+
     let picker = UIImagePickerController()
     var scrollView = UIScrollView()
 
@@ -19,6 +24,8 @@ class TicketDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel.delegate = self
+
+        title = viewModel.title
 
         /// Get Ticket Details
         viewModel.getTicketDetails()
@@ -37,6 +44,35 @@ class TicketDetailsViewController: UIViewController {
 
         NotificationHandler.manager.delegate = nil
     }
+
+    private func updateInfoView() {
+        guard let propertyInfo = viewModel.propertyInfo else { ibPropertyInfoView.isHidden = true; ibPropertyInfoViewHeight.constant = 0.0; return }
+
+        ibPropertyInfoView.delegate = self
+        ibPropertyInfoView.update(with: propertyInfo)
+        
+        ibPropertyInfoView.layer.masksToBounds = true
+        ibPropertyInfoView.layer.borderWidth = 1.0
+        ibPropertyInfoView.layer.borderColor = AppColors.borderColor?.cgColor
+    }
+}
+
+// MARK: - Navigation
+extension TicketDetailsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addViolationSegueID" {
+            guard let violationVC =  segue.destination as? CreateViolationViewController else { return }
+
+            violationVC.viewModel.updateTicketID(viewModel.getTicketID())
+            violationVC.viewModel.updateUserInfo(viewModel.getUserInfo())
+        } else if segue.identifier == "createTicketSegueID" {
+            guard let ticketVC =  segue.destination as? CreateTicketViewController else { return }
+
+            ticketVC.viewModel.updatePropertyInfo(viewModel.getPropertyInfo())
+            ticketVC.viewModel.updateUserInfo(viewModel.getUserInfo())
+            ticketVC.viewModel.updateParentTicketID(viewModel.getparentTicketID())
+        }
+    }
 }
 
 // MARK: - Button Actions
@@ -45,13 +81,38 @@ extension TicketDetailsViewController {
         viewModel.getTicketDetails()
     }
 
-    @IBAction func infoButtonTapped(_ sender: UIBarButtonItem) {
-        guard let userDetailsVC = UserDetailsViewController.instantiateSelf() else { return }
+    @IBAction func moreButtonTapped(_ sender: UIBarButtonItem) {
+        guard let barButtonItem = navigationItem.rightBarButtonItem else { return }
+        guard let buttonItemView = barButtonItem.value(forKey: "view") as? UIView else { return }
 
-        userDetailsVC.viewModel.userID = viewModel.getUserID()
-        userDetailsVC.viewModel.updateDataSource(with: nil)
+        let moreMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let userInfo = UIAlertAction(title: "User Info", style: .default, handler: { [weak self] _ in
+            guard let userDetailsVC = UserDetailsViewController.instantiateSelf() else { return }
 
-        navigationController?.pushViewController(userDetailsVC, animated: true)
+            userDetailsVC.viewModel.userID = self?.viewModel.getUserID()
+            userDetailsVC.viewModel.updateDataSource(with: nil)
+
+            self?.navigationController?.pushViewController(userDetailsVC, animated: true)
+        })
+        let createTicket = UIAlertAction(title: "Create a Linked Ticket" , style: .default, handler: { [weak self] _ in
+            self?.performSegue(withIdentifier: "createTicketSegueID", sender: nil)
+        })
+        let addViolation = UIAlertAction(title: "Add violation to this User", style: .default, handler: { [weak self] _ in
+            self?.performSegue(withIdentifier: "addViolationSegueID", sender: nil)
+        })
+        let cancelAction = UIAlertAction(title: "Alert_Cancel".localized(), style: .cancel, handler: nil)
+
+        /// Add Actions
+        moreMenu.addAction(userInfo)
+        moreMenu.addAction(createTicket)
+        moreMenu.addAction(addViolation)
+        moreMenu.addAction(cancelAction)
+
+        /// Applicable for iPad
+        moreMenu.popoverPresentationController?.sourceRect = buttonItemView.bounds
+        moreMenu.popoverPresentationController?.sourceView = buttonItemView
+
+        present(moreMenu, animated: true, completion: nil)
     }
 }
 
@@ -74,6 +135,7 @@ extension TicketDetailsViewController: TicketsListDelegate {
         scrollView.contentSize.height = 0.0
         scrollView.removeFromSuperview()
 
+        updateInfoView()
         updateUI()
 
         if viewModel.statusChanged {
@@ -102,9 +164,10 @@ extension TicketDetailsViewController {
     private func updateUI() {
         guard let details = viewModel.getDetails() else { return }
 
-        scrollView.frame = view.frame
+        let height = ibPropertyInfoViewHeight.constant == 0.0 ? ibScrollContainerView.frame.height+90.0 : ibScrollContainerView.frame.height
+        scrollView.frame = CGRect(x: 0.0, y: 0.0, width: ibScrollContainerView.frame.width, height: height)
         scrollView.showsVerticalScrollIndicator = false
-        view.addSubview(scrollView)
+        ibScrollContainerView.addSubview(scrollView)
 
         let contentX: CGFloat = 20.0
         let contentWidth: CGFloat = (scrollView.frame.size.width - (contentX*2))
@@ -112,27 +175,38 @@ extension TicketDetailsViewController {
 
         for (count, state) in details.enumerated() {
             let contentHeight = state.isActive == "0" ? 100.0 : getHeight(for: state)
-            let contentY: CGFloat = count == 0 ? 35.0 : prevContentY
+            let contentY = prevContentY
 
             let contentView = UIView(frame: CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight))
 
-            let statusView = state.isActive == "0" ? getInActiveView(for: state, with: contentView) : getActiveView(for: state, with: contentView)
+            let statusView = state.isActive == "0" ? getInActiveView(for: state, with: contentView) : getActiveView(for: state, with: contentView, at: count)
 
-            var scrollViewHeight: CGFloat = scrollView.contentSize.height+contentHeight
-            scrollViewHeight = count == details.count-1 ? scrollViewHeight : scrollViewHeight
+            let scrollViewHeight: CGFloat = scrollView.contentSize.height+contentHeight
 
-            scrollView.contentSize = CGSize(width: view.frame.size.width, height: scrollViewHeight)
+            scrollView.contentSize = CGSize(width: ibScrollContainerView.frame.size.width, height: scrollViewHeight)
             scrollView.addSubview(statusView)
 
             prevContentY = scrollViewHeight
         }
+
+        if viewModel.getFeedback()?.isUserHappy != "-1" {
+            let contentHeight: CGFloat = 180.0
+            let contentView = UIView(frame: CGRect(x: contentX, y: prevContentY, width: contentWidth, height: contentHeight))
+
+            let feedbackView = getFeedbackView(with: contentView)
+            let scrollViewHeight: CGFloat = scrollView.contentSize.height+contentHeight
+
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: scrollViewHeight)
+            scrollView.addSubview(feedbackView)
+        }
     }
 
-    private func getActiveView(for state: TicketDetails, with contentView: UIView) -> UIView {
+    private func getActiveView(for state: TicketDetails, with contentView: UIView, at index: Int) -> UIView {
         guard let statusView = Bundle.main.loadNibNamed("TDCustomView", owner: self, options: nil)?.first as? TDCustomView else { return UIView() }
 
         statusView.frame = contentView.frame
         statusView.center = contentView.center
+        statusView.isTicketClosed = viewModel.isTicketClosed
         statusView.ticketModel = state
 
         statusView.delegate = self
@@ -148,6 +222,16 @@ extension TicketDetailsViewController {
         statusView.ticketModel = state
 
         return statusView
+    }
+
+    private func getFeedbackView(with contentView: UIView) -> UIView {
+        guard let feedbackView = Bundle.main.loadNibNamed("TDSubmitFeedback", owner: self, options: nil)?.first as? TDSubmitFeedback else { return UIView() }
+
+        feedbackView.frame = contentView.frame
+        feedbackView.center = contentView.center
+        feedbackView.feedback = viewModel.getFeedback()
+
+        return feedbackView
     }
 
     private func getHeight(for state: TicketDetails) -> CGFloat {
@@ -201,11 +285,12 @@ extension TicketDetailsViewController: TDCustomViewDelegate {
         showActionSheet(for: sender)
     }
 
-    func viewImage(for images: [String]?) {
+    func viewImage(for images: [String]?, at index: Int) {
         guard let imageURLs = images  else { return }
         guard let photoVC = PhotosViewController.instantiateSelf() else { return }
 
         photoVC.photos = imageURLs
+        photoVC.counter = index
         navigationController?.pushViewController(photoVC, animated: true)
     }
 
@@ -221,7 +306,15 @@ extension TicketDetailsViewController: TDCustomViewDelegate {
                 self?.galleryTapped()
             }
         }))
+        alertController.addAction(UIAlertAction(title: "Documents", style: .default, handler: { [weak self] _ in
+            let supportedTypes: [UTType] = [.text, .pdf, .rtf]
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
 
+            picker.delegate = self
+            picker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+
+            self?.present(picker, animated: true, completion: nil)
+        }))
         alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
@@ -374,7 +467,7 @@ extension TicketDetailsViewController {
         guard let image = image else { return }
         guard let compressedImageData = reduceImageSize(in: 200, image: image) else { return }
 
-        viewModel.uploadToS3(imageData: compressedImageData)
+        viewModel.uploadToS3(imageData: compressedImageData, for: "png")
     }
 
     func reduceImageSize(in kiloByte: Int, image: UIImage) -> Data? {
@@ -446,6 +539,46 @@ extension TicketDetailsViewController: PhotoPickerDelegate {
         AppLoader.show()
 
         uploadToS3Server(image: image)
+    }
+}
+
+// MARK: - Documents Delegate
+extension TicketDetailsViewController: UIDocumentPickerDelegate {
+    func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        urls.forEach { url in
+            _ = url.startAccessingSecurityScopedResource()
+
+            let coordinator = NSFileCoordinator()
+
+            var error: NSError?
+
+            coordinator.coordinate(readingItemAt: url, options: [], error: &error, byAccessor: { [weak self] url in
+                guard let extStr = url.absoluteString.components(separatedBy: ".").last else { self?.showAlert(for: "Invalid file format. Only .pdf, .png, .jpg extensions are allowed."); return }
+                guard extStr == "pdf" || extStr == "png" || extStr == "jpg" else { self?.showAlert(for: "Invalid file format. Only .pdf, .png, .jpg extensions are allowed."); return }
+                guard let fileData = try? Data(contentsOf: url) else { return }
+
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                    AppLoader.show()
+                }
+                self?.viewModel.uploadToS3(imageData: fileData, for: extStr)
+            })
+
+            url.stopAccessingSecurityScopedResource()
+        }
+    }
+
+    func documentPickerWasCancelled(_: UIDocumentPickerViewController) {
+    }
+}
+
+// MARK: - PropertyInfo Delegate
+extension TicketDetailsViewController: PropertyInfoDelegate {
+    func infoDidTapped() {
+        guard let propertyDetailsVC = PropertyDetailsViewController.instantiateSelf() else { return }
+
+        propertyDetailsVC.viewModel.update(with: viewModel.propertyID)
+
+        navigationController?.pushViewController(propertyDetailsVC, animated: true)
     }
 }
 

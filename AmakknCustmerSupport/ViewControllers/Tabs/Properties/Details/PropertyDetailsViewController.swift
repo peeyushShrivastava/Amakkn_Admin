@@ -101,6 +101,14 @@ extension PropertyDetailsViewController {
         let soldOut = UIAlertAction(title: "Sold out", style: .default, handler: { [weak self] _ in
             self?.showChangeStatusAlert(for: "Sold out")
         })
+        let ticket = UIAlertAction(title: "Create a Ticket", style: .default, handler: { [weak self] _ in
+            guard let createTicketVC = CreateTicketViewController.instantiateSelf() else { return }
+
+            createTicketVC.viewModel.updatePropertyInfo(self?.viewModel.getPropertyInfo())
+            createTicketVC.viewModel.updateUserInfo(self?.viewModel.getUserInfo())
+
+            self?.navigationController?.pushViewController(createTicketVC, animated: true)
+        })
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] (alert: UIAlertAction) in
             self?.showChangeStatusAlert(for: "Delete")
         })
@@ -118,6 +126,7 @@ extension PropertyDetailsViewController {
                 
         }
 
+        moreMenu.addAction(ticket)
         moreMenu.addAction(edit)
         moreMenu.addAction(delete)
         moreMenu.addAction(cancelAction)

@@ -17,6 +17,7 @@ class PhotosPageViewController: UIPageViewController {
     var orderedViewControllers = [UIViewController]()
 
     var photos: [String]?
+    var count = 0
     var pageDelegate: PhotosPageControlDelegate?
 
     override func viewDidLoad() {
@@ -36,14 +37,14 @@ class PhotosPageViewController: UIPageViewController {
             orderedViewControllers.append(newVC)
         }
 
-        setViewControllers([orderedViewControllers[0]],
+        setViewControllers([orderedViewControllers[count]],
                            direction: .forward,
                            animated: true,
                            completion: nil)
 
-        guard let currentVC = orderedViewControllers[0] as? PageContentViewController else { return }
+        guard let currentVC = orderedViewControllers[count] as? PageContentViewController else { return }
 
-        currentVC.updateImage(with: photos[0])
+        currentVC.updateImage(with: photos[count])
     }
 }
 

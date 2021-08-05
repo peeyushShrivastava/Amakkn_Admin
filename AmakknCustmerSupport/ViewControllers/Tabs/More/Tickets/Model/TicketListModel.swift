@@ -11,7 +11,7 @@ struct TicketListModel: Codable {
     let tickets: [TicketsModel]?
 
     private enum CodingKeys: String, CodingKey {
-        case tickets = "subjectArray"
+        case tickets = "ticketArray"
     }
 }
 
@@ -26,6 +26,11 @@ struct TicketsModel: Codable {
 
     let createdDate: String?
     let updatedDate: String?
+    let lastMessage: String?
+
+    let children: [TicketsModel]?
+    let violation: TViolationModel?
+    let feedback: TFeedbackModel?
 
     private enum CodingKeys: String, CodingKey {
         case ticketID = "id"
@@ -35,8 +40,19 @@ struct TicketsModel: Codable {
         case createdDate = "createdAt"
         case updatedDate = "updatedAt"
 
-        case status, title, statusName
+        case status, title, statusName, lastMessage
+        case children, violation, feedback
     }
+}
+
+struct TViolationModel: Codable {
+    let hasViolation: String?
+    let violationText: String?
+}
+
+struct TFeedbackModel: Codable {
+    let isUserHappy: String?
+    let feedbackText: String?
 }
 
 struct SubListModel: Codable {
@@ -76,6 +92,12 @@ struct StatusModel: Codable {
     }
 }
 
+struct TicketDetailsModel: Codable {
+    let property: PropertyDetails?
+    let details: [TicketDetails]?
+    let userInfo: UserInfo?
+}
+
 struct TicketDetails: Codable {
     let userId: String?
     let statusId: String?
@@ -87,6 +109,20 @@ struct TicketDetails: Codable {
     let comments: [DetailsComment]?
 
     let createdAt: String?
+}
+
+struct UserInfo: Codable {
+    var userID: String?
+    var userName: String?
+    var userPhone: String?
+    var cCode: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case userID = "userId"
+        case userName = "createdAt"
+        case cCode = "countryCode"
+        case userPhone = "phone"
+    }
 }
 
 struct DetailsImage: Codable {
@@ -111,4 +147,43 @@ struct DetailsComment: Codable {
         case createdDate = "createdAt"
         case text
     }
+}
+
+struct ViolationModel: Codable {
+    let userID: String?
+    let userAvatar: String?
+    let userName: String?
+
+    let cCode: String?
+    let phone: String?
+    let violationCount: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case userID = "userId"
+        case userAvatar = "avatar"
+        case userName = "name"
+
+        case cCode = "countryCode"
+        case violationCount = "count"
+
+        case phone
+    }
+}
+
+struct PropertyInfo {
+    let imageURL: String?
+    let type: String?
+    let price: String?
+    let address: String?
+    let placeHolderStr: String?
+
+    let propertyID: String?
+    var userID: String?
+    var cCode: String?
+    var phone: String?
+}
+
+struct ImageTypeModel {
+    let fileURL: String
+    let format: String
 }

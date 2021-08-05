@@ -37,6 +37,7 @@ class UsersViewModel {
     private var filterOperator = "AND"
     private var filters = ""
     var isFilterCalled = false
+    var isFromViolation = false
 
     var delegate: UsersViewDelegate?
     var searchQuery: String?
