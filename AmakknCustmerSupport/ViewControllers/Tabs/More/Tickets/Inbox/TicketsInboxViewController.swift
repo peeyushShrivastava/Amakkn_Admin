@@ -12,6 +12,8 @@ class TicketsInboxViewController: UIViewController {
     @IBOutlet weak var ibCreateButton: UIButton!
     @IBOutlet weak var ibStatusHolder: UIView!
     @IBOutlet weak var ibStatusLabel: UILabel!
+    @IBOutlet var ibSearchBar: UISearchBar!
+    @IBOutlet weak var ibSearchbarHeight: NSLayoutConstraint!
     
     var refreshControl = UIRefreshControl()
 
@@ -32,8 +34,11 @@ class TicketsInboxViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+        ibSearchbarHeight.constant = viewModel.vUserID != nil ? 0.0 : 44.0
+        ibSearchBar.isHidden = viewModel.vUserID != nil
 
         /// Get List of Tickets created
+        viewModel.resetPage()
         viewModel.getTickets()
     }
 
@@ -56,17 +61,20 @@ class TicketsInboxViewController: UIViewController {
     private func registerCell() {
         ibCollectionView.register(UINib(nibName: "TicketInboxCell", bundle: nil), forCellWithReuseIdentifier: "ticketInboxICellD")
         ibCollectionView.register(UINib(nibName: "MultiTicketInboxCell", bundle: nil), forCellWithReuseIdentifier: "multiTicketCellID")
+        ibCollectionView.register(UINib(nibName: "LoaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "LoaderView")
         
         let layout = UICollectionViewFlowLayout()
 
         layout.sectionInset = UIEdgeInsets(top: 15.0, left: 16.0, bottom: 15.0, right: 16.0)
 
         ibCollectionView.collectionViewLayout = layout
+        ibCollectionView.keyboardDismissMode = .interactive
     }
 
     @objc func refresh(_ sender: AnyObject) {
         refreshControl.attributedTitle = NSAttributedString(string: "Reloading data...")
 
+        viewModel.resetPage()
         viewModel.getTickets()
     }
 }
@@ -88,6 +96,7 @@ extension TicketsInboxViewController {
 
                     let status = status.statusName == "NA" ? "-5" : status.statusID
                     self?.viewModel.ticketStatus = status ?? "-5"
+                    self?.viewModel.resetPage()
                     self?.viewModel.getTickets()
                 }
             }))
@@ -115,6 +124,7 @@ extension TicketsInboxViewController {
             detailsVC.viewModel.updateFeedbackModel(data.1 == 0 ? data.0.feedback : data.0.children?.last?.feedback)
             detailsVC.viewModel.updateParentTicketID(data.1 == 0 ? data.0.ticketID : data.0.children?.last?.ticketID)
             detailsVC.viewModel.title = (data.1 == 0 ? data.0.title : data.0.children?.last?.title) ?? ""
+            detailsVC.viewModel.updateViolation(data.1 == 0 ? data.0.violation : data.0.children?.last?.violation)
         }
     }
 }
@@ -144,6 +154,11 @@ extension TicketsInboxViewController: UICollectionViewDelegate, UICollectionView
 
             cell.ticketModel = model
 
+            if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable, viewModel.searchQuery != nil {
+                viewModel.apiCallIndex += 50
+                viewModel.getTickets()
+            }
+
             return cell
         }
 
@@ -151,6 +166,11 @@ extension TicketsInboxViewController: UICollectionViewDelegate, UICollectionView
 
         cell.ticketModel = model
         cell.delegate = self
+
+        if viewModel.apiCallIndex == indexPath.row, viewModel.isMoreDataAvailable, viewModel.searchQuery != nil {
+            viewModel.apiCallIndex += 50
+            viewModel.getTickets()
+        }
 
         return cell
     }
@@ -163,6 +183,20 @@ extension TicketsInboxViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: viewModel.cellWidth, height: viewModel.getCellHeight(at: indexPath.row))
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionFooter, viewModel.isMoreDataAvailable, viewModel.searchQuery != nil  else { return UICollectionReusableView() }
+
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "LoaderView", for: indexPath)
+
+        return footerView
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard viewModel.isMoreDataAvailable, viewModel.searchQuery != nil  else { return CGSize.zero }
+
+        return .init(width: viewModel.cellWidth, height: 40.0)
     }
 }
 
@@ -179,6 +213,50 @@ extension TicketsInboxViewController: TicketsListDelegate {
         showAlert(for: errorStr)
         ibCollectionView.reloadData()
         refreshControl.endRefreshing()
+    }
+}
+
+// MARK: - Search Delegate
+extension TicketsInboxViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        ibSearchBar.resignFirstResponder()
+
+        guard searchBar.text?.count ?? 0 > 0 else { return }
+
+        viewModel.resetPage()
+        viewModel.getTickets()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async {
+            self.ibSearchBar.text = nil
+            self.ibSearchBar.resignFirstResponder()
+            self.view.endEditing(true)
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard text != "\n" else { return true }
+
+        if let searchStr = searchBar.text, let textRange = Range(range, in: searchStr) {
+            let searchQuery = searchStr.replacingCharacters(in: textRange, with: text)
+
+            viewModel.updateSearch(with: searchQuery)
+        }
+        return true
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            viewModel.updateSearch(with: nil)
+            viewModel.resetPage()
+            viewModel.getTickets()
+
+            DispatchQueue.main.async {
+                self.ibSearchBar.resignFirstResponder()
+                self.view.endEditing(true)
+            }
+        }
     }
 }
 

@@ -13,10 +13,16 @@ class TicketDetailsViewController: UIViewController {
     @IBOutlet weak var ibPropertyInfoView: PropertyInfoView!
     @IBOutlet weak var ibPropertyInfoViewHeight: NSLayoutConstraint!
 
+    @IBOutlet weak var ibViolationHolder: UIView!
+    @IBOutlet weak var ibViolationLabel: UILabel!
+    @IBOutlet weak var ibViolationHeight: NSLayoutConstraint!
+
     @IBOutlet weak var ibScrollContainerView: UIView!
 
     let picker = UIImagePickerController()
     var scrollView = UIScrollView()
+
+    private var scrollHolderHeight: CGFloat = 0.0
 
     let viewModel = TicketDetailsViewModel()
 
@@ -50,10 +56,17 @@ class TicketDetailsViewController: UIViewController {
 
         ibPropertyInfoView.delegate = self
         ibPropertyInfoView.update(with: propertyInfo)
-        
+
         ibPropertyInfoView.layer.masksToBounds = true
         ibPropertyInfoView.layer.borderWidth = 1.0
         ibPropertyInfoView.layer.borderColor = AppColors.borderColor?.cgColor
+    }
+
+    private func updateViolation() {
+        guard let violation = viewModel.getViolation(), violation.hasViolation != "0" else { ibViolationHolder.isHidden = true; ibViolationHeight.constant = 0.0; return }
+
+        ibViolationHolder.isHidden = false
+        ibViolationLabel.text = violation.violationText
     }
 }
 
@@ -135,6 +148,7 @@ extension TicketDetailsViewController: TicketsListDelegate {
         scrollView.contentSize.height = 0.0
         scrollView.removeFromSuperview()
 
+        updateViolation()
         updateInfoView()
         updateUI()
 
@@ -164,8 +178,12 @@ extension TicketDetailsViewController {
     private func updateUI() {
         guard let details = viewModel.getDetails() else { return }
 
+        if scrollHolderHeight == 0.0 {
+            scrollHolderHeight = ibScrollContainerView.frame.height
+        }
+
         let height = ibPropertyInfoViewHeight.constant == 0.0 ? ibScrollContainerView.frame.height+90.0 : ibScrollContainerView.frame.height
-        scrollView.frame = CGRect(x: 0.0, y: 0.0, width: ibScrollContainerView.frame.width, height: height)
+        scrollView.frame = CGRect(x: 0.0, y: 0.0, width: ibScrollContainerView.frame.width, height: (ibViolationHeight.constant == 0.0 ? height+ibViolationHeight.constant+40.0 : height))
         scrollView.showsVerticalScrollIndicator = false
         ibScrollContainerView.addSubview(scrollView)
 
@@ -206,7 +224,7 @@ extension TicketDetailsViewController {
 
         statusView.frame = contentView.frame
         statusView.center = contentView.center
-        statusView.isTicketClosed = viewModel.isTicketClosed
+        statusView.isTicketClosed = viewModel.checkClosedStatus(for: state.status, at: index)
         statusView.ticketModel = state
 
         statusView.delegate = self

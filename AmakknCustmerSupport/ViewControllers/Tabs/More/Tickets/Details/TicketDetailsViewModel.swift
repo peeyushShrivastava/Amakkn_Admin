@@ -15,10 +15,10 @@ class TicketDetailsViewModel {
     private var statusID: String?
     private var ticketDetails: [TicketDetails]?
     var statusList: [StatusModel]?
-    var isTicketClosed = false
     private var propertyInfoModel: PropertyInfo?
     private var userInfoModel: UserInfo?
     private var feedback: TFeedbackModel?
+    private var violation: TViolationModel?
 
     var statusChanged = false
     var title = ""
@@ -55,13 +55,6 @@ class TicketDetailsViewModel {
         return propertyInfoModel?.propertyID
     }
 
-    private func updateLast() {
-        let active = ticketDetails?.filter({$0.isActive != "0"})
-        guard let last = active?.last else { return }
-
-        isTicketClosed = last.status == "5" && last.isActive == "-1"
-    }
-
     func updateTicket(_ ticketID: String?) {
         self.ticketID = ticketID
     }
@@ -94,6 +87,14 @@ class TicketDetailsViewModel {
         parentTicketID = pTicketID
     }
 
+    func updateViolation(_ violationModel: TViolationModel?) {
+        violation = violationModel
+    }
+
+    func getViolation() -> TViolationModel? {
+        return violation
+    }
+
     func getDetails() -> [TicketDetails]? {
         return ticketDetails
     }
@@ -121,6 +122,16 @@ class TicketDetailsViewModel {
     func getparentTicketID() -> String? {
         return parentTicketID
     }
+
+    func checkClosedStatus(for status: String?, at index: Int) -> Bool {
+        let active = ticketDetails?.filter({$0.isActive != "0"})
+
+        guard (active?.count ?? 0)-1 == index else { return false }
+        guard let last = active?.last else { return false}
+        guard let status = status, status == last.status else { return false }
+
+        return (last.status == "5" && last.isActive == "-1")
+    }
 }
 
 // MARK: Get Ticket Details API
@@ -143,7 +154,6 @@ extension TicketDetailsViewModel {
                 self?.ticketDetails = ticketDetailsModel?.details
                 self?.updatePropertyInfo(ticketDetailsModel?.property)
                 self?.userInfoModel = ticketDetailsModel?.userInfo
-                self?.updateLast()
 
                 self?.delegate?.success()
             }

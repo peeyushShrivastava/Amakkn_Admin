@@ -40,6 +40,7 @@ class PropertyDetailsViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     private func updateCollection() {

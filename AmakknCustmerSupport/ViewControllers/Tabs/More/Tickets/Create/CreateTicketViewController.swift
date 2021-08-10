@@ -487,7 +487,7 @@ extension CreateTicketViewController {
 
             self?.present(picker, animated: true, completion: nil)
         }))
-        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .destructive, handler: { _ in
+        alertController.addAction(UIAlertAction(title: "Alert_Cancel".localized(), style: .cancel, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         }))
 

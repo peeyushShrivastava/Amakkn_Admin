@@ -9,9 +9,11 @@ import Foundation
 
 struct TicketListModel: Codable {
     let tickets: [TicketsModel]?
+    let totalCount: String?
 
     private enum CodingKeys: String, CodingKey {
         case tickets = "ticketArray"
+        case totalCount
     }
 }
 

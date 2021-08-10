@@ -62,7 +62,6 @@ class CreateTicketViewModel {
 
     func updatePropertyInfo(_ propertyInfo: PropertyInfo?) {
         propertyInfoModel = propertyInfo
-        userID = propertyInfo?.userID
         propertyID = propertyInfo?.propertyID ?? ""
     }
 
@@ -71,10 +70,14 @@ class CreateTicketViewModel {
         userInfoModel?.userName = user?.userName
         userInfoModel?.cCode = user?.countryCode
         userInfoModel?.userPhone = user?.userPhone
+
+        userID = user?.userID
     }
 
     func updateUserInfo(_ userInfo: UserInfo?) {
         userInfoModel = userInfo
+
+        userID = userInfo?.userID
     }
 }
 

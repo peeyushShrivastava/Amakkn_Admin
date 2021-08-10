@@ -15,10 +15,16 @@ protocol TicketsListDelegate {
 }
 
 class TicketsInboxViewModel {
+    private var page = 0
+    private var pageSize = "50"
+    private var totalSize: String?
     private var tickets: [TicketsModel]?
+
     private var violatingUserID: String?
     var statusList: [StatusModel]?
     var ticketStatus = "-5"
+    var searchQuery: String?
+    var apiCallIndex = 49
     
     var delegate: TicketsListDelegate?
 
@@ -41,12 +47,33 @@ class TicketsInboxViewModel {
         return width
     }
 
+    var isFirstPage: Bool {
+        return page == 1
+    }
+
+    var isMoreDataAvailable: Bool {
+        guard let totalCount = Int(totalSize ?? "0"), let listCount = tickets?.count else { return false }
+
+        return totalCount > listCount
+    }
+
     subscript (_ index: Int) -> TicketsModel? {
+        guard tickets?.count ?? 0 > 0 else { return nil }
+
         return tickets?[index]
     }
 
     func updateViolating(userID: String?) {
         violatingUserID = userID
+    }
+
+    func resetPage() {
+        page = 0
+        apiCallIndex = 49
+    }
+
+    func updateSearch(with data: String?) {
+        searchQuery = data
     }
 }
 
@@ -61,15 +88,23 @@ extension TicketsInboxViewModel {
     func getTickets() {
         AppLoader.show()
 
+        if page == 0 { tickets = [TicketsModel]() }
+        page += 1
+
         violatingUserID == nil ? ticketsList() : violationsList()
     }
 
     private func ticketsList() {
-        TicketsNetworkManager.shared.getTickets(for: ticketStatus) { respModel in
-            DispatchQueue.main.async { [weak self] in
+        TicketsNetworkManager.shared.getTickets(for: ticketStatus, with: searchQuery ?? "", at: "\(page)", pageSize) { [weak self] respModel in
+            self?.totalSize = respModel?.totalCount
+
+            if let userList = respModel?.tickets {
+                self?.tickets?.append(contentsOf: userList)
+            }
+
+            DispatchQueue.main.async {
                 AppLoader.dismiss()
 
-                self?.tickets = respModel?.tickets
                 self?.delegate?.success()
             }
         } failureCallBack: { errorStr in

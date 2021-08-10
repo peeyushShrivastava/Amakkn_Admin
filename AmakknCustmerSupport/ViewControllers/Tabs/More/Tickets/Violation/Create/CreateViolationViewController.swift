@@ -79,7 +79,6 @@ extension CreateViolationViewController {
             DispatchQueue.main.async {
                 self?.update(user: user)
                 self?.viewModel.update(user)
-                self?.ibInfoButton.isEnabled = true
             }
         }
 

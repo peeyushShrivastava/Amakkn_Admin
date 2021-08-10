@@ -17,7 +17,7 @@ class CreateViolationViewModel {
     var delegate: TicketsListDelegate?
 
     var userID: String? {
-        return selectedUser?.userID
+        return userInfoModel?.userID
     }
 
     var userData: String? {
