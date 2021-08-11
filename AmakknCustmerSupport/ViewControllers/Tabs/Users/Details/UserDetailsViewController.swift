@@ -80,6 +80,9 @@ extension UserDetailsViewController {
             let profileModel = self?.viewModel.getProfileData()
             createTicketVC.viewModel.updateUserID(profileModel?.userID)
 
+            let userInfo = UserInfo(userID: profileModel?.userID, userName: profileModel?.userName, userPhone: profileModel?.userPhone, cCode: profileModel?.countryCode)
+            createTicketVC.viewModel.updateUserInfo(userInfo)
+
             self?.navigationController?.pushViewController(createTicketVC, animated: true)
         })
         let active = UIAlertAction(title: "User_Active".localized(), style: .default, handler: { [weak self] _ in

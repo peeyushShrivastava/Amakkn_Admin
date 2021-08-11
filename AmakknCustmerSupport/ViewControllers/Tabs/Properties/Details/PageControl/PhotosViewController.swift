@@ -49,7 +49,7 @@ extension PhotosViewController {
 // MARK: - PageControl Delegate
 extension PhotosViewController: PhotosPageControlDelegate {
     func didChange(page: Int) {
-        updateCounter(with: page)
+        updateCounter(with: page+1)
     }
 }
 

@@ -79,7 +79,7 @@ class CreateTicketViewController: UIViewController {
         guard let propertyInfo = viewModel.propertyInfo else { ibPropertyInfoView.isHidden = true; ibPropertyInfoViewHeight.constant = 0.0; updateUser(); return }
 
         ibPropertyInfoView.update(with: propertyInfo)
-        ibSelectUserButton.isUserInteractionEnabled = false
+//        ibSelectUserButton.isUserInteractionEnabled = false
 
         updateUser()
     }

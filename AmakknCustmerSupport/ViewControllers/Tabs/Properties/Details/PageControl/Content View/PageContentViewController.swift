@@ -7,26 +7,45 @@
 
 import UIKit
 import SDWebImage
+import WebKit
 
 class PageContentViewController: UIViewController {
-    @IBOutlet weak var ibPhotoImageView: UIImageView!
+//    @IBOutlet weak var ibPhotoImageView: UIImageView!
+    @IBOutlet weak var ibContentView: UIView!
     @IBOutlet weak var ibLoader: UIActivityIndicatorView!
-    
+
+    var ibContentWebView: WKWebView?
+
+    override func loadView() {
+        ibContentWebView = WKWebView()
+        ibContentWebView?.navigationDelegate = self
+        view = ibContentWebView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    func updateImage(with urlStr: String?) {
+    func updateFile(with urlStr: String?) {
         guard let urlStr = urlStr else { return }
 
-        ibLoader.isHidden = false
+//        ibLoader.isHidden = false
 
-        ibPhotoImageView.sd_setImage(with: URL(string: urlStr), placeholderImage:UIImage(), options: SDWebImageOptions.progressiveLoad, completed: { [weak self] image, _, _, _ in
-            guard let image = image else { return }
+        let link = URL(string: urlStr)!
 
-            self?.ibPhotoImageView.image = image
-            self?.ibLoader.stopAnimating()
-        })
+        let request = URLRequest(url: link)
+        ibContentWebView?.load(request)
+    }
+}
+
+// MARK: - WKNavigation delegate Methods
+extension PageContentViewController: WKNavigationDelegate {
+    func webView(_: WKWebView, didFinish _: WKNavigation!) {
+//        ibLoader.stopAnimating()
+    }
+
+    func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
+//        ibLoader.stopAnimating()
     }
 }
 

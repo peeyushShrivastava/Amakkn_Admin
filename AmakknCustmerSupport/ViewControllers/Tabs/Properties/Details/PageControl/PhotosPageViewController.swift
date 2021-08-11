@@ -44,7 +44,7 @@ class PhotosPageViewController: UIPageViewController {
 
         guard let currentVC = orderedViewControllers[count] as? PageContentViewController else { return }
 
-        currentVC.updateImage(with: photos[count])
+        currentVC.updateFile(with: photos[count])
     }
 }
 
@@ -76,7 +76,7 @@ extension PhotosPageViewController: UIPageViewControllerDelegate, UIPageViewCont
 
             guard let currentVC = orderedViewControllers[currentIndex] as? PageContentViewController else { return }
     
-            currentVC.updateImage(with: photos?[currentIndex])
+            currentVC.updateFile(with: photos?[currentIndex])
             
             pageDelegate?.didChange(page: currentIndex)
         }

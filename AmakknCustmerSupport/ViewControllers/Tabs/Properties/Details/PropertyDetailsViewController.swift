@@ -211,6 +211,8 @@ extension PropertyDetailsViewController {
 // MARK: - Push VCs
 extension PropertyDetailsViewController {
     private func pushPhotoGalleryVC(with images: [String]?) {
+        guard let images = images, !images.contains("") else { return }
+        
         performSegue(withIdentifier: "photoViewerSegueID", sender: images)
     }
 

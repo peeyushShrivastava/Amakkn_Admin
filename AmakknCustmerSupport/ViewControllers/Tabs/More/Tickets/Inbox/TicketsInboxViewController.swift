@@ -32,7 +32,8 @@ class TicketsInboxViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        NotificationHandler.manager.delegate = self
         tabBarController?.tabBar.isHidden = true
         ibSearchbarHeight.constant = viewModel.vUserID != nil ? 0.0 : 44.0
         ibSearchBar.isHidden = viewModel.vUserID != nil
@@ -40,6 +41,12 @@ class TicketsInboxViewController: UIViewController {
         /// Get List of Tickets created
         viewModel.resetPage()
         viewModel.getTickets()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationHandler.manager.delegate = nil
     }
 
     private func updateUI() {
@@ -137,6 +144,14 @@ extension TicketsInboxViewController {
         alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .cancel, handler: nil))
 
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - AppNotification Delegate
+extension TicketsInboxViewController: AppNotificationDelegate {
+    func didReceiveNotification(for ticketID: String?) {
+        viewModel.resetPage()
+        viewModel.getTickets()
     }
 }
 

@@ -112,7 +112,10 @@ class TicketDetailsViewModel {
     }
 
     func getUserInfo() -> UserInfo? {
-        return userInfoModel
+        guard propertyInfoModel?.propertyID != nil else { return userInfoModel }
+
+        let userInfo = UserInfo(userID: propertyInfoModel?.userID, userName: nil, userPhone: propertyInfoModel?.phone, cCode: propertyInfoModel?.cCode)
+        return userInfo
     }
 
     func getFeedback() -> TFeedbackModel? {
