@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Data Fetch
 protocol Transport {
@@ -23,7 +24,7 @@ enum Environment: String {
 // MARK: - Base URL
 struct BaseURL {
     static let devURL = "https://devsa1.amakkn.com/"
-    static let prodURL = "https://prodsa1.amakkn.com/"
+    static let prodURL = "https://prodsa2.amakkn.com/"
 }
 
 // MARK: - Base URL String
@@ -115,7 +116,9 @@ extension ConfigRequest {
 // MARK: - API Method
 extension ConfigRequest {
     internal var params: [String: Any]? {
-        return delegate?.params
+        var params = delegate?.params
+        params?["idToken"] = AppUserDefaults.manager.pushFCMToken
+        return params
     }
 }
 
@@ -147,8 +150,10 @@ class BaseNetworkManager: Transport {
     func fetch(_ request: URLRequest?, successCallBack: @escaping (_ resData: Data?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         guard let request = request else { return }
 
-        networkSession.dataTask(with: request) { (resData, response, error) in
+        networkSession.dataTask(with: request) { [weak self] (resData, response, error) in
             DispatchQueue.main.async {
+                guard !AppUserDefaults.manager.forcedLogout else { successCallBack(resData); return }
+
                 if let error = error {
                     failureCallBack(error.localizedDescription)
 
@@ -159,9 +164,66 @@ class BaseNetworkManager: Transport {
                     return
                 }
 
-                successCallBack(resData)
+                guard let resData = resData else { return }
+
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: resData, options: [])
+                    guard let jsonDictionary = jsonObject as? [String: Any], let respCode = jsonDictionary["resCode"] as? Int  else { return }
+
+                    /// Force Log-out
+                    if respCode == 1001 {
+                        DispatchQueue.main.async {
+                            self?.showLoginAlert()
+                        }
+
+                        return
+                    }
+
+                    successCallBack(resData)
+                } catch _ { }
             }
         }.resume()
+    }
+}
+
+// MARK: - Push LoginVC
+extension BaseNetworkManager {
+    private func showLoginAlert() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.selectedIndex = Utility.shared.getSelectedTab()
+
+        guard let navController = tabBarController.viewControllers?[Utility.shared.getSelectedTab()] as? UINavigationController else { return }
+
+        let alertController = UIAlertController(title: "You are logged out for security reasons. Please Login again.", message: nil, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.pushLoginVC(on: navController)
+            }
+        }))
+
+        navController.present(alertController, animated: true, completion: nil)
+    }
+
+    private func pushLoginVC(on navController: UINavigationController) {
+        AppUserDefaults.manager.forcedLogout = true
+
+        AppNetworkManager.shared.logout {
+            DispatchQueue.main.async {
+                AppSession.manager.resetAppSession()
+                SocketIOManager.sharedInstance.closeConnection()
+                SocketIOManager.sharedInstance.dataProvider.clearCodeData()
+
+                guard let loginVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as? LoginViewController else { return }
+
+                let navigationVC = UINavigationController(rootViewController: loginVC)
+                navigationVC.modalPresentationStyle = .fullScreen
+
+                navController.present(navigationVC, animated: true, completion: nil)
+            }
+        } failureCallBack: { _ in }
     }
 }
 

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let configuration = AWSServiceConfiguration(region:.EUCentral1, credentialsProvider:credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
 
-        AppNetworkManager.shared.getBadge()
+        AppNetworkManager.shared.getBadge { }
 
         FirebaseApp.configure()
 

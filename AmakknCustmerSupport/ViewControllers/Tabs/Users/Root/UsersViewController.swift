@@ -85,6 +85,13 @@ extension UsersViewController {
             let userID = viewModel.isFilterCalled ? viewModel[row]?.userId : viewModel[row]?.userID
             destinationVC.viewModel.userID = userID
             destinationVC.viewModel.updateDataSource(with: nil)
+            destinationVC.userTypeChanged = { [weak self] (userID, userType) in
+                self?.viewModel.update(userType, for: userID) { index in
+                    DispatchQueue.main.async {
+                        self?.ibCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+                    }
+                }
+            }
         }
     }
 }

@@ -18,10 +18,10 @@ enum NotificationScreen: String {
 
 // MARK: - NotificationScreens Enum
 enum AppTabs: Int {
-    case inbox = 0
+    case tickets = 0
     case users
     case properties
-    case abuse
+    case stats
     case more
 }
 
@@ -93,10 +93,10 @@ extension NotificationHandler {
 
     private func getTab(for screenType: NotificationScreen) -> AppTabs {
         switch screenType {
-            case .cs: return .inbox
+            case .cs: return .more
             case .propertyDetails: return .properties
             case .userDetails: return .users
-            case .ticket: return .more
+            case .ticket: return .tickets
         }
     }
 }
@@ -112,11 +112,11 @@ extension NotificationHandler {
         guard let navController = tabBarController.viewControllers?[tab.rawValue] as? UINavigationController else { return }
 
         switch tab {
-            case .inbox: break
+            case .tickets: pushToTicketDetailsVC(for: data, with: navController)
             case .users: pushToUserDetailsVC(for: data, with: navController)
             case .properties: pushToPropertyDetailsVC(for: data, with: navController)
-            case .abuse: break
-            case .more: pushToTicketDetailsVC(for: data, with: navController)
+            case .stats: break
+            case .more: pushToChatVC(for: data, with: navController)
         }
     }
 
@@ -141,11 +141,18 @@ extension NotificationHandler {
     }
 
     private func pushToTicketDetailsVC(for ticketID: String, with navController: UINavigationController) {
-        guard let rootController = navController.children.first as? MoreViewController else { return }
+        guard let rootController = navController.children.first as? TicketsInboxViewController else { return }
         guard let ticketDetailsVC = TicketDetailsViewController.instantiateSelf() else { return }
 
         ticketDetailsVC.viewModel.updateTicket(ticketID)
 
         rootController.navigationController?.pushViewController(ticketDetailsVC, animated: false)
+    }
+
+    private func pushToChatVC(for chatID: String, with navController: UINavigationController) {
+        guard let rootController = navController.children.first as? MoreViewController else { return }
+        guard let chatInboxVC = TicketDetailsViewController.instantiateSelf() else { return }
+
+        rootController.navigationController?.pushViewController(chatInboxVC, animated: false)
     }
 }

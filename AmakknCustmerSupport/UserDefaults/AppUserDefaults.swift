@@ -11,7 +11,9 @@ struct DefaultsStrings {
     static let pushFCMToken = "FCMToken"
     static let loginUser = "LoginUser"
     static let appDomain = "AppDomains"
-    static let badgeCount = "BadgeCount"
+    static let chatBadgeCount = "ChatBadgeCount"
+    static let ticketBadgeCount = "TicketBadgeCount"
+    static let forcedLogout = "ForcedLogout"
 }
 
 class AppUserDefaults {
@@ -28,9 +30,9 @@ class AppUserDefaults {
 
 // MARK: - PushToken
 extension AppUserDefaults {
-    var pushFCMToken: String? {
+    var pushFCMToken: String {
         get {
-            return defaults.value(forKey: DefaultsStrings.pushFCMToken) as? String
+            return defaults.value(forKey: DefaultsStrings.pushFCMToken) as? String ?? ""
         }
         set {
             defaults.setValue(newValue, forKey: DefaultsStrings.pushFCMToken)
@@ -41,12 +43,35 @@ extension AppUserDefaults {
 
 // MARK: - Badge Count
 extension AppUserDefaults {
-    var badgeCount: String? {
+    var chatBadgeCount: String? {
         get {
-            return defaults.value(forKey: DefaultsStrings.badgeCount) as? String
+            return defaults.value(forKey: DefaultsStrings.chatBadgeCount) as? String
         }
         set {
-            defaults.setValue(newValue, forKey: DefaultsStrings.badgeCount)
+            defaults.setValue(newValue, forKey: DefaultsStrings.chatBadgeCount)
+            defaults.synchronize()
+        }
+    }
+
+    var ticketBadgeCount: String? {
+        get {
+            return defaults.value(forKey: DefaultsStrings.ticketBadgeCount) as? String
+        }
+        set {
+            defaults.setValue(newValue, forKey: DefaultsStrings.ticketBadgeCount)
+            defaults.synchronize()
+        }
+    }
+}
+
+// MARK: - Forced Log-out
+extension AppUserDefaults {
+    var forcedLogout: Bool {
+        get {
+            return defaults.value(forKey: DefaultsStrings.forcedLogout) as? Bool ?? false
+        }
+        set {
+            defaults.setValue(newValue, forKey: DefaultsStrings.forcedLogout)
             defaults.synchronize()
         }
     }

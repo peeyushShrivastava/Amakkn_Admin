@@ -49,3 +49,8 @@ struct AppDomain: Codable {
     let countryShortCode: String?
     let countryCode: String?
 }
+
+struct AppBadgeCount: Codable {
+    let ticketsUnreadCount:  String?
+    let chatUnreadCount: String?
+}

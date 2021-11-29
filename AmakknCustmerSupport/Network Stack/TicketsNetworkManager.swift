@@ -14,7 +14,7 @@ enum TicketsAPIEndPoint: APIEndPoint {
     case getSubjects
     case getStatusList
     case getViolationUserList
-    case getTickets(_ status: String, _ searchQuery: String, _ page: String, _ pageSize: String)
+    case getTickets(_ status: String, _ subject: String, _ searchQuery: String, _ page: String, _ pageSize: String)
     case getTicketDetails(_ ticketID: String)
     case getViolationList(_ violatingUserID: String)
     case addComment(_ text: String, _ ticketID: String, _ statusID: String)
@@ -32,7 +32,7 @@ extension TicketsNetworkManager {
             case .getSubjects: return "Feedback/getTicketListSubjects/"
             case .getStatusList: return "Feedback/getTicketStatusList/"
             case .getViolationUserList: return "Feedback/getListOfViolatingUsers/"
-            case .getTickets(_, _, _, _): return "Feedback/getMyTickets/"
+            case .getTickets(_, _, _, _, _): return "Feedback/getMyTickets/"
             case .getTicketDetails(_): return "Feedback/getTicketDetails/"
             case .getViolationList(_): return "Feedback/getListOfViolations/"
             case .addComment(_, _, _): return "Feedback/addCommentToATicket/"
@@ -52,7 +52,7 @@ extension TicketsNetworkManager {
             case .getSubjects: return ["language": selectedLanguage]
             case .getStatusList: return ["language": selectedLanguage]
             case .getViolationUserList: return ["userId": hashedUserID, "language": selectedLanguage]
-            case .getTickets(let status, let searchQuery, let page, let pageSize): return ["userId": hashedUserID, "language": selectedLanguage, "status": status, "phone": searchQuery, "page": page, "pageSize": pageSize]
+            case .getTickets(let status, let subject, let searchQuery, let page, let pageSize): return ["userId": hashedUserID, "language": selectedLanguage, "status": status, "subjectId": subject, "phone": searchQuery, "page": page, "pageSize": pageSize]
             case .getTicketDetails(let ticketID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage]
             case .getViolationList(let violatingUserID): return ["violatingUserIdNotHashed": violatingUserID, "userId": hashedUserID, "language": selectedLanguage]
             case .addComment(let comment, let ticketID, let statusID): return ["ticketId": ticketID, "userId": hashedUserID, "language": selectedLanguage, "text": comment, "statusId": statusID]
@@ -103,8 +103,8 @@ class TicketsNetworkManager: ConfigRequestDelegate {
 
 // MARK: - Get Ticket List
 extension TicketsNetworkManager {
-    func getTickets(for status: String, with searchQuery: String, at page: String, _ pageSize: String, successCallBack: @escaping (_ model: TicketListModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
-        let request = getRequest(with: TicketsAPIEndPoint.getTickets(status, searchQuery, page, pageSize))
+    func getTickets(for status: String, and subject: String, with searchQuery: String, at page: String, _ pageSize: String, successCallBack: @escaping (_ model: TicketListModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: TicketsAPIEndPoint.getTickets(status, subject, searchQuery, page, pageSize))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }

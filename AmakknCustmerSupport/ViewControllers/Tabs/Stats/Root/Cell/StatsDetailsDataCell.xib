@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statsDetailsCellID" id="KGk-i7-Jjw" customClass="StatsDetailsDataCell" customModule="AmakknCustmerSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dl-Q1-UFd">
+                        <rect key="frame" x="10" y="2" width="200" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="h8F-kj-mur"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLq-yG-V0a">
+                        <rect key="frame" x="230" y="2" width="80" height="40"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" name="selectedTitleTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="darkViewBGColor"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3dl-Q1-UFd" secondAttribute="bottom" constant="2" id="2Z9-v3-mfQ"/>
+                    <constraint firstAttribute="trailing" secondItem="GLq-yG-V0a" secondAttribute="trailing" constant="10" id="6FI-p7-fMj"/>
+                    <constraint firstItem="3dl-Q1-UFd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Fau-Q1-EWB"/>
+                    <constraint firstItem="3dl-Q1-UFd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="KQI-Lc-G3U"/>
+                    <constraint firstItem="GLq-yG-V0a" firstAttribute="leading" secondItem="3dl-Q1-UFd" secondAttribute="trailing" constant="20" id="Ve9-Qk-1ML"/>
+                    <constraint firstItem="GLq-yG-V0a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="aa0-Mn-ggE"/>
+                    <constraint firstAttribute="bottom" secondItem="GLq-yG-V0a" secondAttribute="bottom" constant="2" id="b2M-Pj-EwP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="darkViewBGColor"/>
+            <connections>
+                <outlet property="ibTitleLabel" destination="3dl-Q1-UFd" id="CWT-o7-41f"/>
+                <outlet property="ibValueLabel" destination="GLq-yG-V0a" id="DVU-7v-jET"/>
+            </connections>
+            <point key="canvasLocation" x="89.855072463768124" y="116.51785714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="darkViewBGColor">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="selectedTitleTextColor">
+            <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -60,14 +60,12 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 {
                     performSegue(withIdentifier: "feedBackSegueID", sender: nil)
                 } else if indexPath.row == 1 {
-                    performSegue(withIdentifier: "statsSegueID", sender: nil)
+                    performSegue(withIdentifier: "chatSegueID", sender: nil)
                 } else if indexPath.row == 2 {
                     performSegue(withIdentifier: "userFilterSegueID", sender: nil)
                 } else if indexPath.row == 3 {
                     performSegue(withIdentifier: "propertiesFilterSegueID", sender: nil)
                 } else if indexPath.row == 4 {
-                    performSegue(withIdentifier: "ticketsSegueID", sender: nil)
-                } else if indexPath.row == 5 {
                     performSegue(withIdentifier: "violationsSegueID", sender: nil)
                 }
         }
@@ -92,6 +90,7 @@ extension MoreViewController {
             DispatchQueue.main.async {
                 self?.viewModel.updateData()
                 self?.ibMoreTableView.reloadData()
+                self?.presentLoginVC()
             }
         } failureCallBack: { [weak self] errorStr in
             DispatchQueue.main.async {

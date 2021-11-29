@@ -8,7 +8,7 @@
 import Foundation
 
 class MoreViewModel {
-    private let section1Data = ["Feedback".localized(), "Stats", "Users Filter", "Properties Filter", "Tickets".localized(), "Violations"]
+    private let section1Data = ["Feedback".localized(), "Chat", "Users Filter", "Properties Filter", "Violations"]
     private var section2Data = AppSession.manager.validSession ? ["Logout".localized()] : ["Login".localized()]
 
     var sectionCount: Int {

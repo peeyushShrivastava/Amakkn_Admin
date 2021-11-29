@@ -56,11 +56,15 @@ extension PopoverViewController: UITableViewDelegate, UITableViewDataSource {
         delegate?.didSelectCell(with: titleList?[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1.0
+    }
 }
 
 // MARK: - Init Self
 extension PopoverViewController: InitiableViewController {
     static var storyboardType: AppStoryboard {
-        return .abuse
+        return .ticket
     }
 }

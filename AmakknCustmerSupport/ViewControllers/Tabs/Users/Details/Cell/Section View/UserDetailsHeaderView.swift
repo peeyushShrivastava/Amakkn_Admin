@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - UserFilterHeader Delegate
 protocol UserDetailsHeaderDelegate {
-    func expandCell(at section: Int)
+    func expandCell(at section: Int, with title: String?)
 }
 
 class UserDetailsHeaderView: UIView {
@@ -23,6 +23,9 @@ class UserDetailsHeaderView: UIView {
         ibTitleLabel.text = title
 
         ibExpandButton.tag = section
+
+        let icon = (title == UserDetailsType.changeUserType.rawValue) ? UIImage(named: "icNextIcon") : UIImage(named: "icDropDownIcon")
+        ibIndicatorIcon.image = icon
     }
 
     func updateUI(for isExpanded: Bool) {
@@ -33,6 +36,6 @@ class UserDetailsHeaderView: UIView {
     }
 
     @IBAction func expandButtonTapped(_ sender: UIButton) {
-        delegate?.expandCell(at: sender.tag)
+        delegate?.expandCell(at: sender.tag, with: ibTitleLabel.text)
     }
 }

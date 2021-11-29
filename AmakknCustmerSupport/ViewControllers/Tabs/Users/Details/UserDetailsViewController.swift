@@ -19,7 +19,10 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var ibDetailsTableView: UITableView!
     @IBOutlet weak var ibTableViewWidth: NSLayoutConstraint!
 
+    var userTypeChanged: ((_ userID: String?, _ userType: String?) -> Void)?
+
     var headerView: UserDetailsHeaderView?
+    var isUserTypeChanged = false
 
     let viewModel = UserDetailsViewModel()
 
@@ -55,8 +58,16 @@ extension UserDetailsViewController {
 
             destinationVC.viewModel.update(propertyIDs)
         } else if segue.identifier == "notificationSegueID",
-                  let destinationVC = segue.destination as? SendUserViewController {
+            let destinationVC = segue.destination as? SendUserViewController {
             destinationVC.userID = viewModel.userID
+        } else if segue.identifier == "changeTypeSegueID" {
+            let destinationVC = segue.destination as? ChangeTypeViewController
+            destinationVC?.viewModel.update(data: (viewModel.userID, viewModel.userType))
+            destinationVC?.userTypeChanged = { [weak self] in
+                self?.isUserTypeChanged = true
+
+                self?.viewModel.getUserStats()
+            }
         }
     }
 }
@@ -182,8 +193,12 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         headerView = Bundle.main.loadNibNamed("UserDetailsHeaderView", owner: self, options: nil)?.last as? UserDetailsHeaderView
 
         headerView?.backgroundColor = AppColors.lightViewBGColor
-        headerView?.update(viewModel.getData(at: section)?.detailsTitle, at: section)
-        headerView?.updateUI(for: viewModel.getData(at: section)?.isExpanded ?? false)
+        
+        let userModel = viewModel.getData(at: section)
+        headerView?.update(userModel?.detailsTitle, at: section)
+
+        let isExpanded = (userModel?.detailsTitle == UserDetailsType.changeUserType.rawValue) ? false : userModel?.isExpanded
+        headerView?.updateUI(for: isExpanded ?? false)
 
         headerView?.delegate = self
 
@@ -208,7 +223,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
 
 // MARK: - UserDetailsHeader Delegate
 extension UserDetailsViewController: UserDetailsHeaderDelegate {
-    func expandCell(at section: Int) {
+    func expandCell(at section: Int, with title: String?) {
+        guard title != UserDetailsType.changeUserType.rawValue else { performSegue(withIdentifier: "changeTypeSegueID", sender: nil); return }
+
         viewModel.updateExpand(at: section)
 
         if let data = viewModel.getData(at: section), let filterData = data.detailsData {
@@ -292,6 +309,14 @@ extension UserDetailsViewController: UserDetailsDelegate {
     func updateData() {
         DispatchQueue.main.async { [weak self] in
             self?.ibDetailsTableView.reloadData()
+
+            if self?.isUserTypeChanged ?? false {
+                self?.isUserTypeChanged = false
+
+                if let userTypeChanged = self?.userTypeChanged {
+                    userTypeChanged(self?.viewModel.userID, self?.viewModel.userType)
+                }
+            }
         }
     }
 }

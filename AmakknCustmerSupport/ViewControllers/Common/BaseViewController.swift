@@ -12,6 +12,12 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        checkValidSession()
+    }
 }
 
 // MARK: - Push VCs
@@ -50,5 +56,14 @@ extension BaseViewController: EmptyBGViewDelegate {
 extension BaseViewController: LoginDelegate {
     @objc func loginSuccess() {
         // Override in Child VC
+    }
+}
+
+// MARK: - Present Login VC
+extension BaseViewController {
+    private func checkValidSession() {
+        guard !AppSession.manager.validSession else { return }
+
+        presentLoginVC()
     }
 }

@@ -8,6 +8,7 @@
 import Localize_Swift
 import Foundation
 import SwiftHash
+import Firebase
 import UIKit
 
 // MARK: - Langage Type Enum
@@ -201,11 +202,28 @@ extension Utility {
 
 // MARK: - Set Badge Count
 extension Utility {
-    func update(badgeCount: String?) {
+    func updateChat(badgeCount: String?) {
         guard let window =  UIApplication.shared.windows.first else { return }
         guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
 
-        tabBarController.tabBar.items?.first?.badgeValue = (badgeCount == "0" || badgeCount == "") ? nil : badgeCount
+        tabBarController.tabBar.items?[4].badgeValue = (badgeCount == "0" || badgeCount == "") ? nil : badgeCount
+    }
+
+    func updateTicket(badgeCount: String?) {
+        guard let window =  UIApplication.shared.windows.first else { return }
+        guard let tabBarController = window.rootViewController as? MainTabBarController else { return }
+
+        tabBarController.tabBar.items?[0].badgeValue = (badgeCount == "0" || badgeCount == "") ? nil : badgeCount
+    }
+
+    func updateToken(callback: @escaping () -> Void) {
+        Messaging.messaging().token { token, error in
+          if let token = token {
+            AppUserDefaults.manager.pushFCMToken = token
+
+            callback()
+          }
+        }
     }
 }
 

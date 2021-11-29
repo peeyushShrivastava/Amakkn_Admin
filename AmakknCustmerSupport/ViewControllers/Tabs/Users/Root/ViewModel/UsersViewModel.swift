@@ -98,6 +98,14 @@ class UsersViewModel {
     func updateSearch(with data: String?) {
         searchQuery = data
     }
+
+    func update(_ userType: String?, for userID: String?, callBack: @escaping (_ index: Int) -> Void) {
+        guard let index = users?.firstIndex(where: { $0.userID == userID}) else { return }
+
+        users?[index].userType = userType
+
+        callBack(index)
+    }
 }
 
 // MARK: - API Calls

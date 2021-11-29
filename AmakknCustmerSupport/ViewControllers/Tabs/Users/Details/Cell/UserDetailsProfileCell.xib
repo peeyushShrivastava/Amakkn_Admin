@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -198,9 +198,11 @@
             <color key="backgroundColor" name="lightViewBGColor"/>
             <connections>
                 <outlet property="ibAvatar" destination="hTQ-yX-7TW" id="bUd-hd-48R"/>
+                <outlet property="ibChatButton" destination="qjq-Nj-FLg" id="6qL-aU-PyU"/>
                 <outlet property="ibEmailLabel" destination="3Tn-SY-DcM" id="1D0-hS-LAz"/>
                 <outlet property="ibInitialLabel" destination="xEO-oV-igX" id="dI3-lP-5ve"/>
                 <outlet property="ibNamelabel" destination="EKk-68-mN9" id="yld-y8-6yH"/>
+                <outlet property="ibPhoneButton" destination="LUx-mq-pQS" id="Xcw-D9-vve"/>
                 <outlet property="ibPhoneLabel" destination="cmC-8E-68s" id="rxP-Cs-m9s"/>
                 <outlet property="ibUserIDLabel" destination="Ye4-xy-81s" id="fPF-h6-IHh"/>
                 <outlet property="ibVerifiedIcon" destination="eT8-8Z-hmO" id="Uuf-ex-XYn"/>
@@ -209,14 +211,14 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icCallButtonIcon" width="24" height="24"/>
-        <image name="icChatButtonIcon" width="24" height="24"/>
+        <image name="icCallButtonIcon" width="40" height="40"/>
+        <image name="icChatButtonIcon" width="40" height="40"/>
         <image name="icVerifiedAccountIcon" width="21" height="21"/>
         <namedColor name="darkViewBGColor">
-            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightViewBGColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="selectedTitleTextColor">
             <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

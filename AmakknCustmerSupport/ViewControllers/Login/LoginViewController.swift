@@ -81,10 +81,22 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - Navigation
+extension LoginViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "otpSegueID",
+            let destinationVC = segue.destination as? OTPViewController {
+
+            destinationVC.delegate = self
+            destinationVC.viewModel.updateData((phone: ibPhoneTextField.text, countryCode: selectedCountryCode, password:ibPasswordTextField.text))
+        }
+    }
+}
+
 // MARK: - Button Ation
 extension LoginViewController {
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -205,14 +217,18 @@ extension LoginViewController {
         guard let countryCode = selectedCountryCode, let phone = ibPhoneTextField.text, let pwd = ibPasswordTextField.text else { return }
 
         viewModel.login(with: countryCode, phone, and: pwd) { [weak self] in
-            // SocketIO Establish Connection
-            SocketIOManager.sharedInstance.establishConnection()
-            self?.delegate?.loginSuccess()
-
-            self?.dismiss(animated: true, completion: nil)
-        } failureCallBack: { (errorStr) in
-            self.showAlert(with: errorStr)
+            self?.performSegue(withIdentifier: "otpSegueID", sender: nil)
+        } failureCallBack: { [weak self] (errorStr) in
+            self?.showAlert(with: errorStr)
         }
+
+//        viewModel.loginOld(with: countryCode, phone, and: pwd) { [weak self] in
+//            // SocketIO Establish Connection
+//            SocketIOManager.sharedInstance.establishConnection()
+//            self?.loginSuccess()
+//        } failureCallBack: { [weak self] (errorStr) in
+//            self?.showAlert(with: errorStr)
+//        }
     }
 
     private func showAlert(with errorStr: String?) {
@@ -221,5 +237,13 @@ extension LoginViewController {
         alertController.addAction(UIAlertAction(title: "alert_OK".localized(), style: .default, handler: nil))
 
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Login Delegate
+extension LoginViewController: LoginDelegate {
+    func loginSuccess() {
+        delegate?.loginSuccess()
+        dismiss(animated: true, completion: nil)
     }
 }

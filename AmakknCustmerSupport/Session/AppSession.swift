@@ -14,6 +14,17 @@ enum UserType: String {
     case company = "4"
     case agent = "5"
     case admin = "6"
+
+    func typeStr() -> String {
+        switch self {
+            case .normal: return UserTypeStr.normal.rawValue
+            case .owner: return UserTypeStr.owner.rawValue
+            case .broker: return UserTypeStr.broker.rawValue
+            case .company: return UserTypeStr.company.rawValue
+            case .agent: return UserTypeStr.agent.rawValue
+            case .admin: return UserTypeStr.admin.rawValue
+        }
+    }
 }
 
 enum AccountType: String {
@@ -78,6 +89,9 @@ extension AppSession {
     func resetAppSession() {
         user = nil
         AppUserDefaults.manager.resetDefaults()
+        AppUserDefaults.manager.chatBadgeCount = nil
+        AppUserDefaults.manager.ticketBadgeCount = nil
+        AppUserDefaults.manager.pushFCMToken = ""
     }
 
     func update(_ urlSession: URLSession?) {

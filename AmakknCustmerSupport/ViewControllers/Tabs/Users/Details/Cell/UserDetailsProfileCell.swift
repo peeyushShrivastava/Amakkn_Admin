@@ -21,6 +21,8 @@ class UserDetailsProfileCell: UITableViewCell {
     @IBOutlet weak var ibEmailLabel: UILabel!
     @IBOutlet weak var ibPhoneLabel: UILabel!
     @IBOutlet weak var ibVerifiedIcon: UIImageView!
+    @IBOutlet weak var ibPhoneButton: UIButton!
+    @IBOutlet weak var ibChatButton: UIButton!
     
     var delegate: UserDetailsProfileDelegate?
 
@@ -36,6 +38,18 @@ class UserDetailsProfileCell: UITableViewCell {
 
         layer.masksToBounds = true
         layer.cornerRadius = 8.0
+        
+        ibAvatar.layer.masksToBounds = true
+        ibAvatar.layer.borderWidth = 1.0
+        ibAvatar.layer.borderColor = AppColors.borderColor?.cgColor
+
+        ibPhoneButton.layer.masksToBounds = true
+        ibPhoneButton.layer.borderWidth = 1.0
+        ibPhoneButton.layer.borderColor = AppColors.borderColor?.cgColor
+
+        ibChatButton.layer.masksToBounds = true
+        ibChatButton.layer.borderWidth = 1.0
+        ibChatButton.layer.borderColor = AppColors.borderColor?.cgColor
     }
 
     private func updateUI() {
@@ -59,7 +73,7 @@ class UserDetailsProfileCell: UITableViewCell {
 
         ibInitialLabel.isHidden = true
         ibAvatar.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage())
-        ibAvatar.contentMode = .scaleAspectFit
+        ibAvatar.contentMode = .scaleAspectFill
     }
 }
 

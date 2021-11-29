@@ -102,7 +102,7 @@ struct SearchedUserModel: Codable {
     let userPhone: String?
     let countryCode: String?
 
-    let userType: String?
+    var userType: String?
     let accountType: String?
     let createdAt: String?
     let isVerified: String?

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,10 +28,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfR-HB-YhC">
-                    <rect key="frame" x="336" y="2" width="70" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="MmE-Ey-JYi"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="2" width="406" height="45"/>
                     <connections>
                         <action selector="expandButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="nyS-B1-m8R"/>
                     </connections>
@@ -44,6 +41,7 @@
                 <constraint firstItem="wfR-HB-YhC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="Ch0-Gg-43i"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wfR-HB-YhC" secondAttribute="trailing" constant="8" id="Gho-eZ-w0G"/>
                 <constraint firstItem="Dq9-KZ-c2X" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NwG-WQ-Cyh"/>
+                <constraint firstItem="wfR-HB-YhC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Y7I-2v-WAb"/>
                 <constraint firstItem="4H7-7q-f1I" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hsD-LD-R83"/>
                 <constraint firstItem="wfR-HB-YhC" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="2" id="vvt-9h-SIP"/>
                 <constraint firstItem="Dq9-KZ-c2X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="xrz-oM-o7F"/>
@@ -60,7 +58,7 @@
     <resources>
         <image name="icDropDownIcon" width="10" height="8"/>
         <namedColor name="lightViewBGColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99215686274509807" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="selectedTitleTextColor">
             <color red="0.14499999582767487" green="0.27099999785423279" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

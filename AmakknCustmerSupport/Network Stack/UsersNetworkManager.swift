@@ -13,6 +13,7 @@ enum UsersAPIEndPoint: APIEndPoint {
     case getUsers(_ page: String, _ pageSize: String, _ sortBy: String, _ sortOrder: String, _ searchString: String, _ searchOperator: String)
     case getUserProperties(_ propertyIDs: String)
     case changeUserStatus(_ userID: String, _ status: String)
+    case changeUserType(_ userID: String, _ userType: String)
     case sendNotification(_ userID: String, _ title: String, _ body: String)
     case none
 }
@@ -25,6 +26,7 @@ extension UsersNetworkManager {
             case .getUsers(_, _, _, _, _, _): return "Extras/getUserStatsNew/"
             case .getUserProperties(_): return "Property/getPropertyDescriptionsForAdmin/"
             case .changeUserStatus(_, _): return "Login/changeUserStatus/"
+            case .changeUserType(_, _): return "Login/changeUserTypeByAdmin/"
             case .sendNotification(_, _, _): return "Login/sendCustomNotification1/"
             case .none: return ""
         }
@@ -50,6 +52,8 @@ extension UsersNetworkManager {
                 return ["propertyIds": propertyIDs, "userId": hashedUserID]
             case .changeUserStatus(let userID, let status):
                 return ["userId": userID, "status": status, "adminId": hashedUserID]
+            case .changeUserType(let userID, let userType):
+                return ["userId": userID, "userType": userType, "adminId": hashedUserID]
             case .sendNotification(let userID, let title, let body):
                 return ["userId": userID, "title": title, "body": body, "adminId": hashedUserID]
             default:
@@ -174,6 +178,34 @@ extension UsersNetworkManager {
 extension UsersNetworkManager {
     func changeUserStatus(for userID: String, _ status: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: UsersAPIEndPoint.changeUserStatus(userID, status))
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<UsersReponseModel>.self, from: resData)
+
+                if model.resCode == 0 {
+                    successCallBack()
+
+                    return
+                }
+
+                failureCallBack(model.resStr)
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+}
+
+// MARK: - Change Users Status API Call
+extension UsersNetworkManager {
+    func changeUserType(for userID: String, _ userType: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: UsersAPIEndPoint.changeUserType(userID, userType))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }

@@ -11,6 +11,8 @@ import Foundation
 enum AppAPIEndPoint: APIEndPoint {
     case getAppDomains
     case login(_ countryCode: String, _ phone: String, _ pwd: String)
+    case loginOld(_ countryCode: String, _ phone: String, _ pwd: String)
+    case verify(_ countryCode: String, _ phone: String, _ code: String)
     case saveFCMToken
     case logout
     case getBadgeCount
@@ -29,10 +31,12 @@ extension AppNetworkManager {
     internal var urlString: String {
         switch endPoint {
             case .getAppDomains: return "SystemVariables/getListOfDomains/"
-            case .login(_, _, _): return "Login/loginUser/"
-            case .saveFCMToken: return "Login/setPushTokenForUserNew/"
+            case .login(_, _, _): return "Login/loginStep1/"
+            case .verify(_, _, _): return "Login/loginStep2/"
+            case .loginOld(_, _, _): return "Login/loginUser/"
+            case .saveFCMToken: return "Login/setPushTokenForAdmin/"
             case .logout: return "Login/logoutUser/"
-            case .getBadgeCount: return "Login/getCSUnreadChatsCount/"
+            case .getBadgeCount: return "Login/getCSUnreadChatsCountNew/"
             case .getSupportChats(_, _, _): return "Login/getListOfChannelsForCustomerSupport/"
             case .getListOfSubjects: return "Login/getListOfSubjects/"
             case .saveLastMessage(_, _, _, _): return "Login/saveSupportLastMessage/"
@@ -63,10 +67,14 @@ extension AppNetworkManager {
                 return ["language": selectedLanguage]
             case .login(let countryCode, let phone, let pwd):
                 return ["countryCode": countryCode, "phone": phone, "password": pwd, "language": selectedLanguage]
+            case .loginOld(let countryCode, let phone, let pwd):
+                return ["phone": phone, "password": pwd,"countryCode": countryCode,"language": selectedLanguage]
+            case .verify(let countryCode, let phone, let code):
+                return ["countryCode": countryCode, "phone": phone, "code": code, "language": selectedLanguage]
             case .saveFCMToken:
-                return ["userId": hashedUserID, "pushToken": AppUserDefaults.manager.pushFCMToken ?? "", "platform": Utility.shared.appPlatform, "language": selectedLanguage, "identifier": Utility.shared.deviceIdentifier]
+                return ["userId": hashedUserID, "pushToken": AppUserDefaults.manager.pushFCMToken, "platform": Utility.shared.appPlatform, "language": selectedLanguage, "identifier": Utility.shared.deviceIdentifier]
             case .logout:
-                return ["userId": hashedUserID, "pushToken": "abcd"]
+                return ["userId": hashedUserID, "pushToken": AppUserDefaults.manager.pushFCMToken]
             case .getBadgeCount:
                 return ["userId": hashedUserID]
             case .getSupportChats(let page, let pageSize, let subjectID):
@@ -228,6 +236,59 @@ extension AppNetworkManager {
     func login(with countryCode: String, _ phone: String, and pwd: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: AppAPIEndPoint.login(countryCode, phone, pwd))
 
+        AppUserDefaults.manager.forcedLogout = false
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<UserResponse>.self, from: resData)
+
+                if model.resCode == 0 {
+                    successCallBack()
+                } else {
+                    failureCallBack(model.resStr)
+                }
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+
+    func loginOld(with countryCode: String, _ phone: String, and pwd: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: AppAPIEndPoint.loginOld(countryCode, phone, pwd))
+
+        AppUserDefaults.manager.forcedLogout = false
+
+        BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
+            guard let resData = resData else { return }
+
+            do {
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<UserResponse>.self, from: resData)
+
+                if model.resCode == 0 {
+                    successCallBack()
+                } else {
+                    failureCallBack(model.resStr)
+                }
+            } catch _ {
+                failureCallBack("Invalid JSON.")
+            }
+        }, failureCallBack: { errorStr in
+            failureCallBack(errorStr)
+        })
+    }
+}
+
+// MARK: - Verify API
+extension AppNetworkManager {
+    func verify(with countryCode: String, _ phone: String, and code: String, successCallBack: @escaping () -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+        let request = getRequest(with: AppAPIEndPoint.verify(countryCode, phone, code))
+
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }
 
@@ -236,14 +297,10 @@ extension AppNetworkManager {
                 let model = try decoder.decode(ResponseModel<UserResponse>.self, from: resData)
 
                 if model.resCode == 0, let user = model.response?.user {
-                    if user.userType == "6" {
-                        AppUserDefaults.manager.save(user: user)
-                        AppSession.manager.updateUser()
+                    AppUserDefaults.manager.save(user: user)
+                    AppSession.manager.updateUser()
 
-                        successCallBack()
-                    } else {
-                        failureCallBack("This User cannot use this App.")
-                    }
+                    successCallBack()
                 } else {
                     failureCallBack(model.resStr)
                 }
@@ -310,17 +367,26 @@ extension AppNetworkManager {
 
 // MARK: - Badge count API
 extension AppNetworkManager {
-    func getBadge() {
+    func getBadge(callback: @escaping () -> Void) {
         let request = getRequest(with: AppAPIEndPoint.getBadgeCount)
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }
 
             do {
-                let jsonObject = try JSONSerialization.jsonObject(with: resData, options: [])
-                guard let jsonDictionary = jsonObject as? [String: Any], let badgeCount = jsonDictionary["response"] as? String else { return }
+                
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<AppBadgeCount>.self, from: resData)
 
-                Utility.shared.update(badgeCount: badgeCount)
+                let chatCount = model.response?.chatUnreadCount
+                Utility.shared.updateChat(badgeCount: chatCount)
+                AppUserDefaults.manager.chatBadgeCount = chatCount
+
+                let ticketCount = model.response?.ticketsUnreadCount
+                Utility.shared.updateTicket(badgeCount: ticketCount)
+                AppUserDefaults.manager.ticketBadgeCount = ticketCount
+
+                callback()
             } catch _ { }
         }, failureCallBack: { _ in })
     }
@@ -328,7 +394,7 @@ extension AppNetworkManager {
 
 // MARK: - Update Token
 extension AppNetworkManager {
-    func updateToken() {
+    func updateToken(callback: @escaping () -> Void) {
         let request = getRequest(with: AppAPIEndPoint.saveFCMToken)
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
@@ -337,6 +403,9 @@ extension AppNetworkManager {
             do {
                 let decoder = JSONDecoder()
                 let _ = try decoder.decode(ResponseModel<UserResponse>.self, from: resData)
+                AppNetworkManager.shared.getBadge {
+                    callback()
+                }
             } catch _ { }
         }, failureCallBack: { _ in })
     }
@@ -344,19 +413,23 @@ extension AppNetworkManager {
 
 // MARK: - Stats Details API
 extension AppNetworkManager {
-    func getStatsDetails(from startDate: String, to endDate: String, successCallBack: @escaping (_ responseDict: [String: Any]?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
+    func getStatsDetails(from startDate: String, to endDate: String, successCallBack: @escaping (_ responseModel: StatsModel?) -> Void, failureCallBack: @escaping (_ errorStr: String?) -> Void) {
         let request = getRequest(with: AppAPIEndPoint.getStatsDetails(startDate, endDate))
 
         BaseNetworkManager.shared.fetch(request, successCallBack: { resData in
             guard let resData = resData else { return }
 
             do {
-                let jsonObject = try JSONSerialization.jsonObject(with: resData, options: [])
-                guard let jsonDictionary = jsonObject as? [String: Any], let responseDict = jsonDictionary["response"] as? [String: Any] else { return }
+                let decoder = JSONDecoder()
+                let model = try decoder.decode(ResponseModel<StatsModel>.self, from: resData)
 
-                successCallBack(responseDict)
-            } catch _ { }
-        }, failureCallBack: { _ in })
+                if model.resCode == 0 {
+                    successCallBack(model.response)
+                } else {
+                    failureCallBack(model.resStr)
+                }
+            } catch _ { failureCallBack("Invalid JSON.") }
+        }, failureCallBack: { errorStr in failureCallBack(errorStr) })
     }
 }
 

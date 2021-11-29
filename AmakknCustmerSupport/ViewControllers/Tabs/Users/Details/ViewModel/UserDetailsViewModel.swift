@@ -15,6 +15,7 @@ enum UserDetailsType: String {
     case company = "Company Details"
     case properties = "Properties Details"
     case appUsages = "App Usages Details"
+    case changeUserType = "Change User Type"
 }
 
 // MARK: - Sections Enum
@@ -24,6 +25,7 @@ enum UserDetailsSection: Int {
     case company
     case properties
     case appUsages
+    case changeUserType
 }
 
 // MARK: - UserDetails Delegate
@@ -34,6 +36,7 @@ protocol UserDetailsDelegate {
 class UserDetailsViewModel {
     private var userDataType: UserDetailsDataSource?
     private var userDataSource: [UserDetailsModel]?
+    var userType: String?
     var userID: String?
 
     var delegate: UserDetailsDelegate?
@@ -42,6 +45,7 @@ class UserDetailsViewModel {
         guard let userModel = userModel else { getUserStats(); return }
 
         userDataType = UserDetailsDataSource(userModel)
+        userType = userModel.userType
 
         updateData()
         updateCompanyDetails(with: userModel)
@@ -55,7 +59,8 @@ class UserDetailsViewModel {
         userDataSource = [UserDetailsModel(with: UserDetailsType.profile.rawValue, for: nil),
                          UserDetailsModel(with: UserDetailsType.account.rawValue, for: userDataType?.accountDetails?.userAccountData),
                          UserDetailsModel(with: UserDetailsType.properties.rawValue, for: userDataType?.profilePropertyDetails?.userPropertiesData),
-                         UserDetailsModel(with: UserDetailsType.appUsages.rawValue, for: userDataType?.appUsagesDetails?.userAppUsagesData)]
+                         UserDetailsModel(with: UserDetailsType.appUsages.rawValue, for: userDataType?.appUsagesDetails?.userAppUsagesData),
+                         UserDetailsModel(with: UserDetailsType.changeUserType.rawValue, for: nil)]
     }
 
     private func updateCompanyDetails(with userModel: UserStatsModel?) {
@@ -84,9 +89,12 @@ class UserDetailsViewModel {
     }
 
     func getCellHeight(at section: Int) -> CGFloat {
-        guard (userDataSource?[section].detailsData) != nil else { return 250.0 }
+        guard let sectionType = UserDetailsSection(rawValue: section) else { return 0.0 }
 
-        return 45.0
+        switch sectionType {
+            case .profile: return 250.0
+            default: return 45.0
+        }
     }
 
     var subjectID: String {
@@ -94,10 +102,16 @@ class UserDetailsViewModel {
     }
 
     func getCellCount(for section: Int) -> Int {
-        guard (userDataSource?[section].detailsData) != nil else { return 1 }
-        guard let details = userDataSource?[section] else { return 0 }
+        guard let sectionType = UserDetailsSection(rawValue: section) else { return 0 }
 
-        return details.isExpanded ? (details.detailsData?.count ?? 0) : 0
+        switch sectionType {
+            case .profile: return 1
+            case .changeUserType: return 0
+            default:
+                guard let details = userDataSource?[section] else { return 0 }
+
+                return details.isExpanded ? (details.detailsData?.count ?? 0) : 0
+        }
     }
 
     func getData(at section: Int) -> UserDetailsModel? {
