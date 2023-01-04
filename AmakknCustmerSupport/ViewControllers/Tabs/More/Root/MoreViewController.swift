@@ -26,6 +26,10 @@ class MoreViewController: UIViewController {
         if AppSession.manager.validSession {
             viewModel.updateData()
             ibMoreTableView.reloadData()
+
+            viewModel.updateBadgeCount { [weak self] in
+                self?.ibMoreTableView.reloadData()
+            }
         }
     }
 

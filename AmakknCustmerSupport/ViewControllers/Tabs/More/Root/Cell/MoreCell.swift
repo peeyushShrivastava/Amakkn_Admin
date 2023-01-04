@@ -26,9 +26,7 @@ class MoreCell: UITableViewCell {
     private func updateUI() {
         ibTitleLabel.text = titleText
 
-        if titleText == "Logout".localized() {
-            ibTitleLabel.textColor = .systemPink
-        }
+        ibTitleLabel.textColor = titleText == "Logout".localized() ? .systemPink : AppColors.selectedTitleTextColor
 
         let chatBadgeCount = AppUserDefaults.manager.chatBadgeCount
         bCountHolder.isHidden = (chatBadgeCount == nil || chatBadgeCount == "0")

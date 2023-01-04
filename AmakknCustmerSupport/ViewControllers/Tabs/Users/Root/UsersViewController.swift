@@ -40,6 +40,7 @@ class UsersViewController: BaseViewController {
         ibEmptyBGView.updateUI()
         updateMainTabDelegate()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Users...") : ibEmptyBGView.updateErrorText()
+        ibSearchBar.isHidden = !AppSession.manager.validSession
     }
 
     private func registerCell() {

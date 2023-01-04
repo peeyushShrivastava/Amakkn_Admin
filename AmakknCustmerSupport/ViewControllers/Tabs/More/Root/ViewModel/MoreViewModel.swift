@@ -36,6 +36,14 @@ class MoreViewModel {
     func updateData() {
         section2Data = AppSession.manager.validSession ? ["Logout".localized()] : ["Login".localized()]
     }
+
+    func updateBadgeCount(callback: @escaping () -> Void) {
+        AppNetworkManager.shared.getBadge {
+            DispatchQueue.main.async {
+                callback()
+            }
+        }
+    }
 }
 
 // MARK: - Logout API Call

@@ -30,6 +30,7 @@ class StatsDetailsViewController: BaseViewController {
 
         ibEmptyView.updateUI()
         AppSession.manager.validSession ? ibEmptyView.startActivityIndicator(with: "Fetching Stats...") : ibEmptyView.updateErrorText()
+        ibMoreButton.isEnabled = AppSession.manager.validSession
     }
 
     private func registerCell() {

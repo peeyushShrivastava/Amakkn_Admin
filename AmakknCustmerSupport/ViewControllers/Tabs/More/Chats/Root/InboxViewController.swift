@@ -146,7 +146,7 @@ extension InboxViewController: UITableViewDelegate, UITableViewDataSource {
         guard let chat = viewModel[indexPath.row] else { return }
 
         viewModel.resetUnreadCount(at: indexPath.row)
-        ibChatTableView.reloadData()
+        ibChatTableView.reloadRows(at: [indexPath], with: .automatic)
 
         pushChatVC(for: chat)
     }

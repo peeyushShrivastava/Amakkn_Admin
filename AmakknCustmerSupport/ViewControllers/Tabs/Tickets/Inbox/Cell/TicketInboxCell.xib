@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -77,6 +78,12 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Nov 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rw-cm-akI">
+                        <rect key="frame" x="16" y="12" width="74" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" red="0.072751586240334759" green="0.68670161894795778" blue="0.35605924719851756" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="26U-2x-2OB"/>
@@ -85,12 +92,14 @@
                 <constraint firstAttribute="trailing" secondItem="ebJ-VL-73t" secondAttribute="trailing" constant="16" id="3w5-La-tLW"/>
                 <constraint firstItem="oAz-OP-NT1" firstAttribute="top" secondItem="Aa7-om-LJI" secondAttribute="top" constant="8" id="4mz-7N-q6Z"/>
                 <constraint firstAttribute="trailing" secondItem="2Va-va-Uf4" secondAttribute="trailing" constant="16" id="7bL-GB-zqP"/>
+                <constraint firstItem="3rw-cm-akI" firstAttribute="centerY" secondItem="flk-fS-Mbv" secondAttribute="centerY" id="7oW-Ka-R0e"/>
                 <constraint firstItem="2Va-va-Uf4" firstAttribute="top" secondItem="flk-fS-Mbv" secondAttribute="bottom" constant="9" id="CJR-to-2aj"/>
                 <constraint firstItem="flk-fS-Mbv" firstAttribute="top" secondItem="Aa7-om-LJI" secondAttribute="top" constant="12" id="GJc-BX-BlV"/>
                 <constraint firstAttribute="bottom" secondItem="KXi-hf-Ckb" secondAttribute="bottom" constant="5" id="HZw-v0-p9x"/>
                 <constraint firstItem="26U-2x-2OB" firstAttribute="trailing" secondItem="E6Y-32-vIx" secondAttribute="trailing" constant="96" id="L77-vk-aOm"/>
                 <constraint firstAttribute="trailing" secondItem="KXi-hf-Ckb" secondAttribute="trailing" constant="5" id="PaA-4k-V6Y"/>
                 <constraint firstAttribute="bottom" secondItem="E6Y-32-vIx" secondAttribute="bottom" constant="5" id="Tw5-1C-wjt"/>
+                <constraint firstItem="3rw-cm-akI" firstAttribute="leading" secondItem="Aa7-om-LJI" secondAttribute="leading" constant="16" id="ZJA-v5-1Iw"/>
                 <constraint firstItem="2Va-va-Uf4" firstAttribute="leading" secondItem="Aa7-om-LJI" secondAttribute="leading" constant="16" id="aS8-sF-Rl9"/>
                 <constraint firstItem="oAz-OP-NT1" firstAttribute="leading" secondItem="Aa7-om-LJI" secondAttribute="leading" constant="16" id="juZ-cC-q9Z"/>
                 <constraint firstItem="E6Y-32-vIx" firstAttribute="leading" secondItem="Aa7-om-LJI" secondAttribute="leading" constant="16" id="o47-sZ-ioQ"/>
@@ -105,6 +114,7 @@
                 <outlet property="ibLastMsgLabel" destination="E6Y-32-vIx" id="6mc-SG-YdH"/>
                 <outlet property="ibStatusHolder" destination="ebJ-VL-73t" id="fbt-uz-6iB"/>
                 <outlet property="ibStatusLabel" destination="ohb-pS-Ikp" id="OXd-pZ-d9X"/>
+                <outlet property="ibTicketIDLabel" destination="3rw-cm-akI" id="Zmg-oh-mVy"/>
                 <outlet property="ticketTitleLabel" destination="2Va-va-Uf4" id="dGJ-gS-heb"/>
             </connections>
             <point key="canvasLocation" x="317.39130434782612" y="106.47321428571428"/>

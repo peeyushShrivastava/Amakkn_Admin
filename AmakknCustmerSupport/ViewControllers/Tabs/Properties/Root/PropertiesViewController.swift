@@ -38,6 +38,7 @@ class PropertiesViewController: BaseViewController {
         ibEmptyBGView.updateUI()
         updateMainTabDelegate()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Properties...") : ibEmptyBGView.updateErrorText()
+        ibSearchBar.isHidden = !AppSession.manager.validSession
     }
 
     private func registerCell() {

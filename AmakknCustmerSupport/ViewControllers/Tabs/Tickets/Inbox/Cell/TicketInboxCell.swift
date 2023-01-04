@@ -15,7 +15,8 @@ class TicketInboxCell: UICollectionViewCell {
     @IBOutlet weak var ibFeedback: UILabel!
     @IBOutlet weak var ibLastMsgLabel: UILabel!
     @IBOutlet weak var ibCountLabel: UILabel!
-    
+    @IBOutlet weak var ibTicketIDLabel: UILabel!
+
     var ticketModel: TicketsModel? {
         didSet {
             updateData()
@@ -54,6 +55,7 @@ class TicketInboxCell: UICollectionViewCell {
 
         ibCountLabel.isHidden = (ticketModel?.unreadCount == "0" || ticketModel?.unreadCount == nil)
         ibCountLabel.text = ticketModel?.unreadCount
+        ibTicketIDLabel.text = "# \(ticketModel?.ticketID ?? "--")"
     }
 
     private func updateFeedback() {

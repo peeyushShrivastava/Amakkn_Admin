@@ -48,6 +48,9 @@ class TicketsInboxViewController: BaseViewController {
 
         ibEmptyBGView.updateUI()
         AppSession.manager.validSession ? ibEmptyBGView.startActivityIndicator(with: "Fetching Tickets...") : ibEmptyBGView.updateErrorText()
+        ibSearchBar.isHidden = !AppSession.manager.validSession
+        ibMoreButton.isHidden = !AppSession.manager.validSession
+        ibStatusHolder.isHidden = !AppSession.manager.validSession
     }
 
     override func viewWillDisappear(_ animated: Bool) {
